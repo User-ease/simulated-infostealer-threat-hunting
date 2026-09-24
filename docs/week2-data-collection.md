@@ -18,13 +18,13 @@ The collected information is used to better understand infostealer-related indic
 
 The following OSINT tools and sources were used:
 
-| Source                  | Purpose                                                                                  |
-| ----------------------- | ---------------------------------------------------------------------------------------- |
-| VirusTotal              | Analyze public information related to domains, files, hashes, URLs, and IP addresses     |
-| Shodan                  | Investigate publicly visible information about Internet-facing IP addresses and services |
-| Maltego                 | Visualize relationships between indicators and related infrastructure                    |
-| MITRE ATT&CK            | Provide behavioral and adversary-technique context                                       |
-| Public security reports | Obtain documented indicators and information about infostealer activity                  |
+| Source | Purpose |
+|---|---|
+| VirusTotal | Analyze public information related to domains, files, hashes, URLs, and IP addresses |
+| Shodan | Investigate publicly visible information about Internet-facing IP addresses and services |
+| Maltego | Visualize relationships between indicators and related infrastructure |
+| MITRE ATT&CK | Provide behavioral and adversary-technique context |
+| Public security reports | Obtain documented indicators and information about infostealer activity |
 
 ## Data Collection Process
 
@@ -44,8 +44,8 @@ The domain `looksta[.]icu` was selected as the primary indicator for the Week 2 
 
 The indicator was obtained from a public Microsoft Security Research report discussing ACR Stealer activity.
 
-| Indicator       | Type   | Original Source                                  |
-| --------------- | ------ | ------------------------------------------------ |
+| Indicator | Type | Original Source |
+|---|---|---|
 | `looksta[.]icu` | Domain | Microsoft Security Research – ACR Stealer report |
 
 ## VirusTotal Analysis
@@ -56,15 +56,15 @@ At the time of analysis, the root domain `looksta.icu` showed **0/89 detections*
 
 VirusTotal also showed:
 
-* multiple detected files communicating with the domain;
-* a related `www.looksta.icu` hostname with detections;
-* passive DNS relationships;
-* associated IP addresses.
+- multiple detected files communicating with the domain;
+- a related `www.looksta.icu` hostname with detections;
+- passive DNS relationships;
+- associated IP addresses.
 
 The following IP addresses were observed through passive DNS information:
 
-* `104.21.33.112`
-* `172.67.161.227`
+- `104.21.33.112`
+- `172.67.161.227`
 
 Several communicating Windows executable or DLL files also showed detections in VirusTotal.
 
@@ -88,8 +88,8 @@ The IP address `104.21.33.112` was investigated using Shodan.
 
 Shodan identified the address as infrastructure belonging to:
 
-* **Organization:** Cloudflare, Inc.
-* **ASN:** AS13335
+- **Organization:** Cloudflare, Inc.
+- **ASN:** AS13335
 
 Several HTTP and HTTPS-related services and ports were visible in the Shodan results.
 
@@ -121,33 +121,50 @@ The graph was treated as contextual information rather than proof that every con
 
 ## Data Source Mapping
 
-| Data Type         | Source                                               | Use in the Project                                               |
-| ----------------- | ---------------------------------------------------- | ---------------------------------------------------------------- |
-| Domain            | VirusTotal / Maltego                                 | Reputation, relationships, and infrastructure context            |
-| File              | VirusTotal                                           | Identify files communicating with investigated infrastructure    |
-| IP address        | VirusTotal / Shodan / Maltego                        | Network and infrastructure context                               |
-| ATT&CK technique  | MITRE ATT&CK                                         | Behavioral classification                                        |
-| Threat report     | Microsoft Security Research and other public reports | Threat context and documented activity                           |
-| Windows telemetry | Future controlled laboratory                         | Internal evidence for later threat-hunting and forensic analysis |
+| Data Type | Source | Use in the Project |
+|---|---|---|
+| Domain | VirusTotal / Maltego | Reputation, relationships, and infrastructure context |
+| File | VirusTotal | Identify files communicating with investigated infrastructure |
+| IP address | VirusTotal / Shodan / Maltego | Network and infrastructure context |
+| ATT&CK technique | MITRE ATT&CK | Behavioral classification |
+| Threat report | Microsoft Security Research and other public reports | Threat context and documented activity |
+| Windows telemetry | Future controlled laboratory | Internal evidence for later threat-hunting and forensic analysis |
 
 ## Collected Indicators
 
-| Indicator        | Type       | VirusTotal Result                                                                               | Shodan Result                                                  | Maltego Result                    |
-| ---------------- | ---------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | --------------------------------- |
-| `looksta[.]icu`  | Domain     | Root domain showed 0/89 detections, but related detected files and infrastructure were observed | Related IP infrastructure was associated with Cloudflare       | DNS relationships were visualized |
-| `104.21.33.112`  | IP address | Observed through passive DNS                                                                    | Cloudflare, Inc., AS13335                                      | Related infrastructure entity     |
-| `172.67.161.227` | IP address | Observed through passive DNS                                                                    | Not investigated separately during the initial Shodan analysis | Related infrastructure entity     |
+| Indicator | Type | VirusTotal Result | Shodan Result | Maltego Result |
+|---|---|---|---|---|
+| `looksta[.]icu` | Domain | Root domain showed 0/89 detections, but related detected files and infrastructure were observed | Related IP infrastructure was associated with Cloudflare | DNS relationships were visualized |
+| `104.21.33.112` | IP address | Observed through passive DNS | Cloudflare, Inc., AS13335 | Related infrastructure entity |
+| `172.67.161.227` | IP address | Observed through passive DNS | Not investigated separately during the initial Shodan analysis | Related infrastructure entity |
 
 ## Key Findings
 
 The OSINT investigation produced several useful observations:
 
-* A single VirusTotal detection score should not be treated as a final verdict.
-* Relationships with detected files and related hostnames can provide additional context.
-* Passive DNS can identify infrastructure related to an investigated domain.
-* Shared infrastructure such as Cloudflare limits the usefulness of an IP address for direct attribution.
-* Maltego helps visualize relationships between indicators and infrastructure.
-* Information from several sources should be correlated before drawing conclusions.
+- A single VirusTotal detection score should not be treated as a final verdict.
+- Relationships with detected files and related hostnames can provide additional context.
+- Passive DNS can identify infrastructure related to an investigated domain.
+- Shared infrastructure such as Cloudflare limits the usefulness of an IP address for direct attribution.
+- Maltego helps visualize relationships between indicators and infrastructure.
+- Information from several sources should be correlated before drawing conclusions.
+
+## Bridge to Future Threat Hunting
+
+The external threat intelligence collected during Week 2 will later be used to guide the design of the controlled threat-hunting laboratory.
+
+Public threat reports describe behaviors associated with infostealer activity, while VirusTotal, Shodan, and Maltego provide additional context about indicators and infrastructure.
+
+For the later laboratory stage, only safe simulated behaviors will be reproduced using synthetic data. The project will not attempt to reproduce ACR Stealer or any other real infostealer exactly.
+
+| Threat Intelligence Source | Documented or Relevant Behavior | Planned Safe Simulation | Future Evidence Source | Limitation |
+|---|---|---|---|---|
+| Public threat reports | Data collection and staging | Copy synthetic browser-like files into a staging directory | Windows telemetry and file artifacts | Simulation does not reproduce real credential theft |
+| Public threat reports | Archive creation | Create an archive containing synthetic data | Process and file creation telemetry | Archive creation is also common in legitimate activity |
+| Public threat reports | Network communication | Connect to a controlled local receiver | Windows network telemetry and receiver logs | A network connection alone does not prove that a specific file was transferred |
+| VirusTotal / Shodan / Maltego | Indicator and infrastructure relationships | Use the collected OSINT as external context | Week 2 OSINT records | Related infrastructure does not automatically prove malicious ownership |
+
+This connection allows the Week 2 OSINT results to provide context for later hypothesis-driven threat hunting without treating external indicators as sufficient evidence by themselves.
 
 ## Week 2 Result
 
@@ -157,4 +174,4 @@ VirusTotal provided reputation, file, and passive DNS context. Shodan provided i
 
 The investigation demonstrated the importance of source correlation. A single reputation score or IP address is not enough to make a reliable conclusion. Threat intelligence should be evaluated together with related indicators, infrastructure context, source reliability, and known limitations.
 
-The collected information provides external threat context that can later be compared with telemetry generated in the controlled Windows threat-hunting laboratory.
+The collected information provides external threat context that can later support the design of controlled threat-hunting experiments in the Windows laboratory.
