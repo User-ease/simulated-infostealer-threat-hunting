@@ -16,6 +16,8 @@ The scope remains safe simulation: no real malware, real credential collection, 
 
 The observation date `2026-09-24` comes from the Week 2 report. It is not a new passive DNS lookup, a first/last-seen timestamp, or a date of infection. The Microsoft report was checked during preparation and lists `looksta[.]icu` as a C2 domain. VirusTotal and Shodan results were not refreshed; their values and limitations are carried forward from the repository.
 
+An evidence audit confirmed that the saved VirusTotal **Relations / Passive DNS Replication** screenshot displays `2026-04-22` in **Date resolved** for both IPs. That date is now retained in each raw record's notes and propagated into the derived CSV and MISP comments. It is separate from the collection date. Screenshot filenames were corrected to match their visible panels without changing image content. The existing Maltego image supports only an initial domain entity, so the Week 2 report and README now identify the missing relationship evidence explicitly.
+
 | Record | Input | Evidence basis | Limitation |
 | --- | --- | --- | --- |
 | `w2-001` | `looksta[.]icu` | Microsoft report; Week 2 selected indicator | A historical vendor IOC does not establish current activity or local compromise |
@@ -38,7 +40,7 @@ The script validates metadata presence and syntax, not the truth or reachability
 
 ## Processing decisions
 
-1. Read UTF-8 CSV (an optional BOM is accepted). Require the documented column order, nonempty fields, unique record IDs, and valid ISO dates. Any invalid record stops processing before outputs are written; records are never silently dropped.
+1. Read UTF-8 CSV (an optional BOM is accepted) with strict quote parsing. Require the documented column order, nonempty fields, unique record IDs, and valid ISO dates. A validation or parsing error, including an unterminated quoted field, stops processing before outputs are written. Error messages identify the physical input line, including after multiline fields; records are never silently dropped.
 2. Trim surrounding whitespace. Replace `[.]` with `.`. Lowercase DNS names and remove one optional trailing DNS dot. Accept ASCII DNS labels only; reject URLs, ports, wildcards, empty labels, and malformed names. Internationalized domains and other defanging formats are outside this small workflow.
 3. Validate IPv4 with Python's standard `ipaddress` library and normalize input `ip` to `ipv4`. Reject IPv6 and unsupported IOC types explicitly rather than guessing a type.
 4. Group by normalized type and value. Merge repeated indicators while retaining all raw record IDs and unique provenance values, joined with ` | `. The original rows remain in the raw CSV, which preserves the exact source-to-record association. Mixed evidence roles conservatively result in `to_ids=false`.
@@ -79,7 +81,7 @@ The local run produced:
 
 The [generated summary](../data/week3-processing-summary.json) includes an input hash for reproducibility, not a claim of external evidentiary authenticity. On invalid input the script exits with an error and leaves prior generated artifacts in place; those older artifacts must not be mistaken for successful processing of the invalid input.
 
-Eleven automated tests passed locally on Python 3.12.14. They cover valid normalization, invalid input, metadata and schema errors, duplicate IDs, duplicate merging with provenance retention, conservative IDS decisions, JSON flags, generated-file consistency, drift detection, and preservation of existing outputs after a validation failure. Edge cases use synthetic `example.test` and documentation IP fixtures inside tests only. Minimum-version execution and a live MISP import have not been tested.
+Fifteen automated tests passed locally on Python 3.12.14. They cover valid normalization, invalid input, metadata and schema errors, duplicate IDs, duplicate merging with provenance retention, conservative IDS decisions, JSON flags, generated-file consistency, drift detection, existing evidence paths, malformed CSV quoting, physical error line numbers, and protection of outputs after a validation failure. The captured [validation transcript](../evidence/week3-validation.txt) records the actual commands, results, UTC run time, and hashes of the tested script, tests, and input. Edge cases use synthetic `example.test` and documentation IP fixtures inside tests only. Minimum-version execution and a live MISP import have not been tested.
 
 ## MISP preparation and remaining evidence
 
@@ -88,6 +90,8 @@ Use the [MISP guide](../misp/README.md) with [week3-event-import.json](../misp/w
 To complete the MISP portion, record the actual instance version and import outcome, inspect all three stored attributes and flags, review any warnings and correlations, and export the saved event. A correlation match only means a relationship exists in that instance's accessible data; it does not prove common ownership or compromise. If the review finds no matches, document that observed result and the instance/feed limitations. Do not replace “not tested” with “no correlations.”
 
 Only after these steps should a real export be added as `misp/week3-event-export.json` and genuine screenshots be added under `images/week3/`. Review exported metadata and screenshots for credentials, API keys, private organization information, and unrelated events before committing them. No placeholder screenshots or fabricated export files are included.
+
+The [Week 3 screenshot checklist](../images/week3/README.md) specifies the views needed and what each image should demonstrate. It is a checklist, not evidence that those views have been captured.
 
 ## References
 

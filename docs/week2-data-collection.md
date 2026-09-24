@@ -16,7 +16,7 @@ The collected information is used to better understand infostealer-related indic
 
 ## Data Sources
 
-The following OSINT tools and sources were used:
+The following sources and tools form the collection workflow. VirusTotal and Shodan results are supported by saved screenshots; Maltego evidence currently supports only the initial domain entity:
 
 | Source                  | Purpose                                                                                  |
 | ----------------------- | ---------------------------------------------------------------------------------------- |
@@ -28,13 +28,13 @@ The following OSINT tools and sources were used:
 
 ## Data Collection Process
 
-The Week 2 workflow was:
+The Week 2 workflow and its evidence status are:
 
 1. Select a publicly documented infostealer-related indicator from a reliable security report.
 2. Analyze and enrich the indicator using VirusTotal.
 3. Identify related IP addresses using passive DNS information.
 4. Investigate relevant infrastructure using Shodan.
-5. Use Maltego to visualize DNS and infrastructure relationships.
+5. Add the initial domain in Maltego. Evidence of a completed DNS transform and relationship graph remains pending.
 6. Compare information from multiple sources instead of treating a single reputation result as definitive evidence.
 7. Document important observations and limitations.
 
@@ -72,6 +72,8 @@ The following IP addresses were observed through passive DNS information:
 * `104.21.33.112`
 * `172.67.161.227`
 
+The saved **Relations / Passive DNS Replication** view lists **Date resolved: 22 April 2026** for both IP addresses. This is the date shown by the source, distinct from the **24 September 2026** collection date. It is not treated as a first-seen/last-seen range or evidence of a current DNS resolution.
+
 Several communicating Windows executable or DLL files also showed detections in VirusTotal.
 
 This demonstrated an important limitation of relying only on the detection score of a root domain. A zero detection count does not automatically mean that an indicator is safe. Related files, hostnames, infrastructure, and external threat intelligence should also be considered.
@@ -82,11 +84,11 @@ This demonstrated an important limitation of relying only on the detection score
 
 ### VirusTotal – Relations
 
-![VirusTotal Relations](../images/week2/virustotal-relations.png)
+![VirusTotal Relations: passive DNS, subdomains, and communicating files](../images/week2/virustotal-passive-dns.png)
 
 ### VirusTotal – Details
 
-![VirusTotal Details](../images/week2/virustotal-details.png)
+![VirusTotal Details: last DNS records](../images/week2/virustotal-dns-records.png)
 
 ## Shodan Analysis
 
@@ -111,27 +113,21 @@ The Shodan result was useful for understanding the infrastructure context, but n
 
 ## Maltego Analysis
 
-Maltego was used to visualize relationships associated with `looksta.icu`.
+The saved screenshot shows `looksta.icu` added as a single initial domain entity. It does not show connected entities, relationship edges, or transform results. The earlier wording claiming a completed DNS lookup and resulting relationship graph was not supported by this evidence and has been corrected.
 
-The domain was added as the initial entity and a **Domain Name System (DNS) Lookup** transform was executed.
+Maltego relationship analysis therefore remains **unverified / pending evidence**. The two IP associations in this report are supported by the VirusTotal screenshot, not by the current Maltego screenshot. To complete this step, retain the actual transform output or graph export and a screenshot showing its results; interpret any relationships as context rather than proof of common malicious ownership.
 
-The resulting graph displayed DNS-related entities and infrastructure associated with the investigated domain.
+### Maltego – Initial Domain Entity
 
-Maltego was useful for visually representing relationships between the initial observable and related infrastructure.
-
-The graph was treated as contextual information rather than proof that every connected entity was malicious or directly controlled by the same threat actor.
-
-### Maltego – DNS Relationship Graph
-
-![Maltego DNS Graph](../images/week2/maltego-dns-graph.png)
+![Maltego initial domain entity; relationship results not shown](../images/week2/maltego-initial-entity.png)
 
 ## Data Source Mapping
 
 | Data Type         | Source                                               | Use in the Project                                               |
 | ----------------- | ---------------------------------------------------- | ---------------------------------------------------------------- |
-| Domain            | VirusTotal / Maltego                                 | Reputation, relationships, and infrastructure context            |
+| Domain            | VirusTotal; Maltego initial entity only              | Reputation and relationships from VirusTotal; graph results pending |
 | File              | VirusTotal                                           | Identify files communicating with investigated infrastructure    |
-| IP address        | VirusTotal / Shodan / Maltego                        | Network and infrastructure context                               |
+| IP address        | VirusTotal / Shodan                                 | Network and infrastructure context; no confirmed Maltego output   |
 | ATT&CK technique  | MITRE ATT&CK                                         | Behavioral classification                                        |
 | Threat report     | Microsoft Security Research and other public reports | Threat context and documented activity                           |
 | Windows telemetry | Future controlled laboratory                         | Internal evidence for later threat-hunting and forensic analysis |
@@ -140,9 +136,9 @@ The graph was treated as contextual information rather than proof that every con
 
 | Indicator        | Type       | VirusTotal Result                                                                               | Shodan Result                                                  | Maltego Result                    |
 | ---------------- | ---------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | --------------------------------- |
-| `looksta[.]icu`  | Domain     | Root domain showed 0/89 detections, but related detected files and infrastructure were observed | Related IP infrastructure was associated with Cloudflare       | DNS relationships were visualized |
-| `104.21.33.112`  | IP address | Observed through passive DNS                                                                    | Cloudflare, Inc., AS13335                                      | Related infrastructure entity     |
-| `172.67.161.227` | IP address | Observed through passive DNS                                                                    | Not investigated separately during the initial Shodan analysis | Related infrastructure entity     |
+| `looksta[.]icu`  | Domain     | Root domain showed 0/89 detections, but related detected files and infrastructure were observed | Related IP infrastructure was associated with Cloudflare       | Initial domain entity only |
+| `104.21.33.112`  | IP address | Observed through passive DNS                                                                    | Cloudflare, Inc., AS13335                                      | Not shown in saved evidence |
+| `172.67.161.227` | IP address | Observed through passive DNS                                                                    | Not investigated separately during the initial Shodan analysis | Not shown in saved evidence |
 
 ## Key Findings
 
@@ -152,14 +148,14 @@ The OSINT investigation produced several useful observations:
 * Relationships with detected files and related hostnames can provide additional context.
 * Passive DNS can identify infrastructure related to an investigated domain.
 * Shared infrastructure such as Cloudflare limits the usefulness of an IP address for direct attribution.
-* Maltego helps visualize relationships between indicators and infrastructure.
+* The saved Maltego screenshot does not establish any indicator relationships; this part of the exercise still needs evidence.
 * Information from several sources should be correlated before drawing conclusions.
 
 ## Bridge to Future Threat Hunting
 
 The external threat intelligence collected during Week 2 will later be used to guide the design of the controlled threat-hunting laboratory.
 
-Public threat reports describe behaviors associated with infostealer activity, while VirusTotal, Shodan, and Maltego provide additional context about indicators and infrastructure.
+Public threat reports describe behaviors associated with infostealer activity, while the saved VirusTotal and Shodan results provide additional indicator and infrastructure context. Maltego relationship results remain pending.
 
 For the later laboratory stage, only safe simulated behaviors will be reproduced using synthetic data. The project will not attempt to reproduce ACR Stealer or any other real infostealer exactly.
 
@@ -168,7 +164,7 @@ For the later laboratory stage, only safe simulated behaviors will be reproduced
 | Public threat reports         | Data collection and staging                | Copy synthetic browser-like files into a staging directory | Windows telemetry and file artifacts        | Simulation does not reproduce real credential theft                            |
 | Public threat reports         | Archive creation                           | Create an archive containing synthetic data                | Process and file creation telemetry         | Archive creation is also common in legitimate activity                         |
 | Public threat reports         | Network communication                      | Connect to a controlled local receiver                     | Windows network telemetry and receiver logs | A network connection alone does not prove that a specific file was transferred |
-| VirusTotal / Shodan / Maltego | Indicator and infrastructure relationships | Use the collected OSINT as external context                | Week 2 OSINT records                        | Related infrastructure does not automatically prove malicious ownership        |
+| VirusTotal / Shodan | Indicator and infrastructure relationships | Use the collected OSINT as external context                | Week 2 OSINT records                        | Related infrastructure does not automatically prove malicious ownership        |
 
 This connection allows the Week 2 OSINT results to provide context for later hypothesis-driven threat hunting without treating external indicators as sufficient evidence by themselves.
 
@@ -176,7 +172,7 @@ This connection allows the Week 2 OSINT results to provide context for later hyp
 
 During Week 2, OSINT sources were used to investigate a publicly documented infostealer-related indicator.
 
-VirusTotal provided reputation, file, and passive DNS context. Shodan provided information about related Internet-facing infrastructure, while Maltego was used to visualize DNS relationships.
+VirusTotal provided reputation, file, and passive DNS context. Shodan provided information about related Internet-facing infrastructure. The available Maltego evidence shows only the initial domain entity; a completed relationship graph has not been demonstrated. Week 2 is therefore **partially complete, with Maltego evidence pending**.
 
 The investigation demonstrated the importance of source correlation. A single reputation score or IP address is not enough to make a reliable conclusion. Threat intelligence should be evaluated together with related indicators, infrastructure context, source reliability, and known limitations.
 

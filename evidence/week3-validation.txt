@@ -1,0 +1,42 @@
+Week 3 offline validation transcript
+Scope: repository audit fixes; no MISP import or correlation performed.
+Run UTC: 2026-09-24T13:41:42.680111+00:00
+Python: 3.12.14
+Base commit (changes under test are not committed yet): 8b1a57b02f9d9868478ddac35f5532edd92be298
+SHA256 scripts/process_week3_iocs.py: 7b41c7f1814ebafce4c3b1b0529754c8de7650f4045542aed6a79d4611245708
+SHA256 tests/test_week3_iocs.py: e2b5e25475a25d520655cefb37deaedf12a9583fa7b8c50c0688489998ff067e
+SHA256 data/week3-iocs-raw.csv: 6898d02e4a84b503c4fd7b1cc288a5638d054e29a4a74dc7979ec9cc2ad02a9c
+
+$ python scripts/process_week3_iocs.py
+Offline artifacts generated; no MISP import performed.
+
+Exit code: 0
+
+$ python scripts/process_week3_iocs.py --check
+Offline artifacts verified.
+
+Exit code: 0
+
+$ python -m unittest discover -s tests -v
+
+test_bad_metadata_fails_closed (test_week3_iocs.NormalizationTests.test_bad_metadata_fails_closed) ... ok
+test_domain_normalization (test_week3_iocs.NormalizationTests.test_domain_normalization) ... ok
+test_invalid_indicators (test_week3_iocs.NormalizationTests.test_invalid_indicators) ... ok
+test_ip_cannot_be_promoted (test_week3_iocs.NormalizationTests.test_ip_cannot_be_promoted) ... ok
+test_ipv4_mapping (test_week3_iocs.NormalizationTests.test_ipv4_mapping) ... ok
+test_malformed_quoted_fields_are_rejected (test_week3_iocs.NormalizationTests.test_malformed_quoted_fields_are_rejected) ... ok
+test_multiline_record_error_reports_physical_line (test_week3_iocs.NormalizationTests.test_multiline_record_error_reports_physical_line) ... ok
+test_schema_and_duplicate_ids (test_week3_iocs.NormalizationTests.test_schema_and_duplicate_ids) ... ok
+test_utf8_bom_supported (test_week3_iocs.NormalizationTests.test_utf8_bom_supported) ... ok
+test_cli_check_detects_drift_without_writing (test_week3_iocs.PipelineTests.test_cli_check_detects_drift_without_writing) ... ok
+test_committed_outputs_match_raw_and_have_safe_settings (test_week3_iocs.PipelineTests.test_committed_outputs_match_raw_and_have_safe_settings) ... ok
+test_curated_evidence_references_exist (test_week3_iocs.PipelineTests.test_curated_evidence_references_exist) ... ok
+test_dedup_preserves_sources_and_context_wins (test_week3_iocs.PipelineTests.test_dedup_preserves_sources_and_context_wins) ... ok
+test_invalid_input_does_not_replace_outputs (test_week3_iocs.PipelineTests.test_invalid_input_does_not_replace_outputs) ... ok
+test_malformed_csv_does_not_create_outputs (test_week3_iocs.PipelineTests.test_malformed_csv_does_not_create_outputs) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.090s
+
+OK
+Exit code: 0

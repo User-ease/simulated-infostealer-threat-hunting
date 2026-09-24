@@ -15,7 +15,7 @@ The project does not use real malware or real credentials. Instead, synthetic br
 ## Weekly Progress
 
 * Week 1: CTI fundamentals and threat classification — completed
-* Week 2: OSINT data collection and source mapping — completed
+* Week 2: VirusTotal/Shodan collection and source mapping — documented; Maltego relationship results — pending evidence
 * Week 3: IOC processing and normalization — implemented and locally checked; MISP import preparation — ready; actual MISP import, correlation review, and export — pending
 
 ## Week 3: IOC Processing
@@ -30,6 +30,8 @@ The [Week 3 report](docs/week3-data-processing.md) processes the three indicator
 | [Processing script](scripts/process_week3_iocs.py) | Offline validation, normalization, deduplication, and artifact generation |
 | [MISP import draft](misp/week3-event-import.json) | Prepared unpublished, organization-only event; **not a MISP export** |
 | [MISP preparation guide](misp/README.md) | Import checks and the evidence still needed to finish Week 3 |
+| [Validation transcript](evidence/week3-validation.txt) | Actual offline run, 15 tests, and hashes of tested inputs/code |
+| [Screenshot checklist](images/week3/README.md) | Planned MISP views and capture requirements; screenshots are still pending |
 
 Run from the repository root with Python 3.9 or newer; no third-party packages are required:
 

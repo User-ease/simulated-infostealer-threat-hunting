@@ -45,13 +45,14 @@ def normalize_indicator(value, kind):
 
 
 def read_records(raw_bytes):
-    reader = csv.DictReader(io.StringIO(raw_bytes.decode("utf-8-sig")))
+    reader = csv.DictReader(io.StringIO(raw_bytes.decode("utf-8-sig")), strict=True)
     if reader.fieldnames != list(RAW_FIELDS):
         raise ValueError("raw CSV headers must match the documented schema and order")
     records = []
     record_ids = set()
-    for line, row in enumerate(reader, start=2):
+    while True:
         try:
+            row = next(reader)
             if None in row or any(value is None or not value.strip() for value in row.values()):
                 raise ValueError("missing, empty, or extra field")
             row = {key: value.strip() for key, value in row.items()}
@@ -70,8 +71,10 @@ def read_records(raw_bytes):
                 raise ValueError("this workflow permits IDS candidates only for reported C2 domains")
             records.append((row, value, kind, misp_type))
             record_ids.add(row["record_id"])
-        except ValueError as error:
-            raise ValueError(f"CSV line {line}: {error}") from error
+        except StopIteration:
+            break
+        except (ValueError, csv.Error) as error:
+            raise ValueError(f"CSV line {reader.reader.line_num}: {error}") from error
     if not records:
         raise ValueError("raw CSV contains no records")
     return records

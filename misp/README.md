@@ -28,6 +28,8 @@ Comments retain raw record IDs, dates, sources, reference URLs, evidence paths, 
 7. Export the saved event as MISP JSON. After reviewing sensitive metadata, save the genuine output as `misp/week3-event-export.json`. Preserve the prepared input separately; do not rename it to imply it came from a server.
 8. Capture actual event, attribute, and correlation views under `images/week3/`, then update the Week 3 report and README status with links to that evidence. Record any redactions. Leave missing or unperformed steps explicitly pending.
 
+The [screenshot checklist](../images/week3/README.md) specifies exactly what each planned view should show. Local processing evidence is available in the [validation transcript](../evidence/week3-validation.txt).
+
 ## Current evidence status
 
 | Item | Status |

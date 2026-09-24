@@ -77,8 +77,28 @@ class NormalizationTests(unittest.TestCase):
     def test_utf8_bom_supported(self):
         self.assertEqual(len(read_records(b"\xef\xbb\xbf" + csv_bytes([fixture()]))), 1)
 
+    def test_malformed_quoted_fields_are_rejected(self):
+        prefix = csv_bytes([fixture()]).rsplit(b",", 1)[0] + b","
+        for notes in [b'"unterminated', b'"closed"trailing text\n']:
+            with self.subTest(notes=notes), self.assertRaisesRegex(ValueError, "CSV line 2:"):
+                read_records(prefix + notes)
+
+    def test_multiline_record_error_reports_physical_line(self):
+        first = fixture()
+        first["notes"] = "First line\nSecond line"
+        second = fixture("test-2", "bad..test")
+        with self.assertRaisesRegex(ValueError, "CSV line 4:"):
+            read_records(csv_bytes([first, second]))
+
 
 class PipelineTests(unittest.TestCase):
+    def test_curated_evidence_references_exist(self):
+        records = read_records((ROOT / "data/week3-iocs-raw.csv").read_bytes())
+        for row, *_ in records:
+            for reference in row["evidence_ref"].split(" | "):
+                with self.subTest(record=row["record_id"], reference=reference):
+                    self.assertTrue((ROOT / reference.split("#", 1)[0]).is_file())
+
     def test_dedup_preserves_sources_and_context_wins(self):
         with tempfile.TemporaryDirectory() as directory:
             raw = Path(directory) / "raw.csv"
@@ -142,6 +162,15 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(main(["--raw", str(raw), "--output-root", directory]), 1)
             for path, content in before.items():
                 self.assertEqual(path.read_bytes(), content)
+
+    def test_malformed_csv_does_not_create_outputs(self):
+        with tempfile.TemporaryDirectory() as directory, contextlib.redirect_stderr(io.StringIO()):
+            root = Path(directory)
+            raw = root / "malformed.csv"
+            raw.write_bytes(csv_bytes([fixture()]).rsplit(b",", 1)[0] + b',"unterminated')
+            output = root / "output"
+            self.assertEqual(main(["--raw", str(raw), "--output-root", str(output)]), 1)
+            self.assertFalse(output.exists())
 
 
 if __name__ == "__main__":

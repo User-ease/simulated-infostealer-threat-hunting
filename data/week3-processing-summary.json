@@ -1,6 +1,6 @@
 {
   "artifact_status": "offline_preparation_only",
-  "raw_sha256": "42e62637ce30369bd84452b669cffe6d1973781d2264aac5d5ad4363bbae5846",
+  "raw_sha256": "6898d02e4a84b503c4fd7b1cc288a5638d054e29a4a74dc7979ec9cc2ad02a9c",
   "raw_records": 3,
   "normalized_indicators": 3,
   "duplicates_merged": 0,
