@@ -1,0 +1,13 @@
+{
+  "artifact_status": "offline_preparation_only",
+  "raw_sha256": "42e62637ce30369bd84452b669cffe6d1973781d2264aac5d5ad4363bbae5846",
+  "raw_records": 3,
+  "normalized_indicators": 3,
+  "duplicates_merged": 0,
+  "rejected_records": 0,
+  "ids_candidates": 1,
+  "context_only_indicators": 2,
+  "misp_import_performed": false,
+  "misp_correlation_performed": false,
+  "live_enrichment_performed": false
+}

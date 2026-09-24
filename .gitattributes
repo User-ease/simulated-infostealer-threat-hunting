@@ -1,0 +1,4 @@
+# Keep byte-for-byte generated-file checks reproducible on Windows and Unix.
+*.csv text eol=lf
+*.json text eol=lf
+*.py text eol=lf

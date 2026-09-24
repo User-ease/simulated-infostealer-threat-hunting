@@ -1,0 +1,36 @@
+{
+  "Event": {
+    "info": "Week 3 - ACR Stealer OSINT IOC Processing - PREPARED IMPORT",
+    "date": "2026-09-24",
+    "distribution": "0",
+    "published": false,
+    "analysis": "0",
+    "threat_level_id": "4",
+    "Attribute": [
+      {
+        "type": "domain",
+        "category": "Network activity",
+        "value": "looksta.icu",
+        "to_ids": true,
+        "distribution": "0",
+        "comment": "PREPARED IMPORT: historical OSINT; not laboratory evidence; Raw record IDs: w2-001; source: Microsoft Security Research; source_url: https://www.microsoft.com/en-us/security/blog/2026/07/16/acr-stealer-two-observed-intrusion-chains-amid-increased-threat-activity/; evidence_ref: docs/week2-data-collection.md#selected-indicator; observation_date: 2026-09-24; notes: Report lists this domain as C2; historical external intelligence only; no laboratory connection or compromise is implied."
+      },
+      {
+        "type": "ip-dst",
+        "category": "Network activity",
+        "value": "104.21.33.112",
+        "to_ids": false,
+        "distribution": "0",
+        "comment": "PREPARED IMPORT: historical OSINT; not laboratory evidence; Raw record IDs: w2-002; source: VirusTotal passive DNS and Shodan; source_url: https://www.virustotal.com/gui/domain/looksta.icu | https://www.shodan.io/host/104.21.33.112; evidence_ref: docs/week2-data-collection.md#shodan-analysis | images/week2/virustotal-relations.png | images/week2/shodan-ip-analysis.png; observation_date: 2026-09-24; notes: Week 2 records a passive DNS relation to looksta.icu and Shodan attribution to Cloudflare AS13335; shared infrastructure is not a standalone blocking indicator."
+      },
+      {
+        "type": "ip-dst",
+        "category": "Network activity",
+        "value": "172.67.161.227",
+        "to_ids": false,
+        "distribution": "0",
+        "comment": "PREPARED IMPORT: historical OSINT; not laboratory evidence; Raw record IDs: w2-003; source: VirusTotal passive DNS; source_url: https://www.virustotal.com/gui/domain/looksta.icu; evidence_ref: docs/week2-data-collection.md#collected-indicators | images/week2/virustotal-relations.png; observation_date: 2026-09-24; notes: Week 2 records a passive DNS relation to looksta.icu; this IP was not investigated separately in Shodan; no malicious ownership or current resolution is inferred."
+      }
+    ]
+  }
+}
