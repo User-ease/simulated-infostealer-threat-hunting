@@ -14,37 +14,37 @@ The project does not use real malware or real credentials. All later experiments
 
 ## Key CTI Terms
 
-| Term | Description |
-|---|---|
-| CTI | Cyber Threat Intelligence is analyzed and contextualized information about cyber threats used to support defensive decisions. |
-| IOC | Indicator of Compromise, such as a suspicious or malicious IP address, domain, file hash, or URL. |
-| IOA | Indicator of Attack, describing behavior that may indicate an ongoing or attempted attack. |
-| TTP | Tactics, Techniques, and Procedures used by threat actors. |
-| Threat Hunting | Proactive investigation for suspicious or malicious activity that may not have triggered existing security alerts. |
-| Infostealer | Malware designed to collect valuable information such as browser data, credentials, session information, files, or system information. |
+| Term           | Description                                                                                                                            |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| CTI            | Cyber Threat Intelligence is analyzed and contextualized information about cyber threats used to support defensive decisions.          |
+| IOC            | Indicator of Compromise, such as a suspicious or malicious IP address, domain, file hash, or URL.                                      |
+| IOA            | Indicator of Attack, describing behavior that may indicate an ongoing or attempted attack.                                             |
+| TTP            | Tactics, Techniques, and Procedures used by threat actors.                                                                             |
+| Threat Hunting | Proactive investigation for suspicious or malicious activity that may not have triggered existing security alerts.                     |
+| Infostealer    | Malware designed to collect valuable information such as browser data, credentials, session information, files, or system information. |
 
 ## Threat Classification
 
 Cyber threats can be divided into different categories depending on their objectives and behavior.
 
-| Threat Type | Description | Typical Example |
-|---|---|---|
-| Phishing | Social engineering attacks designed to trick users into revealing information or opening malicious content. | Credential phishing email or fake login page |
-| Ransomware | Malware that encrypts or disrupts access to files and systems, usually to demand payment. | File encryption followed by a ransom demand |
-| Remote Access Trojan (RAT) | Malware that provides unauthorized remote access and control over an infected system. | Remote command execution and system control |
-| Infostealer | Malware designed to collect valuable information from an infected system. | Collection of browser data, credentials, session information, files, or system information |
+| Threat Type                | Description                                                                                                 | Typical Example                                                                            |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Phishing                   | Social engineering attacks designed to trick users into revealing information or opening malicious content. | Credential phishing email or fake login page                                               |
+| Ransomware                 | Malware that encrypts or disrupts access to files and systems, usually to demand payment.                   | File encryption followed by a ransom demand                                                |
+| Remote Access Trojan (RAT) | Malware that provides unauthorized remote access and control over an infected system.                       | Remote command execution and system control                                                |
+| Infostealer                | Malware designed to collect valuable information from an infected system.                                   | Collection of browser data, credentials, session information, files, or system information |
 
 For this project, **infostealer-related activity** was selected as the main threat category.
 
 Typical infostealer-related behavior may include:
 
-- System discovery
-- Browser-related data collection
-- Credential or session data collection
-- Data staging
-- Archive creation
-- Network communication or exfiltration
-- Cleanup of temporary files
+* System discovery
+* Browser-related data collection
+* Credential or session data collection
+* Data staging
+* Archive creation
+* Network communication or exfiltration
+* Cleanup of temporary files
 
 The later laboratory work will use only safe simulated activity and synthetic data. It will not attempt to reproduce a specific real infostealer exactly.
 
@@ -52,13 +52,13 @@ The later laboratory work will use only safe simulated activity and synthetic da
 
 The project will use several types of threat intelligence and security data sources:
 
-- MITRE ATT&CK
-- Security vendor reports
-- Public malware and threat reports
-- VirusTotal
-- Shodan
-- Maltego
-- Windows telemetry generated later in the controlled laboratory
+* MITRE ATT&CK
+* Security vendor reports
+* Public malware and threat reports
+* VirusTotal
+* Shodan
+* Maltego
+* Windows telemetry generated later in the controlled laboratory
 
 External sources will be used to understand documented indicators, infrastructure, and behaviors. Internal Windows telemetry will be used later to investigate simulated activity inside the laboratory environment.
 
@@ -77,3 +77,9 @@ This is an initial threat-hunting direction rather than a confirmed detection ru
 During Week 1, key CTI concepts were reviewed and several common cyber threat categories were classified.
 
 Infostealer-related activity was selected as the focus of the project. Relevant threat intelligence sources and typical behavioral characteristics were identified to support the data collection and analysis performed in the following weeks.
+
+## References
+
+* MITRE ATT&CK. *Enterprise ATT&CK*. https://attack.mitre.org/
+* ENISA. *ENISA Threat Landscape 2026*. Published 22 September 2026. https://www.enisa.europa.eu/publications/enisa-threat-landscape-2026
+* Microsoft Security Research. *ACR Stealer: Two observed intrusion chains amid increased threat activity*. Published 16 July 2026. https://www.microsoft.com/en-us/security/blog/2026/07/16/acr-stealer-two-observed-intrusion-chains-amid-increased-threat-activity/
