@@ -42,7 +42,7 @@ The Week 2 workflow was:
 
 The domain `looksta[.]icu` was selected as the primary indicator for the Week 2 investigation.
 
-The indicator was obtained from a public Microsoft Security report discussing ACR Stealer activity.
+The indicator was obtained from a public Microsoft Security Research report discussing ACR Stealer activity.
 
 | Indicator       | Type   | Original Source                                  |
 | --------------- | ------ | ------------------------------------------------ |
@@ -52,7 +52,7 @@ The indicator was obtained from a public Microsoft Security report discussing AC
 
 VirusTotal was used to investigate the selected domain and related infrastructure.
 
-At the time of analysis, the root domain `looksta.icu` showed **0/89 detections**. However, additional context showed that this result alone was not sufficient to classify the domain as safe.
+At the time of analysis, the root domain `looksta.icu` showed **0/89 detections**. However, additional information showed that this result alone was not sufficient to classify the domain as safe.
 
 VirusTotal also showed:
 
@@ -66,9 +66,21 @@ The following IP addresses were observed through passive DNS information:
 * `104.21.33.112`
 * `172.67.161.227`
 
-Several communicating Windows executable or DLL files also showed significant detection ratios in VirusTotal.
+Several communicating Windows executable or DLL files also showed detections in VirusTotal.
 
-This demonstrated an important limitation of relying only on the detection score of a root domain. A zero detection count does not automatically mean that an indicator is safe. Related files, hostnames, infrastructure, and external threat intelligence must also be considered.
+This demonstrated an important limitation of relying only on the detection score of a root domain. A zero detection count does not automatically mean that an indicator is safe. Related files, hostnames, infrastructure, and external threat intelligence should also be considered.
+
+### VirusTotal – Detection
+
+![VirusTotal Detection](../images/week2/virustotal-detection.png)
+
+### VirusTotal – Relations
+
+![VirusTotal Relations](../images/week2/virustotal-relations.png)
+
+### VirusTotal – Details
+
+![VirusTotal Details](../images/week2/virustotal-details.png)
 
 ## Shodan Analysis
 
@@ -81,11 +93,15 @@ Shodan identified the address as infrastructure belonging to:
 
 Several HTTP and HTTPS-related services and ports were visible in the Shodan results.
 
-However, this information must be interpreted carefully. Cloudflare provides shared infrastructure for many unrelated websites and services.
+However, this information must be interpreted carefully. Cloudflare provides shared infrastructure for many different websites and services.
 
 Therefore, the IP address cannot be directly attributed to the investigated threat actor or infostealer campaign.
 
 The Shodan result was useful for understanding the infrastructure context, but not for direct attribution.
+
+### Shodan – IP Analysis
+
+![Shodan IP Analysis](../images/week2/shodan-ip-analysis.png)
 
 ## Maltego Analysis
 
@@ -98,6 +114,10 @@ The resulting graph displayed DNS-related entities and infrastructure associated
 Maltego was useful for visually representing relationships between the initial observable and related infrastructure.
 
 The graph was treated as contextual information rather than proof that every connected entity was malicious or directly controlled by the same threat actor.
+
+### Maltego – DNS Relationship Graph
+
+![Maltego DNS Graph](../images/week2/maltego-dns-graph.png)
 
 ## Data Source Mapping
 
@@ -112,28 +132,29 @@ The graph was treated as contextual information rather than proof that every con
 
 ## Collected Indicators
 
-| Indicator        | Type       | VirusTotal Result                                                                               | Shodan Result                                            | Maltego Result                    |
-| ---------------- | ---------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------- | --------------------------------- |
-| `looksta[.]icu`  | Domain     | Root domain showed 0/89 detections, but related detected files and infrastructure were observed | Related IP infrastructure was associated with Cloudflare | DNS relationships were visualized |
-| `104.21.33.112`  | IP address | Observed through passive DNS                                                                    | Cloudflare, Inc., AS13335                                | Related infrastructure entity     |
-| `172.67.161.227` | IP address | Observed through passive DNS                                                                    | Not required for the initial Shodan investigation        | Related infrastructure entity     |
+| Indicator        | Type       | VirusTotal Result                                                                               | Shodan Result                                                  | Maltego Result                    |
+| ---------------- | ---------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | --------------------------------- |
+| `looksta[.]icu`  | Domain     | Root domain showed 0/89 detections, but related detected files and infrastructure were observed | Related IP infrastructure was associated with Cloudflare       | DNS relationships were visualized |
+| `104.21.33.112`  | IP address | Observed through passive DNS                                                                    | Cloudflare, Inc., AS13335                                      | Related infrastructure entity     |
+| `172.67.161.227` | IP address | Observed through passive DNS                                                                    | Not investigated separately during the initial Shodan analysis | Related infrastructure entity     |
 
-## Evidence and Screenshots
+## Key Findings
 
-The following evidence was collected during the Week 2 investigation:
+The OSINT investigation produced several useful observations:
 
-* VirusTotal domain analysis
-* VirusTotal relations and passive DNS information
-* VirusTotal domain details
-* Shodan infrastructure analysis
-* Maltego DNS relationship graph
+* A single VirusTotal detection score should not be treated as a final verdict.
+* Relationships with detected files and related hostnames can provide additional context.
+* Passive DNS can identify infrastructure related to an investigated domain.
+* Shared infrastructure such as Cloudflare limits the usefulness of an IP address for direct attribution.
+* Maltego helps visualize relationships between indicators and infrastructure.
+* Information from several sources should be correlated before drawing conclusions.
 
 ## Week 2 Result
 
 During Week 2, OSINT sources were used to investigate a publicly documented infostealer-related indicator.
 
-VirusTotal provided reputation, file, and passive DNS context. Shodan provided information about the related Internet-facing infrastructure, while Maltego was used to visualize DNS relationships.
+VirusTotal provided reputation, file, and passive DNS context. Shodan provided information about related Internet-facing infrastructure, while Maltego was used to visualize DNS relationships.
 
-The investigation also demonstrated the importance of source correlation. A single reputation score or IP address is not enough to make a reliable conclusion. Threat intelligence should be evaluated together with related indicators, infrastructure context, source reliability, and known limitations.
+The investigation demonstrated the importance of source correlation. A single reputation score or IP address is not enough to make a reliable conclusion. Threat intelligence should be evaluated together with related indicators, infrastructure context, source reliability, and known limitations.
 
 The collected information provides external threat context that can later be compared with telemetry generated in the controlled Windows threat-hunting laboratory.
