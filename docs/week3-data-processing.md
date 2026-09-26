@@ -1,12 +1,10 @@
-# Week 3 – IOC Processing, Normalization, and MISP Preparation
+# Week 3 – IOC Processing, Normalization, and MISP Verification
 
 ## Objective and status
 
-Convert the three indicators documented in [Week 2](week2-data-collection.md) into traceable normalized records and prepare an unpublished MISP event for a controlled laboratory.
+Convert the three indicators documented in [Week 2](week2-data-collection.md) into traceable normalized records and verify them in a local MISP event.
 
-**Completed:** local processing, validation, deduplication, MISP field mapping, import draft generation, and automated checks.
-
-**Pending:** import into a real MISP instance, inspection of the stored attributes, correlation review, screenshots, and a genuine server-generated export. Week 3 remains in progress until those steps are actually performed. Local checks do not establish MISP server compatibility or prove a successful import.
+**Completed:** local processing, validation, deduplication, MISP field mapping, import draft generation, automated checks, local MISP deployment and import, server-side verification, warning-list and correlation review, screenshots, and a genuine server export.
 
 The scope remains safe simulation: no real malware, real credential collection, active probing of the indicators, or connections to external C2 infrastructure. These records are historical external intelligence, not evidence of compromise in the future Windows laboratory.
 
@@ -81,17 +79,19 @@ The local run produced:
 
 The [generated summary](../data/week3-processing-summary.json) includes an input hash for reproducibility, not a claim of external evidentiary authenticity. On invalid input the script exits with an error and leaves prior generated artifacts in place; those older artifacts must not be mistaken for successful processing of the invalid input.
 
-Fifteen automated tests passed locally on Python 3.12.14. They cover valid normalization, invalid input, metadata and schema errors, duplicate IDs, duplicate merging with provenance retention, conservative IDS decisions, JSON flags, generated-file consistency, drift detection, existing evidence paths, malformed CSV quoting, physical error line numbers, and protection of outputs after a validation failure. The captured [validation transcript](../evidence/week3-validation.txt) records the actual commands, results, UTC run time, and hashes of the tested script, tests, and input. Edge cases use synthetic `example.test` and documentation IP fixtures inside tests only. Minimum-version execution and a live MISP import have not been tested.
+Fifteen automated tests passed locally on Python 3.12.14. They cover valid normalization, invalid input, metadata and schema errors, duplicate IDs, duplicate merging with provenance retention, conservative IDS decisions, JSON flags, generated-file consistency, drift detection, existing evidence paths, malformed CSV quoting, physical error line numbers, and protection of outputs after a validation failure. The captured [validation transcript](../evidence/week3-validation.txt) records the actual commands, results, UTC run time, and hashes of the tested script, tests, and input. Edge cases use synthetic `example.test` and documentation IP fixtures inside tests only. Minimum-version Python execution remains untested; the live MISP import is recorded below.
 
-## MISP preparation and remaining evidence
+## MISP deployment and observed evidence
 
-Use the [MISP guide](../misp/README.md) with [week3-event-import.json](../misp/week3-event-import.json). It deliberately lacks server-generated event and attribute identifiers. Its date reflects the documented OSINT collection date; its title identifies it as a prepared import. Event and attribute distribution are restricted to the importing organization, and the event is unpublished.
+The [prepared import](../misp/week3-event-import.json) was posted once after confirming that no matching event existed. The local Docker installation used official `misp-docker` commit `d2b82533d5335b2ff81eb7a8548757bbdbf4076c`; Docker Engine `29.8.0`, Docker Desktop `4.92.0`, and Compose `v5.5.1`. MISP reported `2.5.47`. All six services ran, with Core, Nginx, Modules, MariaDB, and Valkey healthy. Nginx published only on loopback. The working URL was `http://127.0.0.1:8080` (local lab, no TLS certificates).
 
-To complete the MISP portion, record the actual instance version and import outcome, inspect all three stored attributes and flags, review any warnings and correlations, and export the saved event. A correlation match only means a relationship exists in that instance's accessible data; it does not prove common ownership or compromise. If the review finds no matches, document that observed result and the instance/feed limitations. Do not replace “not tested” with “no correlations.”
+MISP created event **ID 1**, UUID `0d97a833-75a8-46b1-a499-b99313ad31c9`, titled “Week 3 - ACR Stealer OSINT IOC Processing - PREPARED IMPORT”. A separate server read confirmed **exactly three** stored `Network activity` attributes: `looksta.icu` as `domain` with `to_ids=true`; `104.21.33.112` and `172.67.161.227` as `ip-dst` with `to_ids=false`. All three comments were retained. The event and attributes have distribution `0` (“Your organisation only”), and the event is unpublished. The event view's contextualisation warning reports missing tags/galaxy clusters; it does not mean the IOCs matched a warning list.
 
-Only after these steps should a real export be added as `misp/week3-event-export.json` and genuine screenshots be added under `images/week3/`. Review exported metadata and screenshots for credentials, API keys, private organization information, and unrelated events before committing them. No placeholder screenshots or fabricated export files are included.
+At first, all 225 installed warning lists were disabled. After enabling only “List of known Cloudflare IP ranges” (ID 33), MISP's `checkValue` returned two hits: `104.21.33.112` in `104.16.0.0/13` and `172.67.161.227` in `172.64.0.0/13`. `looksta.icu` did not match that enabled list. These are expected shared-infrastructure warnings and reinforce the context-only decision for both IPs.
 
-The [Week 3 screenshot checklist](../images/week3/README.md) specifies the views needed and what each image should demonstrate. It is a checklist, not evidence that those views have been captured.
+An `attributes/restSearch` call with `includeCorrelations=true` returned zero related attributes for each of the three values. The UI correlation graph was empty. This was a new local instance containing only this event; both built-in feeds were disabled. “No correlations observed” therefore applies only to this instance and its accessible data on **26 September 2026**, approximately **13:00 UTC / 18:00 Asia/Qyzylorda**. It is not a claim about all MISP data or current external DNS.
+
+The [server-exported event JSON](../misp/week3-event-export.json) was saved from `/events/view/1.json`, verified to contain the three expected attributes, and checked against locally configured secrets. SHA-256: `CE56FCE639264C5FC2A1BA44AB9021DEC45616D30FEFCA1EEB583DAAA43523DE`. Genuine UI captures show the [event](../images/week3/misp-event.png), [attributes](../images/week3/misp-attributes.png), [empty correlation graph](../images/week3/misp-correlation.png), and [enabled Cloudflare warning list](../images/week3/misp-warninglist.png). The graph screenshot documents the empty UI view; the API result supports the per-attribute zero-correlation count. The [MISP record](../misp/README.md) gives further deployment and review detail.
 
 ## References
 

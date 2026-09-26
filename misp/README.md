@@ -1,6 +1,6 @@
-# Week 3 MISP Preparation
+# Week 3 MISP Deployment and Import
 
-`week3-event-import.json` is generated locally from the curated IOC dataset. It is a **prepared import payload**, not an export from MISP, proof of an imported event, or a correlation result. No MISP instance was used in this preparation.
+`week3-event-import.json` is generated locally from the curated IOC dataset. It remains the **prepared import payload**. [`week3-event-export.json`](week3-event-export.json) is the separate response saved from the running MISP instance on 26 September 2026.
 
 ## Draft settings
 
@@ -10,14 +10,34 @@
 | `date` | `2026-09-24` | Documented Week 2 OSINT observation date, not an infection timestamp |
 | `distribution` | `0` on event and all attributes | Your organization only |
 | `published` | `false` | Unpublished draft |
-| `analysis` | `0` | Initial; server review is pending |
+| `analysis` | `0` | Initial analysis state retained after the documented server review |
 | `threat_level_id` | `4` | Undefined; no unsupported severity assessment |
 | Attributes | 1 domain and 2 `ip-dst`, all `Network activity` | No invented indicators |
 | `to_ids` | Domain `true`; IPs `false` | Candidate detection indicator versus contextual data |
 
 Comments retain raw record IDs, dates, sources, reference URLs, evidence paths, and caveats. There are no fabricated event IDs, attribute IDs, UUIDs, sightings, timestamps, or correlation objects. `to_ids` does not publish or deploy anything by itself; review downstream automation before using the draft in a shared instance.
 
-## Import and verification procedure — pending
+## Local deployment and observed result
+
+The official `MISP/misp-docker` checkout was at commit `d2b82533d5335b2ff81eb7a8548757bbdbf4076c`. Docker Engine was `29.8.0`, Docker Desktop `4.92.0`, and Docker Compose `v5.5.1`. MISP reported version `2.5.47` through `/servers/getVersion`. The six Compose services were running; Core, Nginx, Modules, MariaDB, and Valkey reported healthy. Nginx published only `127.0.0.1:8080` and `127.0.0.1:8443`; the working HTTP URL was `http://127.0.0.1:8080`. Non-default administrator, database, Redis, and Supervisor credentials were generated in the local ignored `.env`; no secret is stored here. This is a localhost-only lab without TLS certificates.
+
+After confirming no matching event existed, the prepared JSON was sent once to `POST /events`. MISP created unpublished, organization-only event **ID 1**, UUID `0d97a833-75a8-46b1-a499-b99313ad31c9`. A separate read of `/events/view/1.json` confirmed exactly three attributes with intact comments and mapping:
+
+| Value | Type | `to_ids` |
+| --- | --- | --- |
+| `looksta.icu` | `domain` | `true` |
+| `104.21.33.112` | `ip-dst` | `false` |
+| `172.67.161.227` | `ip-dst` | `false` |
+
+All three attributes have category `Network activity` and distribution `0`. Event distribution is also `0`; it remains unpublished. The event view displays a **contextualisation warning** because no tags or galaxy clusters are attached. That is a real MISP UI warning, separate from warning-list hits.
+
+All 225 installed warning lists were initially disabled, so an initial empty `checkValue` result was not meaningful. The relevant **List of known Cloudflare IP ranges** (ID 33, version `20260811`) was enabled and the three values were checked again. Both IPs matched: `104.21.33.112` against `104.16.0.0/13`, and `172.67.161.227` against `172.64.0.0/13`. The domain had no match in this enabled list. These hits support treating the IPs as shared-infrastructure context, not standalone blocking indicators.
+
+An `attributes/restSearch` query with `includeCorrelations=true` returned all three attributes and no related attributes for any of them. The UI correlation graph was empty. This new instance had only this event and both built-in feeds (`CIRCL OSINT Feed` and `The Botvrij.eu Data`) were disabled; the result does not rule out relationships in other data sources. The server export was saved separately and checked for the three attributes and absence of configured secrets. Its SHA-256 is `CE56FCE639264C5FC2A1BA44AB9021DEC45616D30FEFCA1EEB583DAAA43523DE`.
+
+Actual screenshots are indexed in [`images/week3/README.md`](../images/week3/README.md). The browser captures show the local MISP UI; the warning-list hits and correlation counts were also checked through its API.
+
+## Repeating the import and verification
 
 1. Use an authorized, isolated laboratory MISP instance with no automatic publishing or synchronization. If an instance still needs to be provisioned, follow the [official MISP Docker project](https://github.com/MISP/misp-docker) and its current setup instructions. This repository neither installs MISP nor stores credentials.
 2. Run `python scripts/process_week3_iocs.py --check` from the repository root. Review the raw source records and the three attributes before importing.
@@ -30,17 +50,17 @@ Comments retain raw record IDs, dates, sources, reference URLs, evidence paths, 
 
 The [screenshot checklist](../images/week3/README.md) specifies exactly what each planned view should show. Local processing evidence is available in the [validation transcript](../evidence/week3-validation.txt).
 
-## Current evidence status
+## Evidence status
 
 | Item | Status |
 | --- | --- |
 | Input dataset and deterministic import preparation | Available in this repository |
 | Local processing tests and generated-file checks | Passed; see the Week 3 report |
-| Installed MISP version | Not recorded; no instance used |
-| Import response / stored event ID | Not produced |
-| Server-side attribute validation | Not performed |
-| Warning-list and correlation review | Not performed |
-| Screenshots | Not captured |
-| MISP server export | Not produced |
+| Installed MISP version | `2.5.47` |
+| Import response / stored event ID | Event ID 1, UUID recorded above |
+| Server-side attribute validation | Three values and flags confirmed by separate read |
+| Warning-list and correlation review | Cloudflare list: both IPs matched; no correlations in current local data |
+| Screenshots | Four genuine UI captures under `images/week3/` |
+| MISP server export | `week3-event-export.json` |
 
 This is external OSINT preparation for a safe-simulation project. Do not visit the indicator domain, probe these IP addresses, download malware, or use real credentials as part of the laboratory exercise.

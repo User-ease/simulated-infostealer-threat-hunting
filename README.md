@@ -16,7 +16,7 @@ The project does not use real malware or real credentials. Instead, synthetic br
 
 * Week 1: CTI fundamentals and threat classification — completed
 * Week 2: VirusTotal/Shodan collection and source mapping — documented; Maltego relationship results — pending evidence
-* Week 3: IOC processing and normalization — implemented and locally checked; MISP import preparation — ready; actual MISP import, correlation review, and export — pending
+* Week 3: IOC processing, local MISP import, attribute verification, warning-list and correlation review, export, and screenshots — completed on 26 September 2026
 
 ## Week 3: IOC Processing
 
@@ -29,9 +29,10 @@ The [Week 3 report](docs/week3-data-processing.md) processes the three indicator
 | [Processing summary](data/week3-processing-summary.json) | Reproducible counts and input SHA-256 |
 | [Processing script](scripts/process_week3_iocs.py) | Offline validation, normalization, deduplication, and artifact generation |
 | [MISP import draft](misp/week3-event-import.json) | Prepared unpublished, organization-only event; **not a MISP export** |
-| [MISP preparation guide](misp/README.md) | Import checks and the evidence still needed to finish Week 3 |
+| [MISP server export](misp/week3-event-export.json) | JSON returned by the running MISP instance for event ID 1 |
+| [MISP record](misp/README.md) | Deployment, import, verification, and review results |
 | [Validation transcript](evidence/week3-validation.txt) | Actual offline run, 15 tests, and hashes of tested inputs/code |
-| [Screenshot checklist](images/week3/README.md) | Planned MISP views and capture requirements; screenshots are still pending |
+| [MISP screenshots](images/week3/README.md) | Actual event, attribute, correlation, and warning-list views |
 
 Run from the repository root with Python 3.9 or newer; no third-party packages are required:
 
@@ -41,4 +42,4 @@ python scripts/process_week3_iocs.py --check
 python -m unittest discover -s tests -v
 ```
 
-The script does not contact indicators, perform live enrichment, or connect to MISP. External IOC values are reference data only. Later simulations must use synthetic data and a controlled local receiver, never these external addresses. No MISP import, correlation result, screenshot, or server export has been produced as part of this preparation.
+The processing script does not contact indicators or perform live enrichment. The separate Week 3 deployment used a local MISP 2.5.47 instance at `http://127.0.0.1:8080`. Event ID 1 contains the three prepared indicators. The Cloudflare warning list matched both contextual IPs; no correlations were returned in this new instance, whose two feeds are disabled. See the [Week 3 report](docs/week3-data-processing.md) for the scope and evidence. Later simulations must use synthetic data and a controlled local receiver, never these external addresses.
