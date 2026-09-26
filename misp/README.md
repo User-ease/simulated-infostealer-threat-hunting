@@ -35,7 +35,7 @@ All 225 installed warning lists were initially disabled, so an initial empty `ch
 
 An `attributes/restSearch` query with `includeCorrelations=true` returned all three attributes and no related attributes for any of them. The UI correlation graph was empty. This new instance had only this event and both built-in feeds (`CIRCL OSINT Feed` and `The Botvrij.eu Data`) were disabled; the result does not rule out relationships in other data sources. The server export was saved separately and checked for the three attributes and absence of configured secrets. Its SHA-256 is `CE56FCE639264C5FC2A1BA44AB9021DEC45616D30FEFCA1EEB583DAAA43523DE`.
 
-Actual screenshots are indexed in [`images/week3/README.md`](../images/week3/README.md). The browser captures show the local MISP UI; the warning-list hits and correlation counts were also checked through its API.
+Actual screenshots are indexed in [`images/week3/README.md`](../images/week3/README.md). The browser captures show the local MISP UI, including the enabled warning list and empty correlation graph. The specific warning-list hits and per-attribute correlation counts were checked through its API; their response bodies are not separately published.
 
 ## Repeating the import and verification
 
