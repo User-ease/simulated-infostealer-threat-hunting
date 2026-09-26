@@ -15,7 +15,7 @@ The project does not use real malware or real credentials. Instead, synthetic br
 ## Weekly Progress
 
 * Week 1: CTI fundamentals and threat classification — completed
-* Week 2: VirusTotal/Shodan collection and source mapping — documented; Maltego relationship results — pending evidence
+* Week 2: VirusTotal/Shodan collection and source mapping — documented; Maltego NS transform — verified with an exported graph
 * Week 3: IOC processing, local MISP import, attribute verification, warning-list and correlation review, export, and screenshots — completed on 26 September 2026
 
 ## Week 3: IOC Processing

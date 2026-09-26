@@ -14,7 +14,7 @@ The scope remains safe simulation: no real malware, real credential collection, 
 
 The observation date `2026-09-24` comes from the Week 2 report. It is not a new passive DNS lookup, a first/last-seen timestamp, or a date of infection. The Microsoft report was checked during preparation and lists `looksta[.]icu` as a C2 domain. VirusTotal and Shodan results were not refreshed; their values and limitations are carried forward from the repository.
 
-An evidence audit confirmed that the saved VirusTotal **Relations / Passive DNS Replication** screenshot displays `2026-04-22` in **Date resolved** for both IPs. That date is now retained in each raw record's notes and propagated into the derived CSV and MISP comments. It is separate from the collection date. Screenshot filenames were corrected to match their visible panels without changing image content. The existing Maltego image supports only an initial domain entity, so the Week 2 report and README now identify the missing relationship evidence explicitly.
+An evidence audit confirmed that the saved VirusTotal **Relations / Passive DNS Replication** screenshot displays `2026-04-22` in **Date resolved** for both IPs. That date is now retained in each raw record's notes and propagated into the derived CSV and MISP comments. It is separate from the collection date. Screenshot filenames were corrected to match their visible panels without changing image content. A later Maltego NS transform on 26 September 2026 returned two name servers; its graph is documented in Week 2 and does not alter the three Week 3 indicator mappings.
 
 | Record | Input | Evidence basis | Limitation |
 | --- | --- | --- | --- |
