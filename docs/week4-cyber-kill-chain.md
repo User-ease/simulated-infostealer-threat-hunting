@@ -17,7 +17,7 @@ The [Lockheed Martin intrusion kill chain](https://www.lockheedmartin.com/conten
 * **Not documented:** no stage-specific evidence in the cited account; no ATT&CK technique is invented to fill the gap.
 
 ```mermaid
-flowchart LR
+flowchart TB
     R["1 Reconnaissance<br/>not documented"] --> W["2 Weaponization<br/>not documented"]
     W --> D["3 Delivery<br/>ClickFix and WebDAV"]
     D --> E["4 Exploitation<br/>user command and rundll32"]
@@ -30,7 +30,7 @@ flowchart LR
     class D,E,I,C,A reported;
 ```
 
-*Figure 1. Analytical placement of Microsoft's Campaign 1 observations in the seven-stage model. Grey stages have no direct evidence in the report; arrows show model order, not a verified single-device timeline.*
+*Figure 1. Analytical placement of Microsoft's Campaign 1 observations in the seven-stage model. Grey stages have no direct evidence in the report; arrows show model order, not a verified single-device timeline. Network communication also occurs during execution and installation in the reported chain.*
 
 ## Stage-by-stage mapping
 
@@ -38,7 +38,7 @@ flowchart LR
 | --- | --- | --- | --- |
 | **1. Reconnaissance** | **Not documented.** Microsoft does not describe how the operators selected or researched targets before the ClickFix prompt. | **None assigned.** | A victim profile, scanning activity, or a target list cannot be reconstructed from this source. |
 | **2. Weaponization** | **Not documented directly.** The later DLL, script, and loader show that payloads existed, but the report does not observe their development or packaging before delivery. | **None assigned.** | The existence of a payload is not proof of a particular build process or exploit kit. |
-| **3. Delivery** | **Reported with a limited entry-route claim.** A ClickFix prompt instructs the user to run a command, which accesses a remote WebDAV-hosted DLL over HTTPS. Malvertising or manipulated search results are described as **likely**, not proven for a particular victim. | [T1204.004 – User Execution: Malicious Copy and Paste](https://attack.mitre.org/techniques/T1204/004/) describes the prompt-to-user-action boundary. | T1204.004 is an ATT&CK **Execution** technique, not an ATT&CK “Delivery” tactic. Neither an exact ad/search placement nor a particular WebDAV host is attributed to `looksta[.]icu` in the account. |
+| **3. Delivery** | **Reported with a limited entry-route claim.** A ClickFix prompt instructs the user to run a command, which accesses a remote WebDAV-hosted DLL over HTTPS. Malvertising or manipulated search results are described as **likely**, not proven for a particular victim. | [T1204.004 – User Execution: Malicious Copy and Paste](https://attack.mitre.org/techniques/T1204/004/) is an **analyst mapping inferred from Microsoft's ClickFix classification**; the case narrative does not independently show the copy/paste action. | T1204.004 is an ATT&CK **Execution** technique, not an ATT&CK “Delivery” tactic. Neither an exact ad/search placement nor a particular WebDAV host is attributed to `looksta[.]icu` in the account. |
 | **4. Exploitation** | **Reported.** The user-initiated command starts `cmd.exe`; `rundll32.exe` loads the remote DLL; the DLL starts obfuscated PowerShell. Here “exploitation” means the socially induced execution of attack code. | [T1059.003 – Windows Command Shell](https://attack.mitre.org/techniques/T1059/003/), [T1218.011 – Rundll32](https://attack.mitre.org/techniques/T1218/011/), and [T1059.001 – PowerShell](https://attack.mitre.org/techniques/T1059/001/). T1204.004 also spans the Delivery-to-Exploitation transition. | Microsoft does **not** claim exploitation of a CVE or software vulnerability in this chain. |
 | **5. Installation** | **Reported.** PowerShell retrieves a ZIP stage under `%LocalAppData%\Temp`, launches a bundled `pythonw.exe` loader, and creates a hidden scheduled task for execution at user sign-in. | [T1059.006 – Python](https://attack.mitre.org/techniques/T1059/006/), [T1053.005 – Scheduled Task](https://attack.mitre.org/techniques/T1053/005/), and [T1105 – Ingress Tool Transfer](https://attack.mitre.org/techniques/T1105/) for the later ZIP download. | ATT&CK classifies T1105 under **Command and Control**, despite this Kill Chain placement. These are source-reported behaviors, not artifacts found on our Windows computer. |
 | **6. Command and Control** | **Reported, with a subset variation.** The loaded DLL communicates with actor-controlled infrastructure. Microsoft's Campaign 1 IOC table lists `looksta[.]icu` as a C2 domain. In **some** intrusions, an additional loader uses blockchain services as a dead-drop resolver. | [T1102.001 – Web Service: Dead Drop Resolver](https://attack.mitre.org/techniques/T1102/001/) applies **only to that subset**. | The report does not tie blockchain resolution specifically to `looksta[.]icu`, or show that every Campaign 1 intrusion contacted it. |
@@ -71,7 +71,7 @@ These are **proposed checks**, not completed experiments. Any later simulation s
 | 0:00–0:45 | State the Week 4 task, project topic, and why Microsoft's Campaign 1 is a real-world case related to the existing `looksta[.]icu` IOC. |
 | 0:45–1:25 | Show Figure 1 and define the seven stages; explain that grey means “not documented.” |
 | 1:25–4:45 | Walk through the seven table rows, spending most time on ClickFix → WebDAV/`rundll32` → PowerShell/Python → scheduled task → C2 → data collection. |
-| 4:45–5:45 | Explain T1204.004, T1218.011, T1053.005, T1555.003, and T1560, and why ATT&CK tactics do not match Kill Chain stages one-to-one. |
+| 4:45–5:45 | Explain T1204.004, T1218.011, T1053.005, T1555.003, and T1560; qualify T1204.004 as an inference from ClickFix and explain why ATT&CK tactics do not match Kill Chain stages one-to-one. |
 | 5:45–6:50 | Show the Week 2 evidence and Week 3 MISP event as continuity for the IOC; distinguish this local work from Microsoft's attack observations. |
 | 6:50–7:30 | State the limits: no observed recon/weaponization, no claimed CVE, blockchain is a subset, and archiving is not proof of completed exfiltration. Close with one proposed defensive check. |
 
