@@ -14,10 +14,10 @@ The project does not use real malware or real credentials. Instead, synthetic br
 
 ## Weekly Progress
 
-* Week 1: CTI fundamentals and threat classification — completed
-* Week 2: VirusTotal/Shodan collection and source mapping — documented; Maltego NS transform — verified with an exported graph
-* Week 3: IOC processing, local MISP import, attribute verification, warning-list and correlation review, export, and screenshots — completed on 26 September 2026
-* Week 4: Cyber Kill Chain analysis of Microsoft's real-world ACR Stealer Campaign 1, with evidence-qualified ATT&CK mapping and a 7–8 minute defense outline — documented on 1 October 2026
+* [Week 1](docs/week1-cti-fundamentals.md): CTI fundamentals and threat classification — completed
+* [Week 2](docs/week2-data-collection.md): VirusTotal/Shodan collection and source mapping — documented; Maltego NS transform — verified with an exported graph
+* [Week 3](docs/week3-data-processing.md): IOC processing, local MISP import, attribute verification, warning-list and correlation review, export, and screenshots — completed on 26 September 2026
+* [Week 4](docs/week4-cyber-kill-chain.md): Cyber Kill Chain analysis of Microsoft's real-world ACR Stealer Campaign 1, with evidence-qualified ATT&CK mapping and a 7–8 minute defense outline — documented on 1 October 2026
 
 ## Week 4: Cyber Kill Chain
 
