@@ -17,6 +17,11 @@ The project does not use real malware or real credentials. Instead, synthetic br
 * Week 1: CTI fundamentals and threat classification — completed
 * Week 2: VirusTotal/Shodan collection and source mapping — documented; Maltego NS transform — verified with an exported graph
 * Week 3: IOC processing, local MISP import, attribute verification, warning-list and correlation review, export, and screenshots — completed on 26 September 2026
+* Week 4: Cyber Kill Chain analysis of Microsoft's real-world ACR Stealer Campaign 1, with evidence-qualified ATT&CK mapping and a 7–8 minute defense outline — documented on 1 October 2026
+
+## Week 4: Cyber Kill Chain
+
+The [Week 4 report](docs/week4-cyber-kill-chain.md) maps Microsoft's published Campaign 1 behavior to all seven Kill Chain stages and the relevant ATT&CK techniques. It marks reconnaissance and weaponization as undocumented, limits the blockchain C2 variation to a subset of intrusions, and separates source-reported attack behavior from the group's Week 2–3 IOC evidence. The report includes a diagram, proposed defensive questions for a later safe lab, and a timed defense outline. No new attack execution or local endpoint telemetry is claimed.
 
 ## Week 3: IOC Processing
 
