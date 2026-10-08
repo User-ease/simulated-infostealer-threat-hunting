@@ -1,0 +1,3812 @@
+{
+  "kind": "synthetic-query-regression",
+  "recorded_utc": "2026-10-08T11:27:46.046578Z",
+  "queries_sha256": "0d42d61bc25fa598642ad87fd0ba22a5b67127d3c3dae7d0088157bb2abcb55c",
+  "index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+  "note": "Inputs are synthetic strings, not observed launches. No PowerShell payload was executed.",
+  "fixtures": [
+    {
+      "id": "permutation_0",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass"
+        },
+        "test": {
+          "case_id": "permutation_0",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "encoded_hidden_bypass",
+        "inventory"
+      ]
+    },
+    {
+      "id": "lowercase_0",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -windowstyle hidden -executionpolicy bypass"
+        },
+        "test": {
+          "case_id": "lowercase_0",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "encoded_hidden_bypass",
+        "inventory"
+      ]
+    },
+    {
+      "id": "permutation_1",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass -WindowStyle Hidden"
+        },
+        "test": {
+          "case_id": "permutation_1",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "encoded_hidden_bypass",
+        "inventory"
+      ]
+    },
+    {
+      "id": "lowercase_1",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -executionpolicy bypass -windowstyle hidden"
+        },
+        "test": {
+          "case_id": "lowercase_1",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "encoded_hidden_bypass",
+        "inventory"
+      ]
+    },
+    {
+      "id": "permutation_2",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass"
+        },
+        "test": {
+          "case_id": "permutation_2",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "encoded_hidden_bypass",
+        "inventory"
+      ]
+    },
+    {
+      "id": "lowercase_2",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -windowstyle hidden -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -executionpolicy bypass"
+        },
+        "test": {
+          "case_id": "lowercase_2",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "encoded_hidden_bypass",
+        "inventory"
+      ]
+    },
+    {
+      "id": "permutation_3",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+        },
+        "test": {
+          "case_id": "permutation_3",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "encoded_hidden_bypass",
+        "inventory"
+      ]
+    },
+    {
+      "id": "lowercase_3",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -windowstyle hidden -executionpolicy bypass -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+        },
+        "test": {
+          "case_id": "lowercase_3",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "encoded_hidden_bypass",
+        "inventory"
+      ]
+    },
+    {
+      "id": "permutation_4",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden"
+        },
+        "test": {
+          "case_id": "permutation_4",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "encoded_hidden_bypass",
+        "inventory"
+      ]
+    },
+    {
+      "id": "lowercase_4",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -executionpolicy bypass -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -windowstyle hidden"
+        },
+        "test": {
+          "case_id": "lowercase_4",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "encoded_hidden_bypass",
+        "inventory"
+      ]
+    },
+    {
+      "id": "permutation_5",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+        },
+        "test": {
+          "case_id": "permutation_5",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "encoded_hidden_bypass",
+        "inventory"
+      ]
+    },
+    {
+      "id": "lowercase_5",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -executionpolicy bypass -windowstyle hidden -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+        },
+        "test": {
+          "case_id": "lowercase_5",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "encoded_hidden_bypass",
+        "inventory"
+      ]
+    },
+    {
+      "id": "missing_hidden",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass"
+        },
+        "test": {
+          "case_id": "missing_hidden",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "inventory"
+      ]
+    },
+    {
+      "id": "missing_bypass",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden"
+        },
+        "test": {
+          "case_id": "missing_bypass",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "inventory"
+      ]
+    },
+    {
+      "id": "missing_encoded",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass"
+        },
+        "test": {
+          "case_id": "missing_encoded",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "inventory"
+      ]
+    },
+    {
+      "id": "hidden_suffix",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass -WindowStyle HiddenExtra"
+        },
+        "test": {
+          "case_id": "hidden_suffix",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "inventory"
+      ]
+    },
+    {
+      "id": "bypass_suffix",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy BypassExtra"
+        },
+        "test": {
+          "case_id": "bypass_suffix",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "inventory"
+      ]
+    },
+    {
+      "id": "encoded_suffix",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -EncodedCommandExtra VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass"
+        },
+        "test": {
+          "case_id": "encoded_suffix",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "inventory"
+      ]
+    },
+    {
+      "id": "hidden_prefix",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass X-WindowStyle Hidden"
+        },
+        "test": {
+          "case_id": "hidden_prefix",
+          "synthetic": true
+        }
+      },
+      "expected_queries": [
+        "encoded_candidates",
+        "inventory"
+      ]
+    },
+    {
+      "id": "wrong_channel",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "400"
+        },
+        "winlog": {
+          "channel": "Other channel"
+        },
+        "process": {
+          "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass"
+        },
+        "test": {
+          "case_id": "wrong_channel",
+          "synthetic": true
+        }
+      },
+      "expected_queries": []
+    },
+    {
+      "id": "wrong_event",
+      "document": {
+        "@timestamp": "2026-10-08T00:00:00.000Z",
+        "event": {
+          "code": "403"
+        },
+        "winlog": {
+          "channel": "Windows PowerShell"
+        },
+        "process": {
+          "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass"
+        },
+        "test": {
+          "case_id": "wrong_event",
+          "synthetic": true
+        }
+      },
+      "expected_queries": []
+    }
+  ],
+  "queries": [
+    {
+      "id": "inventory",
+      "response": {
+        "took": 272,
+        "timed_out": false,
+        "_shards": {
+          "total": 1,
+          "successful": 1,
+          "skipped": 0,
+          "failed": 0
+        },
+        "hits": {
+          "total": {
+            "value": 19,
+            "relation": "eq"
+          },
+          "max_score": null,
+          "hits": [
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_0",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "permutation_0",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_0",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -windowstyle hidden -executionpolicy bypass"
+                },
+                "test": {
+                  "case_id": "lowercase_0",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_1",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "permutation_1",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_1",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -executionpolicy bypass -windowstyle hidden"
+                },
+                "test": {
+                  "case_id": "lowercase_1",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_2",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "permutation_2",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_2",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -windowstyle hidden -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -executionpolicy bypass"
+                },
+                "test": {
+                  "case_id": "lowercase_2",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_3",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "permutation_3",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_3",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -windowstyle hidden -executionpolicy bypass -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "lowercase_3",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_4",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "permutation_4",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_4",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -executionpolicy bypass -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -windowstyle hidden"
+                },
+                "test": {
+                  "case_id": "lowercase_4",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_5",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "permutation_5",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_5",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -executionpolicy bypass -windowstyle hidden -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "lowercase_5",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "missing_hidden",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "missing_hidden",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "missing_bypass",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "missing_bypass",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "missing_encoded",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "missing_encoded",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "hidden_suffix",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass -WindowStyle HiddenExtra"
+                },
+                "test": {
+                  "case_id": "hidden_suffix",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "bypass_suffix",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy BypassExtra"
+                },
+                "test": {
+                  "case_id": "bypass_suffix",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "encoded_suffix",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommandExtra VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "encoded_suffix",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "hidden_prefix",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass X-WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "hidden_prefix",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "encoded_candidates",
+      "response": {
+        "took": 74,
+        "timed_out": false,
+        "_shards": {
+          "total": 1,
+          "successful": 1,
+          "skipped": 0,
+          "failed": 0
+        },
+        "hits": {
+          "total": {
+            "value": 17,
+            "relation": "eq"
+          },
+          "max_score": null,
+          "hits": [
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_0",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "permutation_0",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_0",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -windowstyle hidden -executionpolicy bypass"
+                },
+                "test": {
+                  "case_id": "lowercase_0",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_1",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "permutation_1",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_1",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -executionpolicy bypass -windowstyle hidden"
+                },
+                "test": {
+                  "case_id": "lowercase_1",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_2",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "permutation_2",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_2",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -windowstyle hidden -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -executionpolicy bypass"
+                },
+                "test": {
+                  "case_id": "lowercase_2",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_3",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "permutation_3",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_3",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -windowstyle hidden -executionpolicy bypass -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "lowercase_3",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_4",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "permutation_4",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_4",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -executionpolicy bypass -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -windowstyle hidden"
+                },
+                "test": {
+                  "case_id": "lowercase_4",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_5",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "permutation_5",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_5",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -executionpolicy bypass -windowstyle hidden -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "lowercase_5",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "missing_hidden",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "missing_hidden",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "missing_bypass",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "missing_bypass",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "hidden_suffix",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass -WindowStyle HiddenExtra"
+                },
+                "test": {
+                  "case_id": "hidden_suffix",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "bypass_suffix",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy BypassExtra"
+                },
+                "test": {
+                  "case_id": "bypass_suffix",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "hidden_prefix",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass X-WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "hidden_prefix",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "encoded_hidden_bypass",
+      "response": {
+        "took": 63,
+        "timed_out": false,
+        "_shards": {
+          "total": 1,
+          "successful": 1,
+          "skipped": 0,
+          "failed": 0
+        },
+        "hits": {
+          "total": {
+            "value": 12,
+            "relation": "eq"
+          },
+          "max_score": null,
+          "hits": [
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_0",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "permutation_0",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_0",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -windowstyle hidden -executionpolicy bypass"
+                },
+                "test": {
+                  "case_id": "lowercase_0",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_1",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "permutation_1",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_1",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -executionpolicy bypass -windowstyle hidden"
+                },
+                "test": {
+                  "case_id": "lowercase_1",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_2",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "permutation_2",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_2",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -windowstyle hidden -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -executionpolicy bypass"
+                },
+                "test": {
+                  "case_id": "lowercase_2",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_3",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "permutation_3",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_3",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -windowstyle hidden -executionpolicy bypass -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "lowercase_3",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_4",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "permutation_4",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_4",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -executionpolicy bypass -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -windowstyle hidden"
+                },
+                "test": {
+                  "case_id": "lowercase_4",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_5",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "permutation_5",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_5",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -executionpolicy bypass -windowstyle hidden -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "lowercase_5",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "lucene_ui_query": {
+    "query": "event.code:400 AND winlog.channel:\"Windows PowerShell\" AND process.command_line:/.* -EncodedCommand .*/ AND process.command_line:/.* -WindowStyle Hidden( .*)?/ AND process.command_line:/.* -ExecutionPolicy Bypass( .*)?/",
+    "response": {
+      "took": 117,
+      "timed_out": false,
+      "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 6,
+          "relation": "eq"
+        },
+        "max_score": 3.141235,
+        "hits": [
+          {
+            "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+            "_id": "permutation_0",
+            "_score": 3.141235,
+            "_source": {
+              "@timestamp": "2026-10-08T00:00:00.000Z",
+              "event": {
+                "code": "400"
+              },
+              "winlog": {
+                "channel": "Windows PowerShell"
+              },
+              "process": {
+                "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass"
+              },
+              "test": {
+                "case_id": "permutation_0",
+                "synthetic": true
+              }
+            }
+          },
+          {
+            "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+            "_id": "permutation_1",
+            "_score": 3.141235,
+            "_source": {
+              "@timestamp": "2026-10-08T00:00:00.000Z",
+              "event": {
+                "code": "400"
+              },
+              "winlog": {
+                "channel": "Windows PowerShell"
+              },
+              "process": {
+                "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass -WindowStyle Hidden"
+              },
+              "test": {
+                "case_id": "permutation_1",
+                "synthetic": true
+              }
+            }
+          },
+          {
+            "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+            "_id": "permutation_2",
+            "_score": 3.141235,
+            "_source": {
+              "@timestamp": "2026-10-08T00:00:00.000Z",
+              "event": {
+                "code": "400"
+              },
+              "winlog": {
+                "channel": "Windows PowerShell"
+              },
+              "process": {
+                "command_line": "powershell.exe -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass"
+              },
+              "test": {
+                "case_id": "permutation_2",
+                "synthetic": true
+              }
+            }
+          },
+          {
+            "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+            "_id": "permutation_3",
+            "_score": 3.141235,
+            "_source": {
+              "@timestamp": "2026-10-08T00:00:00.000Z",
+              "event": {
+                "code": "400"
+              },
+              "winlog": {
+                "channel": "Windows PowerShell"
+              },
+              "process": {
+                "command_line": "powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+              },
+              "test": {
+                "case_id": "permutation_3",
+                "synthetic": true
+              }
+            }
+          },
+          {
+            "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+            "_id": "permutation_4",
+            "_score": 3.141235,
+            "_source": {
+              "@timestamp": "2026-10-08T00:00:00.000Z",
+              "event": {
+                "code": "400"
+              },
+              "winlog": {
+                "channel": "Windows PowerShell"
+              },
+              "process": {
+                "command_line": "powershell.exe -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden"
+              },
+              "test": {
+                "case_id": "permutation_4",
+                "synthetic": true
+              }
+            }
+          },
+          {
+            "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+            "_id": "permutation_5",
+            "_score": 3.141235,
+            "_source": {
+              "@timestamp": "2026-10-08T00:00:00.000Z",
+              "event": {
+                "code": "400"
+              },
+              "winlog": {
+                "channel": "Windows PowerShell"
+              },
+              "process": {
+                "command_line": "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+              },
+              "test": {
+                "case_id": "permutation_5",
+                "synthetic": true
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "passed": true,
+  "api_transcript": [
+    {
+      "utc": "2026-10-08T11:27:46.049967Z",
+      "service": "Elasticsearch",
+      "method": "PUT",
+      "path": "/week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+      "request": {
+        "settings": {
+          "number_of_shards": 1,
+          "number_of_replicas": 0
+        },
+        "mappings": {
+          "properties": {
+            "@timestamp": {
+              "type": "date"
+            },
+            "event": {
+              "properties": {
+                "code": {
+                  "type": "keyword"
+                }
+              }
+            },
+            "winlog": {
+              "properties": {
+                "channel": {
+                  "type": "keyword"
+                }
+              }
+            },
+            "process": {
+              "properties": {
+                "command_line": {
+                  "type": "wildcard"
+                }
+              }
+            },
+            "test": {
+              "properties": {
+                "case_id": {
+                  "type": "keyword"
+                },
+                "synthetic": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      },
+      "status": 200,
+      "response": {
+        "acknowledged": true,
+        "shards_acknowledged": true,
+        "index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882"
+      }
+    },
+    {
+      "utc": "2026-10-08T11:27:47.315734Z",
+      "service": "Elasticsearch",
+      "method": "POST",
+      "path": "/_bulk?refresh=wait_for",
+      "request": "{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"permutation_0\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass\"}, \"test\": {\"case_id\": \"permutation_0\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"lowercase_0\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -windowstyle hidden -executionpolicy bypass\"}, \"test\": {\"case_id\": \"lowercase_0\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"permutation_1\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass -WindowStyle Hidden\"}, \"test\": {\"case_id\": \"permutation_1\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"lowercase_1\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -executionpolicy bypass -windowstyle hidden\"}, \"test\": {\"case_id\": \"lowercase_1\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"permutation_2\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass\"}, \"test\": {\"case_id\": \"permutation_2\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"lowercase_2\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -windowstyle hidden -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -executionpolicy bypass\"}, \"test\": {\"case_id\": \"lowercase_2\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"permutation_3\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA=\"}, \"test\": {\"case_id\": \"permutation_3\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"lowercase_3\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -windowstyle hidden -executionpolicy bypass -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA=\"}, \"test\": {\"case_id\": \"lowercase_3\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"permutation_4\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden\"}, \"test\": {\"case_id\": \"permutation_4\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"lowercase_4\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -executionpolicy bypass -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -windowstyle hidden\"}, \"test\": {\"case_id\": \"lowercase_4\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"permutation_5\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA=\"}, \"test\": {\"case_id\": \"permutation_5\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"lowercase_5\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -executionpolicy bypass -windowstyle hidden -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA=\"}, \"test\": {\"case_id\": \"lowercase_5\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"missing_hidden\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass\"}, \"test\": {\"case_id\": \"missing_hidden\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"missing_bypass\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden\"}, \"test\": {\"case_id\": \"missing_bypass\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"missing_encoded\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass\"}, \"test\": {\"case_id\": \"missing_encoded\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"hidden_suffix\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass -WindowStyle HiddenExtra\"}, \"test\": {\"case_id\": \"hidden_suffix\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"bypass_suffix\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy BypassExtra\"}, \"test\": {\"case_id\": \"bypass_suffix\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"encoded_suffix\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -EncodedCommandExtra VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass\"}, \"test\": {\"case_id\": \"encoded_suffix\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"hidden_prefix\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass X-WindowStyle Hidden\"}, \"test\": {\"case_id\": \"hidden_prefix\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"wrong_channel\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"400\"}, \"winlog\": {\"channel\": \"Other channel\"}, \"process\": {\"command_line\": \"powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass\"}, \"test\": {\"case_id\": \"wrong_channel\", \"synthetic\": true}}\n{\"create\": {\"_index\": \"week5-synthetic-query-regression-b085937eb97841cda741aec473124882\", \"_id\": \"wrong_event\"}}\n{\"@timestamp\": \"2026-10-08T00:00:00.000Z\", \"event\": {\"code\": \"403\"}, \"winlog\": {\"channel\": \"Windows PowerShell\"}, \"process\": {\"command_line\": \"powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass\"}, \"test\": {\"case_id\": \"wrong_event\", \"synthetic\": true}}\n",
+      "status": 200,
+      "response": {
+        "errors": false,
+        "took": 600,
+        "items": [
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_0",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 0,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_0",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 1,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_1",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 2,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_1",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 3,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_2",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 4,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_2",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 5,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_3",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 6,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_3",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 7,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_4",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 8,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_4",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 9,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_5",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 10,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_5",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 11,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "missing_hidden",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 12,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "missing_bypass",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 13,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "missing_encoded",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 14,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "hidden_suffix",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 15,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "bypass_suffix",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 16,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "encoded_suffix",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 17,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "hidden_prefix",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 18,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "wrong_channel",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 19,
+              "_primary_term": 1,
+              "status": 201
+            }
+          },
+          {
+            "create": {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "wrong_event",
+              "_version": 1,
+              "result": "created",
+              "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+              },
+              "_seq_no": 20,
+              "_primary_term": 1,
+              "status": 201
+            }
+          }
+        ]
+      }
+    },
+    {
+      "utc": "2026-10-08T11:27:48.026518Z",
+      "service": "Elasticsearch",
+      "method": "POST",
+      "path": "/week5-synthetic-query-regression-b085937eb97841cda741aec473124882/_search",
+      "request": {
+        "size": 100,
+        "track_total_hits": true,
+        "sort": [
+          {
+            "@timestamp": "asc"
+          }
+        ],
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "event.code": "400"
+                }
+              },
+              {
+                "term": {
+                  "winlog.channel": "Windows PowerShell"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "status": 200,
+      "response": {
+        "took": 272,
+        "timed_out": false,
+        "_shards": {
+          "total": 1,
+          "successful": 1,
+          "skipped": 0,
+          "failed": 0
+        },
+        "hits": {
+          "total": {
+            "value": 19,
+            "relation": "eq"
+          },
+          "max_score": null,
+          "hits": [
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_0",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "permutation_0",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_0",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -windowstyle hidden -executionpolicy bypass"
+                },
+                "test": {
+                  "case_id": "lowercase_0",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_1",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "permutation_1",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_1",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -executionpolicy bypass -windowstyle hidden"
+                },
+                "test": {
+                  "case_id": "lowercase_1",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_2",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "permutation_2",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_2",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -windowstyle hidden -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -executionpolicy bypass"
+                },
+                "test": {
+                  "case_id": "lowercase_2",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_3",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "permutation_3",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_3",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -windowstyle hidden -executionpolicy bypass -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "lowercase_3",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_4",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "permutation_4",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_4",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -executionpolicy bypass -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -windowstyle hidden"
+                },
+                "test": {
+                  "case_id": "lowercase_4",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_5",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "permutation_5",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_5",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -executionpolicy bypass -windowstyle hidden -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "lowercase_5",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "missing_hidden",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "missing_hidden",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "missing_bypass",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "missing_bypass",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "missing_encoded",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "missing_encoded",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "hidden_suffix",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass -WindowStyle HiddenExtra"
+                },
+                "test": {
+                  "case_id": "hidden_suffix",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "bypass_suffix",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy BypassExtra"
+                },
+                "test": {
+                  "case_id": "bypass_suffix",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "encoded_suffix",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommandExtra VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "encoded_suffix",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "hidden_prefix",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass X-WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "hidden_prefix",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "utc": "2026-10-08T11:27:48.342025Z",
+      "service": "Elasticsearch",
+      "method": "POST",
+      "path": "/week5-synthetic-query-regression-b085937eb97841cda741aec473124882/_search",
+      "request": {
+        "size": 100,
+        "track_total_hits": true,
+        "sort": [
+          {
+            "@timestamp": "asc"
+          }
+        ],
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "event.code": "400"
+                }
+              },
+              {
+                "term": {
+                  "winlog.channel": "Windows PowerShell"
+                }
+              },
+              {
+                "wildcard": {
+                  "process.command_line": {
+                    "value": "* -EncodedCommand *",
+                    "case_insensitive": true
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "status": 200,
+      "response": {
+        "took": 74,
+        "timed_out": false,
+        "_shards": {
+          "total": 1,
+          "successful": 1,
+          "skipped": 0,
+          "failed": 0
+        },
+        "hits": {
+          "total": {
+            "value": 17,
+            "relation": "eq"
+          },
+          "max_score": null,
+          "hits": [
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_0",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "permutation_0",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_0",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -windowstyle hidden -executionpolicy bypass"
+                },
+                "test": {
+                  "case_id": "lowercase_0",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_1",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "permutation_1",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_1",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -executionpolicy bypass -windowstyle hidden"
+                },
+                "test": {
+                  "case_id": "lowercase_1",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_2",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "permutation_2",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_2",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -windowstyle hidden -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -executionpolicy bypass"
+                },
+                "test": {
+                  "case_id": "lowercase_2",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_3",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "permutation_3",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_3",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -windowstyle hidden -executionpolicy bypass -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "lowercase_3",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_4",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "permutation_4",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_4",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -executionpolicy bypass -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -windowstyle hidden"
+                },
+                "test": {
+                  "case_id": "lowercase_4",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_5",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "permutation_5",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_5",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -executionpolicy bypass -windowstyle hidden -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "lowercase_5",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "missing_hidden",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "missing_hidden",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "missing_bypass",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "missing_bypass",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "hidden_suffix",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass -WindowStyle HiddenExtra"
+                },
+                "test": {
+                  "case_id": "hidden_suffix",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "bypass_suffix",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy BypassExtra"
+                },
+                "test": {
+                  "case_id": "bypass_suffix",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "hidden_prefix",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass X-WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "hidden_prefix",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "utc": "2026-10-08T11:27:48.452832Z",
+      "service": "Elasticsearch",
+      "method": "POST",
+      "path": "/week5-synthetic-query-regression-b085937eb97841cda741aec473124882/_search",
+      "request": {
+        "size": 100,
+        "track_total_hits": true,
+        "sort": [
+          {
+            "@timestamp": "asc"
+          }
+        ],
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "event.code": "400"
+                }
+              },
+              {
+                "term": {
+                  "winlog.channel": "Windows PowerShell"
+                }
+              },
+              {
+                "wildcard": {
+                  "process.command_line": {
+                    "value": "* -EncodedCommand *",
+                    "case_insensitive": true
+                  }
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "wildcard": {
+                        "process.command_line": {
+                          "value": "* -WindowStyle Hidden *",
+                          "case_insensitive": true
+                        }
+                      }
+                    },
+                    {
+                      "wildcard": {
+                        "process.command_line": {
+                          "value": "* -WindowStyle Hidden",
+                          "case_insensitive": true
+                        }
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "wildcard": {
+                        "process.command_line": {
+                          "value": "* -ExecutionPolicy Bypass *",
+                          "case_insensitive": true
+                        }
+                      }
+                    },
+                    {
+                      "wildcard": {
+                        "process.command_line": {
+                          "value": "* -ExecutionPolicy Bypass",
+                          "case_insensitive": true
+                        }
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1
+                }
+              }
+            ]
+          }
+        }
+      },
+      "status": 200,
+      "response": {
+        "took": 63,
+        "timed_out": false,
+        "_shards": {
+          "total": 1,
+          "successful": 1,
+          "skipped": 0,
+          "failed": 0
+        },
+        "hits": {
+          "total": {
+            "value": 12,
+            "relation": "eq"
+          },
+          "max_score": null,
+          "hits": [
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_0",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "permutation_0",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_0",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -windowstyle hidden -executionpolicy bypass"
+                },
+                "test": {
+                  "case_id": "lowercase_0",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_1",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "permutation_1",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_1",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -executionpolicy bypass -windowstyle hidden"
+                },
+                "test": {
+                  "case_id": "lowercase_1",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_2",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "permutation_2",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_2",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -windowstyle hidden -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -executionpolicy bypass"
+                },
+                "test": {
+                  "case_id": "lowercase_2",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_3",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "permutation_3",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_3",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -windowstyle hidden -executionpolicy bypass -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "lowercase_3",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_4",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "permutation_4",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_4",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -executionpolicy bypass -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -windowstyle hidden"
+                },
+                "test": {
+                  "case_id": "lowercase_4",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_5",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "permutation_5",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "lowercase_5",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -executionpolicy bypass -windowstyle hidden -encodedcommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "lowercase_5",
+                  "synthetic": true
+                }
+              },
+              "sort": [
+                1791417600000
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "utc": "2026-10-08T11:27:48.537924Z",
+      "service": "Elasticsearch",
+      "method": "POST",
+      "path": "/week5-synthetic-query-regression-b085937eb97841cda741aec473124882/_search",
+      "request": {
+        "size": 100,
+        "track_total_hits": true,
+        "query": {
+          "query_string": {
+            "query": "event.code:400 AND winlog.channel:\"Windows PowerShell\" AND process.command_line:/.* -EncodedCommand .*/ AND process.command_line:/.* -WindowStyle Hidden( .*)?/ AND process.command_line:/.* -ExecutionPolicy Bypass( .*)?/"
+          }
+        }
+      },
+      "status": 200,
+      "response": {
+        "took": 117,
+        "timed_out": false,
+        "_shards": {
+          "total": 1,
+          "successful": 1,
+          "skipped": 0,
+          "failed": 0
+        },
+        "hits": {
+          "total": {
+            "value": 6,
+            "relation": "eq"
+          },
+          "max_score": 3.141235,
+          "hits": [
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_0",
+              "_score": 3.141235,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "permutation_0",
+                  "synthetic": true
+                }
+              }
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_1",
+              "_score": 3.141235,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "permutation_1",
+                  "synthetic": true
+                }
+              }
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_2",
+              "_score": 3.141235,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -ExecutionPolicy Bypass"
+                },
+                "test": {
+                  "case_id": "permutation_2",
+                  "synthetic": true
+                }
+              }
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_3",
+              "_score": 3.141235,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "permutation_3",
+                  "synthetic": true
+                }
+              }
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_4",
+              "_score": 3.141235,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA= -WindowStyle Hidden"
+                },
+                "test": {
+                  "case_id": "permutation_4",
+                  "synthetic": true
+                }
+              }
+            },
+            {
+              "_index": "week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+              "_id": "permutation_5",
+              "_score": 3.141235,
+              "_source": {
+                "@timestamp": "2026-10-08T00:00:00.000Z",
+                "event": {
+                  "code": "400"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell"
+                },
+                "process": {
+                  "command_line": "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFEAVQBFAFIAWQAtAFIARQBHAFIARQBTAFMASQBPAE4AJwA="
+                },
+                "test": {
+                  "case_id": "permutation_5",
+                  "synthetic": true
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "utc": "2026-10-08T11:27:48.682518Z",
+      "service": "Elasticsearch",
+      "method": "DELETE",
+      "path": "/week5-synthetic-query-regression-b085937eb97841cda741aec473124882",
+      "request": null,
+      "status": 200,
+      "response": {
+        "acknowledged": true
+      }
+    }
+  ]
+}

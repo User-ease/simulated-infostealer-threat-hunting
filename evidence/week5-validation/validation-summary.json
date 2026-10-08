@@ -1,0 +1,103 @@
+{
+  "recorded_utc": "2026-10-08T11:33:19.973449+00:00",
+  "status": "passed",
+  "offline_tests": {
+    "command": "python -B -m unittest discover -s tests -v",
+    "run": 33,
+    "passed": 32,
+    "skipped": 1,
+    "skip_reason": "Opt-in live Elasticsearch check was run separately."
+  },
+  "live_query_test": {
+    "command": "python -B -m unittest discover -s tests -k live_elasticsearch -v",
+    "environment": {
+      "WEEK5_TEST_ELASTICSEARCH": "http://127.0.0.1:9200",
+      "WEEK5_TEST_REPORT": "evidence/week5-validation/query-regression.json"
+    },
+    "passed": 1,
+    "synthetic_fixtures": 21,
+    "dsl_totals": [
+      19,
+      17,
+      12
+    ],
+    "case_sensitive_lucene_total": 6
+  },
+  "replay": {
+    "command": "python -B scripts/run_week5_hunt.py --replay --output-dir evidence/week5-replays/2026-10-08-validation",
+    "output_directory": "evidence/week5-replays/2026-10-08-validation",
+    "index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+    "executed_utc": "2026-10-08T11:29:39.262915Z",
+    "hits": [
+      4,
+      2,
+      1
+    ],
+    "initial_bulk_response_recorded": true,
+    "new_endpoint_collection": false
+  },
+  "query_only": {
+    "command": "python -B scripts/run_week5_hunt.py --query-only --index week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+    "exit_code": 0,
+    "summary": {
+      "index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+      "input_count": 4,
+      "queries": [
+        {
+          "id": "inventory",
+          "hits": 4,
+          "case_ids": [
+            "baseline_plain",
+            "encoded_hidden_bypass",
+            "encoded_only",
+            "hidden_bypass"
+          ]
+        },
+        {
+          "id": "encoded_candidates",
+          "hits": 2,
+          "case_ids": [
+            "encoded_hidden_bypass",
+            "encoded_only"
+          ]
+        },
+        {
+          "id": "encoded_hidden_bypass",
+          "hits": 1,
+          "case_ids": [
+            "encoded_hidden_bypass"
+          ]
+        }
+      ],
+      "read_only_rerun": true,
+      "replay_of_run_id": null,
+      "data_view_id": null,
+      "data_view_name": null,
+      "output_directory": null
+    },
+    "historical_and_replay_file_hashes_unchanged": true
+  },
+  "preservation": {
+    "source_zip_sha256": "d95c35dc467146450db17485c70ef63c1665e50a98f42cfa6b48845188a3e453",
+    "unchanged_zip_entries": [
+      "docker/week5-compose.yml",
+      "scripts/collect_week5_powershell.ps1",
+      "data/week5-powershell-events.jsonl",
+      "evidence/week5/api-transcript.json",
+      "evidence/week5/hunt-results.json",
+      "evidence/week5/run-manifest.json",
+      "evidence/week5/windows-events.xml",
+      "images/week5/kibana-inventory.jpg",
+      "images/week5/kibana-encoded-candidates.jpg",
+      "images/week5/kibana-refined-hunt.jpg"
+    ],
+    "original_query_snapshot_matches_zip": true,
+    "runtime_only_labels_removed": true
+  },
+  "source_sha256": {
+    "scripts/run_week5_hunt.py": "4601f60dd8e6f756f0d2f2069968f45612c1961bbdc3d69f0a1948cc5bfd9921",
+    "data/week5-hunt-queries.json": "0d42d61bc25fa598642ad87fd0ba22a5b67127d3c3dae7d0088157bb2abcb55c",
+    "tests/test_week5_runner.py": "177cb48aaaee6c477a2880c9feac963d5e68f572e94279b3f6f1ada43c1a2a2a",
+    "tests/test_week5_queries.py": "2c0a7f45f4bddf91d08ae6c3bc2a443f6075debb08713ff7bb822380bb4bcc79"
+  }
+}

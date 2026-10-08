@@ -1,0 +1,114 @@
+{
+  "recorded_utc": "2026-10-08T11:29:39.262881Z",
+  "elasticsearch_url": "http://127.0.0.1:9200",
+  "kibana_url": "http://127.0.0.1:5601",
+  "elasticsearch_version_response": {
+    "name": "52722534f34a",
+    "cluster_name": "threat-hunting-week5",
+    "cluster_uuid": "CZubBJzgTRiBAPG0x_NWWQ",
+    "version": {
+      "number": "9.5.5",
+      "build_flavor": "default",
+      "build_type": "docker",
+      "build_hash": "48acba663b09e70b115dd879329141506c377890",
+      "build_date": "2026-09-30T22:12:03.984586187Z",
+      "build_snapshot": false,
+      "lucene_version": "10.5.1",
+      "minimum_wire_compatibility_version": "8.19.0",
+      "minimum_index_compatibility_version": "8.0.0"
+    },
+    "tagline": "You Know, for Search"
+  },
+  "license_response": {
+    "license": {
+      "status": "active",
+      "uid": "3c7ebdec-06c7-41a4-81c6-120e394e93c6",
+      "type": "basic",
+      "issue_date": "2026-10-08T11:27:18.340Z",
+      "issue_date_in_millis": 1791458838340,
+      "max_nodes": 1000,
+      "max_resource_units": null,
+      "issued_to": "threat-hunting-week5",
+      "issuer": "elasticsearch",
+      "start_date_in_millis": -1
+    }
+  },
+  "cluster_health": {
+    "cluster_name": "threat-hunting-week5",
+    "status": "yellow",
+    "timed_out": false,
+    "number_of_nodes": 1,
+    "number_of_data_nodes": 1,
+    "active_primary_shards": 23,
+    "active_shards": 23,
+    "relocating_shards": 0,
+    "initializing_shards": 0,
+    "unassigned_shards": 1,
+    "unassigned_primary_shards": 1,
+    "delayed_unassigned_shards": 0,
+    "number_of_pending_tasks": 20,
+    "number_of_in_flight_fetch": 0,
+    "task_max_waiting_in_queue_millis": 27891,
+    "active_shards_percent_as_number": 95.83333333333334
+  },
+  "kibana_version": "9.5.5",
+  "kibana_version_source": "running Kibana container package metadata",
+  "kibana_overall_status": "available",
+  "docker_inspection": {
+    "status": "available",
+    "kibana_version": "9.5.5",
+    "kibana_version_source": "running Kibana container package metadata",
+    "docker_engine_version": "29.8.0",
+    "docker_compose_version": "5.5.1",
+    "containers": [
+      {
+        "ID": "52722534f34a",
+        "Name": "threat-hunting-week5-elasticsearch-1",
+        "Service": "elasticsearch",
+        "Image": "elasticsearch:9.5.5",
+        "State": "running",
+        "Health": "healthy",
+        "Publishers": [
+          {
+            "URL": "127.0.0.1",
+            "TargetPort": 9200,
+            "PublishedPort": 9200,
+            "Protocol": "tcp"
+          }
+        ]
+      },
+      {
+        "ID": "0da0167d1f37",
+        "Name": "threat-hunting-week5-kibana-1",
+        "Service": "kibana",
+        "Image": "kibana:9.5.5",
+        "State": "running",
+        "Health": "healthy",
+        "Publishers": [
+          {
+            "URL": "127.0.0.1",
+            "TargetPort": 5601,
+            "PublishedPort": 5601,
+            "Protocol": "tcp"
+          }
+        ]
+      }
+    ],
+    "images": [
+      {
+        "image": "elasticsearch:9.5.5",
+        "id": "sha256:320bef0140dcaa30527babaae9d7a41c0ccc001e97ab87c08171d867b89e8f4f",
+        "repo_digests": [
+          "elasticsearch@sha256:320bef0140dcaa30527babaae9d7a41c0ccc001e97ab87c08171d867b89e8f4f"
+        ]
+      },
+      {
+        "image": "kibana:9.5.5",
+        "id": "sha256:2302bf43b02d7497f54961cdf1308a51d2f00a9c94d4dc30a6cf1540fcc16476",
+        "repo_digests": [
+          "kibana@sha256:2302bf43b02d7497f54961cdf1308a51d2f00a9c94d4dc30a6cf1540fcc16476"
+        ]
+      }
+    ]
+  }
+}

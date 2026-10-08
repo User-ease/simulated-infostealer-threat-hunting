@@ -18,6 +18,30 @@ The project does not use real malware or real credentials. Instead, synthetic br
 * [Week 2](docs/week2-data-collection.md): VirusTotal/Shodan collection and source mapping — documented; Maltego NS transform — verified with an exported graph
 * [Week 3](docs/week3-data-processing.md): IOC processing, local MISP import, attribute verification, warning-list and correlation review, export, and screenshots — completed on 26 September 2026
 * [Week 4](docs/week4-cyber-kill-chain.md): Cyber Kill Chain analysis of Microsoft's real-world ACR Stealer Campaign 1, with evidence-qualified ATT&CK mapping and a 7–8 minute defense outline — documented on 1 October 2026
+* [Week 5](docs/week5-threat-hunting.md): Hypothesis-driven PowerShell hunt in Elasticsearch and Kibana — the 7 October 2026 collection, query results, and screenshots are included; corrected queries and a fresh replay were verified locally on 8 October. Practical validation is complete; the practice-teacher defense remains pending.
+
+## Week 5: Hypothesis-driven Threat Hunting
+
+The [Week 5 report](docs/week5-threat-hunting.md) documents four harmless PowerShell launches, their native Event 400 records, and the original Elasticsearch results of **4 → 2 → 1** review candidates. All four cases are benign; the exercise validates a limited launch-flag hypothesis, not a malware detector. The implementation uses Elasticsearch and Kibana with a custom collector, without Logstash or Winlogbeat.
+
+| Artifact | Purpose |
+| --- | --- |
+| [Collected events](data/week5-powershell-events.jsonl), [native XML](evidence/week5/windows-events.xml), and [manifest](evidence/week5/run-manifest.json) | Preserved telemetry and provenance from 7 October 2026 |
+| [Original Query DSL](evidence/week5/original-hunt-queries.json) and [original results](evidence/week5/hunt-results.json) | Exact historical queries and recorded Elasticsearch responses |
+| [Current Query DSL](data/week5-hunt-queries.json) | Version 2 accepts the full `Hidden`/`Bypass` flag-value pairs at the end of a command line as well as before another argument |
+| [Replay runner](scripts/run_week5_hunt.py) and [Compose configuration](docker/week5-compose.yml) | Import the archived dataset into a new index and save new execution evidence separately |
+| [Original Kibana views](docs/week5-threat-hunting.md#kibana-verification-of-the-original-run) | Historical screenshots of the original queries and results |
+| [Runtime redaction record](evidence/week5/runtime-redactions.json) | Disclosure of host-path anonymization in the published runtime evidence |
+| [Correction validation](evidence/week5-validation/validation-summary.json) and [new replay results](evidence/week5-replays/2026-10-08-validation/hunt-results.json) | Actual verification of revised queries, fresh ingestion, and preservation of the original evidence |
+
+For a fresh machine, use Docker Desktop with its Linux engine and Python 3.9 or newer. From the repository root:
+
+```powershell
+docker compose -f docker/week5-compose.yml up -d --wait
+python scripts/run_week5_hunt.py --replay
+```
+
+Replay preserves the collected events and original results, creates a unique index and Kibana data view, and writes new outputs under `evidence/week5-replays/`. The [full instructions](docs/week5-threat-hunting.md#replaying-the-archived-dataset-on-a-fresh-machine) explain how to select that view, use the historical event time range, and repeat queries. The 7 October evidence does not certify subsequent query revisions.
 
 ## Week 4: Cyber Kill Chain
 

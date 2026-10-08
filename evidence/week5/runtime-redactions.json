@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "privacy-redaction-record",
+  "redacted_utc": "2026-10-08T11:19:00.503470Z",
+  "description": "runtime.json is a privacy copy of historical evidence. This redaction is not a new lab execution and does not update the original recorded_utc timestamp.",
+  "source": {
+    "archive": "week5-evidence-2026-10-07.zip",
+    "archive_sha256": "d95c35dc467146450db17485c70ef63c1665e50a98f42cfa6b48845188a3e453",
+    "entry": "evidence/week5/runtime.json",
+    "sha256_before": "390609d5d92acfb752b79585ec2a7ae2a9dc7e9501e567ddaec0482c85fbd4b0",
+    "location_note": "The unchanged original remains in the user-supplied ZIP outside this repository; the private source values are not reproduced here."
+  },
+  "published_copy": {
+    "path": "evidence/week5/runtime.json",
+    "sha256_after": "725a6c132aebd5974b6f9ed4964f49328b01f7de9764cc23c6a202fcd76aedee"
+  },
+  "redactions": [
+    {
+      "json_pointer": "/containers/0/Labels",
+      "json_path": "$.containers[0].Labels",
+      "operation": "remove",
+      "reason": "Docker labels contain local profile paths and a private project identifier; remove the complete metadata field without publishing its values."
+    },
+    {
+      "json_pointer": "/containers/1/Labels",
+      "json_path": "$.containers[1].Labels",
+      "operation": "remove",
+      "reason": "Docker labels contain local profile paths and a private project identifier; remove the complete metadata field without publishing its values."
+    }
+  ],
+  "preservation": {
+    "method": "Remove exactly the two complete Labels property lines; preserve every other source byte, including line endings.",
+    "json_structure_check": "The parsed output equals the source JSON after removing only the two recorded properties.",
+    "mounts": "Both Mounts values were inspected; neither contains a local filesystem path, so both remain unchanged.",
+    "retained": "Historical collection time, Elasticsearch and Kibana versions, service health, ports, container identifiers, image identifiers and repository digests remain unchanged."
+  }
+}

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Events>
+  <Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+    <System>
+      <Provider Name="PowerShell" />
+      <EventID Qualifiers="0">400</EventID>
+      <Version>0</Version>
+      <Level>4</Level>
+      <Task>4</Task>
+      <Opcode>0</Opcode>
+      <Keywords>0x80000000000000</Keywords>
+      <TimeCreated SystemTime="2026-10-07T14:20:04.6451752Z" />
+      <EventRecordID>55834</EventRecordID>
+      <Correlation />
+      <Execution ProcessID="932" ThreadID="0" />
+      <Channel>Windows PowerShell</Channel>
+      <Computer>LAB-WINDOWS-HOST</Computer>
+      <Security />
+    </System>
+    <EventData>
+      <Data>Available</Data>
+      <Data>None</Data>
+      <Data>	NewEngineState=Available
+	PreviousEngineState=None
+
+	SequenceNumber=13
+
+	HostName=ConsoleHost
+	HostVersion=5.1.26100.9549
+	HostId=617e27c6-dbff-413b-a71f-114fcc3a2524
+	HostApplication=C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -NonInteractive -Command Write-Output 'W5LAB-79ae9ab54d6d413392107a14b93bef6b-baseline_plain'
+	EngineVersion=5.1.26100.9549
+	RunspaceId=3f183329-df26-45e7-aa1d-60bca12db375
+	PipelineId=
+	CommandName=
+	CommandType=
+	ScriptName=
+	CommandPath=
+	CommandLine=</Data>
+    </EventData>
+  </Event>
+  <Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+    <System>
+      <Provider Name="PowerShell" />
+      <EventID Qualifiers="0">400</EventID>
+      <Version>0</Version>
+      <Level>4</Level>
+      <Task>4</Task>
+      <Opcode>0</Opcode>
+      <Keywords>0x80000000000000</Keywords>
+      <TimeCreated SystemTime="2026-10-07T14:20:05.7577035Z" />
+      <EventRecordID>55842</EventRecordID>
+      <Correlation />
+      <Execution ProcessID="11984" ThreadID="0" />
+      <Channel>Windows PowerShell</Channel>
+      <Computer>LAB-WINDOWS-HOST</Computer>
+      <Security />
+    </System>
+    <EventData>
+      <Data>Available</Data>
+      <Data>None</Data>
+      <Data>	NewEngineState=Available
+	PreviousEngineState=None
+
+	SequenceNumber=13
+
+	HostName=ConsoleHost
+	HostVersion=5.1.26100.9549
+	HostId=055611cb-e88d-42bb-b07d-6ba3e6c86245
+	HostApplication=C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -NonInteractive -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFcANQBMAEEAQgAtADcAOQBhAGUAOQBhAGIANQA0AGQANgBkADQAMQAzADMAOQAyADEAMAA3AGEAMQA0AGIAOQAzAGIAZQBmADYAYgAtAGUAbgBjAG8AZABlAGQAXwBvAG4AbAB5ACcA
+	EngineVersion=5.1.26100.9549
+	RunspaceId=cf38eda3-e591-4bea-b41b-f9b71ff09283
+	PipelineId=
+	CommandName=
+	CommandType=
+	ScriptName=
+	CommandPath=
+	CommandLine=</Data>
+    </EventData>
+  </Event>
+  <Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+    <System>
+      <Provider Name="PowerShell" />
+      <EventID Qualifiers="0">400</EventID>
+      <Version>0</Version>
+      <Level>4</Level>
+      <Task>4</Task>
+      <Opcode>0</Opcode>
+      <Keywords>0x80000000000000</Keywords>
+      <TimeCreated SystemTime="2026-10-07T14:20:06.8141072Z" />
+      <EventRecordID>55850</EventRecordID>
+      <Correlation />
+      <Execution ProcessID="11604" ThreadID="0" />
+      <Channel>Windows PowerShell</Channel>
+      <Computer>LAB-WINDOWS-HOST</Computer>
+      <Security />
+    </System>
+    <EventData>
+      <Data>Available</Data>
+      <Data>None</Data>
+      <Data>	NewEngineState=Available
+	PreviousEngineState=None
+
+	SequenceNumber=13
+
+	HostName=ConsoleHost
+	HostVersion=5.1.26100.9549
+	HostId=8a3d72f1-8c40-49b9-b14c-c6ff0d9f33c1
+	HostApplication=C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -Command Write-Output 'W5LAB-79ae9ab54d6d413392107a14b93bef6b-hidden_bypass'
+	EngineVersion=5.1.26100.9549
+	RunspaceId=f062e00c-6285-4336-9c0f-653d6c6f25a8
+	PipelineId=
+	CommandName=
+	CommandType=
+	ScriptName=
+	CommandPath=
+	CommandLine=</Data>
+    </EventData>
+  </Event>
+  <Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+    <System>
+      <Provider Name="PowerShell" />
+      <EventID Qualifiers="0">400</EventID>
+      <Version>0</Version>
+      <Level>4</Level>
+      <Task>4</Task>
+      <Opcode>0</Opcode>
+      <Keywords>0x80000000000000</Keywords>
+      <TimeCreated SystemTime="2026-10-07T14:20:07.8448082Z" />
+      <EventRecordID>55858</EventRecordID>
+      <Correlation />
+      <Execution ProcessID="2728" ThreadID="0" />
+      <Channel>Windows PowerShell</Channel>
+      <Computer>LAB-WINDOWS-HOST</Computer>
+      <Security />
+    </System>
+    <EventData>
+      <Data>Available</Data>
+      <Data>None</Data>
+      <Data>	NewEngineState=Available
+	PreviousEngineState=None
+
+	SequenceNumber=13
+
+	HostName=ConsoleHost
+	HostVersion=5.1.26100.9549
+	HostId=816d751a-222e-42c6-b3d8-c8f43d8f3b10
+	HostApplication=C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFcANQBMAEEAQgAtADcAOQBhAGUAOQBhAGIANQA0AGQANgBkADQAMQAzADMAOQAyADEAMAA3AGEAMQA0AGIAOQAzAGIAZQBmADYAYgAtAGUAbgBjAG8AZABlAGQAXwBoAGkAZABkAGUAbgBfAGIAeQBwAGEAcwBzACcA
+	EngineVersion=5.1.26100.9549
+	RunspaceId=f550aa9c-216a-4270-b751-7be03a64b20e
+	PipelineId=
+	CommandName=
+	CommandType=
+	ScriptName=
+	CommandPath=
+	CommandLine=</Data>
+    </EventData>
+  </Event>
+</Events>

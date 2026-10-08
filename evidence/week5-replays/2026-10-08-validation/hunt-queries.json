@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "query_revision": 2,
+  "scope": "Only the four collected Windows PowerShell Event 400 records from this lab run.",
+  "revision_note": "Revision 2 accepts the Hidden/Bypass value at end of line as well as before another space-separated argument. The 7 October responses used evidence/week5/original-hunt-queries.json, not this revision. These are text filters for canonical flags, not a PowerShell argument parser.",
+  "queries": [
+    {
+      "id": "inventory",
+      "purpose": "Verify that all four engine-start events are present.",
+      "body": {
+        "size": 100,
+        "track_total_hits": true,
+        "sort": [{"@timestamp": "asc"}],
+        "query": {"bool": {"filter": [
+          {"term": {"event.code": "400"}},
+          {"term": {"winlog.channel": "Windows PowerShell"}}
+        ]}}
+      }
+    },
+    {
+      "id": "encoded_candidates",
+      "purpose": "A broad triage query; encoded commands can also be legitimate automation.",
+      "body": {
+        "size": 100,
+        "track_total_hits": true,
+        "sort": [{"@timestamp": "asc"}],
+        "query": {"bool": {"filter": [
+          {"term": {"event.code": "400"}},
+          {"term": {"winlog.channel": "Windows PowerShell"}},
+          {"wildcard": {"process.command_line": {"value": "* -EncodedCommand *", "case_insensitive": true}}}
+        ]}}
+      }
+    },
+    {
+      "id": "encoded_hidden_bypass",
+      "purpose": "Refine triage with three canonical, single-space-separated flags, including Hidden/Bypass at end of line. Case and flag order may vary; aliases, quoted values and arbitrary whitespace are outside this query's scope.",
+      "body": {
+        "size": 100,
+        "track_total_hits": true,
+        "sort": [{"@timestamp": "asc"}],
+        "query": {"bool": {"filter": [
+          {"term": {"event.code": "400"}},
+          {"term": {"winlog.channel": "Windows PowerShell"}},
+          {"wildcard": {"process.command_line": {"value": "* -EncodedCommand *", "case_insensitive": true}}},
+          {"bool": {"should": [
+            {"wildcard": {"process.command_line": {"value": "* -WindowStyle Hidden *", "case_insensitive": true}}},
+            {"wildcard": {"process.command_line": {"value": "* -WindowStyle Hidden", "case_insensitive": true}}}
+          ], "minimum_should_match": 1}},
+          {"bool": {"should": [
+            {"wildcard": {"process.command_line": {"value": "* -ExecutionPolicy Bypass *", "case_insensitive": true}}},
+            {"wildcard": {"process.command_line": {"value": "* -ExecutionPolicy Bypass", "case_insensitive": true}}}
+          ], "minimum_should_match": 1}}
+        ]}}
+      }
+    }
+  ]
+}

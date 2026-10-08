@@ -2,3 +2,22 @@
 *.csv text eol=lf
 *.json text eol=lf
 *.py text eol=lf
+
+# Preserve archived evidence bytes and declared SHA-256 values across checkouts.
+/scripts/collect_week5_powershell.ps1 -text
+/data/week5-powershell-events.jsonl -text
+/evidence/week5/windows-events.xml -text
+/evidence/week5/run-manifest.json -text
+/evidence/week5/api-transcript.json -text
+/evidence/week5/hunt-results.json -text
+/evidence/week5/original-hunt-queries.json -text
+# The privacy copy has its own byte hash in runtime-redactions.json.
+/evidence/week5/runtime.json -text
+
+# Preserve current query/code hashes and separately recorded replay evidence.
+/data/week5-hunt-queries.json -text
+/scripts/run_week5_hunt.py -text
+/tests/test_week5_queries.py -text
+/tests/test_week5_runner.py -text
+/evidence/week5-replays/** -text
+/evidence/week5-validation/** -text

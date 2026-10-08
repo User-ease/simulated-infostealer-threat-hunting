@@ -1,0 +1,1122 @@
+[
+  {
+    "utc": "2026-10-08T11:29:30.621799Z",
+    "service": "Elasticsearch",
+    "method": "GET",
+    "path": "/",
+    "request": null,
+    "status": 200,
+    "response": {
+      "name": "52722534f34a",
+      "cluster_name": "threat-hunting-week5",
+      "cluster_uuid": "CZubBJzgTRiBAPG0x_NWWQ",
+      "version": {
+        "number": "9.5.5",
+        "build_flavor": "default",
+        "build_type": "docker",
+        "build_hash": "48acba663b09e70b115dd879329141506c377890",
+        "build_date": "2026-09-30T22:12:03.984586187Z",
+        "build_snapshot": false,
+        "lucene_version": "10.5.1",
+        "minimum_wire_compatibility_version": "8.19.0",
+        "minimum_index_compatibility_version": "8.0.0"
+      },
+      "tagline": "You Know, for Search"
+    }
+  },
+  {
+    "utc": "2026-10-08T11:29:30.895633Z",
+    "service": "Elasticsearch",
+    "method": "GET",
+    "path": "/_license",
+    "request": null,
+    "status": 200,
+    "response": {
+      "license": {
+        "status": "active",
+        "uid": "3c7ebdec-06c7-41a4-81c6-120e394e93c6",
+        "type": "basic",
+        "issue_date": "2026-10-08T11:27:18.340Z",
+        "issue_date_in_millis": 1791458838340,
+        "max_nodes": 1000,
+        "max_resource_units": null,
+        "issued_to": "threat-hunting-week5",
+        "issuer": "elasticsearch",
+        "start_date_in_millis": -1
+      }
+    }
+  },
+  {
+    "utc": "2026-10-08T11:29:30.918159Z",
+    "service": "Elasticsearch",
+    "method": "GET",
+    "path": "/week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+    "request": null,
+    "status": 404,
+    "response": {
+      "error": {
+        "root_cause": [
+          {
+            "type": "index_not_found_exception",
+            "reason": "no such index [week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065]",
+            "resource.type": "index_or_alias",
+            "resource.id": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+            "index_uuid": "_na_",
+            "index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065"
+          }
+        ],
+        "type": "index_not_found_exception",
+        "reason": "no such index [week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065]",
+        "resource.type": "index_or_alias",
+        "resource.id": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+        "index_uuid": "_na_",
+        "index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065"
+      },
+      "status": 404
+    }
+  },
+  {
+    "utc": "2026-10-08T11:29:30.932266Z",
+    "service": "Elasticsearch",
+    "method": "PUT",
+    "path": "/week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+    "request": {
+      "settings": {
+        "number_of_shards": 1,
+        "number_of_replicas": 0
+      },
+      "mappings": {
+        "dynamic": "strict",
+        "properties": {
+          "@timestamp": {
+            "type": "date"
+          },
+          "event": {
+            "properties": {
+              "code": {
+                "type": "keyword"
+              },
+              "provider": {
+                "type": "keyword"
+              },
+              "action": {
+                "type": "keyword"
+              }
+            }
+          },
+          "winlog": {
+            "properties": {
+              "channel": {
+                "type": "keyword"
+              },
+              "record_id": {
+                "type": "long"
+              }
+            }
+          },
+          "host": {
+            "properties": {
+              "name": {
+                "type": "keyword"
+              }
+            }
+          },
+          "process": {
+            "properties": {
+              "name": {
+                "type": "keyword"
+              },
+              "pid": {
+                "type": "long"
+              },
+              "command_line": {
+                "type": "wildcard"
+              }
+            }
+          },
+          "lab": {
+            "properties": {
+              "run_id": {
+                "type": "keyword"
+              },
+              "case_id": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      }
+    },
+    "status": 200,
+    "response": {
+      "acknowledged": true,
+      "shards_acknowledged": true,
+      "index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065"
+    }
+  },
+  {
+    "utc": "2026-10-08T11:29:33.185758Z",
+    "service": "Elasticsearch",
+    "method": "POST",
+    "path": "/_bulk?refresh=wait_for",
+    "request": "{\"create\": {\"_index\": \"week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065\", \"_id\": \"55834\"}}\n{\"@timestamp\": \"2026-10-07T14:20:04.6451752Z\", \"event\": {\"code\": \"400\", \"provider\": \"PowerShell\", \"action\": \"engine-start\"}, \"winlog\": {\"channel\": \"Windows PowerShell\", \"record_id\": 55834}, \"host\": {\"name\": \"LAB-WINDOWS-HOST\"}, \"process\": {\"name\": \"powershell.exe\", \"pid\": 932, \"command_line\": \"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe -NoProfile -NonInteractive -Command Write-Output 'W5LAB-79ae9ab54d6d413392107a14b93bef6b-baseline_plain'\"}, \"lab\": {\"run_id\": \"79ae9ab54d6d413392107a14b93bef6b\", \"case_id\": \"baseline_plain\"}}\n{\"create\": {\"_index\": \"week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065\", \"_id\": \"55842\"}}\n{\"@timestamp\": \"2026-10-07T14:20:05.7577035Z\", \"event\": {\"code\": \"400\", \"provider\": \"PowerShell\", \"action\": \"engine-start\"}, \"winlog\": {\"channel\": \"Windows PowerShell\", \"record_id\": 55842}, \"host\": {\"name\": \"LAB-WINDOWS-HOST\"}, \"process\": {\"name\": \"powershell.exe\", \"pid\": 11984, \"command_line\": \"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe -NoProfile -NonInteractive -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFcANQBMAEEAQgAtADcAOQBhAGUAOQBhAGIANQA0AGQANgBkADQAMQAzADMAOQAyADEAMAA3AGEAMQA0AGIAOQAzAGIAZQBmADYAYgAtAGUAbgBjAG8AZABlAGQAXwBvAG4AbAB5ACcA\"}, \"lab\": {\"run_id\": \"79ae9ab54d6d413392107a14b93bef6b\", \"case_id\": \"encoded_only\"}}\n{\"create\": {\"_index\": \"week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065\", \"_id\": \"55850\"}}\n{\"@timestamp\": \"2026-10-07T14:20:06.8141072Z\", \"event\": {\"code\": \"400\", \"provider\": \"PowerShell\", \"action\": \"engine-start\"}, \"winlog\": {\"channel\": \"Windows PowerShell\", \"record_id\": 55850}, \"host\": {\"name\": \"LAB-WINDOWS-HOST\"}, \"process\": {\"name\": \"powershell.exe\", \"pid\": 11604, \"command_line\": \"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -Command Write-Output 'W5LAB-79ae9ab54d6d413392107a14b93bef6b-hidden_bypass'\"}, \"lab\": {\"run_id\": \"79ae9ab54d6d413392107a14b93bef6b\", \"case_id\": \"hidden_bypass\"}}\n{\"create\": {\"_index\": \"week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065\", \"_id\": \"55858\"}}\n{\"@timestamp\": \"2026-10-07T14:20:07.8448082Z\", \"event\": {\"code\": \"400\", \"provider\": \"PowerShell\", \"action\": \"engine-start\"}, \"winlog\": {\"channel\": \"Windows PowerShell\", \"record_id\": 55858}, \"host\": {\"name\": \"LAB-WINDOWS-HOST\"}, \"process\": {\"name\": \"powershell.exe\", \"pid\": 2728, \"command_line\": \"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFcANQBMAEEAQgAtADcAOQBhAGUAOQBhAGIANQA0AGQANgBkADQAMQAzADMAOQAyADEAMAA3AGEAMQA0AGIAOQAzAGIAZQBmADYAYgAtAGUAbgBjAG8AZABlAGQAXwBoAGkAZABkAGUAbgBfAGIAeQBwAGEAcwBzACcA\"}, \"lab\": {\"run_id\": \"79ae9ab54d6d413392107a14b93bef6b\", \"case_id\": \"encoded_hidden_bypass\"}}\n",
+    "status": 200,
+    "response": {
+      "errors": false,
+      "took": 400,
+      "items": [
+        {
+          "create": {
+            "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+            "_id": "55834",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 0,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+            "_id": "55842",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 1,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+            "_id": "55850",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 2,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+            "_id": "55858",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 3,
+            "_primary_term": 1,
+            "status": 201
+          }
+        }
+      ]
+    }
+  },
+  {
+    "utc": "2026-10-08T11:29:33.496868Z",
+    "service": "Elasticsearch",
+    "method": "GET",
+    "path": "/week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065/_count",
+    "request": null,
+    "status": 200,
+    "response": {
+      "count": 4,
+      "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+      }
+    }
+  },
+  {
+    "utc": "2026-10-08T11:29:33.542749Z",
+    "service": "Elasticsearch",
+    "method": "GET",
+    "path": "/week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065/_mapping",
+    "request": null,
+    "status": 200,
+    "response": {
+      "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065": {
+        "mappings": {
+          "dynamic": "strict",
+          "properties": {
+            "@timestamp": {
+              "type": "date"
+            },
+            "event": {
+              "properties": {
+                "action": {
+                  "type": "keyword"
+                },
+                "code": {
+                  "type": "keyword"
+                },
+                "provider": {
+                  "type": "keyword"
+                }
+              }
+            },
+            "host": {
+              "properties": {
+                "name": {
+                  "type": "keyword"
+                }
+              }
+            },
+            "lab": {
+              "properties": {
+                "case_id": {
+                  "type": "keyword"
+                },
+                "run_id": {
+                  "type": "keyword"
+                }
+              }
+            },
+            "process": {
+              "properties": {
+                "command_line": {
+                  "type": "wildcard"
+                },
+                "name": {
+                  "type": "keyword"
+                },
+                "pid": {
+                  "type": "long"
+                }
+              }
+            },
+            "winlog": {
+              "properties": {
+                "channel": {
+                  "type": "keyword"
+                },
+                "record_id": {
+                  "type": "long"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "utc": "2026-10-08T11:29:33.559477Z",
+    "service": "Elasticsearch",
+    "method": "POST",
+    "path": "/week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065/_search",
+    "request": {
+      "size": 100,
+      "track_total_hits": true,
+      "sort": [
+        {
+          "@timestamp": "asc"
+        }
+      ],
+      "query": {
+        "bool": {
+          "filter": [
+            {
+              "term": {
+                "event.code": "400"
+              }
+            },
+            {
+              "term": {
+                "winlog.channel": "Windows PowerShell"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "status": 200,
+    "response": {
+      "took": 11,
+      "timed_out": false,
+      "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 4,
+          "relation": "eq"
+        },
+        "max_score": null,
+        "hits": [
+          {
+            "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+            "_id": "55834",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-10-07T14:20:04.6451752Z",
+              "event": {
+                "code": "400",
+                "provider": "PowerShell",
+                "action": "engine-start"
+              },
+              "winlog": {
+                "channel": "Windows PowerShell",
+                "record_id": 55834
+              },
+              "host": {
+                "name": "LAB-WINDOWS-HOST"
+              },
+              "process": {
+                "name": "powershell.exe",
+                "pid": 932,
+                "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -NonInteractive -Command Write-Output 'W5LAB-79ae9ab54d6d413392107a14b93bef6b-baseline_plain'"
+              },
+              "lab": {
+                "run_id": "79ae9ab54d6d413392107a14b93bef6b",
+                "case_id": "baseline_plain"
+              }
+            },
+            "sort": [
+              1791382804645
+            ]
+          },
+          {
+            "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+            "_id": "55842",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-10-07T14:20:05.7577035Z",
+              "event": {
+                "code": "400",
+                "provider": "PowerShell",
+                "action": "engine-start"
+              },
+              "winlog": {
+                "channel": "Windows PowerShell",
+                "record_id": 55842
+              },
+              "host": {
+                "name": "LAB-WINDOWS-HOST"
+              },
+              "process": {
+                "name": "powershell.exe",
+                "pid": 11984,
+                "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -NonInteractive -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFcANQBMAEEAQgAtADcAOQBhAGUAOQBhAGIANQA0AGQANgBkADQAMQAzADMAOQAyADEAMAA3AGEAMQA0AGIAOQAzAGIAZQBmADYAYgAtAGUAbgBjAG8AZABlAGQAXwBvAG4AbAB5ACcA"
+              },
+              "lab": {
+                "run_id": "79ae9ab54d6d413392107a14b93bef6b",
+                "case_id": "encoded_only"
+              }
+            },
+            "sort": [
+              1791382805757
+            ]
+          },
+          {
+            "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+            "_id": "55850",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-10-07T14:20:06.8141072Z",
+              "event": {
+                "code": "400",
+                "provider": "PowerShell",
+                "action": "engine-start"
+              },
+              "winlog": {
+                "channel": "Windows PowerShell",
+                "record_id": 55850
+              },
+              "host": {
+                "name": "LAB-WINDOWS-HOST"
+              },
+              "process": {
+                "name": "powershell.exe",
+                "pid": 11604,
+                "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -Command Write-Output 'W5LAB-79ae9ab54d6d413392107a14b93bef6b-hidden_bypass'"
+              },
+              "lab": {
+                "run_id": "79ae9ab54d6d413392107a14b93bef6b",
+                "case_id": "hidden_bypass"
+              }
+            },
+            "sort": [
+              1791382806814
+            ]
+          },
+          {
+            "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+            "_id": "55858",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-10-07T14:20:07.8448082Z",
+              "event": {
+                "code": "400",
+                "provider": "PowerShell",
+                "action": "engine-start"
+              },
+              "winlog": {
+                "channel": "Windows PowerShell",
+                "record_id": 55858
+              },
+              "host": {
+                "name": "LAB-WINDOWS-HOST"
+              },
+              "process": {
+                "name": "powershell.exe",
+                "pid": 2728,
+                "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFcANQBMAEEAQgAtADcAOQBhAGUAOQBhAGIANQA0AGQANgBkADQAMQAzADMAOQAyADEAMAA3AGEAMQA0AGIAOQAzAGIAZQBmADYAYgAtAGUAbgBjAG8AZABlAGQAXwBoAGkAZABkAGUAbgBfAGIAeQBwAGEAcwBzACcA"
+              },
+              "lab": {
+                "run_id": "79ae9ab54d6d413392107a14b93bef6b",
+                "case_id": "encoded_hidden_bypass"
+              }
+            },
+            "sort": [
+              1791382807844
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "utc": "2026-10-08T11:29:33.585194Z",
+    "service": "Elasticsearch",
+    "method": "POST",
+    "path": "/week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065/_search",
+    "request": {
+      "size": 100,
+      "track_total_hits": true,
+      "sort": [
+        {
+          "@timestamp": "asc"
+        }
+      ],
+      "query": {
+        "bool": {
+          "filter": [
+            {
+              "term": {
+                "event.code": "400"
+              }
+            },
+            {
+              "term": {
+                "winlog.channel": "Windows PowerShell"
+              }
+            },
+            {
+              "wildcard": {
+                "process.command_line": {
+                  "value": "* -EncodedCommand *",
+                  "case_insensitive": true
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "status": 200,
+    "response": {
+      "took": 29,
+      "timed_out": false,
+      "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 2,
+          "relation": "eq"
+        },
+        "max_score": null,
+        "hits": [
+          {
+            "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+            "_id": "55842",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-10-07T14:20:05.7577035Z",
+              "event": {
+                "code": "400",
+                "provider": "PowerShell",
+                "action": "engine-start"
+              },
+              "winlog": {
+                "channel": "Windows PowerShell",
+                "record_id": 55842
+              },
+              "host": {
+                "name": "LAB-WINDOWS-HOST"
+              },
+              "process": {
+                "name": "powershell.exe",
+                "pid": 11984,
+                "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -NonInteractive -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFcANQBMAEEAQgAtADcAOQBhAGUAOQBhAGIANQA0AGQANgBkADQAMQAzADMAOQAyADEAMAA3AGEAMQA0AGIAOQAzAGIAZQBmADYAYgAtAGUAbgBjAG8AZABlAGQAXwBvAG4AbAB5ACcA"
+              },
+              "lab": {
+                "run_id": "79ae9ab54d6d413392107a14b93bef6b",
+                "case_id": "encoded_only"
+              }
+            },
+            "sort": [
+              1791382805757
+            ]
+          },
+          {
+            "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+            "_id": "55858",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-10-07T14:20:07.8448082Z",
+              "event": {
+                "code": "400",
+                "provider": "PowerShell",
+                "action": "engine-start"
+              },
+              "winlog": {
+                "channel": "Windows PowerShell",
+                "record_id": 55858
+              },
+              "host": {
+                "name": "LAB-WINDOWS-HOST"
+              },
+              "process": {
+                "name": "powershell.exe",
+                "pid": 2728,
+                "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFcANQBMAEEAQgAtADcAOQBhAGUAOQBhAGIANQA0AGQANgBkADQAMQAzADMAOQAyADEAMAA3AGEAMQA0AGIAOQAzAGIAZQBmADYAYgAtAGUAbgBjAG8AZABlAGQAXwBoAGkAZABkAGUAbgBfAGIAeQBwAGEAcwBzACcA"
+              },
+              "lab": {
+                "run_id": "79ae9ab54d6d413392107a14b93bef6b",
+                "case_id": "encoded_hidden_bypass"
+              }
+            },
+            "sort": [
+              1791382807844
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "utc": "2026-10-08T11:29:33.633829Z",
+    "service": "Elasticsearch",
+    "method": "POST",
+    "path": "/week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065/_search",
+    "request": {
+      "size": 100,
+      "track_total_hits": true,
+      "sort": [
+        {
+          "@timestamp": "asc"
+        }
+      ],
+      "query": {
+        "bool": {
+          "filter": [
+            {
+              "term": {
+                "event.code": "400"
+              }
+            },
+            {
+              "term": {
+                "winlog.channel": "Windows PowerShell"
+              }
+            },
+            {
+              "wildcard": {
+                "process.command_line": {
+                  "value": "* -EncodedCommand *",
+                  "case_insensitive": true
+                }
+              }
+            },
+            {
+              "bool": {
+                "should": [
+                  {
+                    "wildcard": {
+                      "process.command_line": {
+                        "value": "* -WindowStyle Hidden *",
+                        "case_insensitive": true
+                      }
+                    }
+                  },
+                  {
+                    "wildcard": {
+                      "process.command_line": {
+                        "value": "* -WindowStyle Hidden",
+                        "case_insensitive": true
+                      }
+                    }
+                  }
+                ],
+                "minimum_should_match": 1
+              }
+            },
+            {
+              "bool": {
+                "should": [
+                  {
+                    "wildcard": {
+                      "process.command_line": {
+                        "value": "* -ExecutionPolicy Bypass *",
+                        "case_insensitive": true
+                      }
+                    }
+                  },
+                  {
+                    "wildcard": {
+                      "process.command_line": {
+                        "value": "* -ExecutionPolicy Bypass",
+                        "case_insensitive": true
+                      }
+                    }
+                  }
+                ],
+                "minimum_should_match": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    "status": 200,
+    "response": {
+      "took": 35,
+      "timed_out": false,
+      "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 1,
+          "relation": "eq"
+        },
+        "max_score": null,
+        "hits": [
+          {
+            "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+            "_id": "55858",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-10-07T14:20:07.8448082Z",
+              "event": {
+                "code": "400",
+                "provider": "PowerShell",
+                "action": "engine-start"
+              },
+              "winlog": {
+                "channel": "Windows PowerShell",
+                "record_id": 55858
+              },
+              "host": {
+                "name": "LAB-WINDOWS-HOST"
+              },
+              "process": {
+                "name": "powershell.exe",
+                "pid": 2728,
+                "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFcANQBMAEEAQgAtADcAOQBhAGUAOQBhAGIANQA0AGQANgBkADQAMQAzADMAOQAyADEAMAA3AGEAMQA0AGIAOQAzAGIAZQBmADYAYgAtAGUAbgBjAG8AZABlAGQAXwBoAGkAZABkAGUAbgBfAGIAeQBwAGEAcwBzACcA"
+              },
+              "lab": {
+                "run_id": "79ae9ab54d6d413392107a14b93bef6b",
+                "case_id": "encoded_hidden_bypass"
+              }
+            },
+            "sort": [
+              1791382807844
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "utc": "2026-10-08T11:29:33.684737Z",
+    "service": "Elasticsearch",
+    "method": "GET",
+    "path": "/_cluster/health",
+    "request": null,
+    "status": 200,
+    "response": {
+      "cluster_name": "threat-hunting-week5",
+      "status": "yellow",
+      "timed_out": false,
+      "number_of_nodes": 1,
+      "number_of_data_nodes": 1,
+      "active_primary_shards": 23,
+      "active_shards": 23,
+      "relocating_shards": 0,
+      "initializing_shards": 0,
+      "unassigned_shards": 1,
+      "unassigned_primary_shards": 1,
+      "delayed_unassigned_shards": 0,
+      "number_of_pending_tasks": 20,
+      "number_of_in_flight_fetch": 0,
+      "task_max_waiting_in_queue_millis": 27891,
+      "active_shards_percent_as_number": 95.83333333333334
+    }
+  },
+  {
+    "utc": "2026-10-08T11:29:33.696782Z",
+    "service": "Kibana",
+    "method": "GET",
+    "path": "/api/status",
+    "request": null,
+    "status": 200,
+    "response": {
+      "status": {
+        "overall": {
+          "level": "available"
+        }
+      }
+    }
+  },
+  {
+    "utc": "2026-10-08T11:29:33.894583Z",
+    "service": "Kibana",
+    "method": "GET",
+    "path": "/api/data_views/data_view/week5-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+    "request": null,
+    "status": 404,
+    "response": {
+      "statusCode": 404,
+      "error": "Not Found",
+      "message": "Saved object [index-pattern/week5-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065] not found"
+    }
+  },
+  {
+    "utc": "2026-10-08T11:29:34.143683Z",
+    "service": "Kibana",
+    "method": "POST",
+    "path": "/api/data_views/data_view",
+    "request": {
+      "data_view": {
+        "id": "week5-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+        "title": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+        "name": "Week 5 - Windows PowerShell lab replay 20261008t112930612175z-cea5b065",
+        "timeFieldName": "@timestamp"
+      }
+    },
+    "status": 200,
+    "response": {
+      "data_view": {
+        "id": "week5-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+        "version": "WzUsMV0=",
+        "title": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b-replay-20261008t112930612175z-cea5b065",
+        "timeFieldName": "@timestamp",
+        "sourceFilters": [],
+        "fieldFormats": {},
+        "runtimeFieldMap": {},
+        "fieldAttrs": {},
+        "allowNoIndex": false,
+        "name": "Week 5 - Windows PowerShell lab replay 20261008t112930612175z-cea5b065",
+        "allowHidden": false,
+        "fields": {
+          "@timestamp": {
+            "count": 0,
+            "name": "@timestamp",
+            "type": "date",
+            "esTypes": [
+              "date"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "date"
+            },
+            "shortDotsEnable": false
+          },
+          "_id": {
+            "count": 0,
+            "name": "_id",
+            "type": "string",
+            "esTypes": [
+              "_id"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": false,
+            "readFromDocValues": false,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "_ignored": {
+            "count": 0,
+            "name": "_ignored",
+            "type": "string",
+            "esTypes": [
+              "_ignored"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": false,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "_index": {
+            "count": 0,
+            "name": "_index",
+            "type": "string",
+            "esTypes": [
+              "_index"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": false,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "_score": {
+            "count": 0,
+            "name": "_score",
+            "type": "number",
+            "scripted": false,
+            "searchable": false,
+            "aggregatable": false,
+            "readFromDocValues": false,
+            "format": {
+              "id": "number"
+            },
+            "shortDotsEnable": false
+          },
+          "_source": {
+            "count": 0,
+            "name": "_source",
+            "type": "_source",
+            "esTypes": [
+              "_source"
+            ],
+            "scripted": false,
+            "searchable": false,
+            "aggregatable": false,
+            "readFromDocValues": false,
+            "format": {
+              "id": "_source"
+            },
+            "shortDotsEnable": false
+          },
+          "event.action": {
+            "count": 0,
+            "name": "event.action",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "event.code": {
+            "count": 0,
+            "name": "event.code",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "event.provider": {
+            "count": 0,
+            "name": "event.provider",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "host.name": {
+            "count": 0,
+            "name": "host.name",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "lab.case_id": {
+            "count": 0,
+            "name": "lab.case_id",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "lab.run_id": {
+            "count": 0,
+            "name": "lab.run_id",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "process.command_line": {
+            "count": 0,
+            "name": "process.command_line",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "process.name": {
+            "count": 0,
+            "name": "process.name",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "process.pid": {
+            "count": 0,
+            "name": "process.pid",
+            "type": "number",
+            "esTypes": [
+              "long"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "number"
+            },
+            "shortDotsEnable": false
+          },
+          "winlog.channel": {
+            "count": 0,
+            "name": "winlog.channel",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "winlog.record_id": {
+            "count": 0,
+            "name": "winlog.record_id",
+            "type": "number",
+            "esTypes": [
+              "long"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "number"
+            },
+            "shortDotsEnable": false
+          }
+        },
+        "namespaces": [
+          "default"
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "scope": "Only the four collected Windows PowerShell Event 400 records from this lab run.",
+  "queries": [
+    {
+      "id": "inventory",
+      "purpose": "Verify that all four engine-start events are present.",
+      "body": {
+        "size": 100,
+        "track_total_hits": true,
+        "sort": [{"@timestamp": "asc"}],
+        "query": {"bool": {"filter": [
+          {"term": {"event.code": "400"}},
+          {"term": {"winlog.channel": "Windows PowerShell"}}
+        ]}}
+      }
+    },
+    {
+      "id": "encoded_candidates",
+      "purpose": "A broad triage query; encoded commands can also be legitimate automation.",
+      "body": {
+        "size": 100,
+        "track_total_hits": true,
+        "sort": [{"@timestamp": "asc"}],
+        "query": {"bool": {"filter": [
+          {"term": {"event.code": "400"}},
+          {"term": {"winlog.channel": "Windows PowerShell"}},
+          {"wildcard": {"process.command_line": {"value": "* -EncodedCommand *", "case_insensitive": true}}}
+        ]}}
+      }
+    },
+    {
+      "id": "encoded_hidden_bypass",
+      "purpose": "Refine launch-flag triage using the three-flag conjunction, independently of flag order.",
+      "body": {
+        "size": 100,
+        "track_total_hits": true,
+        "sort": [{"@timestamp": "asc"}],
+        "query": {"bool": {"filter": [
+          {"term": {"event.code": "400"}},
+          {"term": {"winlog.channel": "Windows PowerShell"}},
+          {"wildcard": {"process.command_line": {"value": "* -EncodedCommand *", "case_insensitive": true}}},
+          {"wildcard": {"process.command_line": {"value": "* -WindowStyle Hidden *", "case_insensitive": true}}},
+          {"wildcard": {"process.command_line": {"value": "* -ExecutionPolicy Bypass *", "case_insensitive": true}}}
+        ]}}
+      }
+    }
+  ]
+}

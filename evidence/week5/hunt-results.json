@@ -1,0 +1,318 @@
+{
+  "executed_utc": "2026-10-07T14:25:50.412020Z",
+  "run_id": "79ae9ab54d6d413392107a14b93bef6b",
+  "index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b",
+  "dataset_sha256": "bd48c892b78ebd44512ec38b32b56eeedf4b54c6b1f72cc75a924f3a37685809",
+  "queries_sha256": "caa647022b4a8d5bf720508a0794414bd1314e65be3d548fb9da384d61a6480d",
+  "input_count": 4,
+  "queries": [
+    {
+      "id": "inventory",
+      "hits": 4,
+      "case_ids": [
+        "baseline_plain",
+        "encoded_hidden_bypass",
+        "encoded_only",
+        "hidden_bypass"
+      ],
+      "response": {
+        "took": 1,
+        "timed_out": false,
+        "_shards": {
+          "total": 1,
+          "successful": 1,
+          "skipped": 0,
+          "failed": 0
+        },
+        "hits": {
+          "total": {
+            "value": 4,
+            "relation": "eq"
+          },
+          "max_score": null,
+          "hits": [
+            {
+              "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b",
+              "_id": "55834",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-07T14:20:04.6451752Z",
+                "event": {
+                  "code": "400",
+                  "provider": "PowerShell",
+                  "action": "engine-start"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell",
+                  "record_id": 55834
+                },
+                "host": {
+                  "name": "LAB-WINDOWS-HOST"
+                },
+                "process": {
+                  "name": "powershell.exe",
+                  "pid": 932,
+                  "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -NonInteractive -Command Write-Output 'W5LAB-79ae9ab54d6d413392107a14b93bef6b-baseline_plain'"
+                },
+                "lab": {
+                  "run_id": "79ae9ab54d6d413392107a14b93bef6b",
+                  "case_id": "baseline_plain"
+                }
+              },
+              "sort": [
+                1791382804645
+              ]
+            },
+            {
+              "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b",
+              "_id": "55842",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-07T14:20:05.7577035Z",
+                "event": {
+                  "code": "400",
+                  "provider": "PowerShell",
+                  "action": "engine-start"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell",
+                  "record_id": 55842
+                },
+                "host": {
+                  "name": "LAB-WINDOWS-HOST"
+                },
+                "process": {
+                  "name": "powershell.exe",
+                  "pid": 11984,
+                  "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -NonInteractive -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFcANQBMAEEAQgAtADcAOQBhAGUAOQBhAGIANQA0AGQANgBkADQAMQAzADMAOQAyADEAMAA3AGEAMQA0AGIAOQAzAGIAZQBmADYAYgAtAGUAbgBjAG8AZABlAGQAXwBvAG4AbAB5ACcA"
+                },
+                "lab": {
+                  "run_id": "79ae9ab54d6d413392107a14b93bef6b",
+                  "case_id": "encoded_only"
+                }
+              },
+              "sort": [
+                1791382805757
+              ]
+            },
+            {
+              "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b",
+              "_id": "55850",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-07T14:20:06.8141072Z",
+                "event": {
+                  "code": "400",
+                  "provider": "PowerShell",
+                  "action": "engine-start"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell",
+                  "record_id": 55850
+                },
+                "host": {
+                  "name": "LAB-WINDOWS-HOST"
+                },
+                "process": {
+                  "name": "powershell.exe",
+                  "pid": 11604,
+                  "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -Command Write-Output 'W5LAB-79ae9ab54d6d413392107a14b93bef6b-hidden_bypass'"
+                },
+                "lab": {
+                  "run_id": "79ae9ab54d6d413392107a14b93bef6b",
+                  "case_id": "hidden_bypass"
+                }
+              },
+              "sort": [
+                1791382806814
+              ]
+            },
+            {
+              "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b",
+              "_id": "55858",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-07T14:20:07.8448082Z",
+                "event": {
+                  "code": "400",
+                  "provider": "PowerShell",
+                  "action": "engine-start"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell",
+                  "record_id": 55858
+                },
+                "host": {
+                  "name": "LAB-WINDOWS-HOST"
+                },
+                "process": {
+                  "name": "powershell.exe",
+                  "pid": 2728,
+                  "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFcANQBMAEEAQgAtADcAOQBhAGUAOQBhAGIANQA0AGQANgBkADQAMQAzADMAOQAyADEAMAA3AGEAMQA0AGIAOQAzAGIAZQBmADYAYgAtAGUAbgBjAG8AZABlAGQAXwBoAGkAZABkAGUAbgBfAGIAeQBwAGEAcwBzACcA"
+                },
+                "lab": {
+                  "run_id": "79ae9ab54d6d413392107a14b93bef6b",
+                  "case_id": "encoded_hidden_bypass"
+                }
+              },
+              "sort": [
+                1791382807844
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "encoded_candidates",
+      "hits": 2,
+      "case_ids": [
+        "encoded_hidden_bypass",
+        "encoded_only"
+      ],
+      "response": {
+        "took": 2,
+        "timed_out": false,
+        "_shards": {
+          "total": 1,
+          "successful": 1,
+          "skipped": 0,
+          "failed": 0
+        },
+        "hits": {
+          "total": {
+            "value": 2,
+            "relation": "eq"
+          },
+          "max_score": null,
+          "hits": [
+            {
+              "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b",
+              "_id": "55842",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-07T14:20:05.7577035Z",
+                "event": {
+                  "code": "400",
+                  "provider": "PowerShell",
+                  "action": "engine-start"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell",
+                  "record_id": 55842
+                },
+                "host": {
+                  "name": "LAB-WINDOWS-HOST"
+                },
+                "process": {
+                  "name": "powershell.exe",
+                  "pid": 11984,
+                  "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -NonInteractive -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFcANQBMAEEAQgAtADcAOQBhAGUAOQBhAGIANQA0AGQANgBkADQAMQAzADMAOQAyADEAMAA3AGEAMQA0AGIAOQAzAGIAZQBmADYAYgAtAGUAbgBjAG8AZABlAGQAXwBvAG4AbAB5ACcA"
+                },
+                "lab": {
+                  "run_id": "79ae9ab54d6d413392107a14b93bef6b",
+                  "case_id": "encoded_only"
+                }
+              },
+              "sort": [
+                1791382805757
+              ]
+            },
+            {
+              "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b",
+              "_id": "55858",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-07T14:20:07.8448082Z",
+                "event": {
+                  "code": "400",
+                  "provider": "PowerShell",
+                  "action": "engine-start"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell",
+                  "record_id": 55858
+                },
+                "host": {
+                  "name": "LAB-WINDOWS-HOST"
+                },
+                "process": {
+                  "name": "powershell.exe",
+                  "pid": 2728,
+                  "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFcANQBMAEEAQgAtADcAOQBhAGUAOQBhAGIANQA0AGQANgBkADQAMQAzADMAOQAyADEAMAA3AGEAMQA0AGIAOQAzAGIAZQBmADYAYgAtAGUAbgBjAG8AZABlAGQAXwBoAGkAZABkAGUAbgBfAGIAeQBwAGEAcwBzACcA"
+                },
+                "lab": {
+                  "run_id": "79ae9ab54d6d413392107a14b93bef6b",
+                  "case_id": "encoded_hidden_bypass"
+                }
+              },
+              "sort": [
+                1791382807844
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "encoded_hidden_bypass",
+      "hits": 1,
+      "case_ids": [
+        "encoded_hidden_bypass"
+      ],
+      "response": {
+        "took": 3,
+        "timed_out": false,
+        "_shards": {
+          "total": 1,
+          "successful": 1,
+          "skipped": 0,
+          "failed": 0
+        },
+        "hits": {
+          "total": {
+            "value": 1,
+            "relation": "eq"
+          },
+          "max_score": null,
+          "hits": [
+            {
+              "_index": "week5-powershell-79ae9ab54d6d413392107a14b93bef6b",
+              "_id": "55858",
+              "_score": null,
+              "_source": {
+                "@timestamp": "2026-10-07T14:20:07.8448082Z",
+                "event": {
+                  "code": "400",
+                  "provider": "PowerShell",
+                  "action": "engine-start"
+                },
+                "winlog": {
+                  "channel": "Windows PowerShell",
+                  "record_id": 55858
+                },
+                "host": {
+                  "name": "LAB-WINDOWS-HOST"
+                },
+                "process": {
+                  "name": "powershell.exe",
+                  "pid": 2728,
+                  "command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFcANQBMAEEAQgAtADcAOQBhAGUAOQBhAGIANQA0AGQANgBkADQAMQAzADMAOQAyADEAMAA3AGEAMQA0AGIAOQAzAGIAZQBmADYAYgAtAGUAbgBjAG8AZABlAGQAXwBoAGkAZABkAGUAbgBfAGIAeQBwAGEAcwBzACcA"
+                },
+                "lab": {
+                  "run_id": "79ae9ab54d6d413392107a14b93bef6b",
+                  "case_id": "encoded_hidden_bypass"
+                }
+              },
+              "sort": [
+                1791382807844
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "resumed_existing_index": true,
+  "interpretation": "All cases are benign. Results validate only the documented launch-flag query on these four controls."
+}

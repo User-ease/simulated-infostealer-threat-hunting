@@ -1,0 +1,135 @@
+{
+  "recorded_utc": "2026-10-07T14:25:49.386549Z",
+  "elasticsearch_url": "http://127.0.0.1:9200",
+  "kibana_url": "http://127.0.0.1:5601",
+  "elasticsearch_version_response": {
+    "name": "acd3d052bd39",
+    "cluster_name": "threat-hunting-week5",
+    "cluster_uuid": "QV6P2GpRS9OfANvL4EOkDA",
+    "version": {
+      "number": "9.5.5",
+      "build_flavor": "default",
+      "build_type": "docker",
+      "build_hash": "48acba663b09e70b115dd879329141506c377890",
+      "build_date": "2026-09-30T22:12:03.984586187Z",
+      "build_snapshot": false,
+      "lucene_version": "10.5.1",
+      "minimum_wire_compatibility_version": "8.19.0",
+      "minimum_index_compatibility_version": "8.0.0"
+    },
+    "tagline": "You Know, for Search"
+  },
+  "license_response": {
+    "license": {
+      "status": "active",
+      "uid": "fe8ede8e-e570-4de7-b172-a77e64a9ef0e",
+      "type": "basic",
+      "issue_date": "2026-10-07T14:23:55.898Z",
+      "issue_date_in_millis": 1791383035898,
+      "max_nodes": 1000,
+      "max_resource_units": null,
+      "issued_to": "threat-hunting-week5",
+      "issuer": "elasticsearch",
+      "start_date_in_millis": -1
+    }
+  },
+  "cluster_health": {
+    "cluster_name": "threat-hunting-week5",
+    "status": "green",
+    "timed_out": false,
+    "number_of_nodes": 1,
+    "number_of_data_nodes": 1,
+    "active_primary_shards": 50,
+    "active_shards": 50,
+    "relocating_shards": 0,
+    "initializing_shards": 0,
+    "unassigned_shards": 0,
+    "unassigned_primary_shards": 0,
+    "delayed_unassigned_shards": 0,
+    "number_of_pending_tasks": 0,
+    "number_of_in_flight_fetch": 0,
+    "task_max_waiting_in_queue_millis": 0,
+    "active_shards_percent_as_number": 100.0
+  },
+  "kibana_version": "9.5.5",
+  "kibana_version_source": "/usr/share/kibana/package.json in the running container",
+  "kibana_overall_status": "available",
+  "docker_engine_version": "29.8.0",
+  "docker_compose_version": "5.5.1",
+  "containers": [
+    {
+      "Command": "\"/bin/tini -- /usr/lâ€¦\"",
+      "CreatedAt": "2026-10-07 19:23:41 +0500 +05",
+      "Engine": "",
+      "ExitCode": 0,
+      "Health": "healthy",
+      "ID": "acd3d052bd39",
+      "Image": "elasticsearch:9.5.5",
+      "LocalVolumes": "1",
+      "Mounts": "threat-huntingâ€¦",
+      "Name": "threat-hunting-week5-elasticsearch-1",
+      "Names": "threat-hunting-week5-elasticsearch-1",
+      "Networks": "threat-hunting-week5_default",
+      "Ports": "127.0.0.1:9200->9200/tcp",
+      "Project": "threat-hunting-week5",
+      "Publishers": [
+        {
+          "URL": "127.0.0.1",
+          "TargetPort": 9200,
+          "PublishedPort": 9200,
+          "Protocol": "tcp"
+        }
+      ],
+      "RunningFor": "2 minutes ago",
+      "Service": "elasticsearch",
+      "Size": "0B",
+      "State": "running",
+      "Status": "Up 2 minutes (healthy)"
+    },
+    {
+      "Command": "\"/bin/tini -- /usr/lâ€¦\"",
+      "CreatedAt": "2026-10-07 19:23:41 +0500 +05",
+      "Engine": "",
+      "ExitCode": 0,
+      "Health": "healthy",
+      "ID": "d34ee4c91a8d",
+      "Image": "kibana:9.5.5",
+      "LocalVolumes": "0",
+      "Mounts": "",
+      "Name": "threat-hunting-week5-kibana-1",
+      "Names": "threat-hunting-week5-kibana-1",
+      "Networks": "threat-hunting-week5_default",
+      "Ports": "127.0.0.1:5601->5601/tcp",
+      "Project": "threat-hunting-week5",
+      "Publishers": [
+        {
+          "URL": "127.0.0.1",
+          "TargetPort": 5601,
+          "PublishedPort": 5601,
+          "Protocol": "tcp"
+        }
+      ],
+      "RunningFor": "2 minutes ago",
+      "Service": "kibana",
+      "Size": "0B",
+      "State": "running",
+      "Status": "Up About a minute (healthy)"
+    }
+  ],
+  "images": [
+    {
+      "image": "elasticsearch:9.5.5",
+      "id": "sha256:320bef0140dcaa30527babaae9d7a41c0ccc001e97ab87c08171d867b89e8f4f",
+      "repo_digests": [
+        "elasticsearch@sha256:320bef0140dcaa30527babaae9d7a41c0ccc001e97ab87c08171d867b89e8f4f"
+      ]
+    },
+    {
+      "image": "kibana:9.5.5",
+      "id": "sha256:2302bf43b02d7497f54961cdf1308a51d2f00a9c94d4dc30a6cf1540fcc16476",
+      "repo_digests": [
+        "kibana@sha256:2302bf43b02d7497f54961cdf1308a51d2f00a9c94d4dc30a6cf1540fcc16476"
+      ]
+    }
+  ]
+}
