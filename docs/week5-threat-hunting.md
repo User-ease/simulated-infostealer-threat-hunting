@@ -155,15 +155,5 @@ All four collected cases are intentionally **benign**. The refined case has all 
 
 The practical value of the hunt is a reproducible process: form a limited hypothesis, run controls, preserve native evidence, search a documented field, inspect the actual hits, and qualify what those hits mean. It extends [Week 4's PowerShell-stage analysis](https://www.microsoft.com/en-us/security/blog/2026/07/16/acr-stealer-two-observed-intrusion-chains-amid-increased-threat-activity/) without claiming that the laboratory flags are an ACR Stealer signature. The general behavior category is consistent with [MITRE ATT&CK T1059.001 — PowerShell](https://attack.mitre.org/techniques/T1059/001/); that mapping is a conceptual reference, not a malware attribution.
 
-## Seven-to-eight-minute defense outline
-
-| Time | Material to show |
-| --- | --- |
-| 0:00–0:50 | State the syllabus task and the Weeks 1–4 continuity. Distinguish IOC-led from hypothesis-led hunting. |
-| 0:50–2:00 | State the exact three-flag hypothesis and show the four benign controls. |
-| 2:00–3:15 | Show one native Event 400 XML record, its `HostApplication`, and the corresponding JSONL document and manifest entry. |
-| 3:15–5:30 | Show the original Query DSL, recorded Elasticsearch 4 → 2 → 1 responses, and the three original Kibana screenshots. Explain the current boundary correction and keep any replay results separate. |
-| 5:30–6:35 | Explain why a matching benign launch is a triage candidate, not a detection of ACR Stealer. |
-| 6:35–7:30 | Cover limits, evidence provenance, and the next defensible improvement: test aliases and ordinary background activity. |
 
 **AI-use disclosure:** Codex assisted with hypothesis design, scripts and queries, source review, execution orchestration, and documentation. The group should review the final artifact and follow the course's AI-use disclosure requirements before submission. No claim is made that the practice-teacher defense has already taken place.
