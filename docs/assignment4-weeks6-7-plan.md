@@ -48,5 +48,5 @@ Run `scripts/collect_week6_pilot.ps1` with PowerShell. Each execution writes a s
 
 ## Primary references
 
-- https://attack.mitre.org/techniques/T1059/001/ (accessed 22 October 2026)
-- https://car.mitre.org/analytics/CAR-2014-04-003/ (accessed 22 October 2026)
+- https://attack.mitre.org/techniques/T1059/001/
+- https://car.mitre.org/analytics/CAR-2014-04-003/
