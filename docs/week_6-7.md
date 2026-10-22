@@ -2,7 +2,7 @@
 
 Project: Forensic Analysis and Detection of Simulated Infostealer-Like Activity in Windows Environments.
 
-Date: 22 October 2026. Practical run: `20261022T111712644Z`. This report covers Weeks 6-7 and continues the earlier PowerShell hunt with newly collected observations on the replacement PC.
+Practical run: `20261022T111712644Z`. This report covers Weeks 6-7 and continues the earlier PowerShell hunt with newly collected observations on the replacement PC.
 
 ## Requirements and completed increment
 
