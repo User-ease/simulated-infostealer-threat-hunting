@@ -20,7 +20,7 @@ The project does not use real malware or real credentials. Instead, synthetic br
 * [Week 4](docs/week4-cyber-kill-chain.md): Cyber Kill Chain analysis of Microsoft's real-world ACR Stealer Campaign 1, with evidence-qualified ATT&CK mapping and a 7–8 minute defense outline — documented on 1 October 2026
 * [Week 5](docs/week5-threat-hunting.md): Hypothesis-driven PowerShell hunt in Elasticsearch and Kibana — the 7 October 2026 collection, query results, and screenshots are included; corrected queries and a fresh replay were verified locally on 8 October. Practical validation is complete; the practice-teacher defense remains pending.
 
-* [week_6-7](docs/week_6-7.md): ATT&CK PowerShell technique simulation and a disclosed MITRE CAR adaptation in Elasticsearch/Kibana — practical work, source evidence, screenshots, and defense notes prepared on 22 October 2026.
+* [week_6-7](docs/week_6-7.md): ATT&CK PowerShell technique simulation and a disclosed MITRE CAR adaptation in Elasticsearch/Kibana — practical work, source evidence, screenshots.
 
 ## week_6-7: ATT&CK and MITRE CAR
 
