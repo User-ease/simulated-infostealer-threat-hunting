@@ -20,6 +20,21 @@ The project does not use real malware or real credentials. Instead, synthetic br
 * [Week 4](docs/week4-cyber-kill-chain.md): Cyber Kill Chain analysis of Microsoft's real-world ACR Stealer Campaign 1, with evidence-qualified ATT&CK mapping and a 7–8 minute defense outline — documented on 1 October 2026
 * [Week 5](docs/week5-threat-hunting.md): Hypothesis-driven PowerShell hunt in Elasticsearch and Kibana — the 7 October 2026 collection, query results, and screenshots are included; corrected queries and a fresh replay were verified locally on 8 October. Practical validation is complete; the practice-teacher defense remains pending.
 
+* [week_6-7](docs/week_6-7.md): ATT&CK PowerShell technique simulation and a disclosed MITRE CAR adaptation in Elasticsearch/Kibana — practical work, source evidence, screenshots, and defense notes prepared on 22 October 2026.
+
+## week_6-7: ATT&CK and MITRE CAR
+
+The [week_6-7 report](docs/week_6-7.md) combines a safe T1059.001 PowerShell simulation with CAR-2014-04-003 selection logic implemented in Elasticsearch. Three observed Windows processes produced two review candidates; six separate synthetic boundary checks passed. The report discloses the use of live CIM process inventory instead of a process-creation event stream.
+
+| Artifact | Purpose |
+| --- | --- |
+| [Report](docs/week_6-7.md) | Requirements, technique mapping, execution results, and limitations |
+| [Source evidence and SIEM results](evidence/assignment4/20261022T111712644Z/) | Native PowerShell XML, process observations, hashes, queries, and responses |
+| [Kibana screenshots](images/assignment4/) | Three original observations and two CAR candidates |
+| [Docker configuration](docker/assignment4-compose.yml) | Separate local Elasticsearch/Kibana project on ports 19200 and 15601 |
+| [Collection script](scripts/collect_assignment4.ps1) and [SIEM runner](scripts/run_assignment4.py) | Reproduce the controlled experiment and query validation |
+| [Defense notes](docs/assignment4-defense-ru.md) | Russian presentation outline for 7-8 minutes |
+
 ## Week 5: Hypothesis-driven Threat Hunting
 
 The [Week 5 report](docs/week5-threat-hunting.md) documents four harmless PowerShell launches, their native Event 400 records, and the original Elasticsearch results of **4 → 2 → 1** review candidates. All four cases are benign; the exercise validates a limited launch-flag hypothesis, not a malware detector. The implementation uses Elasticsearch and Kibana with a custom collector, without Logstash or Winlogbeat.

@@ -1,4 +1,4 @@
-# Assignment 4: ATT&CK technique simulation and MITRE CAR in Elastic
+# week_6-7: ATT&CK technique simulation and MITRE CAR in Elastic
 
 Project: Forensic Analysis and Detection of Simulated Infostealer-Like Activity in Windows Environments.
 
@@ -121,4 +121,4 @@ The legitimate automation match is deliberate: reviewing the command and known t
 
 OpenAI Codex assisted with requirement interpretation, code, lab execution, validation, report preparation and defense notes. The group should review the commands, evidence and explanations and follow the instructor's AI-use and disclosure requirements. Local preparation does not establish instructor permission.
 
-The practical artifacts and report are prepared locally. Oral defense, instructor assessment and any GitHub publication remain separate submission steps. See [Russian defense notes](assignment4-defense-ru.md).
+The practical artifacts and report are included in the repository alongside Weeks 1-5. Oral defense and instructor assessment remain submission steps. See [Russian defense notes](assignment4-defense-ru.md).

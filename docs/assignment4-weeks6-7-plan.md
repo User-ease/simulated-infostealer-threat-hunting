@@ -1,6 +1,6 @@
 # Assignment 4: Weeks 6-7
 
-Status: local practical implementation and report completed on 22 October 2026. See [the final report](assignment4-weeks6-7.md) and [defense notes](assignment4-defense-ru.md). The design below records the original plan; the final implementation uses the disclosed inventory-data adaptation.
+Status: practical implementation and report completed on 22 October 2026 and included alongside Weeks 1-5 in the repository. See [the final report](week_6-7.md) and [defense notes](assignment4-defense-ru.md). The design below records the original plan; the final implementation uses the disclosed inventory-data adaptation.
 
 ## Requirements
 
@@ -44,7 +44,7 @@ Run `scripts/collect_week6_pilot.ps1` with PowerShell. Each execution writes a s
 3. Completed authoritative collection `20261022T111712644Z`: two benign PowerShell cases and one cmd negative control, with independent case labels and native XML for PowerShell.
 4. Executed the CAR predicate in Elasticsearch: 3 observations, 2 PowerShell records, 2 candidates. All 6 isolated synthetic boundary checks passed.
 5. Preserved API transcripts, hashes and Kibana screenshots. The main report discusses legitimate automation matches and collection blind spots.
-6. Prepared the report and 7:30 defense notes with AI assistance disclosure. Oral defense, instructor evaluation and GitHub publication remain submission steps.
+6. Prepared the report and 7:30 defense notes with AI assistance disclosure. Oral defense and instructor evaluation remain submission steps.
 
 ## Primary references
 
