@@ -1,6 +1,6 @@
 # Assignment 4: Weeks 6-7
 
-Status: practical implementation and report completed on 22 October 2026 and included alongside Weeks 1-5 in the repository. See [the final report](week_6-7.md) and [defense notes](assignment4-defense-ru.md). The design below records the original plan; the final implementation uses the disclosed inventory-data adaptation.
+Status: practical implementation and report completed on 22 October 2026 and included alongside Weeks 1-5 in the repository. See [the final report](week_6-7.md). The design below records the original plan; the final implementation uses the disclosed inventory-data adaptation.
 
 ## Requirements
 
