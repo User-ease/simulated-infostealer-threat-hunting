@@ -1,0 +1,360 @@
+{
+  "inventory": {
+    "took": 6,
+    "timed_out": false,
+    "_shards": {
+      "total": 1,
+      "successful": 1,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 3,
+        "relation": "eq"
+      },
+      "max_score": 1.0,
+      "hits": [
+        {
+          "_index": "lab-assignment4-20261022t111712644z",
+          "_id": "0",
+          "_score": 1.0,
+          "_source": {
+            "@timestamp": "2026-10-22T11:17:13.5447317Z",
+            "event": {
+              "category": [
+                "process"
+              ],
+              "type": [
+                "info"
+              ],
+              "action": "process_observed",
+              "id": "20261022T111712644Z_automation_plain",
+              "kind": "event",
+              "dataset": "lab.process_inventory"
+            },
+            "process": {
+              "parent": {
+                "pid": 2732,
+                "name": "pwsh.exe",
+                "executable": "C:\\Users\\Poshel Nahui\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+              },
+              "start": "2026-10-22T11:17:12.7949480Z",
+              "executable": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+              "pid": 44856,
+              "command_line": "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -Command \"Write-Output 'TH_A4_20261022T111712644Z_automation_plain'; Start-Sleep -Seconds 8\"",
+              "name": "powershell.exe"
+            },
+            "lab": {
+              "case": "automation_plain",
+              "run_id": "20261022T111712644Z",
+              "event400_record_ids": [
+                28093
+              ],
+              "marker": "TH_A4_20261022T111712644Z_automation_plain",
+              "synthetic_payload": true,
+              "source": "Win32_Process live inventory; native Event 400 retained separately"
+            }
+          }
+        },
+        {
+          "_index": "lab-assignment4-20261022t111712644z",
+          "_id": "1",
+          "_score": 1.0,
+          "_ignored": [
+            "process.command_line.keyword"
+          ],
+          "_source": {
+            "@timestamp": "2026-10-22T11:17:22.9908514Z",
+            "event": {
+              "category": [
+                "process"
+              ],
+              "type": [
+                "info"
+              ],
+              "action": "process_observed",
+              "id": "20261022T111712644Z_simulation_encoded",
+              "kind": "event",
+              "dataset": "lab.process_inventory"
+            },
+            "process": {
+              "parent": {
+                "pid": 2732,
+                "name": "pwsh.exe",
+                "executable": "C:\\Users\\Poshel Nahui\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+              },
+              "start": "2026-10-22T11:17:22.1774970Z",
+              "executable": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+              "pid": 12292,
+              "command_line": "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -EncodedCommand RwBlAHQALQBDAG8AbgB0AGUAbgB0ACAALQBMAGkAdABlAHIAYQBsAFAAYQB0AGgAIAAnAEMAOgBcAFUAcwBlAHIAcwBcAFAAbwBzAGgAZQBsACAATgBhAGgAdQBpAFwARABvAGMAdQBtAGUAbgB0AHMAXABDAGgAYQB0AEcAUABUAFwAdABoAHIAZQBhAHQAIABoAHUAbgB0AGkAbgBnAFwAcwBpAG0AdQBsAGEAdABlAGQALQBpAG4AZgBvAHMAdABlAGEAbABlAHIALQB0AGgAcgBlAGEAdAAtAGgAdQBuAHQAaQBuAGcAXABlAHYAaQBkAGUAbgBjAGUAXABhAHMAcwBpAGcAbgBtAGUAbgB0ADQAXAAyADAAMgA2ADEAMAAyADIAVAAxADEAMQA3ADEAMgA2ADQANABaAFwAbQBvAGMAawAtAGIAcgBvAHcAcwBlAHIALgBqAHMAbwBuACcAIAB8ACAATwB1AHQALQBOAHUAbABsADsAIABDAG8AcAB5AC0ASQB0AGUAbQAgAC0ATABpAHQAZQByAGEAbABQAGEAdABoACAAJwBDADoAXABVAHMAZQByAHMAXABQAG8AcwBoAGUAbAAgAE4AYQBoAHUAaQBcAEQAbwBjAHUAbQBlAG4AdABzAFwAQwBoAGEAdABHAFAAVABcAHQAaAByAGUAYQB0ACAAaAB1AG4AdABpAG4AZwBcAHMAaQBtAHUAbABhAHQAZQBkAC0AaQBuAGYAbwBzAHQAZQBhAGwAZQByAC0AdABoAHIAZQBhAHQALQBoAHUAbgB0AGkAbgBnAFwAZQB2AGkAZABlAG4AYwBlAFwAYQBzAHMAaQBnAG4AbQBlAG4AdAA0AFwAMgAwADIANgAxADAAMgAyAFQAMQAxADEANwAxADIANgA0ADQAWgBcAG0AbwBjAGsALQBiAHIAbwB3AHMAZQByAC4AagBzAG8AbgAnACAALQBEAGUAcwB0AGkAbgBhAHQAaQBvAG4AIAAnAEMAOgBcAFUAcwBlAHIAcwBcAFAAbwBzAGgAZQBsACAATgBhAGgAdQBpAFwARABvAGMAdQBtAGUAbgB0AHMAXABDAGgAYQB0AEcAUABUAFwAdABoAHIAZQBhAHQAIABoAHUAbgB0AGkAbgBnAFwAcwBpAG0AdQBsAGEAdABlAGQALQBpAG4AZgBvAHMAdABlAGEAbABlAHIALQB0AGgAcgBlAGEAdAAtAGgAdQBuAHQAaQBuAGcAXABlAHYAaQBkAGUAbgBjAGUAXABhAHMAcwBpAGcAbgBtAGUAbgB0ADQAXAAyADAAMgA2ADEAMAAyADIAVAAxADEAMQA3ADEAMgA2ADQANABaAFwAcwB0AGEAZwBlAGQALQBtAG8AYwBrAC0AYgByAG8AdwBzAGUAcgAuAGoAcwBvAG4AJwA7ACAAVwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFQASABfAEEANABfADIAMAAyADYAMQAwADIAMgBUADEAMQAxADcAMQAyADYANAA0AFoAXwBzAGkAbQB1AGwAYQB0AGkAbwBuAF8AZQBuAGMAbwBkAGUAZAAnADsAIABTAHQAYQByAHQALQBTAGwAZQBlAHAAIAAtAFMAZQBjAG8AbgBkAHMAIAA4AA==",
+              "name": "powershell.exe"
+            },
+            "lab": {
+              "case": "simulation_encoded",
+              "run_id": "20261022T111712644Z",
+              "event400_record_ids": [
+                28101
+              ],
+              "marker": "TH_A4_20261022T111712644Z_simulation_encoded",
+              "synthetic_payload": true,
+              "source": "Win32_Process live inventory; native Event 400 retained separately"
+            }
+          }
+        },
+        {
+          "_index": "lab-assignment4-20261022t111712644z",
+          "_id": "2",
+          "_score": 1.0,
+          "_source": {
+            "@timestamp": "2026-10-22T11:17:32.5140944Z",
+            "event": {
+              "category": [
+                "process"
+              ],
+              "type": [
+                "info"
+              ],
+              "action": "process_observed",
+              "id": "20261022T111712644Z_control_cmd",
+              "kind": "event",
+              "dataset": "lab.process_inventory"
+            },
+            "process": {
+              "parent": {
+                "pid": 2732,
+                "name": "pwsh.exe",
+                "executable": "C:\\Users\\Poshel Nahui\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+              },
+              "start": "2026-10-22T11:17:31.6703470Z",
+              "executable": "C:\\WINDOWS\\System32\\cmd.exe",
+              "pid": 26604,
+              "command_line": "\"C:\\WINDOWS\\System32\\cmd.exe\" /d /c \"echo TH_A4_20261022T111712644Z_control_cmd & ping -n 7 127.0.0.1 >nul\"",
+              "name": "cmd.exe"
+            },
+            "lab": {
+              "case": "control_cmd",
+              "run_id": "20261022T111712644Z",
+              "event400_record_ids": [],
+              "marker": "TH_A4_20261022T111712644Z_control_cmd",
+              "synthetic_payload": true,
+              "source": "Win32_Process live inventory; native Event 400 retained separately"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "powershell": {
+    "took": 18,
+    "timed_out": false,
+    "_shards": {
+      "total": 1,
+      "successful": 1,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 2,
+        "relation": "eq"
+      },
+      "max_score": 0.4700036,
+      "hits": [
+        {
+          "_index": "lab-assignment4-20261022t111712644z",
+          "_id": "0",
+          "_score": 0.4700036,
+          "_source": {
+            "@timestamp": "2026-10-22T11:17:13.5447317Z",
+            "event": {
+              "category": [
+                "process"
+              ],
+              "type": [
+                "info"
+              ],
+              "action": "process_observed",
+              "id": "20261022T111712644Z_automation_plain",
+              "kind": "event",
+              "dataset": "lab.process_inventory"
+            },
+            "process": {
+              "parent": {
+                "pid": 2732,
+                "name": "pwsh.exe",
+                "executable": "C:\\Users\\Poshel Nahui\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+              },
+              "start": "2026-10-22T11:17:12.7949480Z",
+              "executable": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+              "pid": 44856,
+              "command_line": "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -Command \"Write-Output 'TH_A4_20261022T111712644Z_automation_plain'; Start-Sleep -Seconds 8\"",
+              "name": "powershell.exe"
+            },
+            "lab": {
+              "case": "automation_plain",
+              "run_id": "20261022T111712644Z",
+              "event400_record_ids": [
+                28093
+              ],
+              "marker": "TH_A4_20261022T111712644Z_automation_plain",
+              "synthetic_payload": true,
+              "source": "Win32_Process live inventory; native Event 400 retained separately"
+            }
+          }
+        },
+        {
+          "_index": "lab-assignment4-20261022t111712644z",
+          "_id": "1",
+          "_score": 0.4700036,
+          "_ignored": [
+            "process.command_line.keyword"
+          ],
+          "_source": {
+            "@timestamp": "2026-10-22T11:17:22.9908514Z",
+            "event": {
+              "category": [
+                "process"
+              ],
+              "type": [
+                "info"
+              ],
+              "action": "process_observed",
+              "id": "20261022T111712644Z_simulation_encoded",
+              "kind": "event",
+              "dataset": "lab.process_inventory"
+            },
+            "process": {
+              "parent": {
+                "pid": 2732,
+                "name": "pwsh.exe",
+                "executable": "C:\\Users\\Poshel Nahui\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+              },
+              "start": "2026-10-22T11:17:22.1774970Z",
+              "executable": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+              "pid": 12292,
+              "command_line": "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -EncodedCommand RwBlAHQALQBDAG8AbgB0AGUAbgB0ACAALQBMAGkAdABlAHIAYQBsAFAAYQB0AGgAIAAnAEMAOgBcAFUAcwBlAHIAcwBcAFAAbwBzAGgAZQBsACAATgBhAGgAdQBpAFwARABvAGMAdQBtAGUAbgB0AHMAXABDAGgAYQB0AEcAUABUAFwAdABoAHIAZQBhAHQAIABoAHUAbgB0AGkAbgBnAFwAcwBpAG0AdQBsAGEAdABlAGQALQBpAG4AZgBvAHMAdABlAGEAbABlAHIALQB0AGgAcgBlAGEAdAAtAGgAdQBuAHQAaQBuAGcAXABlAHYAaQBkAGUAbgBjAGUAXABhAHMAcwBpAGcAbgBtAGUAbgB0ADQAXAAyADAAMgA2ADEAMAAyADIAVAAxADEAMQA3ADEAMgA2ADQANABaAFwAbQBvAGMAawAtAGIAcgBvAHcAcwBlAHIALgBqAHMAbwBuACcAIAB8ACAATwB1AHQALQBOAHUAbABsADsAIABDAG8AcAB5AC0ASQB0AGUAbQAgAC0ATABpAHQAZQByAGEAbABQAGEAdABoACAAJwBDADoAXABVAHMAZQByAHMAXABQAG8AcwBoAGUAbAAgAE4AYQBoAHUAaQBcAEQAbwBjAHUAbQBlAG4AdABzAFwAQwBoAGEAdABHAFAAVABcAHQAaAByAGUAYQB0ACAAaAB1AG4AdABpAG4AZwBcAHMAaQBtAHUAbABhAHQAZQBkAC0AaQBuAGYAbwBzAHQAZQBhAGwAZQByAC0AdABoAHIAZQBhAHQALQBoAHUAbgB0AGkAbgBnAFwAZQB2AGkAZABlAG4AYwBlAFwAYQBzAHMAaQBnAG4AbQBlAG4AdAA0AFwAMgAwADIANgAxADAAMgAyAFQAMQAxADEANwAxADIANgA0ADQAWgBcAG0AbwBjAGsALQBiAHIAbwB3AHMAZQByAC4AagBzAG8AbgAnACAALQBEAGUAcwB0AGkAbgBhAHQAaQBvAG4AIAAnAEMAOgBcAFUAcwBlAHIAcwBcAFAAbwBzAGgAZQBsACAATgBhAGgAdQBpAFwARABvAGMAdQBtAGUAbgB0AHMAXABDAGgAYQB0AEcAUABUAFwAdABoAHIAZQBhAHQAIABoAHUAbgB0AGkAbgBnAFwAcwBpAG0AdQBsAGEAdABlAGQALQBpAG4AZgBvAHMAdABlAGEAbABlAHIALQB0AGgAcgBlAGEAdAAtAGgAdQBuAHQAaQBuAGcAXABlAHYAaQBkAGUAbgBjAGUAXABhAHMAcwBpAGcAbgBtAGUAbgB0ADQAXAAyADAAMgA2ADEAMAAyADIAVAAxADEAMQA3ADEAMgA2ADQANABaAFwAcwB0AGEAZwBlAGQALQBtAG8AYwBrAC0AYgByAG8AdwBzAGUAcgAuAGoAcwBvAG4AJwA7ACAAVwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFQASABfAEEANABfADIAMAAyADYAMQAwADIAMgBUADEAMQAxADcAMQAyADYANAA0AFoAXwBzAGkAbQB1AGwAYQB0AGkAbwBuAF8AZQBuAGMAbwBkAGUAZAAnADsAIABTAHQAYQByAHQALQBTAGwAZQBlAHAAIAAtAFMAZQBjAG8AbgBkAHMAIAA4AA==",
+              "name": "powershell.exe"
+            },
+            "lab": {
+              "case": "simulation_encoded",
+              "run_id": "20261022T111712644Z",
+              "event400_record_ids": [
+                28101
+              ],
+              "marker": "TH_A4_20261022T111712644Z_simulation_encoded",
+              "synthetic_payload": true,
+              "source": "Win32_Process live inventory; native Event 400 retained separately"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "car_adapted": {
+    "took": 4,
+    "timed_out": false,
+    "_shards": {
+      "total": 1,
+      "successful": 1,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 2,
+        "relation": "eq"
+      },
+      "max_score": 0.0,
+      "hits": [
+        {
+          "_index": "lab-assignment4-20261022t111712644z",
+          "_id": "0",
+          "_score": 0.0,
+          "_source": {
+            "@timestamp": "2026-10-22T11:17:13.5447317Z",
+            "event": {
+              "category": [
+                "process"
+              ],
+              "type": [
+                "info"
+              ],
+              "action": "process_observed",
+              "id": "20261022T111712644Z_automation_plain",
+              "kind": "event",
+              "dataset": "lab.process_inventory"
+            },
+            "process": {
+              "parent": {
+                "pid": 2732,
+                "name": "pwsh.exe",
+                "executable": "C:\\Users\\Poshel Nahui\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+              },
+              "start": "2026-10-22T11:17:12.7949480Z",
+              "executable": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+              "pid": 44856,
+              "command_line": "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -Command \"Write-Output 'TH_A4_20261022T111712644Z_automation_plain'; Start-Sleep -Seconds 8\"",
+              "name": "powershell.exe"
+            },
+            "lab": {
+              "case": "automation_plain",
+              "run_id": "20261022T111712644Z",
+              "event400_record_ids": [
+                28093
+              ],
+              "marker": "TH_A4_20261022T111712644Z_automation_plain",
+              "synthetic_payload": true,
+              "source": "Win32_Process live inventory; native Event 400 retained separately"
+            }
+          }
+        },
+        {
+          "_index": "lab-assignment4-20261022t111712644z",
+          "_id": "1",
+          "_score": 0.0,
+          "_ignored": [
+            "process.command_line.keyword"
+          ],
+          "_source": {
+            "@timestamp": "2026-10-22T11:17:22.9908514Z",
+            "event": {
+              "category": [
+                "process"
+              ],
+              "type": [
+                "info"
+              ],
+              "action": "process_observed",
+              "id": "20261022T111712644Z_simulation_encoded",
+              "kind": "event",
+              "dataset": "lab.process_inventory"
+            },
+            "process": {
+              "parent": {
+                "pid": 2732,
+                "name": "pwsh.exe",
+                "executable": "C:\\Users\\Poshel Nahui\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+              },
+              "start": "2026-10-22T11:17:22.1774970Z",
+              "executable": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+              "pid": 12292,
+              "command_line": "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -EncodedCommand RwBlAHQALQBDAG8AbgB0AGUAbgB0ACAALQBMAGkAdABlAHIAYQBsAFAAYQB0AGgAIAAnAEMAOgBcAFUAcwBlAHIAcwBcAFAAbwBzAGgAZQBsACAATgBhAGgAdQBpAFwARABvAGMAdQBtAGUAbgB0AHMAXABDAGgAYQB0AEcAUABUAFwAdABoAHIAZQBhAHQAIABoAHUAbgB0AGkAbgBnAFwAcwBpAG0AdQBsAGEAdABlAGQALQBpAG4AZgBvAHMAdABlAGEAbABlAHIALQB0AGgAcgBlAGEAdAAtAGgAdQBuAHQAaQBuAGcAXABlAHYAaQBkAGUAbgBjAGUAXABhAHMAcwBpAGcAbgBtAGUAbgB0ADQAXAAyADAAMgA2ADEAMAAyADIAVAAxADEAMQA3ADEAMgA2ADQANABaAFwAbQBvAGMAawAtAGIAcgBvAHcAcwBlAHIALgBqAHMAbwBuACcAIAB8ACAATwB1AHQALQBOAHUAbABsADsAIABDAG8AcAB5AC0ASQB0AGUAbQAgAC0ATABpAHQAZQByAGEAbABQAGEAdABoACAAJwBDADoAXABVAHMAZQByAHMAXABQAG8AcwBoAGUAbAAgAE4AYQBoAHUAaQBcAEQAbwBjAHUAbQBlAG4AdABzAFwAQwBoAGEAdABHAFAAVABcAHQAaAByAGUAYQB0ACAAaAB1AG4AdABpAG4AZwBcAHMAaQBtAHUAbABhAHQAZQBkAC0AaQBuAGYAbwBzAHQAZQBhAGwAZQByAC0AdABoAHIAZQBhAHQALQBoAHUAbgB0AGkAbgBnAFwAZQB2AGkAZABlAG4AYwBlAFwAYQBzAHMAaQBnAG4AbQBlAG4AdAA0AFwAMgAwADIANgAxADAAMgAyAFQAMQAxADEANwAxADIANgA0ADQAWgBcAG0AbwBjAGsALQBiAHIAbwB3AHMAZQByAC4AagBzAG8AbgAnACAALQBEAGUAcwB0AGkAbgBhAHQAaQBvAG4AIAAnAEMAOgBcAFUAcwBlAHIAcwBcAFAAbwBzAGgAZQBsACAATgBhAGgAdQBpAFwARABvAGMAdQBtAGUAbgB0AHMAXABDAGgAYQB0AEcAUABUAFwAdABoAHIAZQBhAHQAIABoAHUAbgB0AGkAbgBnAFwAcwBpAG0AdQBsAGEAdABlAGQALQBpAG4AZgBvAHMAdABlAGEAbABlAHIALQB0AGgAcgBlAGEAdAAtAGgAdQBuAHQAaQBuAGcAXABlAHYAaQBkAGUAbgBjAGUAXABhAHMAcwBpAGcAbgBtAGUAbgB0ADQAXAAyADAAMgA2ADEAMAAyADIAVAAxADEAMQA3ADEAMgA2ADQANABaAFwAcwB0AGEAZwBlAGQALQBtAG8AYwBrAC0AYgByAG8AdwBzAGUAcgAuAGoAcwBvAG4AJwA7ACAAVwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFQASABfAEEANABfADIAMAAyADYAMQAwADIAMgBUADEAMQAxADcAMQAyADYANAA0AFoAXwBzAGkAbQB1AGwAYQB0AGkAbwBuAF8AZQBuAGMAbwBkAGUAZAAnADsAIABTAHQAYQByAHQALQBTAGwAZQBlAHAAIAAtAFMAZQBjAG8AbgBkAHMAIAA4AA==",
+              "name": "powershell.exe"
+            },
+            "lab": {
+              "case": "simulation_encoded",
+              "run_id": "20261022T111712644Z",
+              "event400_record_ids": [
+                28101
+              ],
+              "marker": "TH_A4_20261022T111712644Z_simulation_encoded",
+              "synthetic_payload": true,
+              "source": "Win32_Process live inventory; native Event 400 retained separately"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

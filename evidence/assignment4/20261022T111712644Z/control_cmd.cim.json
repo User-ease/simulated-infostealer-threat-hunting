@@ -1,0 +1,12 @@
+{
+  "ProcessId": 26604,
+  "ParentProcessId": 2732,
+  "Name": "cmd.exe",
+  "ExecutablePath": "C:\\WINDOWS\\System32\\cmd.exe",
+  "CommandLine": "\"C:\\WINDOWS\\System32\\cmd.exe\" /d /c \"echo TH_A4_20261022T111712644Z_control_cmd & ping -n 7 127.0.0.1 >nul\"",
+  "CreationDate": "2026-10-22T11:17:31.6703470Z",
+  "ObservedAt": "2026-10-22T11:17:32.5140944Z",
+  "ParentName": "pwsh.exe",
+  "ParentExecutablePath": "C:\\Users\\Poshel Nahui\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+  "ParentCreationDate": "2026-10-22T11:17:11.7357190Z"
+}

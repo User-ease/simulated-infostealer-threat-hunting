@@ -1,0 +1,43 @@
+{
+  "inventory": {
+    "match_all": {}
+  },
+  "powershell": {
+    "term": {
+      "process.name": "powershell.exe"
+    }
+  },
+  "car_adapted": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "event.dataset": "lab.process_inventory"
+          }
+        },
+        {
+          "term": {
+            "process.name": "powershell.exe"
+          }
+        },
+        {
+          "exists": {
+            "field": "process.parent.name"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "term": {
+            "process.parent.name": "explorer.exe"
+          }
+        },
+        {
+          "term": {
+            "process.parent.name": ""
+          }
+        }
+      ]
+    }
+  }
+}

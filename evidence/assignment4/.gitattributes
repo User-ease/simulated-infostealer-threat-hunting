@@ -1,0 +1,2 @@
+# Preserve original collection and SIEM evidence bytes across Git checkouts.
+* -text

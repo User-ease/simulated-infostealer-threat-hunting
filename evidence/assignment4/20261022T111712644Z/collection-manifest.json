@@ -1,0 +1,36 @@
+{
+  "telemetry": "Instrumented launches and live CIM inventory, not a native process-create stream",
+  "cases": [
+    {
+      "process_id": 44856,
+      "parent_name": "pwsh.exe",
+      "case": "automation_plain",
+      "event400_record_ids": [
+        28093
+      ],
+      "exit_code": 0
+    },
+    {
+      "process_id": 12292,
+      "parent_name": "pwsh.exe",
+      "case": "simulation_encoded",
+      "event400_record_ids": [
+        28101
+      ],
+      "exit_code": 0
+    },
+    {
+      "process_id": 26604,
+      "parent_name": "pwsh.exe",
+      "case": "control_cmd",
+      "event400_record_ids": [],
+      "exit_code": 0
+    }
+  ],
+  "status": "Collection complete; SIEM validation pending",
+  "started_utc": "2026-10-22T11:17:12.7474484Z",
+  "completed_utc": "2026-10-22T11:17:38.0227048Z",
+  "collector_sha256": "D748DE340D0FF32B71D948538E834343C0FAA9F376A07D57F2B398755902454E",
+  "network": "Only cmd control pinged 127.0.0.1; no external traffic or exfiltration",
+  "run_id": "20261022T111712644Z"
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "reason": "Legitimate automation also matches the broad CAR condition",
+    "case": "automation_plain",
+    "expected_car_match": true
+  },
+  {
+    "reason": "Benign simulation: PowerShell reading and staging only the lab-created mock file",
+    "case": "simulation_encoded",
+    "expected_car_match": true
+  },
+  {
+    "reason": "Process name is cmd.exe",
+    "case": "control_cmd",
+    "expected_car_match": false
+  }
+]

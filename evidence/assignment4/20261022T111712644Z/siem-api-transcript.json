@@ -1,0 +1,1521 @@
+[
+  {
+    "utc": "2026-10-22T11:18:18.295518+00:00",
+    "service": "es",
+    "method": "GET",
+    "path": "/",
+    "request": null,
+    "status": 200,
+    "response": {
+      "name": "90f5959354eb",
+      "cluster_name": "threat-hunting-assignment4",
+      "cluster_uuid": "sH6T_xieQzm6ZixaTmDrfA",
+      "version": {
+        "number": "9.5.5",
+        "build_flavor": "default",
+        "build_type": "docker",
+        "build_hash": "48acba663b09e70b115dd879329141506c377890",
+        "build_date": "2026-09-30T22:12:03.984586187Z",
+        "build_snapshot": false,
+        "lucene_version": "10.5.1",
+        "minimum_wire_compatibility_version": "8.19.0",
+        "minimum_index_compatibility_version": "8.0.0"
+      },
+      "tagline": "You Know, for Search"
+    }
+  },
+  {
+    "utc": "2026-10-22T11:18:18.317345+00:00",
+    "service": "kibana",
+    "method": "GET",
+    "path": "/api/status",
+    "request": null,
+    "status": 200,
+    "response": {
+      "status": {
+        "overall": {
+          "level": "available"
+        }
+      }
+    }
+  },
+  {
+    "utc": "2026-10-22T11:18:20.328560+00:00",
+    "service": "es",
+    "method": "PUT",
+    "path": "/lab-assignment4-20261022t111712644z",
+    "request": {
+      "settings": {
+        "number_of_shards": 1,
+        "number_of_replicas": 0,
+        "analysis": {
+          "normalizer": {
+            "windows_name": {
+              "type": "custom",
+              "filter": [
+                "lowercase"
+              ]
+            }
+          }
+        }
+      },
+      "mappings": {
+        "properties": {
+          "@timestamp": {
+            "type": "date"
+          },
+          "event": {
+            "properties": {
+              "dataset": {
+                "type": "keyword"
+              },
+              "id": {
+                "type": "keyword"
+              },
+              "action": {
+                "type": "keyword"
+              }
+            }
+          },
+          "lab": {
+            "properties": {
+              "case": {
+                "type": "keyword"
+              },
+              "run_id": {
+                "type": "keyword"
+              }
+            }
+          },
+          "process": {
+            "properties": {
+              "name": {
+                "type": "keyword",
+                "normalizer": "windows_name"
+              },
+              "parent": {
+                "properties": {
+                  "name": {
+                    "type": "keyword",
+                    "normalizer": "windows_name"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "status": 200,
+    "response": {
+      "acknowledged": true,
+      "shards_acknowledged": true,
+      "index": "lab-assignment4-20261022t111712644z"
+    }
+  },
+  {
+    "utc": "2026-10-22T11:18:23.008595+00:00",
+    "service": "es",
+    "method": "POST",
+    "path": "/_bulk?refresh=true",
+    "request": "{\"create\": {\"_index\": \"lab-assignment4-20261022t111712644z\", \"_id\": \"0\"}}\n{\"@timestamp\": \"2026-10-22T11:17:13.5447317Z\", \"event\": {\"category\": [\"process\"], \"type\": [\"info\"], \"action\": \"process_observed\", \"id\": \"20261022T111712644Z_automation_plain\", \"kind\": \"event\", \"dataset\": \"lab.process_inventory\"}, \"process\": {\"parent\": {\"pid\": 2732, \"name\": \"pwsh.exe\", \"executable\": \"C:\\\\Users\\\\Poshel Nahui\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\"}, \"start\": \"2026-10-22T11:17:12.7949480Z\", \"executable\": \"C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\", \"pid\": 44856, \"command_line\": \"\\\"C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\\\" -NoLogo -NoProfile -NonInteractive -Command \\\"Write-Output 'TH_A4_20261022T111712644Z_automation_plain'; Start-Sleep -Seconds 8\\\"\", \"name\": \"powershell.exe\"}, \"lab\": {\"case\": \"automation_plain\", \"run_id\": \"20261022T111712644Z\", \"event400_record_ids\": [28093], \"marker\": \"TH_A4_20261022T111712644Z_automation_plain\", \"synthetic_payload\": true, \"source\": \"Win32_Process live inventory; native Event 400 retained separately\"}}\n{\"create\": {\"_index\": \"lab-assignment4-20261022t111712644z\", \"_id\": \"1\"}}\n{\"@timestamp\": \"2026-10-22T11:17:22.9908514Z\", \"event\": {\"category\": [\"process\"], \"type\": [\"info\"], \"action\": \"process_observed\", \"id\": \"20261022T111712644Z_simulation_encoded\", \"kind\": \"event\", \"dataset\": \"lab.process_inventory\"}, \"process\": {\"parent\": {\"pid\": 2732, \"name\": \"pwsh.exe\", \"executable\": \"C:\\\\Users\\\\Poshel Nahui\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\"}, \"start\": \"2026-10-22T11:17:22.1774970Z\", \"executable\": \"C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\", \"pid\": 12292, \"command_line\": \"\\\"C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\\\" -NoLogo -NoProfile -NonInteractive -EncodedCommand RwBlAHQALQBDAG8AbgB0AGUAbgB0ACAALQBMAGkAdABlAHIAYQBsAFAAYQB0AGgAIAAnAEMAOgBcAFUAcwBlAHIAcwBcAFAAbwBzAGgAZQBsACAATgBhAGgAdQBpAFwARABvAGMAdQBtAGUAbgB0AHMAXABDAGgAYQB0AEcAUABUAFwAdABoAHIAZQBhAHQAIABoAHUAbgB0AGkAbgBnAFwAcwBpAG0AdQBsAGEAdABlAGQALQBpAG4AZgBvAHMAdABlAGEAbABlAHIALQB0AGgAcgBlAGEAdAAtAGgAdQBuAHQAaQBuAGcAXABlAHYAaQBkAGUAbgBjAGUAXABhAHMAcwBpAGcAbgBtAGUAbgB0ADQAXAAyADAAMgA2ADEAMAAyADIAVAAxADEAMQA3ADEAMgA2ADQANABaAFwAbQBvAGMAawAtAGIAcgBvAHcAcwBlAHIALgBqAHMAbwBuACcAIAB8ACAATwB1AHQALQBOAHUAbABsADsAIABDAG8AcAB5AC0ASQB0AGUAbQAgAC0ATABpAHQAZQByAGEAbABQAGEAdABoACAAJwBDADoAXABVAHMAZQByAHMAXABQAG8AcwBoAGUAbAAgAE4AYQBoAHUAaQBcAEQAbwBjAHUAbQBlAG4AdABzAFwAQwBoAGEAdABHAFAAVABcAHQAaAByAGUAYQB0ACAAaAB1AG4AdABpAG4AZwBcAHMAaQBtAHUAbABhAHQAZQBkAC0AaQBuAGYAbwBzAHQAZQBhAGwAZQByAC0AdABoAHIAZQBhAHQALQBoAHUAbgB0AGkAbgBnAFwAZQB2AGkAZABlAG4AYwBlAFwAYQBzAHMAaQBnAG4AbQBlAG4AdAA0AFwAMgAwADIANgAxADAAMgAyAFQAMQAxADEANwAxADIANgA0ADQAWgBcAG0AbwBjAGsALQBiAHIAbwB3AHMAZQByAC4AagBzAG8AbgAnACAALQBEAGUAcwB0AGkAbgBhAHQAaQBvAG4AIAAnAEMAOgBcAFUAcwBlAHIAcwBcAFAAbwBzAGgAZQBsACAATgBhAGgAdQBpAFwARABvAGMAdQBtAGUAbgB0AHMAXABDAGgAYQB0AEcAUABUAFwAdABoAHIAZQBhAHQAIABoAHUAbgB0AGkAbgBnAFwAcwBpAG0AdQBsAGEAdABlAGQALQBpAG4AZgBvAHMAdABlAGEAbABlAHIALQB0AGgAcgBlAGEAdAAtAGgAdQBuAHQAaQBuAGcAXABlAHYAaQBkAGUAbgBjAGUAXABhAHMAcwBpAGcAbgBtAGUAbgB0ADQAXAAyADAAMgA2ADEAMAAyADIAVAAxADEAMQA3ADEAMgA2ADQANABaAFwAcwB0AGEAZwBlAGQALQBtAG8AYwBrAC0AYgByAG8AdwBzAGUAcgAuAGoAcwBvAG4AJwA7ACAAVwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFQASABfAEEANABfADIAMAAyADYAMQAwADIAMgBUADEAMQAxADcAMQAyADYANAA0AFoAXwBzAGkAbQB1AGwAYQB0AGkAbwBuAF8AZQBuAGMAbwBkAGUAZAAnADsAIABTAHQAYQByAHQALQBTAGwAZQBlAHAAIAAtAFMAZQBjAG8AbgBkAHMAIAA4AA==\", \"name\": \"powershell.exe\"}, \"lab\": {\"case\": \"simulation_encoded\", \"run_id\": \"20261022T111712644Z\", \"event400_record_ids\": [28101], \"marker\": \"TH_A4_20261022T111712644Z_simulation_encoded\", \"synthetic_payload\": true, \"source\": \"Win32_Process live inventory; native Event 400 retained separately\"}}\n{\"create\": {\"_index\": \"lab-assignment4-20261022t111712644z\", \"_id\": \"2\"}}\n{\"@timestamp\": \"2026-10-22T11:17:32.5140944Z\", \"event\": {\"category\": [\"process\"], \"type\": [\"info\"], \"action\": \"process_observed\", \"id\": \"20261022T111712644Z_control_cmd\", \"kind\": \"event\", \"dataset\": \"lab.process_inventory\"}, \"process\": {\"parent\": {\"pid\": 2732, \"name\": \"pwsh.exe\", \"executable\": \"C:\\\\Users\\\\Poshel Nahui\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\"}, \"start\": \"2026-10-22T11:17:31.6703470Z\", \"executable\": \"C:\\\\WINDOWS\\\\System32\\\\cmd.exe\", \"pid\": 26604, \"command_line\": \"\\\"C:\\\\WINDOWS\\\\System32\\\\cmd.exe\\\" /d /c \\\"echo TH_A4_20261022T111712644Z_control_cmd & ping -n 7 127.0.0.1 >nul\\\"\", \"name\": \"cmd.exe\"}, \"lab\": {\"case\": \"control_cmd\", \"run_id\": \"20261022T111712644Z\", \"event400_record_ids\": [], \"marker\": \"TH_A4_20261022T111712644Z_control_cmd\", \"synthetic_payload\": true, \"source\": \"Win32_Process live inventory; native Event 400 retained separately\"}}\n",
+    "status": 200,
+    "response": {
+      "errors": false,
+      "took": 2802,
+      "items": [
+        {
+          "create": {
+            "_index": "lab-assignment4-20261022t111712644z",
+            "_id": "0",
+            "_version": 1,
+            "result": "created",
+            "forced_refresh": true,
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 0,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-assignment4-20261022t111712644z",
+            "_id": "1",
+            "_version": 1,
+            "result": "created",
+            "forced_refresh": true,
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 1,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-assignment4-20261022t111712644z",
+            "_id": "2",
+            "_version": 1,
+            "result": "created",
+            "forced_refresh": true,
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 2,
+            "_primary_term": 1,
+            "status": 201
+          }
+        }
+      ]
+    }
+  },
+  {
+    "utc": "2026-10-22T11:18:23.031385+00:00",
+    "service": "es",
+    "method": "POST",
+    "path": "/lab-assignment4-20261022t111712644z/_search",
+    "request": {
+      "size": 100,
+      "track_total_hits": true,
+      "query": {
+        "match_all": {}
+      }
+    },
+    "status": 200,
+    "response": {
+      "took": 6,
+      "timed_out": false,
+      "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 3,
+          "relation": "eq"
+        },
+        "max_score": 1.0,
+        "hits": [
+          {
+            "_index": "lab-assignment4-20261022t111712644z",
+            "_id": "0",
+            "_score": 1.0,
+            "_source": {
+              "@timestamp": "2026-10-22T11:17:13.5447317Z",
+              "event": {
+                "category": [
+                  "process"
+                ],
+                "type": [
+                  "info"
+                ],
+                "action": "process_observed",
+                "id": "20261022T111712644Z_automation_plain",
+                "kind": "event",
+                "dataset": "lab.process_inventory"
+              },
+              "process": {
+                "parent": {
+                  "pid": 2732,
+                  "name": "pwsh.exe",
+                  "executable": "C:\\Users\\Poshel Nahui\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+                },
+                "start": "2026-10-22T11:17:12.7949480Z",
+                "executable": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "pid": 44856,
+                "command_line": "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -Command \"Write-Output 'TH_A4_20261022T111712644Z_automation_plain'; Start-Sleep -Seconds 8\"",
+                "name": "powershell.exe"
+              },
+              "lab": {
+                "case": "automation_plain",
+                "run_id": "20261022T111712644Z",
+                "event400_record_ids": [
+                  28093
+                ],
+                "marker": "TH_A4_20261022T111712644Z_automation_plain",
+                "synthetic_payload": true,
+                "source": "Win32_Process live inventory; native Event 400 retained separately"
+              }
+            }
+          },
+          {
+            "_index": "lab-assignment4-20261022t111712644z",
+            "_id": "1",
+            "_score": 1.0,
+            "_ignored": [
+              "process.command_line.keyword"
+            ],
+            "_source": {
+              "@timestamp": "2026-10-22T11:17:22.9908514Z",
+              "event": {
+                "category": [
+                  "process"
+                ],
+                "type": [
+                  "info"
+                ],
+                "action": "process_observed",
+                "id": "20261022T111712644Z_simulation_encoded",
+                "kind": "event",
+                "dataset": "lab.process_inventory"
+              },
+              "process": {
+                "parent": {
+                  "pid": 2732,
+                  "name": "pwsh.exe",
+                  "executable": "C:\\Users\\Poshel Nahui\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+                },
+                "start": "2026-10-22T11:17:22.1774970Z",
+                "executable": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "pid": 12292,
+                "command_line": "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -EncodedCommand RwBlAHQALQBDAG8AbgB0AGUAbgB0ACAALQBMAGkAdABlAHIAYQBsAFAAYQB0AGgAIAAnAEMAOgBcAFUAcwBlAHIAcwBcAFAAbwBzAGgAZQBsACAATgBhAGgAdQBpAFwARABvAGMAdQBtAGUAbgB0AHMAXABDAGgAYQB0AEcAUABUAFwAdABoAHIAZQBhAHQAIABoAHUAbgB0AGkAbgBnAFwAcwBpAG0AdQBsAGEAdABlAGQALQBpAG4AZgBvAHMAdABlAGEAbABlAHIALQB0AGgAcgBlAGEAdAAtAGgAdQBuAHQAaQBuAGcAXABlAHYAaQBkAGUAbgBjAGUAXABhAHMAcwBpAGcAbgBtAGUAbgB0ADQAXAAyADAAMgA2ADEAMAAyADIAVAAxADEAMQA3ADEAMgA2ADQANABaAFwAbQBvAGMAawAtAGIAcgBvAHcAcwBlAHIALgBqAHMAbwBuACcAIAB8ACAATwB1AHQALQBOAHUAbABsADsAIABDAG8AcAB5AC0ASQB0AGUAbQAgAC0ATABpAHQAZQByAGEAbABQAGEAdABoACAAJwBDADoAXABVAHMAZQByAHMAXABQAG8AcwBoAGUAbAAgAE4AYQBoAHUAaQBcAEQAbwBjAHUAbQBlAG4AdABzAFwAQwBoAGEAdABHAFAAVABcAHQAaAByAGUAYQB0ACAAaAB1AG4AdABpAG4AZwBcAHMAaQBtAHUAbABhAHQAZQBkAC0AaQBuAGYAbwBzAHQAZQBhAGwAZQByAC0AdABoAHIAZQBhAHQALQBoAHUAbgB0AGkAbgBnAFwAZQB2AGkAZABlAG4AYwBlAFwAYQBzAHMAaQBnAG4AbQBlAG4AdAA0AFwAMgAwADIANgAxADAAMgAyAFQAMQAxADEANwAxADIANgA0ADQAWgBcAG0AbwBjAGsALQBiAHIAbwB3AHMAZQByAC4AagBzAG8AbgAnACAALQBEAGUAcwB0AGkAbgBhAHQAaQBvAG4AIAAnAEMAOgBcAFUAcwBlAHIAcwBcAFAAbwBzAGgAZQBsACAATgBhAGgAdQBpAFwARABvAGMAdQBtAGUAbgB0AHMAXABDAGgAYQB0AEcAUABUAFwAdABoAHIAZQBhAHQAIABoAHUAbgB0AGkAbgBnAFwAcwBpAG0AdQBsAGEAdABlAGQALQBpAG4AZgBvAHMAdABlAGEAbABlAHIALQB0AGgAcgBlAGEAdAAtAGgAdQBuAHQAaQBuAGcAXABlAHYAaQBkAGUAbgBjAGUAXABhAHMAcwBpAGcAbgBtAGUAbgB0ADQAXAAyADAAMgA2ADEAMAAyADIAVAAxADEAMQA3ADEAMgA2ADQANABaAFwAcwB0AGEAZwBlAGQALQBtAG8AYwBrAC0AYgByAG8AdwBzAGUAcgAuAGoAcwBvAG4AJwA7ACAAVwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFQASABfAEEANABfADIAMAAyADYAMQAwADIAMgBUADEAMQAxADcAMQAyADYANAA0AFoAXwBzAGkAbQB1AGwAYQB0AGkAbwBuAF8AZQBuAGMAbwBkAGUAZAAnADsAIABTAHQAYQByAHQALQBTAGwAZQBlAHAAIAAtAFMAZQBjAG8AbgBkAHMAIAA4AA==",
+                "name": "powershell.exe"
+              },
+              "lab": {
+                "case": "simulation_encoded",
+                "run_id": "20261022T111712644Z",
+                "event400_record_ids": [
+                  28101
+                ],
+                "marker": "TH_A4_20261022T111712644Z_simulation_encoded",
+                "synthetic_payload": true,
+                "source": "Win32_Process live inventory; native Event 400 retained separately"
+              }
+            }
+          },
+          {
+            "_index": "lab-assignment4-20261022t111712644z",
+            "_id": "2",
+            "_score": 1.0,
+            "_source": {
+              "@timestamp": "2026-10-22T11:17:32.5140944Z",
+              "event": {
+                "category": [
+                  "process"
+                ],
+                "type": [
+                  "info"
+                ],
+                "action": "process_observed",
+                "id": "20261022T111712644Z_control_cmd",
+                "kind": "event",
+                "dataset": "lab.process_inventory"
+              },
+              "process": {
+                "parent": {
+                  "pid": 2732,
+                  "name": "pwsh.exe",
+                  "executable": "C:\\Users\\Poshel Nahui\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+                },
+                "start": "2026-10-22T11:17:31.6703470Z",
+                "executable": "C:\\WINDOWS\\System32\\cmd.exe",
+                "pid": 26604,
+                "command_line": "\"C:\\WINDOWS\\System32\\cmd.exe\" /d /c \"echo TH_A4_20261022T111712644Z_control_cmd & ping -n 7 127.0.0.1 >nul\"",
+                "name": "cmd.exe"
+              },
+              "lab": {
+                "case": "control_cmd",
+                "run_id": "20261022T111712644Z",
+                "event400_record_ids": [],
+                "marker": "TH_A4_20261022T111712644Z_control_cmd",
+                "synthetic_payload": true,
+                "source": "Win32_Process live inventory; native Event 400 retained separately"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "utc": "2026-10-22T11:18:23.065258+00:00",
+    "service": "es",
+    "method": "POST",
+    "path": "/lab-assignment4-20261022t111712644z/_search",
+    "request": {
+      "size": 100,
+      "track_total_hits": true,
+      "query": {
+        "term": {
+          "process.name": "powershell.exe"
+        }
+      }
+    },
+    "status": 200,
+    "response": {
+      "took": 18,
+      "timed_out": false,
+      "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 2,
+          "relation": "eq"
+        },
+        "max_score": 0.4700036,
+        "hits": [
+          {
+            "_index": "lab-assignment4-20261022t111712644z",
+            "_id": "0",
+            "_score": 0.4700036,
+            "_source": {
+              "@timestamp": "2026-10-22T11:17:13.5447317Z",
+              "event": {
+                "category": [
+                  "process"
+                ],
+                "type": [
+                  "info"
+                ],
+                "action": "process_observed",
+                "id": "20261022T111712644Z_automation_plain",
+                "kind": "event",
+                "dataset": "lab.process_inventory"
+              },
+              "process": {
+                "parent": {
+                  "pid": 2732,
+                  "name": "pwsh.exe",
+                  "executable": "C:\\Users\\Poshel Nahui\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+                },
+                "start": "2026-10-22T11:17:12.7949480Z",
+                "executable": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "pid": 44856,
+                "command_line": "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -Command \"Write-Output 'TH_A4_20261022T111712644Z_automation_plain'; Start-Sleep -Seconds 8\"",
+                "name": "powershell.exe"
+              },
+              "lab": {
+                "case": "automation_plain",
+                "run_id": "20261022T111712644Z",
+                "event400_record_ids": [
+                  28093
+                ],
+                "marker": "TH_A4_20261022T111712644Z_automation_plain",
+                "synthetic_payload": true,
+                "source": "Win32_Process live inventory; native Event 400 retained separately"
+              }
+            }
+          },
+          {
+            "_index": "lab-assignment4-20261022t111712644z",
+            "_id": "1",
+            "_score": 0.4700036,
+            "_ignored": [
+              "process.command_line.keyword"
+            ],
+            "_source": {
+              "@timestamp": "2026-10-22T11:17:22.9908514Z",
+              "event": {
+                "category": [
+                  "process"
+                ],
+                "type": [
+                  "info"
+                ],
+                "action": "process_observed",
+                "id": "20261022T111712644Z_simulation_encoded",
+                "kind": "event",
+                "dataset": "lab.process_inventory"
+              },
+              "process": {
+                "parent": {
+                  "pid": 2732,
+                  "name": "pwsh.exe",
+                  "executable": "C:\\Users\\Poshel Nahui\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+                },
+                "start": "2026-10-22T11:17:22.1774970Z",
+                "executable": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "pid": 12292,
+                "command_line": "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -EncodedCommand RwBlAHQALQBDAG8AbgB0AGUAbgB0ACAALQBMAGkAdABlAHIAYQBsAFAAYQB0AGgAIAAnAEMAOgBcAFUAcwBlAHIAcwBcAFAAbwBzAGgAZQBsACAATgBhAGgAdQBpAFwARABvAGMAdQBtAGUAbgB0AHMAXABDAGgAYQB0AEcAUABUAFwAdABoAHIAZQBhAHQAIABoAHUAbgB0AGkAbgBnAFwAcwBpAG0AdQBsAGEAdABlAGQALQBpAG4AZgBvAHMAdABlAGEAbABlAHIALQB0AGgAcgBlAGEAdAAtAGgAdQBuAHQAaQBuAGcAXABlAHYAaQBkAGUAbgBjAGUAXABhAHMAcwBpAGcAbgBtAGUAbgB0ADQAXAAyADAAMgA2ADEAMAAyADIAVAAxADEAMQA3ADEAMgA2ADQANABaAFwAbQBvAGMAawAtAGIAcgBvAHcAcwBlAHIALgBqAHMAbwBuACcAIAB8ACAATwB1AHQALQBOAHUAbABsADsAIABDAG8AcAB5AC0ASQB0AGUAbQAgAC0ATABpAHQAZQByAGEAbABQAGEAdABoACAAJwBDADoAXABVAHMAZQByAHMAXABQAG8AcwBoAGUAbAAgAE4AYQBoAHUAaQBcAEQAbwBjAHUAbQBlAG4AdABzAFwAQwBoAGEAdABHAFAAVABcAHQAaAByAGUAYQB0ACAAaAB1AG4AdABpAG4AZwBcAHMAaQBtAHUAbABhAHQAZQBkAC0AaQBuAGYAbwBzAHQAZQBhAGwAZQByAC0AdABoAHIAZQBhAHQALQBoAHUAbgB0AGkAbgBnAFwAZQB2AGkAZABlAG4AYwBlAFwAYQBzAHMAaQBnAG4AbQBlAG4AdAA0AFwAMgAwADIANgAxADAAMgAyAFQAMQAxADEANwAxADIANgA0ADQAWgBcAG0AbwBjAGsALQBiAHIAbwB3AHMAZQByAC4AagBzAG8AbgAnACAALQBEAGUAcwB0AGkAbgBhAHQAaQBvAG4AIAAnAEMAOgBcAFUAcwBlAHIAcwBcAFAAbwBzAGgAZQBsACAATgBhAGgAdQBpAFwARABvAGMAdQBtAGUAbgB0AHMAXABDAGgAYQB0AEcAUABUAFwAdABoAHIAZQBhAHQAIABoAHUAbgB0AGkAbgBnAFwAcwBpAG0AdQBsAGEAdABlAGQALQBpAG4AZgBvAHMAdABlAGEAbABlAHIALQB0AGgAcgBlAGEAdAAtAGgAdQBuAHQAaQBuAGcAXABlAHYAaQBkAGUAbgBjAGUAXABhAHMAcwBpAGcAbgBtAGUAbgB0ADQAXAAyADAAMgA2ADEAMAAyADIAVAAxADEAMQA3ADEAMgA2ADQANABaAFwAcwB0AGEAZwBlAGQALQBtAG8AYwBrAC0AYgByAG8AdwBzAGUAcgAuAGoAcwBvAG4AJwA7ACAAVwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFQASABfAEEANABfADIAMAAyADYAMQAwADIAMgBUADEAMQAxADcAMQAyADYANAA0AFoAXwBzAGkAbQB1AGwAYQB0AGkAbwBuAF8AZQBuAGMAbwBkAGUAZAAnADsAIABTAHQAYQByAHQALQBTAGwAZQBlAHAAIAAtAFMAZQBjAG8AbgBkAHMAIAA4AA==",
+                "name": "powershell.exe"
+              },
+              "lab": {
+                "case": "simulation_encoded",
+                "run_id": "20261022T111712644Z",
+                "event400_record_ids": [
+                  28101
+                ],
+                "marker": "TH_A4_20261022T111712644Z_simulation_encoded",
+                "synthetic_payload": true,
+                "source": "Win32_Process live inventory; native Event 400 retained separately"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "utc": "2026-10-22T11:18:23.085879+00:00",
+    "service": "es",
+    "method": "POST",
+    "path": "/lab-assignment4-20261022t111712644z/_search",
+    "request": {
+      "size": 100,
+      "track_total_hits": true,
+      "query": {
+        "bool": {
+          "filter": [
+            {
+              "term": {
+                "event.dataset": "lab.process_inventory"
+              }
+            },
+            {
+              "term": {
+                "process.name": "powershell.exe"
+              }
+            },
+            {
+              "exists": {
+                "field": "process.parent.name"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "process.parent.name": "explorer.exe"
+              }
+            },
+            {
+              "term": {
+                "process.parent.name": ""
+              }
+            }
+          ]
+        }
+      }
+    },
+    "status": 200,
+    "response": {
+      "took": 4,
+      "timed_out": false,
+      "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 2,
+          "relation": "eq"
+        },
+        "max_score": 0.0,
+        "hits": [
+          {
+            "_index": "lab-assignment4-20261022t111712644z",
+            "_id": "0",
+            "_score": 0.0,
+            "_source": {
+              "@timestamp": "2026-10-22T11:17:13.5447317Z",
+              "event": {
+                "category": [
+                  "process"
+                ],
+                "type": [
+                  "info"
+                ],
+                "action": "process_observed",
+                "id": "20261022T111712644Z_automation_plain",
+                "kind": "event",
+                "dataset": "lab.process_inventory"
+              },
+              "process": {
+                "parent": {
+                  "pid": 2732,
+                  "name": "pwsh.exe",
+                  "executable": "C:\\Users\\Poshel Nahui\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+                },
+                "start": "2026-10-22T11:17:12.7949480Z",
+                "executable": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "pid": 44856,
+                "command_line": "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -Command \"Write-Output 'TH_A4_20261022T111712644Z_automation_plain'; Start-Sleep -Seconds 8\"",
+                "name": "powershell.exe"
+              },
+              "lab": {
+                "case": "automation_plain",
+                "run_id": "20261022T111712644Z",
+                "event400_record_ids": [
+                  28093
+                ],
+                "marker": "TH_A4_20261022T111712644Z_automation_plain",
+                "synthetic_payload": true,
+                "source": "Win32_Process live inventory; native Event 400 retained separately"
+              }
+            }
+          },
+          {
+            "_index": "lab-assignment4-20261022t111712644z",
+            "_id": "1",
+            "_score": 0.0,
+            "_ignored": [
+              "process.command_line.keyword"
+            ],
+            "_source": {
+              "@timestamp": "2026-10-22T11:17:22.9908514Z",
+              "event": {
+                "category": [
+                  "process"
+                ],
+                "type": [
+                  "info"
+                ],
+                "action": "process_observed",
+                "id": "20261022T111712644Z_simulation_encoded",
+                "kind": "event",
+                "dataset": "lab.process_inventory"
+              },
+              "process": {
+                "parent": {
+                  "pid": 2732,
+                  "name": "pwsh.exe",
+                  "executable": "C:\\Users\\Poshel Nahui\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+                },
+                "start": "2026-10-22T11:17:22.1774970Z",
+                "executable": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "pid": 12292,
+                "command_line": "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -EncodedCommand RwBlAHQALQBDAG8AbgB0AGUAbgB0ACAALQBMAGkAdABlAHIAYQBsAFAAYQB0AGgAIAAnAEMAOgBcAFUAcwBlAHIAcwBcAFAAbwBzAGgAZQBsACAATgBhAGgAdQBpAFwARABvAGMAdQBtAGUAbgB0AHMAXABDAGgAYQB0AEcAUABUAFwAdABoAHIAZQBhAHQAIABoAHUAbgB0AGkAbgBnAFwAcwBpAG0AdQBsAGEAdABlAGQALQBpAG4AZgBvAHMAdABlAGEAbABlAHIALQB0AGgAcgBlAGEAdAAtAGgAdQBuAHQAaQBuAGcAXABlAHYAaQBkAGUAbgBjAGUAXABhAHMAcwBpAGcAbgBtAGUAbgB0ADQAXAAyADAAMgA2ADEAMAAyADIAVAAxADEAMQA3ADEAMgA2ADQANABaAFwAbQBvAGMAawAtAGIAcgBvAHcAcwBlAHIALgBqAHMAbwBuACcAIAB8ACAATwB1AHQALQBOAHUAbABsADsAIABDAG8AcAB5AC0ASQB0AGUAbQAgAC0ATABpAHQAZQByAGEAbABQAGEAdABoACAAJwBDADoAXABVAHMAZQByAHMAXABQAG8AcwBoAGUAbAAgAE4AYQBoAHUAaQBcAEQAbwBjAHUAbQBlAG4AdABzAFwAQwBoAGEAdABHAFAAVABcAHQAaAByAGUAYQB0ACAAaAB1AG4AdABpAG4AZwBcAHMAaQBtAHUAbABhAHQAZQBkAC0AaQBuAGYAbwBzAHQAZQBhAGwAZQByAC0AdABoAHIAZQBhAHQALQBoAHUAbgB0AGkAbgBnAFwAZQB2AGkAZABlAG4AYwBlAFwAYQBzAHMAaQBnAG4AbQBlAG4AdAA0AFwAMgAwADIANgAxADAAMgAyAFQAMQAxADEANwAxADIANgA0ADQAWgBcAG0AbwBjAGsALQBiAHIAbwB3AHMAZQByAC4AagBzAG8AbgAnACAALQBEAGUAcwB0AGkAbgBhAHQAaQBvAG4AIAAnAEMAOgBcAFUAcwBlAHIAcwBcAFAAbwBzAGgAZQBsACAATgBhAGgAdQBpAFwARABvAGMAdQBtAGUAbgB0AHMAXABDAGgAYQB0AEcAUABUAFwAdABoAHIAZQBhAHQAIABoAHUAbgB0AGkAbgBnAFwAcwBpAG0AdQBsAGEAdABlAGQALQBpAG4AZgBvAHMAdABlAGEAbABlAHIALQB0AGgAcgBlAGEAdAAtAGgAdQBuAHQAaQBuAGcAXABlAHYAaQBkAGUAbgBjAGUAXABhAHMAcwBpAGcAbgBtAGUAbgB0ADQAXAAyADAAMgA2ADEAMAAyADIAVAAxADEAMQA3ADEAMgA2ADQANABaAFwAcwB0AGEAZwBlAGQALQBtAG8AYwBrAC0AYgByAG8AdwBzAGUAcgAuAGoAcwBvAG4AJwA7ACAAVwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFQASABfAEEANABfADIAMAAyADYAMQAwADIAMgBUADEAMQAxADcAMQAyADYANAA0AFoAXwBzAGkAbQB1AGwAYQB0AGkAbwBuAF8AZQBuAGMAbwBkAGUAZAAnADsAIABTAHQAYQByAHQALQBTAGwAZQBlAHAAIAAtAFMAZQBjAG8AbgBkAHMAIAA4AA==",
+                "name": "powershell.exe"
+              },
+              "lab": {
+                "case": "simulation_encoded",
+                "run_id": "20261022T111712644Z",
+                "event400_record_ids": [
+                  28101
+                ],
+                "marker": "TH_A4_20261022T111712644Z_simulation_encoded",
+                "synthetic_payload": true,
+                "source": "Win32_Process live inventory; native Event 400 retained separately"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "utc": "2026-10-22T11:18:24.211239+00:00",
+    "service": "es",
+    "method": "PUT",
+    "path": "/lab-assignment4-20261022t111712644z-regression",
+    "request": {
+      "settings": {
+        "number_of_shards": 1,
+        "number_of_replicas": 0,
+        "analysis": {
+          "normalizer": {
+            "windows_name": {
+              "type": "custom",
+              "filter": [
+                "lowercase"
+              ]
+            }
+          }
+        }
+      },
+      "mappings": {
+        "properties": {
+          "@timestamp": {
+            "type": "date"
+          },
+          "event": {
+            "properties": {
+              "dataset": {
+                "type": "keyword"
+              },
+              "id": {
+                "type": "keyword"
+              },
+              "action": {
+                "type": "keyword"
+              }
+            }
+          },
+          "lab": {
+            "properties": {
+              "case": {
+                "type": "keyword"
+              },
+              "run_id": {
+                "type": "keyword"
+              }
+            }
+          },
+          "process": {
+            "properties": {
+              "name": {
+                "type": "keyword",
+                "normalizer": "windows_name"
+              },
+              "parent": {
+                "properties": {
+                  "name": {
+                    "type": "keyword",
+                    "normalizer": "windows_name"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "status": 200,
+    "response": {
+      "acknowledged": true,
+      "shards_acknowledged": true,
+      "index": "lab-assignment4-20261022t111712644z-regression"
+    }
+  },
+  {
+    "utc": "2026-10-22T11:18:24.880107+00:00",
+    "service": "es",
+    "method": "POST",
+    "path": "/_bulk?refresh=true",
+    "request": "{\"create\": {\"_index\": \"lab-assignment4-20261022t111712644z-regression\", \"_id\": \"0\"}}\n{\"event\": {\"dataset\": \"lab.process_inventory\"}, \"process\": {\"name\": \"powershell.exe\", \"parent\": {\"name\": \"pwsh.exe\"}}, \"lab\": {\"case\": \"automation\"}, \"fixture\": true}\n{\"create\": {\"_index\": \"lab-assignment4-20261022t111712644z-regression\", \"_id\": \"1\"}}\n{\"event\": {\"dataset\": \"lab.process_inventory\"}, \"process\": {\"name\": \"powershell.exe\", \"parent\": {\"name\": \"explorer.exe\"}}, \"lab\": {\"case\": \"explorer\"}, \"fixture\": true}\n{\"create\": {\"_index\": \"lab-assignment4-20261022t111712644z-regression\", \"_id\": \"2\"}}\n{\"event\": {\"dataset\": \"lab.process_inventory\"}, \"process\": {\"name\": \"cmd.exe\", \"parent\": {\"name\": \"pwsh.exe\"}}, \"lab\": {\"case\": \"cmd\"}, \"fixture\": true}\n{\"create\": {\"_index\": \"lab-assignment4-20261022t111712644z-regression\", \"_id\": \"3\"}}\n{\"event\": {\"dataset\": \"lab.process_inventory\"}, \"process\": {\"name\": \"powershell.exe\"}, \"lab\": {\"case\": \"missing\"}, \"fixture\": true}\n{\"create\": {\"_index\": \"lab-assignment4-20261022t111712644z-regression\", \"_id\": \"4\"}}\n{\"event\": {\"dataset\": \"lab.process_inventory\"}, \"process\": {\"name\": \"powershell.exe\", \"parent\": {\"name\": \"\"}}, \"lab\": {\"case\": \"empty\"}, \"fixture\": true}\n{\"create\": {\"_index\": \"lab-assignment4-20261022t111712644z-regression\", \"_id\": \"5\"}}\n{\"event\": {\"dataset\": \"lab.process_inventory\"}, \"process\": {\"name\": \"POWERSHELL.EXE\", \"parent\": {\"name\": \"CMD.EXE\"}}, \"lab\": {\"case\": \"uppercase\"}, \"fixture\": true}\n",
+    "status": 200,
+    "response": {
+      "errors": false,
+      "took": 600,
+      "items": [
+        {
+          "create": {
+            "_index": "lab-assignment4-20261022t111712644z-regression",
+            "_id": "0",
+            "_version": 1,
+            "result": "created",
+            "forced_refresh": true,
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 0,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-assignment4-20261022t111712644z-regression",
+            "_id": "1",
+            "_version": 1,
+            "result": "created",
+            "forced_refresh": true,
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 1,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-assignment4-20261022t111712644z-regression",
+            "_id": "2",
+            "_version": 1,
+            "result": "created",
+            "forced_refresh": true,
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 2,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-assignment4-20261022t111712644z-regression",
+            "_id": "3",
+            "_version": 1,
+            "result": "created",
+            "forced_refresh": true,
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 3,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-assignment4-20261022t111712644z-regression",
+            "_id": "4",
+            "_version": 1,
+            "result": "created",
+            "forced_refresh": true,
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 4,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-assignment4-20261022t111712644z-regression",
+            "_id": "5",
+            "_version": 1,
+            "result": "created",
+            "forced_refresh": true,
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 5,
+            "_primary_term": 1,
+            "status": 201
+          }
+        }
+      ]
+    }
+  },
+  {
+    "utc": "2026-10-22T11:18:24.898374+00:00",
+    "service": "es",
+    "method": "POST",
+    "path": "/lab-assignment4-20261022t111712644z-regression/_search",
+    "request": {
+      "size": 100,
+      "query": {
+        "bool": {
+          "filter": [
+            {
+              "term": {
+                "event.dataset": "lab.process_inventory"
+              }
+            },
+            {
+              "term": {
+                "process.name": "powershell.exe"
+              }
+            },
+            {
+              "exists": {
+                "field": "process.parent.name"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "process.parent.name": "explorer.exe"
+              }
+            },
+            {
+              "term": {
+                "process.parent.name": ""
+              }
+            }
+          ]
+        }
+      }
+    },
+    "status": 200,
+    "response": {
+      "took": 5,
+      "timed_out": false,
+      "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 2,
+          "relation": "eq"
+        },
+        "max_score": 0.0,
+        "hits": [
+          {
+            "_index": "lab-assignment4-20261022t111712644z-regression",
+            "_id": "0",
+            "_score": 0.0,
+            "_source": {
+              "event": {
+                "dataset": "lab.process_inventory"
+              },
+              "process": {
+                "name": "powershell.exe",
+                "parent": {
+                  "name": "pwsh.exe"
+                }
+              },
+              "lab": {
+                "case": "automation"
+              },
+              "fixture": true
+            }
+          },
+          {
+            "_index": "lab-assignment4-20261022t111712644z-regression",
+            "_id": "5",
+            "_score": 0.0,
+            "_source": {
+              "event": {
+                "dataset": "lab.process_inventory"
+              },
+              "process": {
+                "name": "POWERSHELL.EXE",
+                "parent": {
+                  "name": "CMD.EXE"
+                }
+              },
+              "lab": {
+                "case": "uppercase"
+              },
+              "fixture": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "utc": "2026-10-22T11:18:25.990171+00:00",
+    "service": "kibana",
+    "method": "POST",
+    "path": "/api/data_views/data_view",
+    "request": {
+      "data_view": {
+        "id": "lab-assignment4-20261022t111712644z",
+        "title": "lab-assignment4-20261022t111712644z",
+        "name": "Assignment 4 - observed Windows processes",
+        "timeFieldName": "@timestamp"
+      }
+    },
+    "status": 200,
+    "response": {
+      "data_view": {
+        "id": "lab-assignment4-20261022t111712644z",
+        "version": "WzUsMV0=",
+        "title": "lab-assignment4-20261022t111712644z",
+        "timeFieldName": "@timestamp",
+        "sourceFilters": [],
+        "fieldFormats": {},
+        "runtimeFieldMap": {},
+        "fieldAttrs": {},
+        "allowNoIndex": false,
+        "name": "Assignment 4 - observed Windows processes",
+        "allowHidden": false,
+        "fields": {
+          "@timestamp": {
+            "count": 0,
+            "name": "@timestamp",
+            "type": "date",
+            "esTypes": [
+              "date"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "date"
+            },
+            "shortDotsEnable": false
+          },
+          "_id": {
+            "count": 0,
+            "name": "_id",
+            "type": "string",
+            "esTypes": [
+              "_id"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": false,
+            "readFromDocValues": false,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "_ignored": {
+            "count": 0,
+            "name": "_ignored",
+            "type": "string",
+            "esTypes": [
+              "_ignored"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": false,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "_index": {
+            "count": 0,
+            "name": "_index",
+            "type": "string",
+            "esTypes": [
+              "_index"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": false,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "_score": {
+            "count": 0,
+            "name": "_score",
+            "type": "number",
+            "scripted": false,
+            "searchable": false,
+            "aggregatable": false,
+            "readFromDocValues": false,
+            "format": {
+              "id": "number"
+            },
+            "shortDotsEnable": false
+          },
+          "_source": {
+            "count": 0,
+            "name": "_source",
+            "type": "_source",
+            "esTypes": [
+              "_source"
+            ],
+            "scripted": false,
+            "searchable": false,
+            "aggregatable": false,
+            "readFromDocValues": false,
+            "format": {
+              "id": "_source"
+            },
+            "shortDotsEnable": false
+          },
+          "event.action": {
+            "count": 0,
+            "name": "event.action",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "event.category": {
+            "count": 0,
+            "name": "event.category",
+            "type": "string",
+            "esTypes": [
+              "text"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": false,
+            "readFromDocValues": false,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "event.category.keyword": {
+            "count": 0,
+            "name": "event.category.keyword",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "subType": {
+              "multi": {
+                "parent": "event.category"
+              }
+            },
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "event.dataset": {
+            "count": 0,
+            "name": "event.dataset",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "event.id": {
+            "count": 0,
+            "name": "event.id",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "event.kind": {
+            "count": 0,
+            "name": "event.kind",
+            "type": "string",
+            "esTypes": [
+              "text"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": false,
+            "readFromDocValues": false,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "event.kind.keyword": {
+            "count": 0,
+            "name": "event.kind.keyword",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "subType": {
+              "multi": {
+                "parent": "event.kind"
+              }
+            },
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "event.type": {
+            "count": 0,
+            "name": "event.type",
+            "type": "string",
+            "esTypes": [
+              "text"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": false,
+            "readFromDocValues": false,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "event.type.keyword": {
+            "count": 0,
+            "name": "event.type.keyword",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "subType": {
+              "multi": {
+                "parent": "event.type"
+              }
+            },
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "lab.case": {
+            "count": 0,
+            "name": "lab.case",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "lab.event400_record_ids": {
+            "count": 0,
+            "name": "lab.event400_record_ids",
+            "type": "number",
+            "esTypes": [
+              "long"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "number"
+            },
+            "shortDotsEnable": false
+          },
+          "lab.marker": {
+            "count": 0,
+            "name": "lab.marker",
+            "type": "string",
+            "esTypes": [
+              "text"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": false,
+            "readFromDocValues": false,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "lab.marker.keyword": {
+            "count": 0,
+            "name": "lab.marker.keyword",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "subType": {
+              "multi": {
+                "parent": "lab.marker"
+              }
+            },
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "lab.run_id": {
+            "count": 0,
+            "name": "lab.run_id",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "lab.source": {
+            "count": 0,
+            "name": "lab.source",
+            "type": "string",
+            "esTypes": [
+              "text"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": false,
+            "readFromDocValues": false,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "lab.source.keyword": {
+            "count": 0,
+            "name": "lab.source.keyword",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "subType": {
+              "multi": {
+                "parent": "lab.source"
+              }
+            },
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "lab.synthetic_payload": {
+            "count": 0,
+            "name": "lab.synthetic_payload",
+            "type": "boolean",
+            "esTypes": [
+              "boolean"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "boolean"
+            },
+            "shortDotsEnable": false
+          },
+          "process.command_line": {
+            "count": 0,
+            "name": "process.command_line",
+            "type": "string",
+            "esTypes": [
+              "text"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": false,
+            "readFromDocValues": false,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "process.command_line.keyword": {
+            "count": 0,
+            "name": "process.command_line.keyword",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "subType": {
+              "multi": {
+                "parent": "process.command_line"
+              }
+            },
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "process.executable": {
+            "count": 0,
+            "name": "process.executable",
+            "type": "string",
+            "esTypes": [
+              "text"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": false,
+            "readFromDocValues": false,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "process.executable.keyword": {
+            "count": 0,
+            "name": "process.executable.keyword",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "subType": {
+              "multi": {
+                "parent": "process.executable"
+              }
+            },
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "process.name": {
+            "count": 0,
+            "name": "process.name",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "process.parent.executable": {
+            "count": 0,
+            "name": "process.parent.executable",
+            "type": "string",
+            "esTypes": [
+              "text"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": false,
+            "readFromDocValues": false,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "process.parent.executable.keyword": {
+            "count": 0,
+            "name": "process.parent.executable.keyword",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "subType": {
+              "multi": {
+                "parent": "process.parent.executable"
+              }
+            },
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "process.parent.name": {
+            "count": 0,
+            "name": "process.parent.name",
+            "type": "string",
+            "esTypes": [
+              "keyword"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "string"
+            },
+            "shortDotsEnable": false
+          },
+          "process.parent.pid": {
+            "count": 0,
+            "name": "process.parent.pid",
+            "type": "number",
+            "esTypes": [
+              "long"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "number"
+            },
+            "shortDotsEnable": false
+          },
+          "process.pid": {
+            "count": 0,
+            "name": "process.pid",
+            "type": "number",
+            "esTypes": [
+              "long"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "number"
+            },
+            "shortDotsEnable": false
+          },
+          "process.start": {
+            "count": 0,
+            "name": "process.start",
+            "type": "date",
+            "esTypes": [
+              "date"
+            ],
+            "scripted": false,
+            "searchable": true,
+            "aggregatable": true,
+            "readFromDocValues": true,
+            "format": {
+              "id": "date"
+            },
+            "shortDotsEnable": false
+          }
+        },
+        "namespaces": [
+          "default"
+        ]
+      }
+    }
+  }
+]

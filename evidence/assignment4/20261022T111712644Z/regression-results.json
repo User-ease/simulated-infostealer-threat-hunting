@@ -1,0 +1,95 @@
+{
+  "source": "Explicit synthetic fixtures; separate index; not observed endpoint events",
+  "index": "lab-assignment4-20261022t111712644z-regression",
+  "cases": [
+    {
+      "case": "automation",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "case": "explorer",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "case": "cmd",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "case": "missing",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "case": "empty",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "case": "uppercase",
+      "expected": true,
+      "actual": true
+    }
+  ],
+  "response": {
+    "took": 5,
+    "timed_out": false,
+    "_shards": {
+      "total": 1,
+      "successful": 1,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 2,
+        "relation": "eq"
+      },
+      "max_score": 0.0,
+      "hits": [
+        {
+          "_index": "lab-assignment4-20261022t111712644z-regression",
+          "_id": "0",
+          "_score": 0.0,
+          "_source": {
+            "event": {
+              "dataset": "lab.process_inventory"
+            },
+            "process": {
+              "name": "powershell.exe",
+              "parent": {
+                "name": "pwsh.exe"
+              }
+            },
+            "lab": {
+              "case": "automation"
+            },
+            "fixture": true
+          }
+        },
+        {
+          "_index": "lab-assignment4-20261022t111712644z-regression",
+          "_id": "5",
+          "_score": 0.0,
+          "_source": {
+            "event": {
+              "dataset": "lab.process_inventory"
+            },
+            "process": {
+              "name": "POWERSHELL.EXE",
+              "parent": {
+                "name": "CMD.EXE"
+              }
+            },
+            "lab": {
+              "case": "uppercase"
+            },
+            "fixture": true
+          }
+        }
+      ]
+    }
+  }
+}
