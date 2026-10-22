@@ -1,0 +1,12 @@
+{
+  "ProcessId": 44856,
+  "ParentProcessId": 2732,
+  "Name": "powershell.exe",
+  "ExecutablePath": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "CommandLine": "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -Command \"Write-Output 'TH_A4_20261022T111712644Z_automation_plain'; Start-Sleep -Seconds 8\"",
+  "CreationDate": "2026-10-22T11:17:12.7949480Z",
+  "ObservedAt": "2026-10-22T11:17:13.5447317Z",
+  "ParentName": "pwsh.exe",
+  "ParentExecutablePath": "C:\\Users\\Poshel Nahui\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+  "ParentCreationDate": "2026-10-22T11:17:11.7357190Z"
+}

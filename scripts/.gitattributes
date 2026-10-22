@@ -1,0 +1,2 @@
+# The collection manifest records the exact collector bytes.
+collect_assignment4.ps1 -text

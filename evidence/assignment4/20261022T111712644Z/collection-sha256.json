@@ -1,0 +1,66 @@
+[
+  {
+    "sha256": "E6B58A8B2E751725D58719777C9FA2AE0436B466FF209F82424FBCD58A9052A9",
+    "file": "automation_plain.cim.json"
+  },
+  {
+    "sha256": "1080A5A5A1266EE6CE7FEB0840437A760EE80439E69EBA953FC2BB606C64B66F",
+    "file": "automation_plain.event400.xml"
+  },
+  {
+    "sha256": "7EB70257593DA06F682A3DDDA54A9D260D4FC514F645237F5CA74B08F8DA61A6",
+    "file": "automation_plain.stderr.txt"
+  },
+  {
+    "sha256": "EC9546F87685F17C4E4D397EAF7BD85779AC2E98CD52827B47F5BD37B2C8790F",
+    "file": "automation_plain.stdout.txt"
+  },
+  {
+    "sha256": "436DC56898D17CFE1097F693322AC73900976243CA97AF24E5170A57BD26BCA5",
+    "file": "case-labels.json"
+  },
+  {
+    "sha256": "50F8D02653B663866FFCF5DC6909BDF35E4A26FFAA822523ED23A28BADC13F89",
+    "file": "collection-manifest.json"
+  },
+  {
+    "sha256": "8C708A5F9B0C3238C0722109068503306B763470AE6453AA21923DA21B5662CA",
+    "file": "control_cmd.cim.json"
+  },
+  {
+    "sha256": "7EB70257593DA06F682A3DDDA54A9D260D4FC514F645237F5CA74B08F8DA61A6",
+    "file": "control_cmd.stderr.txt"
+  },
+  {
+    "sha256": "5767C3A8FC845E708933B1F8B645E45C1EE2A366BDEBDAECFA0807FE697FBF19",
+    "file": "control_cmd.stdout.txt"
+  },
+  {
+    "sha256": "6A7855797FB3C8418BA6570F461C8EEEFBFC8AA8D266D4EB1E62148AA2F5EC8B",
+    "file": "mock-browser.json"
+  },
+  {
+    "sha256": "2B4BA1C8394FF9FD2CBB9D3F1039E54492CFC52096BA70764182771B12CFAE5D",
+    "file": "process-observations.jsonl"
+  },
+  {
+    "sha256": "FC5BB9BBBE7D66DBE3097AD1EBD7840DDB4A3461038E53E7B2008459528FFDD0",
+    "file": "simulation_encoded.cim.json"
+  },
+  {
+    "sha256": "6A61BAAF0751DB1A7A42257565476751F3E48EF3A582606ADD18E19D2D733C08",
+    "file": "simulation_encoded.event400.xml"
+  },
+  {
+    "sha256": "22E0E16C15E46FB13B9AEF0B03A783C5548546C9F4824630DD894A13DA352AAA",
+    "file": "simulation_encoded.stderr.txt"
+  },
+  {
+    "sha256": "6E02875A0CD85FC28FD14FC31C375F86CB220BCF3599FE5F1DC726F155BFD40D",
+    "file": "simulation_encoded.stdout.txt"
+  },
+  {
+    "sha256": "6A7855797FB3C8418BA6570F461C8EEEFBFC8AA8D266D4EB1E62148AA2F5EC8B",
+    "file": "staged-mock-browser.json"
+  }
+]
