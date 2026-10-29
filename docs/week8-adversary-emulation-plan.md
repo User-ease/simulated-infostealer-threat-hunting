@@ -29,7 +29,7 @@ Accordingly:
 | [Week 5](week5-threat-hunting.md) | Hypothesis-driven PowerShell hunt on native Event 400. | Re-used as the **loader-stage detection**. |
 | [Weeks 6–7](week_6-7.md) | T1059.001 simulation + disclosed CAR-2014-04-003 adaptation. | Re-used as the **parent-process analytic**; its benign-match limits carry over. |
 
-The emulation follows the MITRE Engenuity method: intelligence → TTPs → scenario → procedures → expected detections. It is not a replay of a specific real stealer and makes no infection claim.
+The emulation follows the MITRE Engenuity method: intelligence  TTPs  scenario  procedures  expected detections. It is not a replay of a specific real stealer and makes no infection claim.
 
 ## Rules of engagement and safety boundaries
 
@@ -43,7 +43,7 @@ The emulation follows the MITRE Engenuity method: intelligence → TTPs → scen
 
 ## Emulation scenario
 
-The scenario abstracts Campaign 1 into the syllabus chain (**initial access → persistence → data exfiltration**), with the discovery and collection stages that define an infostealer. Each row keeps the Week 4 evidence qualifier for the real campaign and states the **safe** lab action. Tactic names are from Enterprise ATT&CK v20.0.
+The scenario abstracts Campaign 1 into the syllabus chain (**initial access  persistence  data exfiltration**), with the discovery and collection stages that define an infostealer. Each row keeps the Week 4 evidence qualifier for the real campaign and states the **safe** lab action. Tactic names are from Enterprise ATT&CK v20.0.
 
 ### Stage A - Initial access / delivery
 
@@ -56,7 +56,7 @@ The scenario abstracts Campaign 1 into the syllabus chain (**initial access → 
 
 | Step | Campaign 1 / infostealer basis | Safe lab action | ATT&CK | Tactic |
 | --- | --- | --- | --- | --- |
-| Command shell → PowerShell loader | **Reported.** `cmd.exe` → `rundll32.exe` → obfuscated PowerShell. | `cmd.exe` launches a PowerShell **loader** that prints a unique marker and runs the later steps. `rundll32`/remote-DLL (T1218.011) is **not** emulated. **This step models only the loader; the collection behaviour appears in Stage E.** | [T1059.003 Windows Command Shell](https://attack.mitre.org/techniques/T1059/003/), [T1059.001 PowerShell](https://attack.mitre.org/techniques/T1059/001/) | Execution |
+| Command shell  PowerShell loader | **Reported.** `cmd.exe`  `rundll32.exe`  obfuscated PowerShell. | `cmd.exe` launches a PowerShell **loader** that prints a unique marker and runs the later steps. `rundll32`/remote-DLL (T1218.011) is **not** emulated. **This step models only the loader; the collection behaviour appears in Stage E.** | [T1059.003 Windows Command Shell](https://attack.mitre.org/techniques/T1059/003/), [T1059.001 PowerShell](https://attack.mitre.org/techniques/T1059/001/) | Execution |
 | Decode staged command | **Reported.** PowerShell stage is obfuscated/encoded. | The loader Base64-decodes a benign marker command (as in Week 5). | [T1140 Deobfuscate/Decode Files or Information](https://attack.mitre.org/techniques/T1140/) | Stealth |
 
 ### Stage C - Persistence
@@ -107,7 +107,7 @@ The scenario abstracts Campaign 1 into the syllabus chain (**initial access → 
 
 ## ATT&CK Navigator layer
 
-The 27 techniques above are published as a Navigator layer at [`data/week8-attack-navigator-layer.json`](../data/week8-attack-navigator-layer.json) (layer format 4.5, ATT&CK v20.0, enterprise-attack). The figure below renders that layer; the live version opens at [mitre-attack.github.io/attack-navigator](https://mitre-attack.github.io/attack-navigator/) via **Open Existing Layer → Upload from local** and selecting the JSON file.
+The 27 techniques above are published as a Navigator layer at [`data/week8-attack-navigator-layer.json`](../data/week8-attack-navigator-layer.json) (layer format 4.5, ATT&CK v20.0, enterprise-attack). The figure below renders that layer; the live version opens at [mitre-attack.github.io/attack-navigator](https://mitre-attack.github.io/attack-navigator/) via **Open Existing Layer  Upload from local** and selecting the JSON file.
 
 ![ATT&CK Navigator layer for the Week 8 emulation plan](../images/week8/week8-attack-matrix.png)
 
@@ -131,7 +131,7 @@ With annotated sub-techniques expanded in the same tool, the Execution tactic ma
 
 | Stage | Primary telemetry | Existing project detection | Known gap |
 | --- | --- | --- | --- |
-| A Delivery | `RunMRU` registry; Event 4688 / Sysmon 1 (`explorer.exe` → `cmd.exe`) | - (new for Week 9) | Manual paste leaves limited host evidence; Week 4 cites Microsoft's RunMRU hunting example. |
+| A Delivery | `RunMRU` registry; Event 4688 / Sysmon 1 (`explorer.exe`  `cmd.exe`) | - (new for Week 9) | Manual paste leaves limited host evidence; Week 4 cites Microsoft's RunMRU hunting example. |
 | B Execution | PowerShell **Event 400** + **4104** (script block); Event 4688 / Sysmon 1 | [Week 5 PowerShell hunt](week5-threat-hunting.md); [Weeks 6–7 CAR-2014-04-003](week_6-7.md) parent-not-explorer analytic | CAR analytic matches benign automation; Event 400 lacks parent identity; `pwsh.exe` parent artefacts must be excluded. |
 | C Persistence | **Event 4698** (needs *Audit Other Object Access Events*); Sysmon 1 for `schtasks.exe` | [CAR-2013-08-001 Execution with schtasks](https://car.mitre.org/analytics/CAR-2013-08-001/) | 4698 off by default; Run-key alternative needs registry auditing / Sysmon 13. |
 | D Discovery | Event 4688 / Sysmon 1 cmdlines (`systeminfo`, `whoami`, `reg query`) | - (new for Week 9) | Discovery commands are common and noisy; benign baseline needed. |
