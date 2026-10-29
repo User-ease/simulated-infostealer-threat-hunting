@@ -1,0 +1,59 @@
+{
+  "name": "Week 8 - infostealer adversary emulation plan",
+  "versions": {
+    "attack": "20",
+    "navigator": "5.3.2",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Safe, synthetic adversary emulation PLAN for Assignment 5 (week 8), derived from the Week 4 ACR Stealer Campaign 1 CTI. Weighted toward the Collection and Credential-Access behaviour that defines an infostealer; PowerShell is used only as the loader. This is a plan - nothing is executed yet. Green: planned. Amber: planned with a qualification (tactic note, access-pattern only, or extrapolation). Grey: documented, not planned (Campaign 1 exclusions, alternatives, anti-analysis). No attack code is executed in this planning increment.",
+  "filters": { "platforms": ["Windows"] },
+  "sorting": 0,
+  "layout": { "layout": "side", "showID": true, "showName": true, "expandedSubtechniques": "annotated" },
+  "hideDisabled": false,
+  "techniques": [
+    { "techniqueID": "T1204.004", "tactic": "execution", "color": "#ffb347", "comment": "Stage A delivery. Local copy/paste command run manually on 127.0.0.1. QUALIFIED: ATT&CK classifies T1204.004 under Execution, not Initial Access." },
+    { "techniqueID": "T1036", "tactic": "stealth", "color": "#4caf50", "comment": "Stage A. Lure and dropped marker named like a fake update; nothing signed or impersonated." },
+    { "techniqueID": "T1059.003", "tactic": "execution", "color": "#4caf50", "comment": "Stage B. cmd.exe launches the loader." },
+    { "techniqueID": "T1059.001", "tactic": "execution", "color": "#4caf50", "comment": "Stage B. PowerShell LOADER only - prints a marker and runs later steps. Collection behaviour is modelled separately in Stage E. Detections: Week 5 hunt, Weeks 6-7 CAR-2014-04-003." },
+    { "techniqueID": "T1140", "tactic": "stealth", "color": "#4caf50", "comment": "Stage B. Base64-decode a benign marker command, as in Week 5." },
+    { "techniqueID": "T1053.005", "tactic": "persistence", "color": "#4caf50", "comment": "Stage C. schtasks logon task runs a benign marker script; removed in cleanup. Detection: CAR-2013-08-001; needs Event 4698 audit policy." },
+    { "techniqueID": "T1547.001", "tactic": "persistence", "color": "#bdbdbd", "comment": "Documented alternative, NOT executed. Run key is the more common stealer persistence; many stealers do not persist at all. Scheduled Task chosen because Campaign 1 reports it." },
+    { "techniqueID": "T1082", "tactic": "discovery", "color": "#4caf50", "comment": "Stage D. Host fingerprint (systeminfo equivalent)." },
+    { "techniqueID": "T1033", "tactic": "discovery", "color": "#4caf50", "comment": "Stage D. User fingerprint (whoami equivalent)." },
+    { "techniqueID": "T1217", "tactic": "discovery", "color": "#4caf50", "comment": "Stage D. Locate the synthetic browser profile." },
+    { "techniqueID": "T1083", "tactic": "discovery", "color": "#4caf50", "comment": "Stage D. Enumerate the lab folder before collection." },
+    { "techniqueID": "T1555.003", "tactic": "credential-access", "color": "#ffb347", "comment": "Stage E core. Read synthetic mock-browser.json. QUALIFIED: access pattern only - no DPAPI, no real store." },
+    { "techniqueID": "T1539", "tactic": "credential-access", "color": "#ffb347", "comment": "Stage E core (modern stealers). Read a synthetic cookies.json with a fake token. QUALIFIED: access pattern only." },
+    { "techniqueID": "T1552.001", "tactic": "credential-access", "color": "#4caf50", "comment": "Stage E. Read a synthetic wallet/config file with training values." },
+    { "techniqueID": "T1005", "tactic": "collection", "color": "#4caf50", "comment": "Stage E. Gather the synthetic files read above." },
+    { "techniqueID": "T1074.001", "tactic": "collection", "color": "#4caf50", "comment": "Stage E. Copy collected data into a staging folder." },
+    { "techniqueID": "T1560.001", "tactic": "collection", "color": "#4caf50", "comment": "Stage E. Compress-Archive packages the staged synthetic data." },
+    { "techniqueID": "T1041", "tactic": "exfiltration", "color": "#bdbdbd", "comment": "Documented, not planned. Possible context only, not a confirmed Campaign 1 action: T1041 is exfiltration over an EXISTING C2 channel, while Campaign 1 supports data preparation (archiving) but not a completed transfer, and this lab has no C2 channel. The planned loopback POST is T1048.003 instead." },
+    { "techniqueID": "T1071.001", "tactic": "command-and-control", "color": "#bdbdbd", "comment": "Documented, not planned. Possible context only, not a confirmed Campaign 1 action: web-protocol C2 communication. Campaign 1 supports contact with actor infrastructure, but this plan establishes no C2 channel, so this is not a planned step." },
+    { "techniqueID": "T1048.003", "tactic": "exfiltration", "color": "#ffb347", "comment": "Stage F planned exfil - the closest ATT&CK match for a planned HTTP POST of the synthetic archive to a listener on 127.0.0.1, a transfer over an unencrypted protocol outside any C2 channel. Planned safe transfer of synthetic data, not performed exfiltration." },
+    { "techniqueID": "T1567.002", "tactic": "exfiltration", "color": "#bdbdbd", "comment": "Documented, not planned. T1567.002 is cloud storage (Dropbox, Google Drive, OneDrive); Telegram/Discord are T1567.004 (webhook) and paste sites T1567.003. The lab's loopback 127.0.0.1 transfer models none of these, so this is context only." },
+    { "techniqueID": "T1218.011", "tactic": "stealth", "color": "#bdbdbd", "comment": "In Campaign 1 (rundll32 loads a remote DLL) but NOT emulated: would require a crafted DLL." },
+    { "techniqueID": "T1059.006", "tactic": "execution", "color": "#bdbdbd", "comment": "In Campaign 1 (Python loader) but NOT emulated." },
+    { "techniqueID": "T1105", "tactic": "command-and-control", "color": "#bdbdbd", "comment": "In Campaign 1 (ZIP stage download) but NOT emulated; the lab stays on native local tooling." },
+    { "techniqueID": "T1102.001", "tactic": "command-and-control", "color": "#bdbdbd", "comment": "Campaign 1 subset variation (blockchain dead-drop resolver). NOT emulated. No Atomic Red Team coverage." },
+    { "techniqueID": "T1497", "tactic": "stealth", "color": "#bdbdbd", "comment": "Characteristic stealer anti-analysis (sandbox/VM check), named for detection but NOT part of the executed chain. No Atomic Red Team coverage." },
+    { "techniqueID": "T1027", "tactic": "stealth", "color": "#bdbdbd", "comment": "Characteristic stealer obfuscation, named for detection but NOT part of the executed chain." }
+  ],
+  "gradient": { "colors": ["#ffffff", "#4caf50"], "minValue": 0, "maxValue": 100 },
+  "legendItems": [
+    { "label": "Planned", "color": "#4caf50" },
+    { "label": "Planned (with qualification)", "color": "#ffb347" },
+    { "label": "Documented, not planned", "color": "#bdbdbd" }
+  ],
+  "metadata": [
+    { "name": "Assignment", "value": "Assignment 5 (week 8) - Creating a plan to emulate an attacker's action" },
+    { "name": "CTI source", "value": "ACR Stealer Campaign 1 (Week 4 report)" },
+    { "name": "ATT&CK version", "value": "Enterprise v20.0" },
+    { "name": "Emphasis", "value": "Collection / Credential Access; PowerShell is loader-stage only" }
+  ],
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#dddddd",
+  "selectTechniquesAcrossTactics": true,
+  "selectSubtechniquesWithParent": false
+}

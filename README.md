@@ -22,6 +22,20 @@ The project does not use real malware or real credentials. Instead, synthetic br
 
 * [week_6-7](docs/week_6-7.md): ATT&CK PowerShell technique simulation and a disclosed MITRE CAR adaptation in Elasticsearch/Kibana — practical work, source evidence, screenshots.
 
+* [Week 8](docs/week8-adversary-emulation-plan.md): adversary emulation plan (initial access → persistence → exfiltration) derived from the Week 4 Campaign 1 CTI, mapped to ATT&CK v20.0 with an [ATT&CK Navigator layer](data/week8-attack-navigator-layer.json) — planning deliverable; no attack code executed.
+
+## Week 8: Adversary Emulation Plan
+
+The [Week 8 report](docs/week8-adversary-emulation-plan.md) develops a safe, synthetic adversary emulation plan from the Week 4 ACR Stealer Campaign 1 reconstruction, as required by the syllabus (section 3.3, Week 8). It covers the syllabus chain (initial access → persistence → data exfiltration) across six stages, deliberately weighted toward the Collection and Credential-Access behaviour that defines an infostealer, with PowerShell used only as the loader rather than as the headline technique. It defines rules of engagement, maps each stage to ATT&CK v20.0, states the telemetry and existing project detections expected for each (the Week 5 PowerShell hunt and the Weeks 6–7 CAR analytic), and hands off to the Week 9 Atomic Red Team execution. No technique is executed in this increment.
+
+| Artifact | Purpose |
+| --- | --- |
+| [Report](docs/week8-adversary-emulation-plan.md) | Rules of engagement, scenario, ATT&CK mapping, expected detections, defense outline |
+| [ATT&CK Navigator layer](data/week8-attack-navigator-layer.json) | Layer format 4.5, ATT&CK v20.0; planned / qualified / not-planned colouring |
+| [Matrix figure](images/week8/week8-attack-matrix.png) | Rendered Navigator layer (27 techniques across 8 tactics) for the report |
+| [Navigator screenshot](images/week8/week8-navigator-screenshot.jpg) | The layer loaded in the live MITRE ATT&CK Navigator, across the full matrix |
+| [Navigator, sub-techniques expanded](images/week8/week8-navigator-subtechniques.jpg) | Live Navigator with annotated sub-techniques expanded (Execution: PowerShell/cmd green, Python grey) |
+
 ## week_6-7: ATT&CK and MITRE CAR
 
 The [week_6-7 report](docs/week_6-7.md) combines a safe T1059.001 PowerShell simulation with CAR-2014-04-003 selection logic implemented in Elasticsearch. Three observed Windows processes produced two review candidates; six separate synthetic boundary checks passed. The report discloses the use of live CIM process inventory instead of a process-creation event stream.
@@ -33,7 +47,6 @@ The [week_6-7 report](docs/week_6-7.md) combines a safe T1059.001 PowerShell sim
 | [Kibana screenshots](images/assignment4/) | Three original observations and two CAR candidates |
 | [Docker configuration](docker/assignment4-compose.yml) | Separate local Elasticsearch/Kibana project on ports 19200 and 15601 |
 | [Collection script](scripts/collect_assignment4.ps1) and [SIEM runner](scripts/run_assignment4.py) | Reproduce the controlled experiment and query validation |
-| [Defense notes](docs/assignment4-defense-ru.md) | Russian presentation outline for 7-8 minutes |
 
 ## Week 5: Hypothesis-driven Threat Hunting
 

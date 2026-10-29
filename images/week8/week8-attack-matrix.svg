@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1496" height="550" viewBox="0 0 1496 550" font-family="Arial, Helvetica, sans-serif">
+<rect width="1496" height="550" fill="#ffffff"/>
+<text x="26" y="44" font-size="22" font-weight="bold" fill="#1a1a1a">Week 8 - Infostealer Adversary Emulation Plan</text>
+<text x="26" y="71" font-size="12" fill="#555555">MITRE ATT&amp;CK Enterprise v20.0 - Navigator layer (data/week8-attack-navigator-layer.json)</text>
+<rect x="26" y="86" width="16" height="16" fill="#4caf50" stroke="#c9ccd1"/>
+<text x="48" y="98" font-size="11" fill="#1a1a1a">Planned</text>
+<rect x="132" y="86" width="16" height="16" fill="#ffb347" stroke="#c9ccd1"/>
+<text x="154" y="98" font-size="11" fill="#1a1a1a">Planned (with qualification)</text>
+<rect x="328" y="86" width="16" height="16" fill="#bdbdbd" stroke="#c9ccd1"/>
+<text x="350" y="98" font-size="11" fill="#1a1a1a">Documented, not planned</text>
+<rect x="26" y="120" width="170" height="40" fill="#e9ebee" stroke="#c9ccd1"/>
+<text x="111.0" y="139" font-size="13" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Execution</text>
+<text x="111.0" y="154" font-size="10" fill="#555555" text-anchor="middle">4 techniques</text>
+<rect x="26" y="166" width="170" height="62" fill="#ffb347" stroke="#c9ccd1"/>
+<text x="34" y="182" font-size="12" font-weight="bold" fill="#111">T1204.004</text>
+<text x="34" y="194" font-size="9" fill="#1b1b1b">Malicious Copy and Paste</text>
+<rect x="26" y="234" width="170" height="62" fill="#4caf50" stroke="#c9ccd1"/>
+<text x="34" y="250" font-size="12" font-weight="bold" fill="#111">T1059.003</text>
+<text x="34" y="262" font-size="9" fill="#1b1b1b">Windows Command Shell</text>
+<rect x="26" y="302" width="170" height="62" fill="#4caf50" stroke="#c9ccd1"/>
+<text x="34" y="318" font-size="12" font-weight="bold" fill="#111">T1059.001</text>
+<text x="34" y="330" font-size="9" fill="#1b1b1b">PowerShell</text>
+<rect x="26" y="370" width="170" height="62" fill="#bdbdbd" stroke="#c9ccd1"/>
+<text x="34" y="386" font-size="12" font-weight="bold" fill="#111">T1059.006</text>
+<text x="34" y="398" font-size="9" fill="#1b1b1b">Python</text>
+<rect x="208" y="120" width="170" height="40" fill="#e9ebee" stroke="#c9ccd1"/>
+<text x="293.0" y="139" font-size="13" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Persistence</text>
+<text x="293.0" y="154" font-size="10" fill="#555555" text-anchor="middle">2 techniques</text>
+<rect x="208" y="166" width="170" height="62" fill="#4caf50" stroke="#c9ccd1"/>
+<text x="216" y="182" font-size="12" font-weight="bold" fill="#111">T1053.005</text>
+<text x="216" y="194" font-size="9" fill="#1b1b1b">Scheduled Task</text>
+<rect x="208" y="234" width="170" height="62" fill="#bdbdbd" stroke="#c9ccd1"/>
+<text x="216" y="250" font-size="12" font-weight="bold" fill="#111">T1547.001</text>
+<text x="216" y="262" font-size="9" fill="#1b1b1b">Registry Run Keys / Startup Folder</text>
+<rect x="390" y="120" width="170" height="40" fill="#e9ebee" stroke="#c9ccd1"/>
+<text x="475.0" y="139" font-size="13" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Stealth</text>
+<text x="475.0" y="154" font-size="10" fill="#555555" text-anchor="middle">5 techniques</text>
+<rect x="390" y="166" width="170" height="62" fill="#4caf50" stroke="#c9ccd1"/>
+<text x="398" y="182" font-size="12" font-weight="bold" fill="#111">T1036</text>
+<text x="398" y="194" font-size="9" fill="#1b1b1b">Masquerading</text>
+<rect x="390" y="234" width="170" height="62" fill="#4caf50" stroke="#c9ccd1"/>
+<text x="398" y="250" font-size="12" font-weight="bold" fill="#111">T1140</text>
+<text x="398" y="262" font-size="9" fill="#1b1b1b">Deobfuscate/Decode Files or</text>
+<text x="398" y="273" font-size="9" fill="#1b1b1b">Information</text>
+<rect x="390" y="302" width="170" height="62" fill="#bdbdbd" stroke="#c9ccd1"/>
+<text x="398" y="318" font-size="12" font-weight="bold" fill="#111">T1218.011</text>
+<text x="398" y="330" font-size="9" fill="#1b1b1b">Rundll32</text>
+<rect x="390" y="370" width="170" height="62" fill="#bdbdbd" stroke="#c9ccd1"/>
+<text x="398" y="386" font-size="12" font-weight="bold" fill="#111">T1497</text>
+<text x="398" y="398" font-size="9" fill="#1b1b1b">Virtualization/Sandbox Evasion</text>
+<rect x="390" y="438" width="170" height="62" fill="#bdbdbd" stroke="#c9ccd1"/>
+<text x="398" y="454" font-size="12" font-weight="bold" fill="#111">T1027</text>
+<text x="398" y="466" font-size="9" fill="#1b1b1b">Obfuscated Files or Information</text>
+<rect x="572" y="120" width="170" height="40" fill="#e9ebee" stroke="#c9ccd1"/>
+<text x="657.0" y="139" font-size="13" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Credential Access</text>
+<text x="657.0" y="154" font-size="10" fill="#555555" text-anchor="middle">3 techniques</text>
+<rect x="572" y="166" width="170" height="62" fill="#ffb347" stroke="#c9ccd1"/>
+<text x="580" y="182" font-size="12" font-weight="bold" fill="#111">T1555.003</text>
+<text x="580" y="194" font-size="9" fill="#1b1b1b">Credentials from Web Browsers</text>
+<rect x="572" y="234" width="170" height="62" fill="#ffb347" stroke="#c9ccd1"/>
+<text x="580" y="250" font-size="12" font-weight="bold" fill="#111">T1539</text>
+<text x="580" y="262" font-size="9" fill="#1b1b1b">Steal Web Session Cookie</text>
+<rect x="572" y="302" width="170" height="62" fill="#4caf50" stroke="#c9ccd1"/>
+<text x="580" y="318" font-size="12" font-weight="bold" fill="#111">T1552.001</text>
+<text x="580" y="330" font-size="9" fill="#1b1b1b">Credentials In Files</text>
+<rect x="754" y="120" width="170" height="40" fill="#e9ebee" stroke="#c9ccd1"/>
+<text x="839.0" y="139" font-size="13" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Discovery</text>
+<text x="839.0" y="154" font-size="10" fill="#555555" text-anchor="middle">4 techniques</text>
+<rect x="754" y="166" width="170" height="62" fill="#4caf50" stroke="#c9ccd1"/>
+<text x="762" y="182" font-size="12" font-weight="bold" fill="#111">T1082</text>
+<text x="762" y="194" font-size="9" fill="#1b1b1b">System Information Discovery</text>
+<rect x="754" y="234" width="170" height="62" fill="#4caf50" stroke="#c9ccd1"/>
+<text x="762" y="250" font-size="12" font-weight="bold" fill="#111">T1033</text>
+<text x="762" y="262" font-size="9" fill="#1b1b1b">System Owner/User Discovery</text>
+<rect x="754" y="302" width="170" height="62" fill="#4caf50" stroke="#c9ccd1"/>
+<text x="762" y="318" font-size="12" font-weight="bold" fill="#111">T1217</text>
+<text x="762" y="330" font-size="9" fill="#1b1b1b">Browser Information Discovery</text>
+<rect x="754" y="370" width="170" height="62" fill="#4caf50" stroke="#c9ccd1"/>
+<text x="762" y="386" font-size="12" font-weight="bold" fill="#111">T1083</text>
+<text x="762" y="398" font-size="9" fill="#1b1b1b">File and Directory Discovery</text>
+<rect x="936" y="120" width="170" height="40" fill="#e9ebee" stroke="#c9ccd1"/>
+<text x="1021.0" y="139" font-size="13" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Collection</text>
+<text x="1021.0" y="154" font-size="10" fill="#555555" text-anchor="middle">3 techniques</text>
+<rect x="936" y="166" width="170" height="62" fill="#4caf50" stroke="#c9ccd1"/>
+<text x="944" y="182" font-size="12" font-weight="bold" fill="#111">T1005</text>
+<text x="944" y="194" font-size="9" fill="#1b1b1b">Data from Local System</text>
+<rect x="936" y="234" width="170" height="62" fill="#4caf50" stroke="#c9ccd1"/>
+<text x="944" y="250" font-size="12" font-weight="bold" fill="#111">T1074.001</text>
+<text x="944" y="262" font-size="9" fill="#1b1b1b">Local Data Staging</text>
+<rect x="936" y="302" width="170" height="62" fill="#4caf50" stroke="#c9ccd1"/>
+<text x="944" y="318" font-size="12" font-weight="bold" fill="#111">T1560.001</text>
+<text x="944" y="330" font-size="9" fill="#1b1b1b">Archive via Utility</text>
+<rect x="1118" y="120" width="170" height="40" fill="#e9ebee" stroke="#c9ccd1"/>
+<text x="1203.0" y="139" font-size="13" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Command &amp; Control</text>
+<text x="1203.0" y="154" font-size="10" fill="#555555" text-anchor="middle">3 techniques</text>
+<rect x="1118" y="166" width="170" height="62" fill="#bdbdbd" stroke="#c9ccd1"/>
+<text x="1126" y="182" font-size="12" font-weight="bold" fill="#111">T1071.001</text>
+<text x="1126" y="194" font-size="9" fill="#1b1b1b">Web Protocols</text>
+<rect x="1118" y="234" width="170" height="62" fill="#bdbdbd" stroke="#c9ccd1"/>
+<text x="1126" y="250" font-size="12" font-weight="bold" fill="#111">T1105</text>
+<text x="1126" y="262" font-size="9" fill="#1b1b1b">Ingress Tool Transfer</text>
+<rect x="1118" y="302" width="170" height="62" fill="#bdbdbd" stroke="#c9ccd1"/>
+<text x="1126" y="318" font-size="12" font-weight="bold" fill="#111">T1102.001</text>
+<text x="1126" y="330" font-size="9" fill="#1b1b1b">Dead Drop Resolver</text>
+<rect x="1300" y="120" width="170" height="40" fill="#e9ebee" stroke="#c9ccd1"/>
+<text x="1385.0" y="139" font-size="13" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Exfiltration</text>
+<text x="1385.0" y="154" font-size="10" fill="#555555" text-anchor="middle">3 techniques</text>
+<rect x="1300" y="166" width="170" height="62" fill="#bdbdbd" stroke="#c9ccd1"/>
+<text x="1308" y="182" font-size="12" font-weight="bold" fill="#111">T1041</text>
+<text x="1308" y="194" font-size="9" fill="#1b1b1b">Exfiltration Over C2 Channel</text>
+<rect x="1300" y="234" width="170" height="62" fill="#ffb347" stroke="#c9ccd1"/>
+<text x="1308" y="250" font-size="12" font-weight="bold" fill="#111">T1048.003</text>
+<text x="1308" y="262" font-size="9" fill="#1b1b1b">Exfiltration Over Unencrypted Non-C2</text>
+<text x="1308" y="273" font-size="9" fill="#1b1b1b">Protocol</text>
+<rect x="1300" y="302" width="170" height="62" fill="#bdbdbd" stroke="#c9ccd1"/>
+<text x="1308" y="318" font-size="12" font-weight="bold" fill="#111">T1567.002</text>
+<text x="1308" y="330" font-size="9" fill="#1b1b1b">Exfiltration to Cloud Storage</text>
+<text x="26" y="530" font-size="10" fill="#555555">Note: planned only - nothing executed yet. ATT&amp;CK now names the former Defense Evasion tactic "Stealth". PowerShell (T1059.001) appears as the loader only; the plan is weighted toward Collection / Credential Access.</text>
+</svg>
