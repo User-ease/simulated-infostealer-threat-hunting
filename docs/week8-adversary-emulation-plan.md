@@ -4,9 +4,6 @@
 
 **Forensic Analysis and Detection of Simulated Infostealer-Like Activity in Windows Environments**
 
-The Week 8 task (syllabus 2026-2027, section 3.3, PDF page 7) is to **develop a simple adversary emulation plan** covering initial access → persistence → data exfiltration and to **document the plan using ATT&CK techniques**. Recommended reading: MITRE CALDERA documentation and MITRE Engenuity / red-teaming resources.
-
-This is a **planning deliverable, not an execution report**. No attack code is run in this increment. The plan is written so the Week 9 Atomic Red Team work can execute it in a controlled lab, and so the Week 5 PowerShell hunt and the Weeks 6–7 CAR analytic can be re-used as detections.
 
 > **Assignment numbering.** Our group numbers its submissions in order, so this Week 8 deliverable is **Assignment 5**. Note that the syllabus grading table (PDF page 9) instead pairs each number with a week — *Assignment 4 = week 8*, *Assignment 5 = week 9* — so by that table week 8 would be labelled "Assignment 4". Confirm the label the instructor expects before submission.
 
