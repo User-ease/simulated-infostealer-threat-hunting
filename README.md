@@ -26,9 +26,17 @@ The project does not use real malware or real credentials. Instead, synthetic br
 
 * [Week 9](docs/week9-atomic-red-team.md): three pinned Linux Atomic Red Team tests plus two benign controls; native strace evidence and Elasticsearch queries produced 18 → 5 → 2 events. Twenty query boundary assertions passed on 8 November 2026. Windows-specific validation is not claimed.
 
+* [Week 10](docs/week10-apt29-analysis.md): APT29 source analysis, ten ATT&CK v20.1 mappings, a Navigator layer and explicit evidence limits.
+
 ## Weeks 9 and 10
 
 The [Week 9 practical report](docs/week9-atomic-red-team.md) provides commands, source GUIDs, raw traces, archive checks, cleanup, and actual SIEM responses. This increment is a Linux extension of the Windows-focused project. It validates supported shell and archive behaviors on synthetic data.
+
+The [Week 10 analysis](docs/week10-apt29-analysis.md) connects source-reported APT29 behavior to the group topic. The [Navigator layer](data/week10/apt29-navigator-layer.json) distinguishes external intelligence, historical Windows observations and the new Linux archive analogue. Use the [7 minute 30 second defense guide](docs/weeks9-10-defense.md) to present both increments.
+
+Download the combined [PDF report](reports/Weeks_9_10_Threat_Hunting_Report.pdf) or [editable Word report](reports/Weeks_9_10_Threat_Hunting_Report.docx).
+
+Both increments were prepared on 8 November 2026 and committed separately using their actual dates. The oral defense remains pending.
 
 ## Week 8: Adversary Emulation Plan
 

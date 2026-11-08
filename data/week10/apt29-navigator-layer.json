@@ -1,0 +1,143 @@
+{
+  "name": "Week 10 APT29 and infostealer project evidence",
+  "versions": {
+    "attack": "20",
+    "navigator": "5.3.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Selected APT29/SolarWinds and StellarParticle CTI, checked against ATT&CK v20.1. Colors describe project evidence, not actor confidence or detection coverage. T1059.004 is excluded: the Linux lab is not evidence of APT29 use.",
+  "filters": {
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "Office Suite",
+      "Identity Provider",
+      "SaaS",
+      "IaaS"
+    ]
+  },
+  "sorting": 0,
+  "layout": {
+    "layout": "side",
+    "aggregateFunction": "average",
+    "showID": true,
+    "showName": true,
+    "showAggregateScores": false,
+    "countUnscored": false
+  },
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1195.002",
+      "tactic": "initial-access",
+      "color": "#CBD5E1",
+      "comment": "Trojanized Orion software updates delivered SUNBURST. Delivery-chain context; not executed. Source: https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor",
+      "enabled": true,
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1059.001",
+      "tactic": "execution",
+      "color": "#60A5FA",
+      "comment": "PowerShell supported post-compromise commands and task operations. Weeks 5-7 contain historical Windows observations; no fresh Windows run. Source: https://attack.mitre.org/campaigns/C0024/",
+      "enabled": true,
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1059.003",
+      "tactic": "execution",
+      "color": "#CBD5E1",
+      "comment": "cmd.exe executed commands on remote machines. Historical cmd control is not validation of remote execution. Source: https://attack.mitre.org/campaigns/C0024/",
+      "enabled": true,
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1053.005",
+      "tactic": "execution",
+      "color": "#CBD5E1",
+      "comment": "Existing scheduled tasks were temporarily modified, then restored. Week 8 planned persistence; not executed in Week 9. Source: https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor",
+      "enabled": true,
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1053.005",
+      "tactic": "persistence",
+      "color": "#CBD5E1",
+      "comment": "Existing scheduled tasks were temporarily modified, then restored. Week 8 planned persistence; not executed in Week 9. Source: https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor",
+      "enabled": true,
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1053.005",
+      "tactic": "privilege-escalation",
+      "color": "#CBD5E1",
+      "comment": "Existing scheduled tasks were temporarily modified, then restored. Week 8 planned persistence; not executed in Week 9. Source: https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor",
+      "enabled": true,
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1555.003",
+      "tactic": "credential-access",
+      "color": "#CBD5E1",
+      "comment": "Investigators recovered evidence of saved Chrome password export. Mock JSON is not a browser credential store or DPAPI validation. Source: https://www.crowdstrike.com/en-us/blog/observations-from-the-stellarparticle-campaign/",
+      "enabled": true,
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1539",
+      "tactic": "credential-access",
+      "color": "#CBD5E1",
+      "comment": "Chrome profile and DPAPI material were copied to obtain session cookies. Fake cookies were archived; no valid session or cookie theft was tested. Source: https://www.crowdstrike.com/en-us/blog/observations-from-the-stellarparticle-campaign/",
+      "enabled": true,
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1005",
+      "tactic": "collection",
+      "color": "#CBD5E1",
+      "comment": "Files were extracted from compromised networks. Only generated lab files were read; no general collection detector. Source: https://attack.mitre.org/campaigns/C0024/",
+      "enabled": true,
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1560.001",
+      "tactic": "collection",
+      "color": "#FBBF24",
+      "comment": "7-Zip created password-protected archives, sometimes split into parts. Week 9 executed Linux tar/gzip on mock files; this is a portable behavior analogue. Source: https://www.microsoft.com/en-us/security/blog/2021/01/20/deep-dive-into-the-solorigate-second-stage-activation-from-sunburst-to-teardrop-and-raindrop/",
+      "enabled": true,
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1074.002",
+      "tactic": "collection",
+      "color": "#CBD5E1",
+      "comment": "Archives were staged on a victim OWA server. Local out/ artifacts do not demonstrate remote staging. Source: https://attack.mitre.org/campaigns/C0024/",
+      "enabled": true,
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1048.002",
+      "tactic": "exfiltration",
+      "color": "#CBD5E1",
+      "comment": "An HTTPS request retrieved an archive staged on the victim OWA server. No exfiltration was executed; an archive alone proves no data transfer. Source: https://attack.mitre.org/campaigns/C0024/",
+      "enabled": true,
+      "showSubtechniques": false
+    }
+  ],
+  "legendItems": [
+    {
+      "label": "CTI only; not validated locally",
+      "color": "#CBD5E1"
+    },
+    {
+      "label": "Historical Windows lab from Weeks 5-7",
+      "color": "#60A5FA"
+    },
+    {
+      "label": "Linux archive analogue executed in Week 9",
+      "color": "#FBBF24"
+    }
+  ]
+}

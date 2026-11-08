@@ -1,0 +1,151 @@
+{
+  "group": "APT29",
+  "group_id": "G0016",
+  "scope": "SolarWinds and separately labelled StellarParticle follow-on reporting; not a single reconstructed intrusion",
+  "attack_version": "20.1",
+  "retrieved_on": "2026-11-08",
+  "techniques": [
+    {
+      "technique_id": "T1195.002",
+      "name": "Compromise Software Supply Chain",
+      "tactics": [
+        "initial-access"
+      ],
+      "reported_behavior": "Trojanized Orion software updates delivered SUNBURST.",
+      "source_id": "MANDIANT-2020",
+      "source_url": "https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor",
+      "mitre_url": "https://attack.mitre.org/techniques/T1195/002/",
+      "project_application": "Delivery-chain context; not executed.",
+      "proposed_hunt": "Correlate software inventory, update provenance and unusual child processes.",
+      "evidence_status": "cti_only"
+    },
+    {
+      "technique_id": "T1059.001",
+      "name": "PowerShell",
+      "tactics": [
+        "execution"
+      ],
+      "reported_behavior": "PowerShell supported post-compromise commands and task operations.",
+      "source_id": "MITRE-C0024",
+      "source_url": "https://attack.mitre.org/campaigns/C0024/",
+      "mitre_url": "https://attack.mitre.org/techniques/T1059/001/",
+      "project_application": "Weeks 5-7 contain historical Windows observations; no fresh Windows run.",
+      "proposed_hunt": "Retain command lines, script-block logs when enabled and process ancestry.",
+      "evidence_status": "historical_lab"
+    },
+    {
+      "technique_id": "T1059.003",
+      "name": "Windows Command Shell",
+      "tactics": [
+        "execution"
+      ],
+      "reported_behavior": "cmd.exe executed commands on remote machines.",
+      "source_id": "MITRE-C0024",
+      "source_url": "https://attack.mitre.org/campaigns/C0024/",
+      "mitre_url": "https://attack.mitre.org/techniques/T1059/003/",
+      "project_application": "Historical cmd control is not validation of remote execution.",
+      "proposed_hunt": "Join remote authentication to process creation; distinguish administrative jobs.",
+      "evidence_status": "cti_only"
+    },
+    {
+      "technique_id": "T1053.005",
+      "name": "Scheduled Task",
+      "tactics": [
+        "execution",
+        "persistence",
+        "privilege-escalation"
+      ],
+      "reported_behavior": "Existing scheduled tasks were temporarily modified, then restored.",
+      "source_id": "MANDIANT-2020",
+      "source_url": "https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor",
+      "mitre_url": "https://attack.mitre.org/techniques/T1053/005/",
+      "project_application": "Week 8 planned persistence; not executed in Week 9.",
+      "proposed_hunt": "Compare task definitions over time and correlate registration with payload execution.",
+      "evidence_status": "cti_only"
+    },
+    {
+      "technique_id": "T1555.003",
+      "name": "Credentials from Web Browsers",
+      "tactics": [
+        "credential-access"
+      ],
+      "reported_behavior": "Investigators recovered evidence of saved Chrome password export.",
+      "source_id": "CROWDSTRIKE-2022",
+      "source_url": "https://www.crowdstrike.com/en-us/blog/observations-from-the-stellarparticle-campaign/",
+      "mitre_url": "https://attack.mitre.org/techniques/T1555/003/",
+      "project_application": "Mock JSON is not a browser credential store or DPAPI validation.",
+      "proposed_hunt": "Monitor unusual access/export involving browser credential stores with suitable EDR telemetry.",
+      "evidence_status": "cti_only"
+    },
+    {
+      "technique_id": "T1539",
+      "name": "Steal Web Session Cookie",
+      "tactics": [
+        "credential-access"
+      ],
+      "reported_behavior": "Chrome profile and DPAPI material were copied to obtain session cookies.",
+      "source_id": "CROWDSTRIKE-2022",
+      "source_url": "https://www.crowdstrike.com/en-us/blog/observations-from-the-stellarparticle-campaign/",
+      "mitre_url": "https://attack.mitre.org/techniques/T1539/",
+      "project_application": "Fake cookies were archived; no valid session or cookie theft was tested.",
+      "proposed_hunt": "Correlate sensitive browser-file access with identity and session anomalies.",
+      "evidence_status": "cti_only"
+    },
+    {
+      "technique_id": "T1005",
+      "name": "Data from Local System",
+      "tactics": [
+        "collection"
+      ],
+      "reported_behavior": "Files were extracted from compromised networks.",
+      "source_id": "MITRE-C0024",
+      "source_url": "https://attack.mitre.org/campaigns/C0024/",
+      "mitre_url": "https://attack.mitre.org/techniques/T1005/",
+      "project_application": "Only generated lab files were read; no general collection detector.",
+      "proposed_hunt": "Use file-read telemetry and process context rather than inferring reads from file creation.",
+      "evidence_status": "cti_only"
+    },
+    {
+      "technique_id": "T1560.001",
+      "name": "Archive via Utility",
+      "tactics": [
+        "collection"
+      ],
+      "reported_behavior": "7-Zip created password-protected archives, sometimes split into parts.",
+      "source_id": "MICROSOFT-2021",
+      "source_url": "https://www.microsoft.com/en-us/security/blog/2021/01/20/deep-dive-into-the-solorigate-second-stage-activation-from-sunburst-to-teardrop-and-raindrop/",
+      "mitre_url": "https://attack.mitre.org/techniques/T1560/001/",
+      "project_application": "Week 9 executed Linux tar/gzip on mock files; this is a portable behavior analogue.",
+      "proposed_hunt": "Review archiver command lines and source paths; correlate outputs and later egress.",
+      "evidence_status": "portable_lab"
+    },
+    {
+      "technique_id": "T1074.002",
+      "name": "Remote Data Staging",
+      "tactics": [
+        "collection"
+      ],
+      "reported_behavior": "Archives were staged on a victim OWA server.",
+      "source_id": "MITRE-C0024",
+      "source_url": "https://attack.mitre.org/campaigns/C0024/",
+      "mitre_url": "https://attack.mitre.org/techniques/T1074/002/",
+      "project_application": "Local out/ artifacts do not demonstrate remote staging.",
+      "proposed_hunt": "Join remote file writes, server role and authentication context.",
+      "evidence_status": "cti_only"
+    },
+    {
+      "technique_id": "T1048.002",
+      "name": "Exfiltration Over Asymmetric Encrypted Non-C2 Protocol",
+      "tactics": [
+        "exfiltration"
+      ],
+      "reported_behavior": "An HTTPS request retrieved an archive staged on the victim OWA server.",
+      "source_id": "MITRE-C0024",
+      "source_url": "https://attack.mitre.org/campaigns/C0024/",
+      "mitre_url": "https://attack.mitre.org/techniques/T1048/002/",
+      "project_application": "No exfiltration was executed; an archive alone proves no data transfer.",
+      "proposed_hunt": "Correlate proxy/server requests, transfer sizes and staged-file access.",
+      "evidence_status": "cti_only"
+    }
+  ]
+}

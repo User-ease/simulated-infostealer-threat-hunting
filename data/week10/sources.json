@@ -1,0 +1,44 @@
+[
+  {
+    "id": "MITRE-G0016",
+    "title": "MITRE ATT&CK APT29 group G0016",
+    "url": "https://attack.mitre.org/groups/G0016/",
+    "date_context": "Live profile checked 2026-11-08",
+    "accessed": "2026-11-08"
+  },
+  {
+    "id": "MITRE-C0024",
+    "title": "MITRE ATT&CK SolarWinds Compromise C0024",
+    "url": "https://attack.mitre.org/campaigns/C0024/",
+    "date_context": "Live profile checked 2026-11-08",
+    "accessed": "2026-11-08"
+  },
+  {
+    "id": "MANDIANT-2020",
+    "title": "FireEye Mandiant SolarWinds supply chain investigation",
+    "url": "https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor",
+    "date_context": "2020-12-13; attribution update May 2022",
+    "accessed": "2026-11-08"
+  },
+  {
+    "id": "MICROSOFT-2021",
+    "title": "Microsoft Solorigate second-stage investigation",
+    "url": "https://www.microsoft.com/en-us/security/blog/2021/01/20/deep-dive-into-the-solorigate-second-stage-activation-from-sunburst-to-teardrop-and-raindrop/",
+    "date_context": "2021-01-20",
+    "accessed": "2026-11-08"
+  },
+  {
+    "id": "CROWDSTRIKE-2022",
+    "title": "CrowdStrike Observations from the StellarParticle Campaign",
+    "url": "https://www.crowdstrike.com/en-us/blog/observations-from-the-stellarparticle-campaign/",
+    "date_context": "2022-01-27; includes investigations extending into 2021",
+    "accessed": "2026-11-08"
+  },
+  {
+    "id": "MITRE-VERSION",
+    "title": "MITRE ATT&CK version history",
+    "url": "https://attack.mitre.org/resources/versions/",
+    "date_context": "v20.1 current when checked 2026-11-08",
+    "accessed": "2026-11-08"
+  }
+]

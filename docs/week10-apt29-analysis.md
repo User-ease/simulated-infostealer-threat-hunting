@@ -1,0 +1,59 @@
+# Week 10 - APT29 TTP analysis and ATT&CK mapping
+
+Project: **Forensic Analysis and Detection of Simulated Infostealer-Like Activity in Windows Environments**. Prepared 8 November 2026 for Introduction to Threat Hunting, syllabus 2026-2027 section 3.3, Week 10. The task is to analyze APT29 or APT41 and map the reported techniques to ATT&CK.
+
+## Result and scope
+
+We analyzed APT29, with SolarWinds as the main case and explicitly separated StellarParticle follow-on reporting. Ten selected techniques are mapped below. The practical connection is browser-data collection and archiving, but APT29 is an espionage actor: shared behaviors do not make our simulated infostealer an APT29 implant or establish attribution.
+
+MITRE identifies APT29 as G0016 and associates it with Russia's SVR. Its SolarWinds campaign entry is C0024. These are external intelligence assessments, not findings from our laptop. [MITRE G0016](https://attack.mitre.org/groups/G0016/)
+
+FireEye's December 2020 investigation describes the compromised Orion update mechanism and SUNBURST. Its later May 2022 update attributes the previously tracked UNC2452 activity to APT29. The report also describes temporary changes to legitimate scheduled tasks, followed by restoration. Those details support separate delivery and persistence hypotheses. [Mandiant investigation](https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor)
+
+CrowdStrike's January 2022 StellarParticle report includes investigations extending into 2021. It reports Chrome cookie theft, access to DPAPI material and evidence of saved-password export. We keep that reporting period separate from the SolarWinds campaign timeline; it is not evidence that all of these procedures occurred in every Orion intrusion. [CrowdStrike investigation](https://www.crowdstrike.com/en-us/blog/observations-from-the-stellarparticle-campaign/)
+
+## Evidence-qualified technique mapping
+
+The behavior column summarizes external reporting. The application column states what our project actually demonstrates. Tactics are current ATT&CK mappings, checked on 8 November 2026. The [version history](https://attack.mitre.org/resources/versions/) identifies **v20.1**; historical source terminology is preserved only within source context. A technique can map to several tactics; that does not establish all tactical uses in the cited incident.
+
+| Technique | Tactic | Reported behavior and source | Project evidence |
+| --- | --- | --- | --- |
+| [T1195.002 Compromise Software Supply Chain](https://attack.mitre.org/techniques/T1195/002/) | Initial Access | Trojanized Orion software updates delivered SUNBURST. [MANDIANT-2020](https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor) | Delivery-chain context; not executed. |
+| [T1059.001 PowerShell](https://attack.mitre.org/techniques/T1059/001/) | Execution | PowerShell supported post-compromise commands and task operations. [MITRE-C0024](https://attack.mitre.org/campaigns/C0024/) | Weeks 5-7 contain historical Windows observations; no fresh Windows run. |
+| [T1059.003 Windows Command Shell](https://attack.mitre.org/techniques/T1059/003/) | Execution | cmd.exe executed commands on remote machines. [MITRE-C0024](https://attack.mitre.org/campaigns/C0024/) | Historical cmd control is not validation of remote execution. |
+| [T1053.005 Scheduled Task](https://attack.mitre.org/techniques/T1053/005/) | Execution, Persistence, Privilege Escalation | Existing scheduled tasks were temporarily modified, then restored. [MANDIANT-2020](https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor) | Week 8 planned persistence; not executed in Week 9. |
+| [T1555.003 Credentials from Web Browsers](https://attack.mitre.org/techniques/T1555/003/) | Credential Access | Investigators recovered evidence of saved Chrome password export. [CROWDSTRIKE-2022](https://www.crowdstrike.com/en-us/blog/observations-from-the-stellarparticle-campaign/) | Mock JSON is not a browser credential store or DPAPI validation. |
+| [T1539 Steal Web Session Cookie](https://attack.mitre.org/techniques/T1539/) | Credential Access | Chrome profile and DPAPI material were copied to obtain session cookies. [CROWDSTRIKE-2022](https://www.crowdstrike.com/en-us/blog/observations-from-the-stellarparticle-campaign/) | Fake cookies were archived; no valid session or cookie theft was tested. |
+| [T1005 Data from Local System](https://attack.mitre.org/techniques/T1005/) | Collection | Files were extracted from compromised networks. [MITRE-C0024](https://attack.mitre.org/campaigns/C0024/) | Only generated lab files were read; no general collection detector. |
+| [T1560.001 Archive via Utility](https://attack.mitre.org/techniques/T1560/001/) | Collection | 7-Zip created password-protected archives, sometimes split into parts. [MICROSOFT-2021](https://www.microsoft.com/en-us/security/blog/2021/01/20/deep-dive-into-the-solorigate-second-stage-activation-from-sunburst-to-teardrop-and-raindrop/) | Week 9 executed Linux tar/gzip on mock files; this is a portable behavior analogue. |
+| [T1074.002 Remote Data Staging](https://attack.mitre.org/techniques/T1074/002/) | Collection | Archives were staged on a victim OWA server. [MITRE-C0024](https://attack.mitre.org/campaigns/C0024/) | Local out/ artifacts do not demonstrate remote staging. |
+| [T1048.002 Exfiltration Over Asymmetric Encrypted Non-C2 Protocol](https://attack.mitre.org/techniques/T1048/002/) | Exfiltration | An HTTPS request retrieved an archive staged on the victim OWA server. [MITRE-C0024](https://attack.mitre.org/campaigns/C0024/) | No exfiltration was executed; an archive alone proves no data transfer. |
+
+![Selected ATT&CK mappings and project evidence](../images/week10/apt29-coverage.svg)
+
+The diagram is an original summary of the mapping table, not a screenshot of ATT&CK Navigator. The [Navigator layer](../data/week10/apt29-navigator-layer.json) provides an importable view. Its colors represent evidence type, never a detection percentage. The layer identifies major version 20; the detailed mapping was checked against the v20.1 website. The [validation record](../data/week10/attack-validation.json) confirms all ten technique names, tactics and active status against the official v20.1 STIX bundle and records its SHA-256. The [JSON](../data/week10/apt29-mapping.json) and [CSV](../data/week10/apt29-mapping.csv) retain source URLs and proposed hunts for each row.
+
+## What transfers to the group topic
+
+**Archive behavior is the strongest new connection.** Microsoft's investigation reports 7-Zip archive creation, including protected and split archives. Our Week 9 tar/gzip tests exercise the same broad archive-via-utility concept on Linux. They validate our collection and search pipeline for those commands only. They do not test Windows 7-Zip, password protection, splitting or APT29 malware. [Microsoft investigation](https://www.microsoft.com/en-us/security/blog/2021/01/20/deep-dive-into-the-solorigate-second-stage-activation-from-sunburst-to-teardrop-and-raindrop/)
+
+**Credential access remains a visibility gap.** T1555.003 concerns browser-stored credentials; T1539 concerns session cookies. A fake JSON file containing training strings is neither an encrypted browser store nor an authenticated session. The presence of `cookies.json` inside a test archive must not be described as demonstrated cookie theft. The two source-reported behaviors justify future sensor work, not a completed detection claim. [T1555.003](https://attack.mitre.org/techniques/T1555/003/), [T1539](https://attack.mitre.org/techniques/T1539/)
+
+**Interpreter identity matters.** T1059.004 in Week 9 is Unix Shell. It cannot be relabelled T1059.001 PowerShell or T1059.003 Windows Command Shell. The Linux shell test is excluded from the APT29 layer because this evidence set does not establish that procedure for APT29. Earlier Windows PowerShell evidence remains historical and is linked in the [Weeks 6-7 report](week_6-7.md).
+
+## Proposed next hunts
+
+These are analyst proposals, not queries validated against APT29 incidents.
+
+1. **Collection followed by archiving.** On a dedicated Windows VM, correlate an unusual process reading synthetic browser-profile files with an archiver launch and archive creation. Capture file-read telemetry with a sensor that actually supplies it; process creation or a file-created event alone does not prove a read. Test normal backup activity as a control.
+2. **Cookie access followed by session anomalies.** Combine suitable endpoint file-access records with identity sign-in and session telemetry. An endpoint-only archive record cannot establish reuse of a cookie in a cloud account.
+3. **Temporary scheduled-task changes.** Compare task definitions before and after execution, then correlate the action with process creation. Preserve registration/update events even when the task is restored. The Week 8 task plan has not been executed here.
+4. **Staging followed by transfer.** Join archive creation with authenticated remote file writes or outbound requests. Local staging is different from T1074.002 remote staging; compression alone does not demonstrate T1048.002 exfiltration.
+
+## Conclusions and limitations
+
+The increment delivers a sourced APT29 analysis, ten ATT&CK mappings, a Navigator layer and a prioritized hunt backlog. It connects the project's newly executed archive tests to intelligence without claiming equivalence between a training script and an APT campaign. The mapping is a selected analytical subset, not the full APT29 technique catalogue. No APT29 samples, real credential stores, valid cookies, external C2 or exfiltration destinations were used.
+
+All source access dates are recorded in [sources.json](../data/week10/sources.json). Teacher defense remains to be performed by the group; the [7-8 minute outline](weeks9-10-defense.md) covers both increments.
+
+**AI assistance:** OpenAI Codex assisted with source review, mapping, code, execution, validation and report writing. The group must review and understand the materials and follow the course's instructor-permission and disclosure requirements. This record does not assert that permission was granted.
