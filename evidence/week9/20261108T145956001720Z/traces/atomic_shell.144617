@@ -1,0 +1,9 @@
+1794149996.008614 execve("/bin/sh", ["/bin/sh", "-c", "for i in $(seq 1 5); do echo \"$i, Atomic Red Team was here!\"; sleep 1; done\n"], 0x7ffdfe6e6650 /* 4 vars */) = 0
+1794149996.010114 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+1794149996.010473 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+1794149996.017410 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=144618, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1794149997.022196 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=144619, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1794149998.027984 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=144621, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1794149999.033812 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=144627, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1794150000.039483 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=144628, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1794150001.045012 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=144629, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---

@@ -1,0 +1,31 @@
+{
+  "index": "lab-week9-20261108t145956001720z",
+  "event_count": 18,
+  "counts": {
+    "inventory": 18,
+    "archive_utility": 5,
+    "lab_browser_archive": 2
+  },
+  "matching_cases": {
+    "inventory": [
+      "atomic_gzip",
+      "atomic_shell",
+      "atomic_tar",
+      "benign_backup",
+      "plain_control"
+    ],
+    "archive_utility": [
+      "atomic_gzip",
+      "atomic_tar",
+      "benign_backup"
+    ],
+    "lab_browser_archive": [
+      "atomic_gzip",
+      "atomic_tar"
+    ]
+  },
+  "regression_assertions": 20,
+  "regression_passed": true,
+  "ingestion_count_passed": true,
+  "refined_cases_passed": true
+}

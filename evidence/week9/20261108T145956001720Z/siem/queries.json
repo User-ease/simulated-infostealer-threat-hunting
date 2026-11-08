@@ -1,0 +1,59 @@
+{
+  "inventory": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "event.dataset": "lab.strace"
+          }
+        }
+      ]
+    }
+  },
+  "archive_utility": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "event.dataset": "lab.strace"
+          }
+        },
+        {
+          "terms": {
+            "process.name": [
+              "tar",
+              "gzip"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "lab_browser_archive": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "event.dataset": "lab.strace"
+          }
+        },
+        {
+          "terms": {
+            "process.name": [
+              "tar",
+              "gzip"
+            ]
+          }
+        },
+        {
+          "wildcard": {
+            "process.args": {
+              "value": "*lab-browser*",
+              "case_insensitive": true
+            }
+          }
+        }
+      ]
+    }
+  }
+}

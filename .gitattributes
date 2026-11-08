@@ -21,3 +21,9 @@
 /tests/test_week5_runner.py -text
 /evidence/week5-replays/** -text
 /evidence/week5-validation/** -text
+
+# Week 9 evidence and code hashes are byte-exact across platforms.
+/evidence/week9/** -text
+/scripts/collect_week9_atomics.py -text
+/scripts/analyze_week9_elastic.py -text
+/data/week9/selected-atomics.json -text

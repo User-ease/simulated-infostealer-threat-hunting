@@ -1,0 +1,109 @@
+{
+  "run_id": "20261108T145956001720Z",
+  "finished_at": "2026-11-08T15:00:01.118585+00:00",
+  "platform": "Linux x86_64",
+  "python_version": "3.12.3",
+  "collector_sha256": "b1daab00ef0db528e91c70b00a5dde1b90c82f6c0b03981a9c642176aa910189",
+  "selection_sha256": "b06c46d951485faaa9e9d8c0ea82b742579687f481f238c9d5635a68bd6ffc62",
+  "upstream_commit": "a0e3f9bc69fed2fd711bd1f1aa87a40c33482fe6",
+  "sensor": "strace child-process syscall tracing; not a system-wide agent or Windows sensor",
+  "host_name_policy": "host.name is the fixed pseudonym LAB-LINUX; no actual hostname collected",
+  "cases": [
+    {
+      "case": "atomic_shell",
+      "command": "for i in $(seq 1 5); do echo \"$i, Atomic Red Team was here!\"; sleep 1; done\n",
+      "started_at": "2026-11-08T14:59:56.002682+00:00",
+      "finished_at": "2026-11-08T15:00:01.050601+00:00",
+      "exit_code": 0,
+      "successful_execve_records": 7,
+      "atomic_guid": "b04ed73c-7d43-4dc8-b563-a2fc595cba1a",
+      "technique": "T1059.004",
+      "inputs": {}
+    },
+    {
+      "case": "atomic_gzip",
+      "command": "test -e lab-browser/mock-browser.json && gzip -k lab-browser/mock-browser.json || (echo 'FAKE-TRAINING-DATA' >> lab-browser/mock-browser.json; gzip -k lab-browser/mock-browser.json)\n",
+      "started_at": "2026-11-08T15:00:01.050651+00:00",
+      "finished_at": "2026-11-08T15:00:01.063679+00:00",
+      "exit_code": 0,
+      "successful_execve_records": 2,
+      "atomic_guid": "cde3c2af-3485-49eb-9c1f-0ed60e9cc0af",
+      "technique": "T1560.001",
+      "inputs": {
+        "input_file": "lab-browser/mock-browser.json",
+        "input_content": "FAKE-TRAINING-DATA"
+      }
+    },
+    {
+      "case": "atomic_tar",
+      "command": "tar -cvzf out/browser.tar.gz lab-browser\n",
+      "started_at": "2026-11-08T15:00:01.063695+00:00",
+      "finished_at": "2026-11-08T15:00:01.084364+00:00",
+      "exit_code": 0,
+      "successful_execve_records": 4,
+      "atomic_guid": "7af2b51e-ad1c-498c-aca8-d3290c19535a",
+      "technique": "T1560.001",
+      "inputs": {
+        "input_file_folder": "lab-browser",
+        "output_file": "out/browser.tar.gz"
+      }
+    },
+    {
+      "case": "benign_backup",
+      "command": "tar -cvzf out/ordinary-backup.tar.gz ordinary-docs\n",
+      "started_at": "2026-11-08T15:00:01.084378+00:00",
+      "finished_at": "2026-11-08T15:00:01.105035+00:00",
+      "exit_code": 0,
+      "successful_execve_records": 4
+    },
+    {
+      "case": "plain_control",
+      "command": "printf 'Ordinary control without archiving\\n'\n",
+      "started_at": "2026-11-08T15:00:01.105048+00:00",
+      "finished_at": "2026-11-08T15:00:01.110815+00:00",
+      "exit_code": 0,
+      "successful_execve_records": 1
+    }
+  ],
+  "cleanup": [
+    {
+      "case": "atomic_gzip",
+      "command": "rm -f lab-browser/mock-browser.json.gz\n",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "case": "atomic_tar",
+      "command": "rm -f out/browser.tar.gz\n",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "case": "benign_backup",
+      "command": "rm -f out/ordinary-backup.tar.gz\n",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "verification": {
+    "gzip_roundtrip": true,
+    "source_sha256": "9433d13095c1162cf82eda9b2a1eb05bd7f7ad81880d78bf961af725f884459e",
+    "gzip_sha256": "8f95c374d728ebb6d537477a128b16b86259d60e8331d8060ce7396a61919130",
+    "tar_sha256": "9122860900e517354d070f84eb7974cf5b05c2ff1f4102c84ee5d9c8f99fdffd",
+    "tar_members": [
+      "lab-browser",
+      "lab-browser/mock-browser.json",
+      "lab-browser/mock-browser.json.gz",
+      "lab-browser/cookies.json"
+    ],
+    "tar_roundtrip": true,
+    "shell_marker_lines": true,
+    "cleanup_passed": true,
+    "all_commands_succeeded": true,
+    "passed": true
+  },
+  "event_count": 18
+}

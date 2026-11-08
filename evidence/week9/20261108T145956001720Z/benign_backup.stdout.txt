@@ -1,0 +1,2 @@
+ordinary-docs/
+ordinary-docs/notes.txt

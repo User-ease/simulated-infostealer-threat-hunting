@@ -1,0 +1,5 @@
+1794150001.058644 execve("/usr/bin/gzip", ["gzip", "-k", "lab-browser/mock-browser.json"], 0x5efa2d817810 /* 5 vars */) = 0
+1794150001.059822 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+1794150001.060153 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+1794150001.061568 openat(AT_FDCWD, "lab-browser/mock-browser.json", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW) = 3
+1794150001.061806 openat(AT_FDCWD, "lab-browser/mock-browser.json.gz", O_WRONLY|O_CREAT|O_EXCL, 0600) = 4

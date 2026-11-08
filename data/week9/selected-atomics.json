@@ -1,0 +1,58 @@
+{
+  "upstream_commit": "a0e3f9bc69fed2fd711bd1f1aa87a40c33482fe6",
+  "retrieved_on": "2026-11-08",
+  "execution_method": "Manual executor commands from pinned Atomic Red Team YAML; custom strace wrapper, not Invoke-AtomicRedTeam.",
+  "tests": [
+    {
+      "technique": "T1059.004",
+      "test_number_at_pin": 8,
+      "name": "Command line scripts",
+      "guid": "b04ed73c-7d43-4dc8-b563-a2fc595cba1a",
+      "supported_platforms": [
+        "linux"
+      ],
+      "executor": {
+        "name": "sh",
+        "command": "for i in $(seq 1 5); do echo \"$i, Atomic Red Team was here!\"; sleep 1; done\n"
+      },
+      "source_url": "https://github.com/redcanaryco/atomic-red-team/blob/a0e3f9bc69fed2fd711bd1f1aa87a40c33482fe6/atomics/T1059.004/T1059.004.yaml",
+      "source_file_sha256": "2a26f69f3fdcf6f3f2135d4405a184cfd365ed662c42f71fd4a1aa978b018021"
+    },
+    {
+      "technique": "T1560.001",
+      "test_number_at_pin": 6,
+      "name": "Data Compressed - nix - gzip Single File",
+      "guid": "cde3c2af-3485-49eb-9c1f-0ed60e9cc0af",
+      "supported_platforms": [
+        "linux",
+        "macos"
+      ],
+      "executor": {
+        "name": "sh",
+        "elevation_required": false,
+        "command": "test -e #{input_file} && gzip -k #{input_file} || (echo '#{input_content}' >> #{input_file}; gzip -k #{input_file})\n",
+        "cleanup_command": "rm -f #{input_file}.gz\n"
+      },
+      "source_url": "https://github.com/redcanaryco/atomic-red-team/blob/a0e3f9bc69fed2fd711bd1f1aa87a40c33482fe6/atomics/T1560.001/T1560.001.yaml",
+      "source_file_sha256": "d99ca0cbff6a6d43e5d82b694ce75b72688fca96e4b71e7127f4828e9b397887"
+    },
+    {
+      "technique": "T1560.001",
+      "test_number_at_pin": 7,
+      "name": "Data Compressed - nix - tar Folder or File",
+      "guid": "7af2b51e-ad1c-498c-aca8-d3290c19535a",
+      "supported_platforms": [
+        "linux",
+        "macos"
+      ],
+      "executor": {
+        "name": "sh",
+        "elevation_required": false,
+        "command": "tar -cvzf #{output_file} #{input_file_folder}\n",
+        "cleanup_command": "rm -f #{output_file}\n"
+      },
+      "source_url": "https://github.com/redcanaryco/atomic-red-team/blob/a0e3f9bc69fed2fd711bd1f1aa87a40c33482fe6/atomics/T1560.001/T1560.001.yaml",
+      "source_file_sha256": "d99ca0cbff6a6d43e5d82b694ce75b72688fca96e4b71e7127f4828e9b397887"
+    }
+  ]
+}

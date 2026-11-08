@@ -24,6 +24,12 @@ The project does not use real malware or real credentials. Instead, synthetic br
 
 * [Week 8](docs/week8-adversary-emulation-plan.md): adversary emulation plan (initial access → persistence → exfiltration) derived from the Week 4 Campaign 1 CTI, mapped to ATT&CK v20.0 with an [ATT&CK Navigator layer](data/week8-attack-navigator-layer.json) — planning deliverable; no attack code executed.
 
+* [Week 9](docs/week9-atomic-red-team.md): three pinned Linux Atomic Red Team tests plus two benign controls; native strace evidence and Elasticsearch queries produced 18 → 5 → 2 events. Twenty query boundary assertions passed on 8 November 2026. Windows-specific validation is not claimed.
+
+## Weeks 9 and 10
+
+The [Week 9 practical report](docs/week9-atomic-red-team.md) provides commands, source GUIDs, raw traces, archive checks, cleanup, and actual SIEM responses. This increment is a Linux extension of the Windows-focused project. It validates supported shell and archive behaviors on synthetic data.
+
 ## Week 8: Adversary Emulation Plan
 
 The [Week 8 report](docs/week8-adversary-emulation-plan.md) develops a safe, synthetic adversary emulation plan from the Week 4 ACR Stealer Campaign 1 reconstruction, as required by the syllabus (section 3.3, Week 8). It covers the syllabus chain (initial access → persistence → data exfiltration) across six stages, deliberately weighted toward the Collection and Credential-Access behaviour that defines an infostealer, with PowerShell used only as the loader rather than as the headline technique. It defines rules of engagement, maps each stage to ATT&CK v20.0, states the telemetry and existing project detections expected for each (the Week 5 PowerShell hunt and the Weeks 6–7 CAR analytic), and hands off to the Week 9 Atomic Red Team execution. No technique is executed in this increment.

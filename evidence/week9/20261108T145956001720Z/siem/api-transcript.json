@@ -1,0 +1,2101 @@
+[
+  {
+    "timestamp": "2026-11-08T15:16:20.528939+00:00",
+    "method": "GET",
+    "endpoint": "/",
+    "request": null,
+    "response": {
+      "name": "week9-lab",
+      "cluster_name": "threat-hunting-week9",
+      "cluster_uuid": "rL2ktYdATqKhKw8WA0kV7w",
+      "version": {
+        "number": "9.5.5",
+        "build_flavor": "default",
+        "build_type": "tar",
+        "build_hash": "48acba663b09e70b115dd879329141506c377890",
+        "build_date": "2026-09-30T22:12:03.984586187Z",
+        "build_snapshot": false,
+        "lucene_version": "10.5.1",
+        "minimum_wire_compatibility_version": "8.19.0",
+        "minimum_index_compatibility_version": "8.0.0"
+      },
+      "tagline": "You Know, for Search"
+    }
+  },
+  {
+    "timestamp": "2026-11-08T15:16:20.581508+00:00",
+    "method": "PUT",
+    "endpoint": "/lab-week9-20261108t145956001720z",
+    "request": {
+      "settings": {
+        "number_of_shards": 1,
+        "number_of_replicas": 0,
+        "analysis": {
+          "normalizer": {
+            "lowercase": {
+              "type": "custom",
+              "filter": [
+                "lowercase"
+              ]
+            }
+          }
+        }
+      },
+      "mappings": {
+        "properties": {
+          "@timestamp": {
+            "type": "date"
+          },
+          "event": {
+            "properties": {
+              "dataset": {
+                "type": "keyword"
+              },
+              "action": {
+                "type": "keyword"
+              },
+              "type": {
+                "type": "keyword"
+              },
+              "category": {
+                "type": "keyword"
+              }
+            }
+          },
+          "process": {
+            "properties": {
+              "name": {
+                "type": "keyword",
+                "normalizer": "lowercase"
+              },
+              "pid": {
+                "type": "long"
+              },
+              "executable": {
+                "type": "keyword"
+              },
+              "args": {
+                "type": "keyword",
+                "ignore_above": 32760
+              },
+              "command_line": {
+                "type": "wildcard"
+              }
+            }
+          },
+          "lab": {
+            "properties": {
+              "case": {
+                "type": "keyword"
+              },
+              "run_id": {
+                "type": "keyword"
+              },
+              "source_file": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      }
+    },
+    "response": {
+      "acknowledged": true,
+      "shards_acknowledged": true,
+      "index": "lab-week9-20261108t145956001720z"
+    }
+  },
+  {
+    "timestamp": "2026-11-08T15:16:20.788186+00:00",
+    "method": "POST",
+    "endpoint": "/_bulk?refresh=wait_for",
+    "request": "{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"0\"}}\n{\"@timestamp\": \"2026-11-08T14:59:56.008614+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144617, \"executable\": \"/bin/sh\", \"name\": \"sh\", \"args\": [\"/bin/sh\", \"-c\", \"for i in $(seq 1 5); do echo \\\"$i, Atomic Red Team was here!\\\"; sleep 1; done\\n\"], \"command_line\": \"/bin/sh -c 'for i in $(seq 1 5); do echo \\\"$i, Atomic Red Team was here!\\\"; sleep 1; done\\n'\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"atomic_shell\", \"source_file\": \"traces/atomic_shell.144617\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"1\"}}\n{\"@timestamp\": \"2026-11-08T14:59:56.013686+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144618, \"executable\": \"/usr/bin/seq\", \"name\": \"seq\", \"args\": [\"seq\", \"1\", \"5\"], \"command_line\": \"seq 1 5\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"atomic_shell\", \"source_file\": \"traces/atomic_shell.144618\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"2\"}}\n{\"@timestamp\": \"2026-11-08T14:59:56.017918+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144619, \"executable\": \"/usr/bin/sleep\", \"name\": \"sleep\", \"args\": [\"sleep\", \"1\"], \"command_line\": \"sleep 1\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"atomic_shell\", \"source_file\": \"traces/atomic_shell.144619\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"3\"}}\n{\"@timestamp\": \"2026-11-08T14:59:57.023065+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144621, \"executable\": \"/usr/bin/sleep\", \"name\": \"sleep\", \"args\": [\"sleep\", \"1\"], \"command_line\": \"sleep 1\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"atomic_shell\", \"source_file\": \"traces/atomic_shell.144621\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"4\"}}\n{\"@timestamp\": \"2026-11-08T14:59:58.028739+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144627, \"executable\": \"/usr/bin/sleep\", \"name\": \"sleep\", \"args\": [\"sleep\", \"1\"], \"command_line\": \"sleep 1\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"atomic_shell\", \"source_file\": \"traces/atomic_shell.144627\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"5\"}}\n{\"@timestamp\": \"2026-11-08T14:59:59.034882+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144628, \"executable\": \"/usr/bin/sleep\", \"name\": \"sleep\", \"args\": [\"sleep\", \"1\"], \"command_line\": \"sleep 1\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"atomic_shell\", \"source_file\": \"traces/atomic_shell.144628\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"6\"}}\n{\"@timestamp\": \"2026-11-08T15:00:00.040515+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144629, \"executable\": \"/usr/bin/sleep\", \"name\": \"sleep\", \"args\": [\"sleep\", \"1\"], \"command_line\": \"sleep 1\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"atomic_shell\", \"source_file\": \"traces/atomic_shell.144629\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"7\"}}\n{\"@timestamp\": \"2026-11-08T15:00:01.054984+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144633, \"executable\": \"/bin/sh\", \"name\": \"sh\", \"args\": [\"/bin/sh\", \"-c\", \"test -e lab-browser/mock-browser.json && gzip -k lab-browser/mock-browser.json || (echo 'FAKE-TRAINING-DATA' >> lab-browser/mock-browser.json; gzip -k lab-browser/mock-browser.json)\\n\"], \"command_line\": \"/bin/sh -c 'test -e lab-browser/mock-browser.json && gzip -k lab-browser/mock-browser.json || (echo '\\\"'\\\"'FAKE-TRAINING-DATA'\\\"'\\\"' >> lab-browser/mock-browser.json; gzip -k lab-browser/mock-browser.json)\\n'\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"atomic_gzip\", \"source_file\": \"traces/atomic_gzip.144633\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"8\"}}\n{\"@timestamp\": \"2026-11-08T15:00:01.058644+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144634, \"executable\": \"/usr/bin/gzip\", \"name\": \"gzip\", \"args\": [\"gzip\", \"-k\", \"lab-browser/mock-browser.json\"], \"command_line\": \"gzip -k lab-browser/mock-browser.json\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"atomic_gzip\", \"source_file\": \"traces/atomic_gzip.144634\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"9\"}}\n{\"@timestamp\": \"2026-11-08T15:00:01.066418+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144638, \"executable\": \"/bin/sh\", \"name\": \"sh\", \"args\": [\"/bin/sh\", \"-c\", \"tar -cvzf out/browser.tar.gz lab-browser\\n\"], \"command_line\": \"/bin/sh -c 'tar -cvzf out/browser.tar.gz lab-browser\\n'\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"atomic_tar\", \"source_file\": \"traces/atomic_tar.144638\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"10\"}}\n{\"@timestamp\": \"2026-11-08T15:00:01.069368+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144639, \"executable\": \"/usr/bin/tar\", \"name\": \"tar\", \"args\": [\"tar\", \"-cvzf\", \"out/browser.tar.gz\", \"lab-browser\"], \"command_line\": \"tar -cvzf out/browser.tar.gz lab-browser\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"atomic_tar\", \"source_file\": \"traces/atomic_tar.144639\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"11\"}}\n{\"@timestamp\": \"2026-11-08T15:00:01.074552+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144640, \"executable\": \"/bin/sh\", \"name\": \"sh\", \"args\": [\"/bin/sh\", \"-c\", \"gzip\"], \"command_line\": \"/bin/sh -c gzip\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"atomic_tar\", \"source_file\": \"traces/atomic_tar.144640\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"12\"}}\n{\"@timestamp\": \"2026-11-08T15:00:01.077595+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144641, \"executable\": \"/usr/bin/gzip\", \"name\": \"gzip\", \"args\": [\"gzip\"], \"command_line\": \"gzip\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"atomic_tar\", \"source_file\": \"traces/atomic_tar.144641\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"13\"}}\n{\"@timestamp\": \"2026-11-08T15:00:01.086659+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144645, \"executable\": \"/bin/sh\", \"name\": \"sh\", \"args\": [\"/bin/sh\", \"-c\", \"tar -cvzf out/ordinary-backup.tar.gz ordinary-docs\\n\"], \"command_line\": \"/bin/sh -c 'tar -cvzf out/ordinary-backup.tar.gz ordinary-docs\\n'\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"benign_backup\", \"source_file\": \"traces/benign_backup.144645\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"14\"}}\n{\"@timestamp\": \"2026-11-08T15:00:01.090122+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144646, \"executable\": \"/usr/bin/tar\", \"name\": \"tar\", \"args\": [\"tar\", \"-cvzf\", \"out/ordinary-backup.tar.gz\", \"ordinary-docs\"], \"command_line\": \"tar -cvzf out/ordinary-backup.tar.gz ordinary-docs\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"benign_backup\", \"source_file\": \"traces/benign_backup.144646\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"15\"}}\n{\"@timestamp\": \"2026-11-08T15:00:01.096210+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144647, \"executable\": \"/bin/sh\", \"name\": \"sh\", \"args\": [\"/bin/sh\", \"-c\", \"gzip\"], \"command_line\": \"/bin/sh -c gzip\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"benign_backup\", \"source_file\": \"traces/benign_backup.144647\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"16\"}}\n{\"@timestamp\": \"2026-11-08T15:00:01.099575+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144648, \"executable\": \"/usr/bin/gzip\", \"name\": \"gzip\", \"args\": [\"gzip\"], \"command_line\": \"gzip\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"benign_backup\", \"source_file\": \"traces/benign_backup.144648\", \"source_line\": 1}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z\", \"_id\": \"17\"}}\n{\"@timestamp\": \"2026-11-08T15:00:01.107529+00:00\", \"event\": {\"dataset\": \"lab.strace\", \"action\": \"exec\", \"type\": \"start\", \"category\": \"process\"}, \"host\": {\"name\": \"LAB-LINUX\", \"os\": {\"type\": \"linux\"}}, \"process\": {\"pid\": 144652, \"executable\": \"/bin/sh\", \"name\": \"sh\", \"args\": [\"/bin/sh\", \"-c\", \"printf 'Ordinary control without archiving\\\\n'\\n\"], \"command_line\": \"/bin/sh -c 'printf '\\\"'\\\"'Ordinary control without archiving\\\\n'\\\"'\\\"'\\n'\"}, \"lab\": {\"run_id\": \"20261108T145956001720Z\", \"case\": \"plain_control\", \"source_file\": \"traces/plain_control.144652\", \"source_line\": 1}}\n",
+    "response": {
+      "errors": false,
+      "took": 1000,
+      "items": [
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "0",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 0,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "1",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 1,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "2",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 2,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "3",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 3,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "4",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 4,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "5",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 5,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "6",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 6,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "7",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 7,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "8",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 8,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "9",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 9,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "10",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 10,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "11",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 11,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "12",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 12,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "13",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 13,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "14",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 14,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "15",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 15,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "16",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 16,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "17",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 17,
+            "_primary_term": 1,
+            "status": 201
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-11-08T15:16:21.750931+00:00",
+    "method": "POST",
+    "endpoint": "/lab-week9-20261108t145956001720z/_search",
+    "request": {
+      "size": 1000,
+      "track_total_hits": true,
+      "sort": [
+        {
+          "@timestamp": "asc"
+        }
+      ],
+      "query": {
+        "bool": {
+          "filter": [
+            {
+              "term": {
+                "event.dataset": "lab.strace"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "response": {
+      "took": 129,
+      "timed_out": false,
+      "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 18,
+          "relation": "eq"
+        },
+        "max_score": null,
+        "hits": [
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "0",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T14:59:56.008614+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144617,
+                "executable": "/bin/sh",
+                "name": "sh",
+                "args": [
+                  "/bin/sh",
+                  "-c",
+                  "for i in $(seq 1 5); do echo \"$i, Atomic Red Team was here!\"; sleep 1; done\n"
+                ],
+                "command_line": "/bin/sh -c 'for i in $(seq 1 5); do echo \"$i, Atomic Red Team was here!\"; sleep 1; done\n'"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_shell",
+                "source_file": "traces/atomic_shell.144617",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794149996008
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "1",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T14:59:56.013686+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144618,
+                "executable": "/usr/bin/seq",
+                "name": "seq",
+                "args": [
+                  "seq",
+                  "1",
+                  "5"
+                ],
+                "command_line": "seq 1 5"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_shell",
+                "source_file": "traces/atomic_shell.144618",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794149996013
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "2",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T14:59:56.017918+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144619,
+                "executable": "/usr/bin/sleep",
+                "name": "sleep",
+                "args": [
+                  "sleep",
+                  "1"
+                ],
+                "command_line": "sleep 1"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_shell",
+                "source_file": "traces/atomic_shell.144619",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794149996017
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "3",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T14:59:57.023065+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144621,
+                "executable": "/usr/bin/sleep",
+                "name": "sleep",
+                "args": [
+                  "sleep",
+                  "1"
+                ],
+                "command_line": "sleep 1"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_shell",
+                "source_file": "traces/atomic_shell.144621",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794149997023
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "4",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T14:59:58.028739+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144627,
+                "executable": "/usr/bin/sleep",
+                "name": "sleep",
+                "args": [
+                  "sleep",
+                  "1"
+                ],
+                "command_line": "sleep 1"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_shell",
+                "source_file": "traces/atomic_shell.144627",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794149998028
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "5",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T14:59:59.034882+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144628,
+                "executable": "/usr/bin/sleep",
+                "name": "sleep",
+                "args": [
+                  "sleep",
+                  "1"
+                ],
+                "command_line": "sleep 1"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_shell",
+                "source_file": "traces/atomic_shell.144628",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794149999034
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "6",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:00.040515+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144629,
+                "executable": "/usr/bin/sleep",
+                "name": "sleep",
+                "args": [
+                  "sleep",
+                  "1"
+                ],
+                "command_line": "sleep 1"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_shell",
+                "source_file": "traces/atomic_shell.144629",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150000040
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "7",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.054984+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144633,
+                "executable": "/bin/sh",
+                "name": "sh",
+                "args": [
+                  "/bin/sh",
+                  "-c",
+                  "test -e lab-browser/mock-browser.json && gzip -k lab-browser/mock-browser.json || (echo 'FAKE-TRAINING-DATA' >> lab-browser/mock-browser.json; gzip -k lab-browser/mock-browser.json)\n"
+                ],
+                "command_line": "/bin/sh -c 'test -e lab-browser/mock-browser.json && gzip -k lab-browser/mock-browser.json || (echo '\"'\"'FAKE-TRAINING-DATA'\"'\"' >> lab-browser/mock-browser.json; gzip -k lab-browser/mock-browser.json)\n'"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_gzip",
+                "source_file": "traces/atomic_gzip.144633",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001054
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "8",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.058644+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144634,
+                "executable": "/usr/bin/gzip",
+                "name": "gzip",
+                "args": [
+                  "gzip",
+                  "-k",
+                  "lab-browser/mock-browser.json"
+                ],
+                "command_line": "gzip -k lab-browser/mock-browser.json"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_gzip",
+                "source_file": "traces/atomic_gzip.144634",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001058
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "9",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.066418+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144638,
+                "executable": "/bin/sh",
+                "name": "sh",
+                "args": [
+                  "/bin/sh",
+                  "-c",
+                  "tar -cvzf out/browser.tar.gz lab-browser\n"
+                ],
+                "command_line": "/bin/sh -c 'tar -cvzf out/browser.tar.gz lab-browser\n'"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_tar",
+                "source_file": "traces/atomic_tar.144638",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001066
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "10",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.069368+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144639,
+                "executable": "/usr/bin/tar",
+                "name": "tar",
+                "args": [
+                  "tar",
+                  "-cvzf",
+                  "out/browser.tar.gz",
+                  "lab-browser"
+                ],
+                "command_line": "tar -cvzf out/browser.tar.gz lab-browser"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_tar",
+                "source_file": "traces/atomic_tar.144639",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001069
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "11",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.074552+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144640,
+                "executable": "/bin/sh",
+                "name": "sh",
+                "args": [
+                  "/bin/sh",
+                  "-c",
+                  "gzip"
+                ],
+                "command_line": "/bin/sh -c gzip"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_tar",
+                "source_file": "traces/atomic_tar.144640",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001074
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "12",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.077595+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144641,
+                "executable": "/usr/bin/gzip",
+                "name": "gzip",
+                "args": [
+                  "gzip"
+                ],
+                "command_line": "gzip"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_tar",
+                "source_file": "traces/atomic_tar.144641",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001077
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "13",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.086659+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144645,
+                "executable": "/bin/sh",
+                "name": "sh",
+                "args": [
+                  "/bin/sh",
+                  "-c",
+                  "tar -cvzf out/ordinary-backup.tar.gz ordinary-docs\n"
+                ],
+                "command_line": "/bin/sh -c 'tar -cvzf out/ordinary-backup.tar.gz ordinary-docs\n'"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "benign_backup",
+                "source_file": "traces/benign_backup.144645",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001086
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "14",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.090122+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144646,
+                "executable": "/usr/bin/tar",
+                "name": "tar",
+                "args": [
+                  "tar",
+                  "-cvzf",
+                  "out/ordinary-backup.tar.gz",
+                  "ordinary-docs"
+                ],
+                "command_line": "tar -cvzf out/ordinary-backup.tar.gz ordinary-docs"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "benign_backup",
+                "source_file": "traces/benign_backup.144646",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001090
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "15",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.096210+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144647,
+                "executable": "/bin/sh",
+                "name": "sh",
+                "args": [
+                  "/bin/sh",
+                  "-c",
+                  "gzip"
+                ],
+                "command_line": "/bin/sh -c gzip"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "benign_backup",
+                "source_file": "traces/benign_backup.144647",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001096
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "16",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.099575+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144648,
+                "executable": "/usr/bin/gzip",
+                "name": "gzip",
+                "args": [
+                  "gzip"
+                ],
+                "command_line": "gzip"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "benign_backup",
+                "source_file": "traces/benign_backup.144648",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001099
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "17",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.107529+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144652,
+                "executable": "/bin/sh",
+                "name": "sh",
+                "args": [
+                  "/bin/sh",
+                  "-c",
+                  "printf 'Ordinary control without archiving\\n'\n"
+                ],
+                "command_line": "/bin/sh -c 'printf '\"'\"'Ordinary control without archiving\\n'\"'\"'\n'"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "plain_control",
+                "source_file": "traces/plain_control.144652",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001107
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-11-08T15:16:21.900057+00:00",
+    "method": "POST",
+    "endpoint": "/lab-week9-20261108t145956001720z/_search",
+    "request": {
+      "size": 1000,
+      "track_total_hits": true,
+      "sort": [
+        {
+          "@timestamp": "asc"
+        }
+      ],
+      "query": {
+        "bool": {
+          "filter": [
+            {
+              "term": {
+                "event.dataset": "lab.strace"
+              }
+            },
+            {
+              "terms": {
+                "process.name": [
+                  "tar",
+                  "gzip"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "response": {
+      "took": 32,
+      "timed_out": false,
+      "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 5,
+          "relation": "eq"
+        },
+        "max_score": null,
+        "hits": [
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "8",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.058644+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144634,
+                "executable": "/usr/bin/gzip",
+                "name": "gzip",
+                "args": [
+                  "gzip",
+                  "-k",
+                  "lab-browser/mock-browser.json"
+                ],
+                "command_line": "gzip -k lab-browser/mock-browser.json"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_gzip",
+                "source_file": "traces/atomic_gzip.144634",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001058
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "10",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.069368+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144639,
+                "executable": "/usr/bin/tar",
+                "name": "tar",
+                "args": [
+                  "tar",
+                  "-cvzf",
+                  "out/browser.tar.gz",
+                  "lab-browser"
+                ],
+                "command_line": "tar -cvzf out/browser.tar.gz lab-browser"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_tar",
+                "source_file": "traces/atomic_tar.144639",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001069
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "12",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.077595+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144641,
+                "executable": "/usr/bin/gzip",
+                "name": "gzip",
+                "args": [
+                  "gzip"
+                ],
+                "command_line": "gzip"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_tar",
+                "source_file": "traces/atomic_tar.144641",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001077
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "14",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.090122+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144646,
+                "executable": "/usr/bin/tar",
+                "name": "tar",
+                "args": [
+                  "tar",
+                  "-cvzf",
+                  "out/ordinary-backup.tar.gz",
+                  "ordinary-docs"
+                ],
+                "command_line": "tar -cvzf out/ordinary-backup.tar.gz ordinary-docs"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "benign_backup",
+                "source_file": "traces/benign_backup.144646",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001090
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "16",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.099575+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144648,
+                "executable": "/usr/bin/gzip",
+                "name": "gzip",
+                "args": [
+                  "gzip"
+                ],
+                "command_line": "gzip"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "benign_backup",
+                "source_file": "traces/benign_backup.144648",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001099
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-11-08T15:16:21.944691+00:00",
+    "method": "POST",
+    "endpoint": "/lab-week9-20261108t145956001720z/_search",
+    "request": {
+      "size": 1000,
+      "track_total_hits": true,
+      "sort": [
+        {
+          "@timestamp": "asc"
+        }
+      ],
+      "query": {
+        "bool": {
+          "filter": [
+            {
+              "term": {
+                "event.dataset": "lab.strace"
+              }
+            },
+            {
+              "terms": {
+                "process.name": [
+                  "tar",
+                  "gzip"
+                ]
+              }
+            },
+            {
+              "wildcard": {
+                "process.args": {
+                  "value": "*lab-browser*",
+                  "case_insensitive": true
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "response": {
+      "took": 20,
+      "timed_out": false,
+      "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 2,
+          "relation": "eq"
+        },
+        "max_score": null,
+        "hits": [
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "8",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.058644+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144634,
+                "executable": "/usr/bin/gzip",
+                "name": "gzip",
+                "args": [
+                  "gzip",
+                  "-k",
+                  "lab-browser/mock-browser.json"
+                ],
+                "command_line": "gzip -k lab-browser/mock-browser.json"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_gzip",
+                "source_file": "traces/atomic_gzip.144634",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001058
+            ]
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z",
+            "_id": "10",
+            "_score": null,
+            "_source": {
+              "@timestamp": "2026-11-08T15:00:01.069368+00:00",
+              "event": {
+                "dataset": "lab.strace",
+                "action": "exec",
+                "type": "start",
+                "category": "process"
+              },
+              "host": {
+                "name": "LAB-LINUX",
+                "os": {
+                  "type": "linux"
+                }
+              },
+              "process": {
+                "pid": 144639,
+                "executable": "/usr/bin/tar",
+                "name": "tar",
+                "args": [
+                  "tar",
+                  "-cvzf",
+                  "out/browser.tar.gz",
+                  "lab-browser"
+                ],
+                "command_line": "tar -cvzf out/browser.tar.gz lab-browser"
+              },
+              "lab": {
+                "run_id": "20261108T145956001720Z",
+                "case": "atomic_tar",
+                "source_file": "traces/atomic_tar.144639",
+                "source_line": 1
+              }
+            },
+            "sort": [
+              1794150001069
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-11-08T15:16:21.973899+00:00",
+    "method": "PUT",
+    "endpoint": "/lab-week9-20261108t145956001720z-regression",
+    "request": {
+      "settings": {
+        "number_of_shards": 1,
+        "number_of_replicas": 0,
+        "analysis": {
+          "normalizer": {
+            "lowercase": {
+              "type": "custom",
+              "filter": [
+                "lowercase"
+              ]
+            }
+          }
+        }
+      },
+      "mappings": {
+        "properties": {
+          "@timestamp": {
+            "type": "date"
+          },
+          "event": {
+            "properties": {
+              "dataset": {
+                "type": "keyword"
+              },
+              "action": {
+                "type": "keyword"
+              },
+              "type": {
+                "type": "keyword"
+              },
+              "category": {
+                "type": "keyword"
+              }
+            }
+          },
+          "process": {
+            "properties": {
+              "name": {
+                "type": "keyword",
+                "normalizer": "lowercase"
+              },
+              "pid": {
+                "type": "long"
+              },
+              "executable": {
+                "type": "keyword"
+              },
+              "args": {
+                "type": "keyword",
+                "ignore_above": 32760
+              },
+              "command_line": {
+                "type": "wildcard"
+              }
+            }
+          },
+          "lab": {
+            "properties": {
+              "case": {
+                "type": "keyword"
+              },
+              "run_id": {
+                "type": "keyword"
+              },
+              "source_file": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      }
+    },
+    "response": {
+      "acknowledged": true,
+      "shards_acknowledged": true,
+      "index": "lab-week9-20261108t145956001720z-regression"
+    }
+  },
+  {
+    "timestamp": "2026-11-08T15:16:22.184297+00:00",
+    "method": "POST",
+    "endpoint": "/_bulk?refresh=wait_for",
+    "request": "{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z-regression\", \"_id\": \"0\"}}\n{\"@timestamp\": \"2026-11-08T15:16:22.184042+00:00\", \"event\": {\"dataset\": \"lab.strace\"}, \"lab\": {\"case\": \"browser_tar\"}, \"process\": {\"name\": \"tar\", \"args\": [\"tar\", \"-cvzf\", \"out/test.tar.gz\", \"lab-browser\"]}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z-regression\", \"_id\": \"1\"}}\n{\"@timestamp\": \"2026-11-08T15:16:22.184068+00:00\", \"event\": {\"dataset\": \"lab.strace\"}, \"lab\": {\"case\": \"browser_gzip\"}, \"process\": {\"name\": \"gzip\", \"args\": [\"gzip\", \"-k\", \"lab-browser/mock-browser.json\"]}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z-regression\", \"_id\": \"2\"}}\n{\"@timestamp\": \"2026-11-08T15:16:22.184075+00:00\", \"event\": {\"dataset\": \"lab.strace\"}, \"lab\": {\"case\": \"ordinary_backup\"}, \"process\": {\"name\": \"tar\", \"args\": [\"tar\", \"-cvzf\", \"out/backup.tar.gz\", \"ordinary-docs\"]}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z-regression\", \"_id\": \"3\"}}\n{\"@timestamp\": \"2026-11-08T15:16:22.184100+00:00\", \"event\": {\"dataset\": \"lab.strace\"}, \"lab\": {\"case\": \"shell_wrapper\"}, \"process\": {\"name\": \"sh\", \"args\": [\"sh\", \"-c\", \"tar -cvzf out/x lab-browser\"]}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z-regression\", \"_id\": \"4\"}}\n{\"@timestamp\": \"2026-11-08T15:16:22.184105+00:00\", \"event\": {\"dataset\": \"lab.strace\"}, \"lab\": {\"case\": \"missing_name\"}, \"process\": {\"args\": [\"tar\", \"lab-browser\"]}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z-regression\", \"_id\": \"5\"}}\n{\"@timestamp\": \"2026-11-08T15:16:22.184112+00:00\", \"event\": {\"dataset\": \"lab.strace\"}, \"lab\": {\"case\": \"uppercase_name\"}, \"process\": {\"name\": \"TAR\", \"args\": [\"tar\", \"LAB-BROWSER\"]}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z-regression\", \"_id\": \"6\"}}\n{\"@timestamp\": \"2026-11-08T15:16:22.184116+00:00\", \"event\": {\"dataset\": \"lab.strace\"}, \"lab\": {\"case\": \"missing_args\"}, \"process\": {\"name\": \"tar\"}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z-regression\", \"_id\": \"7\"}}\n{\"@timestamp\": \"2026-11-08T15:16:22.184121+00:00\", \"event\": {\"dataset\": \"lab.strace\"}, \"lab\": {\"case\": \"different_name\"}, \"process\": {\"name\": \"notgzip\", \"args\": [\"gzip\", \"lab-browser\"]}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z-regression\", \"_id\": \"8\"}}\n{\"@timestamp\": \"2026-11-08T15:16:22.184127+00:00\", \"event\": {\"dataset\": \"lab.strace\"}, \"lab\": {\"case\": \"empty_args\"}, \"process\": {\"name\": \"gzip\", \"args\": []}}\n{\"create\": {\"_index\": \"lab-week9-20261108t145956001720z-regression\", \"_id\": \"9\"}}\n{\"@timestamp\": \"2026-11-08T15:16:22.184132+00:00\", \"event\": {\"dataset\": \"lab.strace\"}, \"lab\": {\"case\": \"renamed_binary_gap\"}, \"process\": {\"name\": \"archiver\", \"args\": [\"archiver\", \"lab-browser\"]}}\n",
+    "response": {
+      "errors": false,
+      "took": 800,
+      "items": [
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "0",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 0,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "1",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 1,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "2",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 2,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "3",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 3,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "4",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 4,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "5",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 5,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "6",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 6,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "7",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 7,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "8",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 8,
+            "_primary_term": 1,
+            "status": 201
+          }
+        },
+        {
+          "create": {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "9",
+            "_version": 1,
+            "result": "created",
+            "_shards": {
+              "total": 1,
+              "successful": 1,
+              "failed": 0
+            },
+            "_seq_no": 9,
+            "_primary_term": 1,
+            "status": 201
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-11-08T15:16:23.102342+00:00",
+    "method": "POST",
+    "endpoint": "/lab-week9-20261108t145956001720z-regression/_search",
+    "request": {
+      "size": 100,
+      "query": {
+        "bool": {
+          "filter": [
+            {
+              "term": {
+                "event.dataset": "lab.strace"
+              }
+            },
+            {
+              "terms": {
+                "process.name": [
+                  "tar",
+                  "gzip"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "response": {
+      "took": 21,
+      "timed_out": false,
+      "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 6,
+          "relation": "eq"
+        },
+        "max_score": 0.0,
+        "hits": [
+          {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "0",
+            "_score": 0.0,
+            "_source": {
+              "@timestamp": "2026-11-08T15:16:22.184042+00:00",
+              "event": {
+                "dataset": "lab.strace"
+              },
+              "lab": {
+                "case": "browser_tar"
+              },
+              "process": {
+                "name": "tar",
+                "args": [
+                  "tar",
+                  "-cvzf",
+                  "out/test.tar.gz",
+                  "lab-browser"
+                ]
+              }
+            }
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "1",
+            "_score": 0.0,
+            "_source": {
+              "@timestamp": "2026-11-08T15:16:22.184068+00:00",
+              "event": {
+                "dataset": "lab.strace"
+              },
+              "lab": {
+                "case": "browser_gzip"
+              },
+              "process": {
+                "name": "gzip",
+                "args": [
+                  "gzip",
+                  "-k",
+                  "lab-browser/mock-browser.json"
+                ]
+              }
+            }
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "2",
+            "_score": 0.0,
+            "_source": {
+              "@timestamp": "2026-11-08T15:16:22.184075+00:00",
+              "event": {
+                "dataset": "lab.strace"
+              },
+              "lab": {
+                "case": "ordinary_backup"
+              },
+              "process": {
+                "name": "tar",
+                "args": [
+                  "tar",
+                  "-cvzf",
+                  "out/backup.tar.gz",
+                  "ordinary-docs"
+                ]
+              }
+            }
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "5",
+            "_score": 0.0,
+            "_source": {
+              "@timestamp": "2026-11-08T15:16:22.184112+00:00",
+              "event": {
+                "dataset": "lab.strace"
+              },
+              "lab": {
+                "case": "uppercase_name"
+              },
+              "process": {
+                "name": "TAR",
+                "args": [
+                  "tar",
+                  "LAB-BROWSER"
+                ]
+              }
+            }
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "6",
+            "_score": 0.0,
+            "_source": {
+              "@timestamp": "2026-11-08T15:16:22.184116+00:00",
+              "event": {
+                "dataset": "lab.strace"
+              },
+              "lab": {
+                "case": "missing_args"
+              },
+              "process": {
+                "name": "tar"
+              }
+            }
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "8",
+            "_score": 0.0,
+            "_source": {
+              "@timestamp": "2026-11-08T15:16:22.184127+00:00",
+              "event": {
+                "dataset": "lab.strace"
+              },
+              "lab": {
+                "case": "empty_args"
+              },
+              "process": {
+                "name": "gzip",
+                "args": []
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-11-08T15:16:23.136318+00:00",
+    "method": "POST",
+    "endpoint": "/lab-week9-20261108t145956001720z-regression/_search",
+    "request": {
+      "size": 100,
+      "query": {
+        "bool": {
+          "filter": [
+            {
+              "term": {
+                "event.dataset": "lab.strace"
+              }
+            },
+            {
+              "terms": {
+                "process.name": [
+                  "tar",
+                  "gzip"
+                ]
+              }
+            },
+            {
+              "wildcard": {
+                "process.args": {
+                  "value": "*lab-browser*",
+                  "case_insensitive": true
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "response": {
+      "took": 8,
+      "timed_out": false,
+      "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 3,
+          "relation": "eq"
+        },
+        "max_score": 0.0,
+        "hits": [
+          {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "0",
+            "_score": 0.0,
+            "_source": {
+              "@timestamp": "2026-11-08T15:16:22.184042+00:00",
+              "event": {
+                "dataset": "lab.strace"
+              },
+              "lab": {
+                "case": "browser_tar"
+              },
+              "process": {
+                "name": "tar",
+                "args": [
+                  "tar",
+                  "-cvzf",
+                  "out/test.tar.gz",
+                  "lab-browser"
+                ]
+              }
+            }
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "1",
+            "_score": 0.0,
+            "_source": {
+              "@timestamp": "2026-11-08T15:16:22.184068+00:00",
+              "event": {
+                "dataset": "lab.strace"
+              },
+              "lab": {
+                "case": "browser_gzip"
+              },
+              "process": {
+                "name": "gzip",
+                "args": [
+                  "gzip",
+                  "-k",
+                  "lab-browser/mock-browser.json"
+                ]
+              }
+            }
+          },
+          {
+            "_index": "lab-week9-20261108t145956001720z-regression",
+            "_id": "5",
+            "_score": 0.0,
+            "_source": {
+              "@timestamp": "2026-11-08T15:16:22.184112+00:00",
+              "event": {
+                "dataset": "lab.strace"
+              },
+              "lab": {
+                "case": "uppercase_name"
+              },
+              "process": {
+                "name": "TAR",
+                "args": [
+                  "tar",
+                  "LAB-BROWSER"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+]

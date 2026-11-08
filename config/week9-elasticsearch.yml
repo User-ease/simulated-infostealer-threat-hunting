@@ -1,0 +1,10 @@
+# Dedicated loopback-only teaching instance; never use this config on a shared server.
+cluster.name: threat-hunting-week9
+node.name: week9-lab
+network.host: 127.0.0.1
+http.port: 19209
+transport.port: 19309
+discovery.type: single-node
+xpack.security.enabled: false
+xpack.security.enrollment.enabled: false
+xpack.ml.enabled: false

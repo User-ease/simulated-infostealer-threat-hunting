@@ -1,0 +1,6 @@
+server.host: 127.0.0.1
+server.port: 15609
+server.name: week9-lab
+elasticsearch.hosts: ["http://127.0.0.1:19209"]
+telemetry.enabled: false
+newsfeed.enabled: false

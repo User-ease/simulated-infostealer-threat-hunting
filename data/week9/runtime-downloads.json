@@ -1,0 +1,14 @@
+{
+  "elasticsearch": {
+    "version": "9.5.5",
+    "url": "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-9.5.5-linux-x86_64.tar.gz",
+    "sha512": "36bf5d6897faeda3743841dfaece365330bb41880f907e4c45958964dd2803617d503cba66e99686124899cff944c983b01a2e08eaebd8f54c26db02bf709ced",
+    "verified": true
+  },
+  "kibana": {
+    "version": "9.5.5",
+    "url": "https://artifacts.elastic.co/downloads/kibana/kibana-9.5.5-linux-x86_64.tar.gz",
+    "sha512": "83a55bee58e37ef0e41e602b715ec917a38da9a76f1c7c150659f9c6c967991cecd4ba870470196e68262c1a7ffbd501c0030ef64a390a3ecba4f69339bdfa30",
+    "verified": true
+  }
+}

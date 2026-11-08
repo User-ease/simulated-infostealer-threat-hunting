@@ -1,0 +1,15 @@
+1794150001.069368 execve("/usr/bin/tar", ["tar", "-cvzf", "out/browser.tar.gz", "lab-browser"], 0x5991994b1658 /* 5 vars */) = 0
+1794150001.069960 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+1794150001.070268 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libacl.so.1", O_RDONLY|O_CLOEXEC) = 3
+1794150001.070690 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3
+1794150001.071161 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+1794150001.071723 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = 3
+1794150001.072991 openat(AT_FDCWD, "/proc/filesystems", O_RDONLY|O_CLOEXEC) = 3
+1794150001.074015 openat(AT_FDCWD, "lab-browser", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW|O_CLOEXEC) = 3
+1794150001.074818 openat(AT_FDCWD, "/etc/nsswitch.conf", O_RDONLY|O_CLOEXEC) = 5
+1794150001.075173 openat(AT_FDCWD, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 5
+1794150001.075866 openat(AT_FDCWD, "/etc/group", O_RDONLY|O_CLOEXEC) = 5
+1794150001.076290 openat(3, "mock-browser.json", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW|O_CLOEXEC) = 5
+1794150001.076568 openat(3, "mock-browser.json.gz", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW|O_CLOEXEC) = 5
+1794150001.076839 openat(3, "cookies.json", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW|O_CLOEXEC) = 5
+1794150001.082102 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=144640, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---

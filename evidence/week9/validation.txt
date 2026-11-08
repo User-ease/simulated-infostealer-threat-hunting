@@ -1,0 +1,44 @@
+Executed 2026-11-08T15:18:53.156232+00:00
+test_bad_metadata_fails_closed (test_week3_iocs.NormalizationTests.test_bad_metadata_fails_closed) ... ok
+test_domain_normalization (test_week3_iocs.NormalizationTests.test_domain_normalization) ... ok
+test_invalid_indicators (test_week3_iocs.NormalizationTests.test_invalid_indicators) ... ok
+test_ip_cannot_be_promoted (test_week3_iocs.NormalizationTests.test_ip_cannot_be_promoted) ... ok
+test_ipv4_mapping (test_week3_iocs.NormalizationTests.test_ipv4_mapping) ... ok
+test_malformed_quoted_fields_are_rejected (test_week3_iocs.NormalizationTests.test_malformed_quoted_fields_are_rejected) ... ok
+test_multiline_record_error_reports_physical_line (test_week3_iocs.NormalizationTests.test_multiline_record_error_reports_physical_line) ... ok
+test_schema_and_duplicate_ids (test_week3_iocs.NormalizationTests.test_schema_and_duplicate_ids) ... ok
+test_utf8_bom_supported (test_week3_iocs.NormalizationTests.test_utf8_bom_supported) ... ok
+test_cli_check_detects_drift_without_writing (test_week3_iocs.PipelineTests.test_cli_check_detects_drift_without_writing) ... ok
+test_committed_outputs_match_raw_and_have_safe_settings (test_week3_iocs.PipelineTests.test_committed_outputs_match_raw_and_have_safe_settings) ... ok
+test_curated_evidence_references_exist (test_week3_iocs.PipelineTests.test_curated_evidence_references_exist) ... ok
+test_dedup_preserves_sources_and_context_wins (test_week3_iocs.PipelineTests.test_dedup_preserves_sources_and_context_wins) ... ok
+test_invalid_input_does_not_replace_outputs (test_week3_iocs.PipelineTests.test_invalid_input_does_not_replace_outputs) ... ok
+test_malformed_csv_does_not_create_outputs (test_week3_iocs.PipelineTests.test_malformed_csv_does_not_create_outputs) ... ok
+test_archived_four_cases_keep_their_expected_membership (test_week5_queries.QueryRegressionTests.test_archived_four_cases_keep_their_expected_membership) ... ok
+test_canonical_permutations_case_and_near_misses (test_week5_queries.QueryRegressionTests.test_canonical_permutations_case_and_near_misses) ... ok
+test_fixtures_expose_the_original_end_of_line_bug (test_week5_queries.QueryRegressionTests.test_fixtures_expose_the_original_end_of_line_bug) ... ok
+test_live_elasticsearch_boundaries (test_week5_queries.QueryRegressionTests.test_live_elasticsearch_boundaries) ... skipped 'Live Elasticsearch test is opt-in'
+test_original_snapshot_retains_the_historical_hash (test_week5_queries.QueryRegressionTests.test_original_snapshot_retains_the_historical_hash) ... ok
+test_clean_replay_preserves_originals_and_does_not_require_docker_cli (test_week5_runner.RunnerTests.test_clean_replay_preserves_originals_and_does_not_require_docker_cli) ... ok
+test_docker_runtime_allowlist_excludes_private_metadata (test_week5_runner.RunnerTests.test_docker_runtime_allowlist_excludes_private_metadata) ... ok
+test_each_tampered_input_is_blocked_before_network (test_week5_runner.RunnerTests.test_each_tampered_input_is_blocked_before_network) ... ok
+test_existing_output_is_rejected_before_network (test_week5_runner.RunnerTests.test_existing_output_is_rejected_before_network) ... ok
+test_http_failure_cannot_leave_successful_results (test_week5_runner.RunnerTests.test_http_failure_cannot_leave_successful_results) ... ok
+test_incompatible_arguments_are_rejected_before_network (test_week5_runner.RunnerTests.test_incompatible_arguments_are_rejected_before_network) ... ok
+test_kibana_http_failure_cannot_leave_successful_results (test_week5_runner.RunnerTests.test_kibana_http_failure_cannot_leave_successful_results) ... ok
+test_normal_mode_can_still_ingest_an_unfinished_collection (test_week5_runner.RunnerTests.test_normal_mode_can_still_ingest_an_unfinished_collection) ... ok
+test_original_write_modes_still_protect_completed_evidence (test_week5_runner.RunnerTests.test_original_write_modes_still_protect_completed_evidence) ... ok
+test_query_only_original_and_replay_indices_never_write (test_week5_runner.RunnerTests.test_query_only_original_and_replay_indices_never_write) ... ok
+test_replay_output_inside_original_evidence_is_rejected_before_network (test_week5_runner.RunnerTests.test_replay_output_inside_original_evidence_is_rejected_before_network) ... ok
+test_resume_mode_checks_existing_documents_without_reindexing (test_week5_runner.RunnerTests.test_resume_mode_checks_existing_documents_without_reindexing) ... ok
+test_two_replays_are_independent (test_week5_runner.RunnerTests.test_two_replays_are_independent) ... ok
+test_all_archived_events_trace_back (test_week9.TraceTests.test_all_archived_events_trace_back) ... ok
+test_failed_path_lookup_is_not_launch (test_week9.TraceTests.test_failed_path_lookup_is_not_launch) ... ok
+test_file_open_is_not_process (test_week9.TraceTests.test_file_open_is_not_process) ... ok
+test_quoted_script_and_empty_arguments (test_week9.TraceTests.test_quoted_script_and_empty_arguments) ... ok
+test_success_and_native_provenance (test_week9.TraceTests.test_success_and_native_provenance) ... ok
+
+----------------------------------------------------------------------
+Ran 38 tests in 0.106s
+
+OK (skipped=1)

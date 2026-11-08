@@ -1,0 +1,4 @@
+1794150001.074552 execve("/bin/sh", ["/bin/sh", "-c", "gzip"], 0x7ffd50a00590 /* 5 vars */) = 0
+1794150001.075291 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+1794150001.075508 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+1794150001.081637 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=144641, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---

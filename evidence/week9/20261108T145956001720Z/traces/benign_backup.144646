@@ -1,0 +1,13 @@
+1794150001.090122 execve("/usr/bin/tar", ["tar", "-cvzf", "out/ordinary-backup.tar.gz", "ordinary-docs"], 0x5bf0e707e670 /* 5 vars */) = 0
+1794150001.090815 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+1794150001.091064 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libacl.so.1", O_RDONLY|O_CLOEXEC) = 3
+1794150001.091498 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3
+1794150001.091976 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+1794150001.092552 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = 3
+1794150001.094341 openat(AT_FDCWD, "/proc/filesystems", O_RDONLY|O_CLOEXEC) = 3
+1794150001.095770 openat(AT_FDCWD, "ordinary-docs", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW|O_CLOEXEC) = 3
+1794150001.096747 openat(AT_FDCWD, "/etc/nsswitch.conf", O_RDONLY|O_CLOEXEC) = 5
+1794150001.097163 openat(AT_FDCWD, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 5
+1794150001.097938 openat(AT_FDCWD, "/etc/group", O_RDONLY|O_CLOEXEC) = 5
+1794150001.098392 openat(3, "notes.txt", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW|O_CLOEXEC) = 5
+1794150001.102487 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=144647, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---

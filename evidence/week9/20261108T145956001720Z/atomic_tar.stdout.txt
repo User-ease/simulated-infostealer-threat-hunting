@@ -1,0 +1,4 @@
+lab-browser/
+lab-browser/mock-browser.json
+lab-browser/mock-browser.json.gz
+lab-browser/cookies.json
