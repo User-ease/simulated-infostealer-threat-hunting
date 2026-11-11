@@ -3,12 +3,12 @@ on:
   workflow_dispatch:
   push:
     branches: [week9-windows-audit]
-    paths: [scripts/collect_week9_windows.ps1, .github/workflows/week9-windows.yml]
+    paths: [scripts/collect_week9_windows.ps1]
 permissions:
   contents: read
 jobs:
   collect:
-    runs-on: windows-2025
+    runs-on: windows-2022
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262

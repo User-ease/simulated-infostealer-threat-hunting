@@ -1,0 +1,186 @@
+{
+  "request": {
+    "query": "file where event.code == \"4663\" and process.name == \"tar.exe\" and lab.profile_input == true and lab.read_data == true",
+    "tiebreaker_field": "winlog.record_id",
+    "size": 100
+  },
+  "response": {
+    "is_partial": false,
+    "is_running": false,
+    "took": 5,
+    "timed_out": false,
+    "hits": {
+      "total": {
+        "value": 5,
+        "relation": "eq"
+      },
+      "events": [
+        {
+          "_index": "week9-windows-20261111-210928-224279",
+          "_id": "516",
+          "_source": {
+            "@timestamp": "2026-11-11T21:08:28.1461816Z",
+            "host": {
+              "name": "win-3f50pbjmmjb"
+            },
+            "event": {
+              "code": "4663",
+              "category": "file"
+            },
+            "process": {
+              "pid": 2908,
+              "name": "tar.exe",
+              "executable": "C:\\Windows\\System32\\tar.exe"
+            },
+            "winlog": {
+              "record_id": 516,
+              "logon": {
+                "id": "0x3e7"
+              },
+              "access_mask": "0x1"
+            },
+            "lab": {
+              "profile_input": true,
+              "read_data": true
+            },
+            "file": {
+              "path": "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\profile\\cookies.json"
+            }
+          }
+        },
+        {
+          "_index": "week9-windows-20261111-210928-224279",
+          "_id": "557",
+          "_source": {
+            "@timestamp": "2026-11-11T21:08:28.5658208Z",
+            "host": {
+              "name": "win-3f50pbjmmjb"
+            },
+            "event": {
+              "code": "4663",
+              "category": "file"
+            },
+            "process": {
+              "pid": 3024,
+              "name": "tar.exe",
+              "executable": "C:\\Windows\\System32\\tar.exe"
+            },
+            "winlog": {
+              "record_id": 557,
+              "logon": {
+                "id": "0x3e7"
+              },
+              "access_mask": "0x1"
+            },
+            "lab": {
+              "profile_input": true,
+              "read_data": true
+            },
+            "file": {
+              "path": "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\profile\\cookies.json"
+            }
+          }
+        },
+        {
+          "_index": "week9-windows-20261111-210928-224279",
+          "_id": "568",
+          "_source": {
+            "@timestamp": "2026-11-11T21:08:28.6024710Z",
+            "host": {
+              "name": "win-3f50pbjmmjb"
+            },
+            "event": {
+              "code": "4663",
+              "category": "file"
+            },
+            "process": {
+              "pid": 3056,
+              "name": "tar.exe",
+              "executable": "C:\\Windows\\System32\\tar.exe"
+            },
+            "winlog": {
+              "record_id": 568,
+              "logon": {
+                "id": "0x3e7"
+              },
+              "access_mask": "0x1"
+            },
+            "lab": {
+              "profile_input": true,
+              "read_data": true
+            },
+            "file": {
+              "path": "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\profile\\cookies.json"
+            }
+          }
+        },
+        {
+          "_index": "week9-windows-20261111-210928-224279",
+          "_id": "571",
+          "_source": {
+            "@timestamp": "2026-11-11T21:08:28.6198621Z",
+            "host": {
+              "name": "win-3f50pbjmmjb"
+            },
+            "event": {
+              "code": "4663",
+              "category": "file"
+            },
+            "process": {
+              "pid": 2000,
+              "name": "tar.exe",
+              "executable": "C:\\Windows\\System32\\tar.exe"
+            },
+            "winlog": {
+              "record_id": 571,
+              "logon": {
+                "id": "0x3e7"
+              },
+              "access_mask": "0x1"
+            },
+            "lab": {
+              "profile_input": true,
+              "read_data": true
+            },
+            "file": {
+              "path": "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\profile\\cookies.json"
+            }
+          }
+        },
+        {
+          "_index": "week9-windows-20261111-210928-224279",
+          "_id": "581",
+          "_source": {
+            "@timestamp": "2026-11-11T21:08:28.6788935Z",
+            "host": {
+              "name": "win-3f50pbjmmjb"
+            },
+            "event": {
+              "code": "4663",
+              "category": "file"
+            },
+            "process": {
+              "pid": 1680,
+              "name": "tar.exe",
+              "executable": "C:\\Windows\\System32\\tar.exe"
+            },
+            "winlog": {
+              "record_id": 581,
+              "logon": {
+                "id": "0x3e7"
+              },
+              "access_mask": "0x1"
+            },
+            "lab": {
+              "profile_input": true,
+              "read_data": true
+            },
+            "file": {
+              "path": "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\profile\\cookies.json"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "request": {
+    "query": "sequence by host.name, process.pid, winlog.logon.id with maxspan=10s\n  [process where event.code == \"4688\" and process.name == \"tar.exe\" and lab.archive_mode == \"create\"]\n  [file where event.code == \"4663\" and process.name == \"tar.exe\" and lab.profile_input == true and lab.read_data == true]",
+    "tiebreaker_field": "winlog.record_id",
+    "size": 100
+  },
+  "response": {
+    "is_partial": false,
+    "is_running": false,
+    "took": 22,
+    "timed_out": false,
+    "hits": {
+      "total": {
+        "value": 2,
+        "relation": "eq"
+      },
+      "sequences": [
+        {
+          "join_keys": [
+            "win-3f50pbjmmjb",
+            2908,
+            "0x3e7"
+          ],
+          "events": [
+            {
+              "_index": "week9-windows-20261111-210928-828047",
+              "_id": "513",
+              "_source": {
+                "@timestamp": "2026-11-11T21:08:28.1055451Z",
+                "host": {
+                  "name": "win-3f50pbjmmjb"
+                },
+                "event": {
+                  "code": "4688",
+                  "category": "process"
+                },
+                "process": {
+                  "pid": 2908,
+                  "name": "tar.exe",
+                  "executable": "C:\\Windows\\System32\\tar.exe",
+                  "command_line": "\"C:\\Windows\\System32\\tar.exe\" -cf C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\out\\profile.tar -C C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\profile ."
+                },
+                "winlog": {
+                  "record_id": 513,
+                  "logon": {
+                    "id": "0x3e7"
+                  }
+                },
+                "lab": {
+                  "profile_input": false,
+                  "read_data": false,
+                  "archive_mode": "create"
+                }
+              }
+            },
+            {
+              "_index": "week9-windows-20261111-210928-828047",
+              "_id": "516",
+              "_source": {
+                "@timestamp": "2026-11-11T21:08:28.1461816Z",
+                "host": {
+                  "name": "win-3f50pbjmmjb"
+                },
+                "event": {
+                  "code": "4663",
+                  "category": "file"
+                },
+                "process": {
+                  "pid": 2908,
+                  "name": "tar.exe",
+                  "executable": "C:\\Windows\\System32\\tar.exe"
+                },
+                "winlog": {
+                  "record_id": 516,
+                  "logon": {
+                    "id": "0x3e7"
+                  },
+                  "access_mask": "0x1"
+                },
+                "lab": {
+                  "profile_input": true,
+                  "read_data": true
+                },
+                "file": {
+                  "path": "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\profile\\cookies.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "join_keys": [
+            "win-3f50pbjmmjb",
+            3024,
+            "0x3e7"
+          ],
+          "events": [
+            {
+              "_index": "week9-windows-20261111-210928-828047",
+              "_id": "554",
+              "_source": {
+                "@timestamp": "2026-11-11T21:08:28.5537600Z",
+                "host": {
+                  "name": "win-3f50pbjmmjb"
+                },
+                "event": {
+                  "code": "4688",
+                  "category": "process"
+                },
+                "process": {
+                  "pid": 3024,
+                  "name": "tar.exe",
+                  "executable": "C:\\Windows\\System32\\tar.exe",
+                  "command_line": "\"C:\\Windows\\System32\\tar.exe\" --create --file=C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\out\\authorized-backup.tar -C C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\profile ."
+                },
+                "winlog": {
+                  "record_id": 554,
+                  "logon": {
+                    "id": "0x3e7"
+                  }
+                },
+                "lab": {
+                  "profile_input": false,
+                  "read_data": false,
+                  "archive_mode": "create"
+                }
+              }
+            },
+            {
+              "_index": "week9-windows-20261111-210928-828047",
+              "_id": "557",
+              "_source": {
+                "@timestamp": "2026-11-11T21:08:28.5658208Z",
+                "host": {
+                  "name": "win-3f50pbjmmjb"
+                },
+                "event": {
+                  "code": "4663",
+                  "category": "file"
+                },
+                "process": {
+                  "pid": 3024,
+                  "name": "tar.exe",
+                  "executable": "C:\\Windows\\System32\\tar.exe"
+                },
+                "winlog": {
+                  "record_id": 557,
+                  "logon": {
+                    "id": "0x3e7"
+                  },
+                  "access_mask": "0x1"
+                },
+                "lab": {
+                  "profile_input": true,
+                  "read_data": true
+                },
+                "file": {
+                  "path": "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\profile\\cookies.json"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

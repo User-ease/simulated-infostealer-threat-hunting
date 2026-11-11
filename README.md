@@ -26,11 +26,11 @@ The project does not use real malware or real credentials. Instead, synthetic br
 
 * [Week 9](docs/week9-atomic-red-team.md): three atomics and twelve controls. Of seven profile archive attempts, five exited successfully and two failed with ENOSPC. The original and expanded runs are preserved. [Linux control results](evidence/week9/20261111T192612720530Z/siem/summary.json).
 
-* [Week 10](docs/week10-apt29-analysis.md): ten APT29 techniques, a Navigator layer, Windows artifact analysis and a primary-source reconstruction of the local PST input for T1005.
+* [Week 10](docs/week10-apt29-analysis.md): ten APT29 techniques, a Navigator layer, Windows artifact analysis and a primary-source reconstruction of the local PST input for T1005, and the evidence behind MITRE’s HTTPS mapping for T1048.002.
 
 ## Weeks 9 and 10
 
-The [Week 9 practical report](docs/week9-atomic-red-team.md) provides commands, source GUIDs, raw traces, archive checks, cleanup, and actual SIEM responses. On Windows Server 2022, six archive controls generated six 4688 and fourteen 4663 events. Elasticsearch correlated two process/read pairs, including the authorized backup. [Windows control matrix](evidence/week9-windows/43091627096/siem/summary.json).
+The [Week 9 practical report](docs/week9-atomic-red-team.md) provides commands, source GUIDs, raw traces, archive checks, cleanup, and actual SIEM responses. On Windows Server 2022 Evaluation, nine controls produced 9 process starts and 19 file-access records. Elasticsearch returned three pairs, including traditional tar.exe cf and an authorized backup. Both tar.exe tf controls stayed outside the result. [Windows control matrix](evidence/week9-windows/vm-20261111T210834Z/siem/summary.json).
 
 The [Week 10 analysis](docs/week10-apt29-analysis.md) connects source-reported APT29 behavior to the group topic. The [Navigator layer](data/week10/apt29-navigator-layer.json) distinguishes external intelligence, historical Windows observations and the Linux and Windows archive experiments. Use the [7 minute 30 second defense guide](docs/weeks9-10-defense.md) to present both increments.
 

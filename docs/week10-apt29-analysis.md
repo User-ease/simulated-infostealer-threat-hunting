@@ -72,7 +72,7 @@ To corroborate a download, correlate archive creation with an IIS or reverse-pro
 
 Source for both procedures: [CrowdStrike, Shellbags, Falcon Telemetry and RDP Bitmap Cache](https://www.crowdstrike.com/en-us/blog/observations-from-the-stellarparticle-campaign/). These are incident observations. The group's staged mock file is separate historical Windows evidence.
 
-**Week 9 Windows validation.** On Windows Server 2022, Security 4688 record 1559826 identifies tar.exe PID 5116 in create mode. Record 1559829 (4663) shows that PID reading the registered training file. The same query matched an authorized profile backup. The equivalent Volexity procedure with 7-Zip and a PST remains a proposed hunt. [Six Windows controls and the EQL result](week9-atomic-red-team.md#windows-archive-and-security-audit--12-november-2026-almaty) · [Microsoft 4663](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4663) · [Microsoft 4688](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4688)
+**Week 9 Windows validation.** On Windows Server 2022, Security 4688 record 569 identifies tar.exe PID 2000 running cf. Record 571 (4663) shows the same process reading the synthetic profile. An authorized profile backup also matched. The PST and 7-Zip procedure remains a source-backed hunt proposal. [Windows controls and the EQL result](../evidence/week9-windows/vm-20261111T210834Z/siem/correlated.json) · [Microsoft 4663](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4663) · [Microsoft 4688](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4688)
 
 ## Proposed next hunts
 

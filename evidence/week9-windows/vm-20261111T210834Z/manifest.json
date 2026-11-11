@@ -1,0 +1,174 @@
+{
+    "computer":  "WIN-3F50PBJMMJB",
+    "os":  "Microsoft Windows Server 2022 Datacenter Evaluation",
+    "build":  "20348",
+    "collected_utc":  "2026-11-11T21:08:34.5415582Z",
+    "tar_exe":  "C:\\Windows\\System32\\tar.exe",
+    "tar_version":  "bsdtar 3.3.2 - libarchive 3.3.2 zlib/1.2.5.f-ipp",
+    "root":  "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27",
+    "profile_input":  "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\profile\\cookies.json",
+    "profile_sha256":  "f686c9ef781b0952ce997b3c4f65805cdea1158b39c6e31d9aae534e31f7f8b1",
+    "actions_run_id":  null,
+    "source_commit":  null,
+    "cases":  [
+                  {
+                      "name":  "profile_create",
+                      "pid":  2908,
+                      "argv":  [
+                                   "-cf",
+                                   "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\out\\profile.tar",
+                                   "-C",
+                                   "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\profile",
+                                   "."
+                               ],
+                      "start_utc":  "2026-11-11T21:08:28.0571106Z",
+                      "end_utc":  "2026-11-11T21:08:28.1507932Z",
+                      "exit_code":  0,
+                      "expected_hit":  true,
+                      "expected_success":  true,
+                      "stdout":  "",
+                      "stderr":  "",
+                      "member_sha256":  "f686c9ef781b0952ce997b3c4f65805cdea1158b39c6e31d9aae534e31f7f8b1"
+                  },
+                  {
+                      "name":  "ordinary_backup",
+                      "pid":  2944,
+                      "argv":  [
+                                   "-cf",
+                                   "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\out\\documents.tar",
+                                   "-C",
+                                   "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\documents",
+                                   "."
+                               ],
+                      "start_utc":  "2026-11-11T21:08:28.4324655Z",
+                      "end_utc":  "2026-11-11T21:08:28.4478482Z",
+                      "exit_code":  0,
+                      "expected_hit":  false,
+                      "expected_success":  true,
+                      "stdout":  "",
+                      "stderr":  "",
+                      "member_sha256":  "bd3222fa0951adab9cd581dab3b4767c3c96cca824d2aaed90b2992f7fbef559"
+                  },
+                  {
+                      "name":  "destination_only",
+                      "pid":  2976,
+                      "argv":  [
+                                   "-cf",
+                                   "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\out\\browser-profile-backup.tar",
+                                   "-C",
+                                   "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\documents",
+                                   "."
+                               ],
+                      "start_utc":  "2026-11-11T21:08:28.4790390Z",
+                      "end_utc":  "2026-11-11T21:08:28.4945958Z",
+                      "exit_code":  0,
+                      "expected_hit":  false,
+                      "expected_success":  true,
+                      "stdout":  "",
+                      "stderr":  "",
+                      "member_sha256":  "bd3222fa0951adab9cd581dab3b4767c3c96cca824d2aaed90b2992f7fbef559"
+                  },
+                  {
+                      "name":  "list_archive",
+                      "pid":  3008,
+                      "argv":  [
+                                   "-tf",
+                                   "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\out\\profile.tar"
+                               ],
+                      "start_utc":  "2026-11-11T21:08:28.5102552Z",
+                      "end_utc":  "2026-11-11T21:08:28.5259908Z",
+                      "exit_code":  0,
+                      "expected_hit":  false,
+                      "expected_success":  true,
+                      "stdout":  "./\r\n./cookies.json",
+                      "stderr":  "",
+                      "member_sha256":  null
+                  },
+                  {
+                      "name":  "authorized_profile_backup",
+                      "pid":  3024,
+                      "argv":  [
+                                   "--create",
+                                   "--file=C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\out\\authorized-backup.tar",
+                                   "-C",
+                                   "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\profile",
+                                   "."
+                               ],
+                      "start_utc":  "2026-11-11T21:08:28.5414952Z",
+                      "end_utc":  "2026-11-11T21:08:28.5571533Z",
+                      "exit_code":  0,
+                      "expected_hit":  true,
+                      "expected_success":  true,
+                      "stdout":  "",
+                      "stderr":  "",
+                      "member_sha256":  "f686c9ef781b0952ce997b3c4f65805cdea1158b39c6e31d9aae534e31f7f8b1"
+                  },
+                  {
+                      "name":  "list_raw_profile",
+                      "pid":  3056,
+                      "argv":  [
+                                   "-tf",
+                                   "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\profile\\cookies.json"
+                               ],
+                      "start_utc":  "2026-11-11T21:08:28.5883625Z",
+                      "end_utc":  "2026-11-11T21:08:28.6042639Z",
+                      "exit_code":  1,
+                      "expected_hit":  false,
+                      "expected_success":  false,
+                      "stdout":  "",
+                      "stderr":  "tar.exe: Error opening archive: Unrecognized archive format",
+                      "member_sha256":  null
+                  },
+                  {
+                      "name":  "classic_create",
+                      "pid":  2000,
+                      "argv":  [
+                                   "cf",
+                                   "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\out\\traditional.tar",
+                                   "-C",
+                                   "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\profile",
+                                   "cookies.json"
+                               ],
+                      "start_utc":  "2026-11-11T21:08:28.6042639Z",
+                      "end_utc":  "2026-11-11T21:08:28.6195931Z",
+                      "exit_code":  0,
+                      "expected_hit":  true,
+                      "expected_success":  true,
+                      "stdout":  "",
+                      "stderr":  "",
+                      "member_sha256":  "f686c9ef781b0952ce997b3c4f65805cdea1158b39c6e31d9aae534e31f7f8b1"
+                  },
+                  {
+                      "name":  "classic_list_archive",
+                      "pid":  1284,
+                      "argv":  [
+                                   "tf",
+                                   "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\out\\traditional.tar"
+                               ],
+                      "start_utc":  "2026-11-11T21:08:28.6352763Z",
+                      "end_utc":  "2026-11-11T21:08:28.6508107Z",
+                      "exit_code":  0,
+                      "expected_hit":  false,
+                      "expected_success":  true,
+                      "stdout":  "cookies.json",
+                      "stderr":  "",
+                      "member_sha256":  null
+                  },
+                  {
+                      "name":  "classic_list_raw_profile",
+                      "pid":  1680,
+                      "argv":  [
+                                   "tf",
+                                   "C:\\week9-lab-1770ad5822b848f3ba256338baaffe27\\profile\\cookies.json"
+                               ],
+                      "start_utc":  "2026-11-11T21:08:28.6508107Z",
+                      "end_utc":  "2026-11-11T21:08:28.6821205Z",
+                      "exit_code":  1,
+                      "expected_hit":  false,
+                      "expected_success":  false,
+                      "stdout":  "",
+                      "stderr":  "tar.exe: Error opening archive: Unrecognized archive format",
+                      "member_sha256":  null
+                  }
+              ]
+}

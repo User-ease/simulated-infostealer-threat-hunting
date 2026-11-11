@@ -4,26 +4,35 @@ Project: **Forensic Analysis and Detection of Simulated Infostealer-Like Activit
 
 ## Windows archive and Security audit · 12 November 2026 (Almaty)
 
-On a fresh GitHub-hosted **Windows Server 2022 Datacenter** VM (build 20348), Windows bsdtar 3.8.9 archived a mock browser profile. Six processes ran at 19:55:22 UTC on 11 November, or 00:55:22 on 12 November in Almaty. This is the group's Windows adaptation of the archive scenario. The three upstream Atomic Red Team procedures and their Linux results are documented below. [Windows run](https://github.com/User-ease/simulated-infostealer-threat-hunting/actions/runs/43091627096) · [Collector at the executed commit](https://github.com/User-ease/simulated-infostealer-threat-hunting/blob/024f84d96d1011f7e09b1b2ec3286018223943b0/scripts/collect_week9_windows.ps1)
+On a disposable local **Microsoft Windows Server 2022 Datacenter Evaluation** VM (build 20348), the built-in tar.exe (bsdtar 3.3.2) ran nine controls on 12 November at 02:08 Almaty time. Six repeated the previous experiment. Three used traditional bsdtar syntax, in which the first option word has no dash. [Windows run provenance](https://github.com/User-ease/simulated-infostealer-threat-hunting/blob/main/evidence/week9-windows/vm-20261111T210834Z/provenance.json) · [Collector and parser at the executed revision](https://github.com/User-ease/simulated-infostealer-threat-hunting/tree/35fdc01ac632b5b8c705946afad02a678011db9f/scripts)
 
-### Evidence and query
+### Traditional tar options in native Security events
 
-The collector enabled successful Process Creation and File System auditing, included command lines, and applied an inheritable audit rule (SACL) to a fresh fixture directory. It exported Security XML for the six measured tar processes, restricting file events to that directory. Independent extractions verified the SHA-256 of the member of every newly created archive. Extraction processes were excluded from the measured PIDs. The collector removed the fixture and restored the audit settings. [Native XML](../evidence/week9-windows/43091627096/events.xml) · [Manifest, process exits and member hashes](../evidence/week9-windows/43091627096/manifest.json)
+`tar.exe cf …\traditional.tar -C …\profile cookies.json` exited 0. Security 4688 record 569 gives its command and new PID 2000. Security 4663 record 571 gives the same PID, logon 0x3e7, the exact profile file and ReadData mask 0x1. The read followed the launch by 10.3 ms. Independent extraction recovered the original file with SHA-256 `f686c9ef781b0952ce997b3c4f65805cdea1158b39c6e31d9aae534e31f7f8b1`. [Native Security XML](../evidence/week9-windows/vm-20261111T210834Z/events.xml) · [Exact commands, exits and member hashes](../evidence/week9-windows/vm-20261111T210834Z/manifest.json)
 
-Elasticsearch 9.5.5 indexed **6 process starts (4688)** and **14 object accesses (4663)**. The first EQL search found four create-mode processes. The second found three processes reading the registered profile file. The sequence returned two pairs. It joins the host, normalized PID and effective logon ID, in event order within ten seconds. For 4688 it uses the new PID and the target logon when populated, otherwise the subject logon. For 4663 it uses the accessing PID, subject logon, exact registered file path and ReadData mask bit 0x1. A directory listing can use that bit too, which is why file identity matters. Case names and expected outcomes are used only for scoring. [Create query](../evidence/week9-windows/43091627096/siem/create.json) · [Read query](../evidence/week9-windows/43091627096/siem/read.json) · [Sequence and full response](../evidence/week9-windows/43091627096/siem/correlated.json)
+`tar.exe tf …\traditional.tar` listed cookies.json and exited 0. A separate `tar.exe tf …\profile\cookies.json` read the registered input (4663 record 581) and exited 1 because the raw JSON was not a tar archive. Neither listing matched the creation sequence. The authorized profile backup still matched it.
+
+### Elasticsearch results
+
+Elasticsearch 9.5.5 indexed **9 process starts (4688)** and **19 object accesses (4663)**. EQL returned 5 create-mode processes, 5 processes reading the registered file and 3 correlated sequences. It joins host, normalized PID and effective logon ID in event order within ten seconds. For a process start it uses NewProcessId and the target logon if populated, otherwise the subject logon. For a file read it uses ProcessId, subject logon, the exact registered file and ReadData bit 0x1. Case labels are reserved for checking expectations. [Create query](../evidence/week9-windows/vm-20261111T210834Z/siem/create.json) · [Read query](../evidence/week9-windows/vm-20261111T210834Z/siem/read.json) · [Sequence and full response](../evidence/week9-windows/vm-20261111T210834Z/siem/correlated.json)
 
 | Windows control | PID | Create-mode 4688 | Profile ReadData 4663 | Pair expected / observed | Exit |
 | --- | ---: | ---: | ---: | --- | ---: |
-| Archive the synthetic profile with short options | 5116 | 1559826 | 1559829 | Yes / Yes | 0 |
-| Back up ordinary documents with a different file also named cookies.json | 1108 | 1559842 | — | No / No | 0 |
-| Back up ordinary documents into browser-profile-backup.tar | 5812 | 1559858 | — | No / No | 0 |
-| List the completed profile archive | 724 | — | — | No / No | 0 |
-| Authorized profile backup using --create and --file= | 6392 | 1559876 | 1559879 | Yes / Yes | 0 |
-| Try to list the raw profile JSON as an archive | 3980 | — | 1559893 | No / No | 1 |
+| Short-form profile archive | 2908 | 513 | 516 | Yes / Yes | 0 |
+| Ordinary backup | 2944 | 526 | — | No / No | 0 |
+| Profile in output name | 2976 | 539 | — | No / No | 0 |
+| List existing archive | 3008 | — | — | No / No | 0 |
+| Authorized backup | 3024 | 554 | 557 | Yes / Yes | 0 |
+| List raw profile JSON | 3056 | — | 568 | No / No | 1 |
+| cf on profile | 2000 | 569 | 571 | Yes / Yes | 0 |
+| tf on archive | 1284 | — | — | No / No | 0 |
+| tf on raw profile JSON | 1680 | — | 581 | No / No | 1 |
 
-An em dash means that record did not meet the column predicate. Each process has a native 4688. All six outcomes agreed with the manifest. Process 3980 read the correct file but invoked list mode and returned an invalid-archive error. Process 6392 legitimately backed up the same profile and triggered the rule. The rule therefore identifies a behavior suitable for triage. [Case matrix](../evidence/week9-windows/43091627096/siem/summary.json)
+An em dash means the event did not meet that column's predicate. Every measured process has a native 4688. The collector enabled successful process and file auditing, included command lines and scoped its file audit rule to the fresh fixture directory. It excluded verification processes, restored the settings and removed the fixture. [Case matrix](../evidence/week9-windows/vm-20261111T210834Z/siem/summary.json) · [Evidence hashes](../evidence/week9-windows/vm-20261111T210834Z/provenance.json)
 
-**Record walkthrough.** At 19:55:22.6852380 UTC, 4688 record 1559826 gives NewProcessId 0x13fc (5116) and a tar -cf command. About 65 ms later, 4663 record 1559829 gives ProcessId 0x13fc, logon 0x94dcb, the exact profile input and AccessMask 0x1. The archive member extracted by the verifier matched the original SHA-256 `f686c9ef781b0952ce997b3c4f65805cdea1158b39c6e31d9aae534e31f7f8b1`. The exit code and member hash come from the harness. The Security pair establishes a create invocation followed by an audited read. Neither process intent nor transfer is observable from this pair. [Microsoft event 4688](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4688) · [Microsoft event 4663](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4663)
+**Before and after on identical XML.** With the parser from commit 7053083, the same EQL sequence returned 2 pairs and missed `cf`. With the revised parser it returned 3 pairs. The added pair belongs to PID 2000. The other eight outcomes stayed the same. The published six-case dataset was also replayed and retained its two pairs. [Prior parser on the new XML](../evidence/week9-windows/vm-20261111T210834Z/prior-parser/summary.json) · [Prior EQL response](../evidence/week9-windows/vm-20261111T210834Z/prior-parser/correlated.json) · [Original six-case run](../evidence/week9-windows/43091627096/siem/summary.json)
+
+The guest was offline. The local host and guest UTC clocks were checked before collection. The SHA-256 values printed inside Windows matched the exported NTFS files. [Windows hash verification](../evidence/week9-windows/vm-20261111T210834Z/guest-hashes.png)
 
 ### Reproduce the Windows result
 
@@ -35,10 +44,10 @@ An em dash means that record did not meet the column predicate. Each process has
 ```
 
 ```sh
-python3 scripts/analyze_week9_windows.py evidence/week9-windows/43091627096 windows-replay --url http://127.0.0.1:19219
+python3 scripts/analyze_week9_windows.py evidence/week9-windows/vm-20261111T210834Z windows-replay --url http://127.0.0.1:19219
 ```
 
-The profile path is registered by the lab and the parser covers the bsdtar syntax used in the controls. The collector checks that each measured PID is unique in the run. Broader deployment would need a maintained file inventory and process-lifetime tracking for PID reuse. One filtered Windows host and six benign controls cannot estimate a production false-positive rate. [Replay script](../scripts/analyze_week9_windows.py)
+The profile path is registered by the lab and the parser covers the bsdtar syntax used in the controls. The collector checks that each measured PID is unique in the run. Broader deployment would need a maintained file inventory and process-lifetime tracking for PID reuse. One filtered Windows host and nine benign controls cannot estimate a production false-positive rate. [Replay script](../scripts/analyze_week9_windows.py)
 
 ## Archive attempts and exit status · 12 November 2026
 

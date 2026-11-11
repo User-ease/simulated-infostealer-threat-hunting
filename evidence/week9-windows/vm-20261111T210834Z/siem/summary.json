@@ -1,0 +1,185 @@
+{
+  "elasticsearch": "9.5.5",
+  "index": "week9-windows-20261111-210928-224279",
+  "xml_sha256": "7c9a013399e0f996f101d15e831f897bb4e1603d1deca0c85083eee33218239c",
+  "manifest_sha256": "11aca04a13aef76074a70f928e713a15be676c3717418e0c12bfdf7e4ebd1628",
+  "events": {
+    "4688": 9,
+    "4663": 19
+  },
+  "cases": [
+    {
+      "case": "profile_create",
+      "pid": 2908,
+      "exit_code": 0,
+      "expected_hit": true,
+      "records": {
+        "create": [
+          [
+            513
+          ]
+        ],
+        "read": [
+          [
+            516
+          ]
+        ],
+        "correlated": [
+          [
+            513,
+            516
+          ]
+        ]
+      },
+      "matched": true,
+      "member_sha256": "f686c9ef781b0952ce997b3c4f65805cdea1158b39c6e31d9aae534e31f7f8b1"
+    },
+    {
+      "case": "ordinary_backup",
+      "pid": 2944,
+      "exit_code": 0,
+      "expected_hit": false,
+      "records": {
+        "create": [
+          [
+            526
+          ]
+        ],
+        "read": [],
+        "correlated": []
+      },
+      "matched": false,
+      "member_sha256": "bd3222fa0951adab9cd581dab3b4767c3c96cca824d2aaed90b2992f7fbef559"
+    },
+    {
+      "case": "destination_only",
+      "pid": 2976,
+      "exit_code": 0,
+      "expected_hit": false,
+      "records": {
+        "create": [
+          [
+            539
+          ]
+        ],
+        "read": [],
+        "correlated": []
+      },
+      "matched": false,
+      "member_sha256": "bd3222fa0951adab9cd581dab3b4767c3c96cca824d2aaed90b2992f7fbef559"
+    },
+    {
+      "case": "list_archive",
+      "pid": 3008,
+      "exit_code": 0,
+      "expected_hit": false,
+      "records": {
+        "create": [],
+        "read": [],
+        "correlated": []
+      },
+      "matched": false,
+      "member_sha256": null
+    },
+    {
+      "case": "authorized_profile_backup",
+      "pid": 3024,
+      "exit_code": 0,
+      "expected_hit": true,
+      "records": {
+        "create": [
+          [
+            554
+          ]
+        ],
+        "read": [
+          [
+            557
+          ]
+        ],
+        "correlated": [
+          [
+            554,
+            557
+          ]
+        ]
+      },
+      "matched": true,
+      "member_sha256": "f686c9ef781b0952ce997b3c4f65805cdea1158b39c6e31d9aae534e31f7f8b1"
+    },
+    {
+      "case": "list_raw_profile",
+      "pid": 3056,
+      "exit_code": 1,
+      "expected_hit": false,
+      "records": {
+        "create": [],
+        "read": [
+          [
+            568
+          ]
+        ],
+        "correlated": []
+      },
+      "matched": false,
+      "member_sha256": null
+    },
+    {
+      "case": "classic_create",
+      "pid": 2000,
+      "exit_code": 0,
+      "expected_hit": true,
+      "records": {
+        "create": [
+          [
+            569
+          ]
+        ],
+        "read": [
+          [
+            571
+          ]
+        ],
+        "correlated": [
+          [
+            569,
+            571
+          ]
+        ]
+      },
+      "matched": true,
+      "member_sha256": "f686c9ef781b0952ce997b3c4f65805cdea1158b39c6e31d9aae534e31f7f8b1"
+    },
+    {
+      "case": "classic_list_archive",
+      "pid": 1284,
+      "exit_code": 0,
+      "expected_hit": false,
+      "records": {
+        "create": [],
+        "read": [],
+        "correlated": []
+      },
+      "matched": false,
+      "member_sha256": null
+    },
+    {
+      "case": "classic_list_raw_profile",
+      "pid": 1680,
+      "exit_code": 1,
+      "expected_hit": false,
+      "records": {
+        "create": [],
+        "read": [
+          [
+            581
+          ]
+        ],
+        "correlated": []
+      },
+      "matched": false,
+      "member_sha256": null
+    }
+  ],
+  "all_expectations_met": true
+}
