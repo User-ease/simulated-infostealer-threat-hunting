@@ -1,0 +1,5 @@
+1794425172.736989 execve("/usr/bin/seq", ["seq", "1", "5"], 0x5edee499b6d8 /* 5 vars */) = 0
+1794425172.738035 openat(AT_FDCWD</lab>, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3</etc/ld.so.cache>
+1794425172.738387 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libc.so.6>
+1794425172.740055 write(0x1, 0x5a7cc66e7360, 0xa) = 0xa
+1794425172.740453 +++ exited with 0 +++

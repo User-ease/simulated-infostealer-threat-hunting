@@ -25,19 +25,24 @@ def main():
  (ROOT/'images/week10/apt29-coverage.svg').write_text(s)
  summary=json.loads((args.evidence/'siem/summary.json').read_text())
  s=start(1120,540)+text(30,43,'Week 9 actual Elasticsearch query results',28,weight='bold')+text(30,76,'Observed execve events from 3 atomics and 2 benign controls',19,color='#475569')
- revised=summary.get('query_version')==2
+ version=summary.get('query_version',1)
+ revised=version>=2
  if revised:
   s=start(1120,540)+text(30,43,'Revised Week 9 archive hunt',28,weight='bold')+text(30,76,'Three Atomic Red Team procedures and six controls on Linux',19,color='#475569')
  titles=['All observed executions','Archive utility executions','Archive with lab source path'];keys=['inventory','archive_utility','lab_browser_archive']
  if revised:
   titles=['Archive utility executions','Original path filter','Creation and profile open']
   keys=['archive_utility','legacy_path','lab_browser_archive']
+ if version==3:
+  s=start(1120,540)+text(30,43,'Week 9 archive attempts and exit status',28,weight='bold')+text(30,76,'Observed create invocations with a registered profile input open',19,color='#475569')
+  titles=['Profile archive attempts','Archiver exited successfully','Archiver exited with an error']
+  keys=['profile_archive_attempt','lab_browser_archive','failed_profile_archive']
  for i,(name,k) in enumerate(zip(titles,keys)):
   y=125+i*100;count=summary['counts'][k]
   s+=text(30,y+30,name,21)+box(445,y,max(15,580*count/summary['counts'][keys[0]]),48,['#64748B','#2563EB','#0F766E'][i])+text(1045,y+33,count,28,weight='bold')
  s+=text(30,450,(f'Each search was run on the same {summary["counts"]["inventory"]} process events.' if revised else 'Broad matches include ordinary backup activity; refined matches use a lab-specific path.'),18,color='#475569')
  s+=text(30,487,'Counts represent events, not malware detections. Source: siem/results.json.',18,color='#475569')+'</svg>'
- (ROOT/'images/week9'/('query-results-v2.svg' if revised else 'query-results.svg')).write_text(s)
+ (ROOT/'images/week9'/(f'query-results-v{version}.svg' if revised else 'query-results.svg')).write_text(s)
  s=start(1120,390)+text(30,43,'Week 9 evidence pipeline',28,weight='bold')
  steps=[('Pinned atomics',['3 reviewed commands','Synthetic local files']),('Native traces',['strace child processes','execve and file calls']),('Elasticsearch',['New isolated indices','Queries and controls']),('Evidence package',['API responses and hashes','Reports and defense'])]
  for i,(title,lines) in enumerate(steps):

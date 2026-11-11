@@ -58,6 +58,14 @@ class ArchiveEvidenceTests(unittest.TestCase):
                 ("tar", ["tar", "-xf", "source"], False),
                 ("gzip", ["gzip", "-k", "source"], True),
                 ("gzip", ["gzip", "-dc", "source"], False),
+                ("tar", ["tar", "--create", "--file=out.tar", "source"], True),
+                ("tar", ["tar", "--file", "out.tar", "--gzip", "--create", "source"], True),
+                ("tar", ["tar", "-c", "--file=out.tar", "--", "-source"], True),
+                ("tar", ["tar", "--list", "--file=out.tar"], False),
+                ("tar", ["tar", "--extract", "--file", "out.tar", "source"], False),
+                ("tar", ["tar", "--create", "--list", "--file=out.tar", "source"], False),
+                ("tar", ["tar", "--file", "--create", "source"], False),
+                ("tar", ["tar", "--create", "--file=", "source"], False),
                 ("gzip", ["gzip"], False)]:
             with self.subTest(args=args):
                 self.assertEqual(self.analyzer.creation_mode(name, args), expected)
@@ -70,18 +78,39 @@ class ArchiveEvidenceTests(unittest.TestCase):
             '4 openat(4, "cookies.json", O_WRONLY) = 5</lab/profile-alt/cookies.json>',
             '5 openat(4, "cookies.json", O_RDONLY) = 5</lab/profile-alt/cookies.json>',
             '6 execve("/bin/sh", ["sh"], {}) = 0',
-            '7 openat(4, "cookies.json", O_RDONLY) = 5</lab/profile-alt/cookies.json>']
+            '7 openat(4, "cookies.json", O_RDONLY) = 5</lab/profile-alt/cookies.json>',
+            '8 +++ exited with 0 +++']
         event = {"process": {"name": "tar", "args": ["tar", "-cf", "out", "profile-alt"]},
                  "lab": {"source_file": "sample.trace", "source_line": 1}}
         with tempfile.TemporaryDirectory() as tmp:
             (Path(tmp) / "sample.trace").write_text("\n".join(lines))
             self.analyzer.add_archive_fields(event, Path(tmp), {"profile-alt/cookies.json"})
         self.assertEqual(event["lab"]["profile_open_lines"], [5])
+        self.assertNotIn("exit_code", event["process"])
+
+    def test_archiver_exit_provenance(self):
+        for code in (0, 2, None):
+            with self.subTest(exit_code=code), tempfile.TemporaryDirectory() as tmp:
+                lines = ['1 execve("/usr/bin/tar", [], {}) = 0',
+                         '2 openat(3, "cookies.json", O_RDONLY) = 4</lab/profile/cookies.json>']
+                if code == 2:
+                    lines.append('3 write(0x4, 0x1234, 0x2800) = -1 ENOSPC (No space left on device)')
+                if code is not None:
+                    lines.append(f'4 +++ exited with {code} +++')
+                trace = Path(tmp) / "test.trace"
+                trace.write_text("\n".join(lines))
+                event = {"process": {"name": "tar", "args": ["tar", "--create", "--file=a.tar", "profile"]},
+                         "lab": {"source_file": trace.name, "source_line": 1}}
+                self.analyzer.add_archive_fields(event, trace.parent, {"profile/cookies.json"})
+                self.assertEqual(event["process"].get("exit_code"), code)
+                self.assertEqual(event["lab"].get("exit_line"), len(lines) if code is not None else None)
+                self.assertEqual(event["lab"].get("enospc_lines", []), [3] if code == 2 else [])
+
 
     def test_saved_live_results_and_trace_references(self):
         for path in (ROOT / "evidence/week9").glob("*/siem/summary.json"):
             summary = json.loads(path.read_text())
-            if summary.get("query_version") != 2:
+            if summary.get("query_version", 1) < 2:
                 continue
             results = json.loads((path.parent / "results.json").read_text())
             self.assertTrue(summary["control_counts_passed"])
@@ -90,6 +119,19 @@ class ArchiveEvidenceTests(unittest.TestCase):
                 trace = (path.parent.parent / record["source_file"]).read_text().splitlines()
                 for line, source in zip(record["profile_open_lines"], record["profile_inputs"]):
                     self.assertIn("</lab/" + source + ">", trace[line - 1])
+            if summary["query_version"] >= 3:
+                self.assertTrue(summary["write_failure_evidence_passed"])
+                for bucket, expected_code in [("lab_browser_archive", 0), ("failed_profile_archive", 2)]:
+                    for hit in results[bucket]["hits"]["hits"]:
+                        source = hit["_source"]
+                        lab = source["lab"]
+                        trace = (path.parent.parent / lab["source_file"]).read_text().splitlines()
+                        self.assertEqual(source["process"]["exit_code"], expected_code)
+                        self.assertTrue(trace[lab["exit_line"] - 1].endswith(f"exited with {expected_code} +++"))
+                        if expected_code:
+                            self.assertTrue(lab["enospc_lines"])
+                            for line in lab["enospc_lines"]:
+                                self.assertIn("= -1 ENOSPC", trace[line - 1])
 
 
 if __name__ == "__main__":

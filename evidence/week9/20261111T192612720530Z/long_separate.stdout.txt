@@ -1,0 +1,3 @@
+profile-alt/
+profile-alt/mock-browser.json
+profile-alt/cookies.json

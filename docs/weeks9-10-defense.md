@@ -6,9 +6,9 @@ Use the Week 9 report, its saved Elasticsearch responses, and the Week 10 mappin
 | --- | --- | --- | --- |
 | 0:00-0:45 | Introduction | README and syllabus requirements summary | Week 9 executes atomic tests and analyzes SIEM results; Week 10 maps APT29 TTPs. |
 | 0:45-1:30 | Lab operator | Selected atomic GUIDs and workflow diagram | Three pinned tests; Linux scope; synthetic files; no real credentials. |
-| 1:30-2:45 | Lab operator | collection.json, one raw trace, matching normalized event | Nine cases ran in the revision: three atomics and six controls. Explain exit codes, native execve evidence, archive round-trip checks and cleanup. |
-| 2:45-3:45 | Detection analyst | Kibana Discover or saved SIEM summary and queries | Show 29 executions, 11 archiver launches, 5 historical-filter hits and 3 revised candidates. |
-| 3:45-4:30 | Detection analyst | Revised case table and renamed-profile trace | Contrast destination-only 1→0, list 1→0 and renamed input 0→1. Explain the returned file descriptor. |
+| 1:30-2:45 | Lab operator | collection.json, one raw trace, matching normalized event | The final run covers three atomics and twelve controls. Explain exit codes, native execve evidence, archive round-trip checks and cleanup. |
+| 2:45-3:45 | Detection analyst | Kibana Discover or saved SIEM summary and queries | Show 43 executions, 18 archiver launches, seven profile archive attempts, five successful exits and two failed writes. |
+| 3:45-4:30 | Detection analyst | Long-form success and write-error traces | Follow the input opens, ENOSPC and exit 2; compare the successful archive member checks. |
 | 4:30-6:00 | CTI analyst | APT29 mapping and coverage figure | Explain RDP Bitmap Cache for password export, Shellbags and extension telemetry for cookies, and the local Event 400 / CIM pair. Keep SolarWinds and later StellarParticle reporting separate. |
 | 6:00-7:15 | CTI analyst | Evidence-status column and future hunts | Only the Linux archive analogue is freshly tested; Windows telemetry, remote staging and session misuse need separate validation. |
 | 7:15-7:30 | Any speaker | GitHub commits and conclusion | Demonstrate traceability, honest dates and the next Windows collection experiment. |
@@ -29,15 +29,15 @@ Use the Week 9 report, its saved Elasticsearch responses, and the Week 10 mappin
 
 ### Explain the SIEM results
 
-“Across nine scenarios in one run we recorded 29 executions. Eleven launched tar or gzip. The old path search found five events, including a list command. The new query requires a supported create command and a same-process read-only open of a registered training file. It returned three: the atomic gzip, the atomic tar and the backup under a renamed directory.”
+“We observed 43 executions across fifteen cases. Eighteen launched tar or gzip. Seven issued a create command and opened a training profile input. Five archivers exited zero. The other two failed to write. We also opened the five completed outputs before cleanup and compared their contents with the fixtures.”
 
 ### Explain the controls
 
-“Here is the renamed-profile trace. Lines 12–13 identify the two input files on the returned descriptors. Now compare the archive named lab-browser-backup: it contains ordinary documents. The old query selected both its creation and its listing. The revised query excludes both. A perfectly legitimate backup of the actual synthetic profile still matches.”
+“Both long forms of the file option succeeded. Listing and extraction stayed outside the attempt set. Here is the tar trace for a deliberately failed write to /dev/full. The same PID opened the profile files, received ENOSPC on a write, and exited 2. An alert about an attempt can still be useful, but a successful archive needs stronger evidence.”
 
 ### Explain the APT29 analysis
 
-“Our mapping uses primary reporting and MITRE's current technique pages. FireEye's initial SolarWinds report describes the compromised update mechanism; its later attribution update connects UNC2452 to APT29. Microsoft's investigation reports archive creation with 7-Zip. CrowdStrike reconstructed a password export from the RDP Bitmap Cache. For cookies they combined Shellbags navigation with telemetry identifying the Cookie Editor extension. In our own Windows lab, Event 400 record 28101 and a CIM observation corroborate a PowerShell launch and parent; matching hashes support local staging. We retain the different reporting periods instead of presenting every procedure as one universal attack sequence. The table maps ten selected techniques and links each reported behavior to a source.”
+“Our mapping uses primary reporting and MITRE's current technique pages. FireEye's initial SolarWinds report describes the compromised update mechanism; its later attribution update connects UNC2452 to APT29. Volexity shows an Exchange mailbox export followed by 7-Zip reading the exported local PST as its input. That local input supports T1005. The archive in the OWA directory and its reported retrieval answer separate staging and transfer questions. CrowdStrike reconstructed a password export from the RDP Bitmap Cache. For cookies they combined Shellbags navigation with telemetry identifying the Cookie Editor extension. In our own Windows lab, Event 400 record 28101 and a CIM observation corroborate a PowerShell launch and parent; matching hashes support local staging. We retain the different reporting periods instead of presenting every procedure as one universal attack sequence. The table maps ten selected techniques and links each reported behavior to a source.”
 
 ### State what the mapping does and does not prove
 
@@ -49,7 +49,7 @@ Use the Week 9 report, its saved Elasticsearch responses, and the Week 10 mappin
 
 ## Quick demonstration
 
-1. Open the [revised collection](../evidence/week9/20261111T190107852073Z/collection.json) and [SIEM summary](../evidence/week9/20261111T190107852073Z/siem/summary.json). Show one source trace line next to its normalized event.
+1. Open the [revised collection](../evidence/week9/20261111T192612720530Z/collection.json) and [SIEM summary](../evidence/week9/20261111T192612720530Z/siem/summary.json). Show one source trace line next to its normalized event.
 2. Open Kibana at `http://127.0.0.1:15609`, after reproducing the run, create or select the data view for its exact index. Use its absolute UTC interval. For the published revision, the case table and full responses are available offline. A relative last-15-minutes filter will eventually hide the saved observations.
 3. If Kibana is unavailable, open `siem/queries.json` and `siem/results.json`. These contain actual executed Elasticsearch requests and responses; do not pretend a static chart is a live SIEM screenshot.
 4. Show the Week 10 mapping and the separate GitHub commits.

@@ -1,0 +1,22 @@
+1794425178.098782 execve("/usr/bin/tar", ["tar", "-cf", "/dev/full", "profile-alt"], 0x5aa46d2a1638 /* 5 vars */) = 0
+1794425178.099633 openat(AT_FDCWD</lab>, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3</etc/ld.so.cache>
+1794425178.100001 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libacl.so.1", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libacl.so.1.1.2302>
+1794425178.100613 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libselinux.so.1>
+1794425178.101293 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libc.so.6>
+1794425178.102214 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.11.2>
+1794425178.104480 openat(AT_FDCWD</lab>, "/proc/filesystems", O_RDONLY|O_CLOEXEC) = 3</proc/filesystems>
+1794425178.105825 openat(AT_FDCWD</lab>, "profile-alt", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW|O_CLOEXEC) = 4</lab/profile-alt>
+1794425178.106899 openat(AT_FDCWD</lab>, "/etc/nsswitch.conf", O_RDONLY|O_CLOEXEC) = 5</etc/nsswitch.conf>
+1794425178.107378 openat(AT_FDCWD</lab>, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 5</etc/passwd>
+1794425178.108218 openat(AT_FDCWD</lab>, "/etc/group", O_RDONLY|O_CLOEXEC) = 5</etc/group>
+1794425178.108674 openat(4</lab/profile-alt>, "mock-browser.json", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW|O_CLOEXEC) = 5</lab/profile-alt/mock-browser.json>
+1794425178.109111 openat(4</lab/profile-alt>, "cookies.json", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW|O_CLOEXEC) = 5</lab/profile-alt/cookies.json>
+1794425178.109675 write(0x3, 0x5738bd4fb000, 0x2800) = -1 ENOSPC (No space left on device)
+1794425178.109800 write(0x2, 0x7fff9de8ab80, 0x5) = 0x5
+1794425178.109971 write(0x2, 0x7fff9de8ac10, 0x17) = 0x17
+1794425178.110104 write(0x2, 0x7fff9de8a730, 0x19) = 0x19
+1794425178.110232 write(0x2, 0x7fff9de8ab50, 0x1) = 0x1
+1794425178.110386 write(0x2, 0x7fff9de8aba0, 0x5) = 0x5
+1794425178.110461 write(0x2, 0x7fff9de8ac30, 0x25) = 0x25
+1794425178.110533 write(0x2, 0x7fff9de8ab70, 0x1) = 0x1
+1794425178.111115 +++ exited with 2 +++

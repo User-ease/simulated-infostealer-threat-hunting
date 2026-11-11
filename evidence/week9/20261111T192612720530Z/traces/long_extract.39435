@@ -1,0 +1,13 @@
+1794425178.073293 execve("/usr/bin/tar", ["tar", "--extract", "--to-stdout", "--file", "out/long.tar", "profile-alt/cookies.json"], 0x5e68457cd660 /* 5 vars */) = 0
+1794425178.074168 openat(AT_FDCWD</lab>, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3</etc/ld.so.cache>
+1794425178.074629 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libacl.so.1", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libacl.so.1.1.2302>
+1794425178.075251 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libselinux.so.1>
+1794425178.075931 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libc.so.6>
+1794425178.076752 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.11.2>
+1794425178.079002 openat(AT_FDCWD</lab>, "/proc/filesystems", O_RDONLY|O_CLOEXEC) = 3</proc/filesystems>
+1794425178.080226 openat(AT_FDCWD</lab>, "out/long.tar", O_RDONLY) = 3</lab/out/long.tar>
+1794425178.081296 openat(AT_FDCWD</lab>, "/etc/nsswitch.conf", O_RDONLY|O_CLOEXEC) = 4</etc/nsswitch.conf>
+1794425178.081801 openat(AT_FDCWD</lab>, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 4</etc/passwd>
+1794425178.082702 openat(AT_FDCWD</lab>, "/etc/group", O_RDONLY|O_CLOEXEC) = 4</etc/group>
+1794425178.083105 write(0x1, 0x5d477b427800, 0x2a) = 0x2a
+1794425178.083912 +++ exited with 0 +++

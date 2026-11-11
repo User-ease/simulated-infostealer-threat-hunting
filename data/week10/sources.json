@@ -54,5 +54,12 @@
     "url": "https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4688",
     "date_context": "Reference for proposed Windows lab collection",
     "accessed": "2026-11-12"
+  },
+  {
+    "id": "VOLEXITY-2020",
+    "title": "Dark Halo Leverages SolarWinds Compromise to Breach Organizations",
+    "url": "https://www.volexity.com/blog/2020/12/14/dark-halo-leverages-solarwinds-compromise-to-breach-organizations/",
+    "date_context": "2020-12-14; July 2020 incident, SolarWinds / Exfiltration, including the Exchange export and 7-Zip commands. Reference 5 in MITRE C0024.",
+    "accessed": "2026-11-12"
   }
 ]

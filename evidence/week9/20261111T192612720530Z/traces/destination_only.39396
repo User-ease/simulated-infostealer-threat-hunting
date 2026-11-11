@@ -1,0 +1,5 @@
+1794425177.912120 execve("/usr/bin/gzip", ["gzip"], 0x63502af88528 /* 5 vars */) = 0
+1794425177.912960 openat(AT_FDCWD</lab>, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3</etc/ld.so.cache>
+1794425177.913297 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libc.so.6>
+1794425177.915777 write(0x1, 0x57d35b38e000, 0xeb) = 0xeb
+1794425177.916254 +++ exited with 0 +++

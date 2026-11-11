@@ -1,0 +1,19 @@
+1794425178.020561 execve("/usr/bin/tar", ["tar", "--gzip", "--file", "out/separate.tar.gz", "--create", "--verbose", "profile-alt"], 0x622e782d6618 /* 5 vars */) = 0
+1794425178.021338 openat(AT_FDCWD</lab>, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3</etc/ld.so.cache>
+1794425178.021723 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libacl.so.1", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libacl.so.1.1.2302>
+1794425178.022265 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libselinux.so.1>
+1794425178.022800 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libc.so.6>
+1794425178.023424 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.11.2>
+1794425178.025023 openat(AT_FDCWD</lab>, "/proc/filesystems", O_RDONLY|O_CLOEXEC) = 3</proc/filesystems>
+1794425178.026892 openat(AT_FDCWD</lab>, "profile-alt", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW|O_CLOEXEC) = 3</lab/profile-alt>
+1794425178.028395 openat(AT_FDCWD</lab>, "/etc/nsswitch.conf", O_RDONLY|O_CLOEXEC) = 5</etc/nsswitch.conf>
+1794425178.028965 openat(AT_FDCWD</lab>, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 5</etc/passwd>
+1794425178.029813 openat(AT_FDCWD</lab>, "/etc/group", O_RDONLY|O_CLOEXEC) = 5</etc/group>
+1794425178.030246 write(0x1, 0x57769598e820, 0xd) = 0xd
+1794425178.030409 openat(3</lab/profile-alt>, "mock-browser.json", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW|O_CLOEXEC) = 5</lab/profile-alt/mock-browser.json>
+1794425178.030581 write(0x1, 0x57769598e820, 0x1e) = 0x1e
+1794425178.030939 openat(3</lab/profile-alt>, "cookies.json", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW|O_CLOEXEC) = 5</lab/profile-alt/cookies.json>
+1794425178.031113 write(0x1, 0x57769598e820, 0x19) = 0x19
+1794425178.031639 write(0x4, 0x577695982000, 0x2800) = 0x2800
+1794425178.035777 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=39424, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1794425178.036372 +++ exited with 0 +++

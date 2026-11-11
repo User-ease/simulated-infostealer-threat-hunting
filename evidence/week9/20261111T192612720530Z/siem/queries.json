@@ -1,0 +1,170 @@
+{
+  "inventory": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "event.dataset": "lab.strace"
+          }
+        }
+      ]
+    }
+  },
+  "archive_utility": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "event.dataset": "lab.strace"
+          }
+        },
+        {
+          "terms": {
+            "process.name": [
+              "tar",
+              "gzip"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "lab_browser_archive": {
+    "bool": {
+      "filter": [
+        {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "event.dataset": "lab.strace"
+                }
+              },
+              {
+                "terms": {
+                  "process.name": [
+                    "tar",
+                    "gzip"
+                  ]
+                }
+              },
+              {
+                "term": {
+                  "lab.archive_mode": "create"
+                }
+              },
+              {
+                "exists": {
+                  "field": "lab.profile_open_lines"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "term": {
+            "process.exit_code": 0
+          }
+        }
+      ]
+    }
+  },
+  "legacy_path": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "event.dataset": "lab.strace"
+          }
+        },
+        {
+          "terms": {
+            "process.name": [
+              "tar",
+              "gzip"
+            ]
+          }
+        },
+        {
+          "wildcard": {
+            "process.args": {
+              "value": "*lab-browser*",
+              "case_insensitive": true
+            }
+          }
+        }
+      ]
+    }
+  },
+  "profile_archive_attempt": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "event.dataset": "lab.strace"
+          }
+        },
+        {
+          "terms": {
+            "process.name": [
+              "tar",
+              "gzip"
+            ]
+          }
+        },
+        {
+          "term": {
+            "lab.archive_mode": "create"
+          }
+        },
+        {
+          "exists": {
+            "field": "lab.profile_open_lines"
+          }
+        }
+      ]
+    }
+  },
+  "failed_profile_archive": {
+    "bool": {
+      "filter": [
+        {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "event.dataset": "lab.strace"
+                }
+              },
+              {
+                "terms": {
+                  "process.name": [
+                    "tar",
+                    "gzip"
+                  ]
+                }
+              },
+              {
+                "term": {
+                  "lab.archive_mode": "create"
+                }
+              },
+              {
+                "exists": {
+                  "field": "lab.profile_open_lines"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "range": {
+            "process.exit_code": {
+              "gt": 0
+            }
+          }
+        }
+      ]
+    }
+  }
+}

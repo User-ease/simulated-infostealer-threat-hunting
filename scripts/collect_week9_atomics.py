@@ -56,8 +56,9 @@ def traced(command, case, lab, evidence, run_id):
     trace = evidence / "traces" / case
     started = now()
     result = subprocess.run(
-        ["strace", "-ff", "-qq", "-y", "-ttt", "-s", "16384", "-e",
-         "trace=execve,openat,unlink,unlinkat,rename", "-o", str(trace), "--", "/bin/sh", "-c", command],
+        ["strace", "-ff", "-q", "-y", "-ttt", "-s", "16384", "-e",
+         "trace=execve,openat,unlink,unlinkat,rename,write,writev",
+         "-e", "raw=write,writev", "-o", str(trace), "--", "/bin/sh", "-c", command],
         cwd=lab, env={"PATH": "/usr/bin:/bin", "LANG": "C", "LC_ALL": "C", "TZ": "UTC"},
         capture_output=True, text=True, timeout=30)
     (evidence / (case + ".stdout.txt")).write_text(result.stdout)
@@ -79,6 +80,8 @@ def main():
     options = parser.parse_args()
     if platform.system() != "Linux":
         raise SystemExit("This collector requires Linux. It does not emulate Windows telemetry.")
+    if not Path("/dev/full").is_char_device():
+        raise SystemExit("The ENOSPC controls require the Linux /dev/full character device.")
     for tool in ["strace", "sh", "tar", "gzip", "seq", "sleep"]:
         if not shutil.which(tool):
             raise SystemExit("Missing prerequisite: " + tool)
@@ -129,11 +132,18 @@ def main():
         ("list_only", "tar -tf out/lab-browser-backup.tar.gz"),
         ("renamed_profile", "tar -cf out/profile.tar profile-alt"),
         ("decompress_only", "gzip -dc lab-browser/mock-browser.json.gz > /dev/null"),
+        ("long_equals", "tar --create --file=out/long.tar profile-alt"),
+        ("long_separate", "tar --gzip --file out/separate.tar.gz --create --verbose profile-alt"),
+        ("long_list", "tar --list --file=out/long.tar"),
+        ("long_extract", "tar --extract --to-stdout --file out/long.tar profile-alt/cookies.json > /dev/null"),
+        ("short_write_error", "tar -cf /dev/full profile-alt"),
+        ("long_write_error", "tar --create --file=/dev/full profile-alt"),
     ]:
         case, observed = traced(command, name, lab, evidence, run_id)
         cases.append(case)
         events.extend(observed)
-    cleanup.append(("control_outputs", "rm -f out/lab-browser-backup.tar.gz out/profile.tar"))
+    control_archives = ["out/profile.tar", "out/long.tar", "out/separate.tar.gz"]
+    cleanup.append(("control_outputs", "rm -f out/lab-browser-backup.tar.gz " + " ".join(control_archives)))
     cleanup.append(("benign_backup", "rm -f out/ordinary-backup.tar.gz\n"))
     source = lab / "lab-browser/mock-browser.json"
     archive = lab / "out/browser.tar.gz"
@@ -145,6 +155,16 @@ def main():
         verification["tar_roundtrip"] = all(tf.extractfile("lab-browser/" + name).read() ==
                                              (lab / "lab-browser" / name).read_bytes()
                                              for name in ["mock-browser.json", "cookies.json"])
+    verification["control_archives"] = {}
+    for output in control_archives:
+        with tarfile.open(lab / output) as tf:
+            members = {}
+            for name in ["cookies.json", "mock-browser.json"]:
+                with tf.extractfile("profile-alt/" + name) as member:
+                    members[name] = member.read() == (lab / "profile-alt" / name).read_bytes()
+        verification["control_archives"][output] = {"sha256": sha(lab / output), "members_match": members}
+    verification["control_roundtrips"] = all(all(item["members_match"].values())
+                                             for item in verification["control_archives"].values())
     verification["shell_marker_lines"] = (evidence / "atomic_shell.stdout.txt").read_text().splitlines() == [
         f"{i}, Atomic Red Team was here!" for i in range(1, 6)]
     clean_results = []
@@ -152,17 +172,21 @@ def main():
         result = subprocess.run(["/bin/sh", "-c", command], cwd=lab, capture_output=True, text=True, timeout=10)
         clean_results.append({"case": name, "command": command, "exit_code": result.returncode,
                               "stdout": result.stdout, "stderr": result.stderr})
-    verification["cleanup_passed"] = not any(p.exists() for p in [archive, gz, lab / "out/ordinary-backup.tar.gz",
-                                                    lab / "out/lab-browser-backup.tar.gz", lab / "out/profile.tar"])
-    verification["all_commands_succeeded"] = all(c["exit_code"] == 0 for c in cases + clean_results)
-    verification["passed"] = all(verification[k] for k in ["gzip_roundtrip", "tar_roundtrip", "shell_marker_lines",
-                                                           "cleanup_passed", "all_commands_succeeded"])
+    verification["cleanup_passed"] = not any((lab / "out").iterdir()) and not gz.exists()
+    error_cases = {"short_write_error", "long_write_error"}
+    verification["expected_exit_codes"] = all(c["exit_code"] == (2 if c["case"] in error_cases else 0)
+                                               for c in cases) and all(c["exit_code"] == 0 for c in clean_results)
+    verification["enospc_stderr"] = all("No space left on device" in (evidence / (c + ".stderr.txt")).read_text()
+                                        for c in error_cases)
+    verification["passed"] = all(verification[k] for k in [
+        "gzip_roundtrip", "tar_roundtrip", "control_roundtrips", "shell_marker_lines",
+        "cleanup_passed", "expected_exit_codes", "enospc_stderr"])
     events.sort(key=lambda e: (e["@timestamp"], e["process"]["pid"]))
     (evidence / "events.jsonl").write_text("".join(json.dumps(e) + "\n" for e in events))
     save(evidence / "collection.json", {"run_id": run_id, "finished_at": now(), "platform": "Linux x86_64",
          "python_version": platform.python_version(), "collector_sha256": sha(__file__),
          "profile_inputs": profile_inputs, "trace_root": "/lab",
-         "selection_sha256": sha(pinned_path), "upstream_commit": pinned["upstream_commit"],
+         "query_version": 3, "selection_sha256": sha(pinned_path), "upstream_commit": pinned["upstream_commit"],
          "sensor": "strace child-process syscall tracing; not a system-wide agent or Windows sensor",
          "host_name_policy": "host.name is the fixed pseudonym LAB-LINUX; no actual hostname collected",
          "cases": cases, "cleanup": clean_results, "verification": verification, "event_count": len(events)})

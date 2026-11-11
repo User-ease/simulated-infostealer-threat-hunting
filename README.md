@@ -24,9 +24,9 @@ The project does not use real malware or real credentials. Instead, synthetic br
 
 * [Week 8](docs/week8-adversary-emulation-plan.md): adversary emulation plan (initial access → persistence → exfiltration) derived from the Week 4 Campaign 1 CTI, mapped to ATT&CK v20.0 with an [ATT&CK Navigator layer](data/week8-attack-navigator-layer.json) — planning deliverable; no attack code executed.
 
-* [Week 9](docs/week9-atomic-red-team.md): three pinned Linux Atomic Red Team tests plus two benign controls; native strace evidence and Elasticsearch queries produced 18 → 5 → 2 events. Twenty query boundary assertions passed on 8 November 2026. The 12 November revision recorded 29 executions and tested nine scenarios. The revised query identified three archive creations with a verified synthetic input open. [Control results](evidence/week9/20261111T190107852073Z/siem/summary.json).
+* [Week 9](docs/week9-atomic-red-team.md): three atomics and twelve controls. Of seven profile archive attempts, five exited successfully and two failed with ENOSPC. The original and expanded runs are preserved. [Latest control results](evidence/week9/20261111T192612720530Z/siem/summary.json).
 
-* [Week 10](docs/week10-apt29-analysis.md): APT29 source analysis, ten ATT&CK v20.1 mappings, a Navigator layer and a Windows artifact analysis covering PowerShell Event 400, CIM, RDP Bitmap Cache, Shellbags and extension telemetry.
+* [Week 10](docs/week10-apt29-analysis.md): ten APT29 techniques, a Navigator layer, Windows artifact analysis and a primary-source reconstruction of the local PST input for T1005.
 
 ## Weeks 9 and 10
 

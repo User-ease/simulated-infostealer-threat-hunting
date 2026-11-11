@@ -1,0 +1,5 @@
+1794425177.993388 execve("/bin/sh", ["/bin/sh", "-c", "tar --create --file=out/long.tar profile-alt"], 0x7ffd38624c98 /* 4 vars */) = 0
+1794425177.994293 openat(AT_FDCWD</lab>, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3</etc/ld.so.cache>
+1794425177.994669 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libc.so.6>
+1794425178.007609 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=39418, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1794425178.008010 +++ exited with 0 +++

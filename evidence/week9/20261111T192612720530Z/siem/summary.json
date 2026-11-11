@@ -1,0 +1,397 @@
+{
+  "index": "lab-week9-20261111t192612720530z",
+  "event_count": 43,
+  "counts": {
+    "inventory": 43,
+    "archive_utility": 18,
+    "lab_browser_archive": 5,
+    "legacy_path": 5,
+    "profile_archive_attempt": 7,
+    "failed_profile_archive": 2
+  },
+  "matching_cases": {
+    "inventory": [
+      "atomic_gzip",
+      "atomic_shell",
+      "atomic_tar",
+      "benign_backup",
+      "decompress_only",
+      "destination_only",
+      "list_only",
+      "long_equals",
+      "long_extract",
+      "long_list",
+      "long_separate",
+      "long_write_error",
+      "plain_control",
+      "renamed_profile",
+      "short_write_error"
+    ],
+    "archive_utility": [
+      "atomic_gzip",
+      "atomic_tar",
+      "benign_backup",
+      "decompress_only",
+      "destination_only",
+      "list_only",
+      "long_equals",
+      "long_extract",
+      "long_list",
+      "long_separate",
+      "long_write_error",
+      "renamed_profile",
+      "short_write_error"
+    ],
+    "lab_browser_archive": [
+      "atomic_gzip",
+      "atomic_tar",
+      "long_equals",
+      "long_separate",
+      "renamed_profile"
+    ],
+    "legacy_path": [
+      "atomic_gzip",
+      "atomic_tar",
+      "decompress_only",
+      "destination_only",
+      "list_only"
+    ],
+    "profile_archive_attempt": [
+      "atomic_gzip",
+      "atomic_tar",
+      "long_equals",
+      "long_separate",
+      "long_write_error",
+      "renamed_profile",
+      "short_write_error"
+    ],
+    "failed_profile_archive": [
+      "long_write_error",
+      "short_write_error"
+    ]
+  },
+  "regression_assertions": 20,
+  "regression_passed": true,
+  "ingestion_count_passed": true,
+  "controls": [
+    {
+      "case": "atomic_shell",
+      "command": "for i in $(seq 1 5); do echo \"$i, Atomic Red Team was here!\"; sleep 1; done",
+      "harness_exit": 0,
+      "legacy_path": {
+        "observed": 0,
+        "expected": 0
+      },
+      "lab_browser_archive": {
+        "observed": 0,
+        "expected": 0
+      },
+      "profile_archive_attempt": {
+        "observed": 0,
+        "expected": 0
+      },
+      "failed_profile_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "atomic_gzip",
+      "command": "test -e lab-browser/mock-browser.json && gzip -k lab-browser/mock-browser.json || (echo 'FAKE-TRAINING-DATA' >> lab-browser/mock-browser.json; gzip -k lab-browser/mock-browser.json)",
+      "harness_exit": 0,
+      "legacy_path": {
+        "observed": 1,
+        "expected": 1
+      },
+      "lab_browser_archive": {
+        "observed": 1,
+        "expected": 1
+      },
+      "profile_archive_attempt": {
+        "observed": 1,
+        "expected": 1
+      },
+      "failed_profile_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "atomic_tar",
+      "command": "tar -cvzf out/browser.tar.gz lab-browser",
+      "harness_exit": 0,
+      "legacy_path": {
+        "observed": 1,
+        "expected": 1
+      },
+      "lab_browser_archive": {
+        "observed": 1,
+        "expected": 1
+      },
+      "profile_archive_attempt": {
+        "observed": 1,
+        "expected": 1
+      },
+      "failed_profile_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "benign_backup",
+      "command": "tar -cvzf out/ordinary-backup.tar.gz ordinary-docs",
+      "harness_exit": 0,
+      "legacy_path": {
+        "observed": 0,
+        "expected": 0
+      },
+      "lab_browser_archive": {
+        "observed": 0,
+        "expected": 0
+      },
+      "profile_archive_attempt": {
+        "observed": 0,
+        "expected": 0
+      },
+      "failed_profile_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "plain_control",
+      "command": "printf 'Ordinary control without archiving\\n'",
+      "harness_exit": 0,
+      "legacy_path": {
+        "observed": 0,
+        "expected": 0
+      },
+      "lab_browser_archive": {
+        "observed": 0,
+        "expected": 0
+      },
+      "profile_archive_attempt": {
+        "observed": 0,
+        "expected": 0
+      },
+      "failed_profile_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "destination_only",
+      "command": "tar -czf out/lab-browser-backup.tar.gz ordinary-docs",
+      "harness_exit": 0,
+      "legacy_path": {
+        "observed": 1,
+        "expected": 1
+      },
+      "lab_browser_archive": {
+        "observed": 0,
+        "expected": 0
+      },
+      "profile_archive_attempt": {
+        "observed": 0,
+        "expected": 0
+      },
+      "failed_profile_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "list_only",
+      "command": "tar -tf out/lab-browser-backup.tar.gz",
+      "harness_exit": 0,
+      "legacy_path": {
+        "observed": 1,
+        "expected": 1
+      },
+      "lab_browser_archive": {
+        "observed": 0,
+        "expected": 0
+      },
+      "profile_archive_attempt": {
+        "observed": 0,
+        "expected": 0
+      },
+      "failed_profile_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "renamed_profile",
+      "command": "tar -cf out/profile.tar profile-alt",
+      "harness_exit": 0,
+      "legacy_path": {
+        "observed": 0,
+        "expected": 0
+      },
+      "lab_browser_archive": {
+        "observed": 1,
+        "expected": 1
+      },
+      "profile_archive_attempt": {
+        "observed": 1,
+        "expected": 1
+      },
+      "failed_profile_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "decompress_only",
+      "command": "gzip -dc lab-browser/mock-browser.json.gz > /dev/null",
+      "harness_exit": 0,
+      "legacy_path": {
+        "observed": 1,
+        "expected": 1
+      },
+      "lab_browser_archive": {
+        "observed": 0,
+        "expected": 0
+      },
+      "profile_archive_attempt": {
+        "observed": 0,
+        "expected": 0
+      },
+      "failed_profile_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "long_equals",
+      "command": "tar --create --file=out/long.tar profile-alt",
+      "harness_exit": 0,
+      "legacy_path": {
+        "observed": 0,
+        "expected": 0
+      },
+      "lab_browser_archive": {
+        "observed": 1,
+        "expected": 1
+      },
+      "profile_archive_attempt": {
+        "observed": 1,
+        "expected": 1
+      },
+      "failed_profile_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "long_separate",
+      "command": "tar --gzip --file out/separate.tar.gz --create --verbose profile-alt",
+      "harness_exit": 0,
+      "legacy_path": {
+        "observed": 0,
+        "expected": 0
+      },
+      "lab_browser_archive": {
+        "observed": 1,
+        "expected": 1
+      },
+      "profile_archive_attempt": {
+        "observed": 1,
+        "expected": 1
+      },
+      "failed_profile_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "long_list",
+      "command": "tar --list --file=out/long.tar",
+      "harness_exit": 0,
+      "legacy_path": {
+        "observed": 0,
+        "expected": 0
+      },
+      "lab_browser_archive": {
+        "observed": 0,
+        "expected": 0
+      },
+      "profile_archive_attempt": {
+        "observed": 0,
+        "expected": 0
+      },
+      "failed_profile_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "long_extract",
+      "command": "tar --extract --to-stdout --file out/long.tar profile-alt/cookies.json > /dev/null",
+      "harness_exit": 0,
+      "legacy_path": {
+        "observed": 0,
+        "expected": 0
+      },
+      "lab_browser_archive": {
+        "observed": 0,
+        "expected": 0
+      },
+      "profile_archive_attempt": {
+        "observed": 0,
+        "expected": 0
+      },
+      "failed_profile_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "short_write_error",
+      "command": "tar -cf /dev/full profile-alt",
+      "harness_exit": 2,
+      "legacy_path": {
+        "observed": 0,
+        "expected": 0
+      },
+      "lab_browser_archive": {
+        "observed": 0,
+        "expected": 0
+      },
+      "profile_archive_attempt": {
+        "observed": 1,
+        "expected": 1
+      },
+      "failed_profile_archive": {
+        "observed": 1,
+        "expected": 1
+      }
+    },
+    {
+      "case": "long_write_error",
+      "command": "tar --create --file=/dev/full profile-alt",
+      "harness_exit": 2,
+      "legacy_path": {
+        "observed": 0,
+        "expected": 0
+      },
+      "lab_browser_archive": {
+        "observed": 0,
+        "expected": 0
+      },
+      "profile_archive_attempt": {
+        "observed": 1,
+        "expected": 1
+      },
+      "failed_profile_archive": {
+        "observed": 1,
+        "expected": 1
+      }
+    }
+  ],
+  "control_counts_passed": true,
+  "write_failure_evidence_passed": true,
+  "query_version": 3,
+  "refined_cases_passed": true
+}

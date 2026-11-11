@@ -1,0 +1,21 @@
+1794425177.817775 execve("/usr/bin/tar", ["tar", "-cvzf", "out/browser.tar.gz", "lab-browser"], 0x5af47660d658 /* 5 vars */) = 0
+1794425177.818863 openat(AT_FDCWD</lab>, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3</etc/ld.so.cache>
+1794425177.819408 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libacl.so.1", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libacl.so.1.1.2302>
+1794425177.820310 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libselinux.so.1>
+1794425177.821232 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libc.so.6>
+1794425177.822337 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.11.2>
+1794425177.825006 openat(AT_FDCWD</lab>, "/proc/filesystems", O_RDONLY|O_CLOEXEC) = 3</proc/filesystems>
+1794425177.827410 openat(AT_FDCWD</lab>, "lab-browser", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW|O_CLOEXEC) = 3</lab/lab-browser>
+1794425177.828984 openat(AT_FDCWD</lab>, "/etc/nsswitch.conf", O_RDONLY|O_CLOEXEC) = 5</etc/nsswitch.conf>
+1794425177.829790 openat(AT_FDCWD</lab>, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 5</etc/passwd>
+1794425177.830865 openat(AT_FDCWD</lab>, "/etc/group", O_RDONLY|O_CLOEXEC) = 5</etc/group>
+1794425177.831446 write(0x1, 0x5558f4b8a820, 0xd) = 0xd
+1794425177.831630 openat(3</lab/lab-browser>, "mock-browser.json", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW|O_CLOEXEC) = 5</lab/lab-browser/mock-browser.json>
+1794425177.831880 write(0x1, 0x5558f4b8a820, 0x1e) = 0x1e
+1794425177.832335 openat(3</lab/lab-browser>, "mock-browser.json.gz", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW|O_CLOEXEC) = 5</lab/lab-browser/mock-browser.json.gz>
+1794425177.832568 write(0x1, 0x5558f4b8a820, 0x21) = 0x21
+1794425177.832941 openat(3</lab/lab-browser>, "cookies.json", O_RDONLY|O_NOCTTY|O_NONBLOCK|O_NOFOLLOW|O_CLOEXEC) = 5</lab/lab-browser/cookies.json>
+1794425177.833171 write(0x1, 0x5558f4b8a820, 0x19) = 0x19
+1794425177.833691 write(0x4, 0x5558f4b7e000, 0x2800) = 0x2800
+1794425177.840482 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=39376, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1794425177.841229 +++ exited with 0 +++

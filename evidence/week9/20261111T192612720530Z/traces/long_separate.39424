@@ -1,0 +1,5 @@
+1794425178.027418 execve("/bin/sh", ["/bin/sh", "-c", "gzip"], 0x7ffd0b5260c8 /* 5 vars */) = 0
+1794425178.028535 openat(AT_FDCWD</lab>, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3</etc/ld.so.cache>
+1794425178.028829 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libc.so.6>
+1794425178.035006 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=39425, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1794425178.035683 +++ exited with 0 +++

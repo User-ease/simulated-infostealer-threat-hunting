@@ -1,0 +1,2 @@
+tar: /dev/full: Cannot write: No space left on device
+tar: Error is not recoverable: exiting now

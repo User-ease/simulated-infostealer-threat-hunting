@@ -97,7 +97,7 @@
       "techniqueID": "T1005",
       "tactic": "collection",
       "color": "#CBD5E1",
-      "comment": "Files were extracted from compromised networks. Only generated lab files were read; no general collection detector. Source: https://attack.mitre.org/campaigns/C0024/",
+      "comment": "Volexity recorded a 7-Zip command naming the exported local file C:\\Temp\\b.pst as its input on the OWA server. The lab has synthetic file opens and archive member checks. The reported Exchange collection is CTI only. Source: https://www.volexity.com/blog/2020/12/14/dark-halo-leverages-solarwinds-compromise-to-breach-organizations/",
       "enabled": true,
       "showSubtechniques": false
     },

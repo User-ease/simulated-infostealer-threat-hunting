@@ -97,12 +97,12 @@
       "tactics": [
         "collection"
       ],
-      "reported_behavior": "Files were extracted from compromised networks.",
-      "source_id": "MITRE-C0024",
-      "source_url": "https://attack.mitre.org/campaigns/C0024/",
+      "reported_behavior": "Volexity recorded a 7-Zip command naming the exported local file C:\\Temp\\b.pst as its input on the OWA server.",
+      "source_id": "VOLEXITY-2020",
+      "source_url": "https://www.volexity.com/blog/2020/12/14/dark-halo-leverages-solarwinds-compromise-to-breach-organizations/",
       "mitre_url": "https://attack.mitre.org/techniques/T1005/",
-      "project_application": "Only generated lab files were read; no general collection detector.",
-      "proposed_hunt": "Use file-read telemetry and process context rather than inferring reads from file creation.",
+      "project_application": "The lab has synthetic file opens and archive member checks. The reported Exchange collection is CTI only.",
+      "proposed_hunt": "Correlate the PST export and a subsequent ReadData event for the PST with the 7-Zip process, then look separately for staging and a web request.",
       "evidence_status": "cti_only"
     },
     {

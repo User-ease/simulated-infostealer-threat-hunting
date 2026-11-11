@@ -2,7 +2,24 @@
 
 Project: **Forensic Analysis and Detection of Simulated Infostealer-Like Activity in Windows Environments**. Prepared 8 November 2026. This increment addresses syllabus 2026-2027 section 3.3, Week 9: execute selected atomic tests and record/analyze their results in a SIEM. The examples T1059 and T1003 are illustrative; credential dumping is not required for this chosen experiment.
 
-## Revised archive hunt · 12 November 2026
+## Archive attempts and exit status · 12 November 2026
+
+Version 3 ran three atomics and twelve controls. Elasticsearch indexed 43 process executions, including 18 tar/gzip launches. Seven archiver invocations opened a registered profile input in create mode. Five exited with code 0 and two with code 2. Independently reading the five successful outputs before cleanup reproduced the expected training data. [Executed queries](../evidence/week9/20261111T192612720530Z/siem/queries.json) · [15 case results](../evidence/week9/20261111T192612720530Z/siem/summary.json) · [Archive checks](../evidence/week9/20261111T192612720530Z/collection.json)
+
+![Archiver attempts grouped by exit status](../images/week9/query-results-v3.svg)
+
+| Control | Attempts | Exit 0 | Failed | Additional evidence |
+| --- | ---: | ---: | ---: | --- |
+| `tar --create --file=out/long.tar profile-alt` | 1 | 1 | 0 | Both expected members matched the input bytes. |
+| `tar --gzip --file out/separate.tar.gz --create --verbose profile-alt` | 1 | 1 | 0 | Both members matched after decompression. |
+| List / extract with long options | 0 / 0 | 0 / 0 | 0 / 0 | Each command completed normally. |
+| Write to `/dev/full`, short / long creation flags | 1 / 1 | 0 / 0 | 1 / 1 | Both traces show a profile open, a kernel ENOSPC write error and exit 2. |
+
+The analyzer parses option arguments, including both forms of `--file`. The attempt query requires a recognized create invocation and a successful read-only open of a registered input by the same process image. The success and failure queries add an exit-code condition. Exit status comes from that PID’s native trace. An image replaced by a later exec, or missing an exit record, cannot qualify for either exit bucket. The original wildcard is retained for comparison. All 60 expected counts (15 scenarios × 4 case-level queries) agreed with Elasticsearch. The 20 separate synthetic assertions still cover the wildcard and broad utility queries.
+
+**Trace walkthrough.** In the long write-error case, lines 12–13 show the input files, line 14 records ENOSPC and line 22 records exit 2. The positive long-form control exits 0 and its archive passes member verification. In applications beyond this lab, a zero exit status is the exit status of the utility. Verification of what went into an archive still requires artifact evidence. A legitimate backup can meet all of these conditions. [Failure trace](../evidence/week9/20261111T192612720530Z/traces/long_write_error.39445) · [Successful trace](../evidence/week9/20261111T192612720530Z/traces/long_equals.39418) · [Full search responses](../evidence/week9/20261111T192612720530Z/siem/results.json)
+
+## Earlier nine-scenario run · 12 November 2026
 
 On the expanded run, Elasticsearch indexed **29** process executions across three atomics and six controls. Eleven events launched tar or gzip. The original argument filter selected five events. The revised query selected three: the atomic gzip, the atomic tar and a normal backup of the same training profile under a different directory name. All nine expected counts for each query matched the live responses. [Queries](../evidence/week9/20261111T190107852073Z/siem/queries.json) · [Case results](../evidence/week9/20261111T190107852073Z/siem/summary.json) · [Full responses](../evidence/week9/20261111T190107852073Z/siem/results.json)
 
@@ -119,8 +136,8 @@ python3 scripts/analyze_week9_elastic.py evidence/week9/<NEW_RUN_ID>
 python3 -m unittest discover -s tests -v
 ```
 
-3. For the revised run use `lab-week9-20261111t190107852073z` and an absolute time range covering 2026-11-11 19:01:07–19:01:15 UTC. Execute the saved v2 DSL against that index; its enrichment fields are present only in v2. For the original run, create a Kibana data view for the exact index, with `@timestamp` as time field. For the archived run use the index above and **2026-11-08T14:59:50Z through 2026-11-08T15:00:10Z**. Use absolute time; relative time filters eventually hide old observations.
-4. Display `process.name`, `process.command_line` and `lab.case`. Equivalent broad KQL: `event.dataset:"lab.strace" and process.name:("tar" or "gzip")`. To reproduce the refinement exactly, run the saved Query DSL in Dev Tools; the historical query uses a case-insensitive wildcard. The revised query uses the archive mode and supporting open-line field.
+3. Select the exact index of the run in Kibana with `@timestamp` as the time field. For the current published run use `lab-week9-20261111t192612720530z` and 2026-11-11 19:26:10–19:26:20 UTC. The earlier nine-scenario run uses `lab-week9-20261111t190107852073z` and 19:01:07–19:01:15 UTC. The 8 November archive uses 14:59:50–15:00:10 UTC on that date.
+4. Run the matching version’s saved DSL in Dev Tools. In version 3 show `process.command_line`, `process.exit_code`, `lab.source_file`, `lab.profile_open_lines` and `lab.exit_line`. Compare `profile_archive_attempt`, `lab_browser_archive` (exit 0) and `failed_profile_archive` (nonzero exit). In the two older collections the native exit records were unavailable.
 5. Keep the original evidence unchanged. A rerun gets a new run ID, directory and index. Stop only the dedicated lab services when finished; the indices persist in their own data directories.
 
 ## Continuity and limitations

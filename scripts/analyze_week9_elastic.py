@@ -2,6 +2,7 @@
 """Index a Week 9 collection into local Elasticsearch and save actual API evidence."""
 import argparse
 import datetime as dt
+import getopt
 import hashlib
 import json
 import re
@@ -16,7 +17,7 @@ def save(path, value):
     Path(path).write_text(json.dumps(value, indent=2) + "\n")
 
 
-def queries(version=2):
+def queries(version=3):
     base = {"term": {"event.dataset": "lab.strace"}}
     archive = {"terms": {"process.name": ["tar", "gzip"]}}
     browser = {"wildcard": {"process.args": {"value": "*lab-browser*", "case_insensitive": True}}}
@@ -24,22 +25,38 @@ def queries(version=2):
             "archive_utility": {"bool": {"filter": [base, archive]}},
             "lab_browser_archive": {"bool": {"filter": [base, archive, browser]}}}
 
-
-    if version == 2:
+    if version >= 2:
         result["legacy_path"] = result["lab_browser_archive"]
         result["lab_browser_archive"] = {"bool": {"filter": [
             base, archive, {"term": {"lab.archive_mode": "create"}},
             {"exists": {"field": "lab.profile_open_lines"}}]}}
+    if version >= 3:
+        attempt = result["lab_browser_archive"]
+        result["profile_archive_attempt"] = attempt
+        result["lab_browser_archive"] = {"bool": {"filter": [attempt, {"term": {"process.exit_code": 0}}]}}
+        result["failed_profile_archive"] = {"bool": {"filter": [attempt, {"range": {"process.exit_code": {"gt": 0}}}]}}
     return result
+
+
+TAR_OPERATIONS = {"-c", "-t", "-x", "-r", "-A", "-u", "-d", "--create", "--list", "--extract",
+                  "--append", "--concatenate", "--update", "--compare"}
 
 
 def creation_mode(name, args):
     """Recognize the tar/gzip creation forms covered by this lab."""
-    if name == "tar" and len(args) >= 4:
-        # -f consumes the next argument (the archive destination).
-        opts = args[1]
-        return (re.fullmatch(r"-[czv]+f", opts) is not None and opts.count("c") == 1
-                and all(not arg.startswith("-") for arg in args[2:]))
+    if name == "tar" and args:
+        # Parse option arguments too: an archive called "--create" is a filename.
+        # The non-creation operation names prevent ambiguous GNU abbreviations
+        # such as --c (create / compare) from silently selecting creation.
+        try:
+            opts, members = getopt.gnu_getopt(args[1:], "ctxrAudvzjf:C:", [
+                "create", "list", "extract", "append", "concatenate", "update", "compare",
+                "verbose", "gzip", "bzip2", "file=", "directory="])
+        except getopt.GetoptError:
+            return False
+        modes = [opt for opt, _ in opts if opt in TAR_OPERATIONS]
+        files = [value for opt, value in opts if opt in ("-f", "--file")]
+        return bool(members and modes in (["-c"], ["--create"]) and len(files) == 1 and files[0])
     if name == "gzip" and args:
         flags = [arg for arg in args[1:] if arg.startswith("-")]
         return (any(not arg.startswith("-") for arg in args[1:])
@@ -63,6 +80,13 @@ def add_archive_fields(event, evidence, profile_inputs):
     for number, line in enumerate(trace[lab["source_line"]:], lab["source_line"] + 1):
         if " execve(" in line and re.search(r"= 0$", line):
             break
+        exit_status = re.search(r" \+\+\+ exited with (\d+) \+\+\+$", line)
+        if exit_status:
+            process["exit_code"] = int(exit_status[1])
+            lab["exit_line"] = number
+            break
+        if re.search(r" (?:write|writev)\(.*= -1 ENOSPC\b", line):
+            lab.setdefault("enospc_lines", []).append(number)
         match = OPEN_READ.search(line)
         if match and match[2] in profile_inputs and "O_DIRECTORY" not in match[1].split("|"):
             lines.append(number)
@@ -78,7 +102,7 @@ def mapping():
                 "@timestamp": {"type": "date"},
                 "event": {"properties": {k: {"type": "keyword"} for k in ["dataset", "action", "type", "category"]}},
                 "process": {"properties": {"name": {"type": "keyword", "normalizer": "lowercase"},
-                    "pid": {"type": "long"}, "executable": {"type": "keyword"},
+                    "pid": {"type": "long"}, "exit_code": {"type": "integer"}, "executable": {"type": "keyword"},
                     "args": {"type": "keyword", "ignore_above": 32760}, "command_line": {"type": "wildcard"}}},
                 "lab": {"properties": {"profile_open_lines": {"type": "integer"},
                     **{k: {"type": "keyword"} for k in ["archive_mode", "profile_inputs", "case", "run_id", "source_file"]}}}
@@ -147,8 +171,8 @@ def main():
         if response["errors"]:
             raise RuntimeError("Bulk ingestion contained failures")
 
-    version = 2 if "profile_inputs" in collection else 1
-    if version == 2:
+    version = collection.get("query_version", 2 if "profile_inputs" in collection else 1)
+    if version >= 2:
         for path, digest in collection["profile_inputs"].items():
             if hashlib.sha256((evidence / "lab" / path).read_bytes()).hexdigest() != digest:
                 raise SystemExit("Profile input hash mismatch: " + path)
@@ -170,7 +194,7 @@ def main():
         fixtures.append(doc)
     bulk(index + "-regression", fixtures)
     regression = []
-    path_query = "legacy_path" if version == 2 else "lab_browser_archive"
+    path_query = "legacy_path" if version >= 2 else "lab_browser_archive"
     for query_name, field in [("archive_utility", 3), (path_query, 4)]:
         response = request("POST", "/" + index + "-regression/_search",
                            {"size": 100, "query": query_set[query_name]})
@@ -185,20 +209,33 @@ def main():
                "regression_assertions": len(regression), "regression_passed": all(r["passed"] for r in regression)}
     summary["ingestion_count_passed"] = summary["counts"]["inventory"] == len(events)
     expected = {"atomic_gzip", "atomic_tar"}
-    if version == 2:
+    if version >= 2:
         expected.add("renamed_profile")
         controls = []
         expected_old = {"atomic_gzip", "atomic_tar", "destination_only", "list_only", "decompress_only"}
+        expected_by_query = {"legacy_path": expected_old, "lab_browser_archive": expected}
+        if version >= 3:
+            expected.update({"long_equals", "long_separate"})
+            failed = {"short_write_error", "long_write_error"}
+            expected_by_query.update(profile_archive_attempt=expected | failed, failed_profile_archive=failed)
         for case in collection["cases"]:
             name = case["case"]
-            row = {"case": name, "command": case["command"].strip()}
-            for query_name, expected_cases in [("legacy_path", expected_old), ("lab_browser_archive", expected)]:
+            row = {"case": name, "command": case["command"].strip(), "harness_exit": case["exit_code"]}
+            for query_name, expected_cases in expected_by_query.items():
                 observed = sum(hit["_source"]["lab"]["case"] == name for hit in results[query_name]["hits"]["hits"])
                 row[query_name] = {"observed": observed, "expected": int(name in expected_cases)}
             controls.append(row)
         summary["controls"] = controls
         summary["control_counts_passed"] = all(row[k]["observed"] == row[k]["expected"]
-            for row in controls for k in ("legacy_path", "lab_browser_archive"))
+                                               for row in controls for k in expected_by_query)
+    if version >= 3:
+        failed_hits = results["failed_profile_archive"]["hits"]["hits"]
+        summary["write_failure_evidence_passed"] = (
+            len(failed_hits) == 2 and all(
+                hit["_source"]["process"]["exit_code"] == 2
+                and hit["_source"]["lab"].get("enospc_lines")
+                and hit["_source"]["lab"].get("exit_line")
+                for hit in failed_hits))
     summary["query_version"] = version
     summary["refined_cases_passed"] = set(summary["matching_cases"]["lab_browser_archive"]) == expected
     save(out / "runtime.json", runtime)
@@ -209,7 +246,7 @@ def main():
     save(out / "sha256.json", {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(out.glob("*"))})
     print(json.dumps(summary, indent=2))
     if not (all(summary[k] for k in ["regression_passed", "ingestion_count_passed", "refined_cases_passed"])
-            and summary.get("control_counts_passed", True)):
+            and summary.get("control_counts_passed", True) and summary.get("write_failure_evidence_passed", True)):
         raise SystemExit(1)
 
 
