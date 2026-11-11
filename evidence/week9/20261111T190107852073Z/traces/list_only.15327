@@ -1,0 +1,12 @@
+1794423673.002073 execve("/usr/bin/tar", ["tar", "-tf", "out/lab-browser-backup.tar.gz"], 0x5a9eacd4c608 /* 5 vars */) = 0
+1794423673.002602 openat(AT_FDCWD</lab>, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3</etc/ld.so.cache>
+1794423673.002878 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libacl.so.1", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libacl.so.1.1.2302>
+1794423673.003331 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libselinux.so.1>
+1794423673.003802 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libc.so.6>
+1794423673.004392 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.11.2>
+1794423673.005804 openat(AT_FDCWD</lab>, "/proc/filesystems", O_RDONLY|O_CLOEXEC) = 3</proc/filesystems>
+1794423673.006453 openat(AT_FDCWD</lab>, "out/lab-browser-backup.tar.gz", O_RDONLY) = 3</lab/out/lab-browser-backup.tar.gz>
+1794423673.011134 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=15328, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1794423673.011367 openat(AT_FDCWD</lab>, "/etc/nsswitch.conf", O_RDONLY|O_CLOEXEC) = 4</etc/nsswitch.conf>
+1794423673.011663 openat(AT_FDCWD</lab>, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 4</etc/passwd>
+1794423673.012126 openat(AT_FDCWD</lab>, "/etc/group", O_RDONLY|O_CLOEXEC) = 4</etc/group>

@@ -1,6 +1,7 @@
 import importlib.util
 import json
 import unittest
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -41,6 +42,54 @@ class TraceTests(unittest.TestCase):
                     trace.stem, path.parent.name, trace.relative_to(path.parent).as_posix()))
             key = lambda e: (e["@timestamp"], e["process"]["pid"])
             self.assertEqual(sorted(expected, key=key), sorted(actual, key=key))
+
+
+class ArchiveEvidenceTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        spec = importlib.util.spec_from_file_location("analyzer", ROOT / "scripts/analyze_week9_elastic.py")
+        cls.analyzer = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(cls.analyzer)
+
+    def test_operation_modes(self):
+        for name, args, expected in [
+                ("tar", ["tar", "-cvzf", "out", "source"], True),
+                ("tar", ["tar", "-tf", "source"], False),
+                ("tar", ["tar", "-xf", "source"], False),
+                ("gzip", ["gzip", "-k", "source"], True),
+                ("gzip", ["gzip", "-dc", "source"], False),
+                ("gzip", ["gzip"], False)]:
+            with self.subTest(args=args):
+                self.assertEqual(self.analyzer.creation_mode(name, args), expected)
+
+    def test_resolved_source_and_exec_boundary(self):
+        lines = [
+            '1 execve("/bin/tar", ["tar"], {}) = 0',
+            '2 openat(4, "cookies.json", O_RDONLY) = 5</lab/ordinary-docs/cookies.json>',
+            '3 openat(4, "cookies.json", O_RDONLY) = -1 EACCES (Permission denied)',
+            '4 openat(4, "cookies.json", O_WRONLY) = 5</lab/profile-alt/cookies.json>',
+            '5 openat(4, "cookies.json", O_RDONLY) = 5</lab/profile-alt/cookies.json>',
+            '6 execve("/bin/sh", ["sh"], {}) = 0',
+            '7 openat(4, "cookies.json", O_RDONLY) = 5</lab/profile-alt/cookies.json>']
+        event = {"process": {"name": "tar", "args": ["tar", "-cf", "out", "profile-alt"]},
+                 "lab": {"source_file": "sample.trace", "source_line": 1}}
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "sample.trace").write_text("\n".join(lines))
+            self.analyzer.add_archive_fields(event, Path(tmp), {"profile-alt/cookies.json"})
+        self.assertEqual(event["lab"]["profile_open_lines"], [5])
+
+    def test_saved_live_results_and_trace_references(self):
+        for path in (ROOT / "evidence/week9").glob("*/siem/summary.json"):
+            summary = json.loads(path.read_text())
+            if summary.get("query_version") != 2:
+                continue
+            results = json.loads((path.parent / "results.json").read_text())
+            self.assertTrue(summary["control_counts_passed"])
+            for hit in results["lab_browser_archive"]["hits"]["hits"]:
+                record = hit["_source"]["lab"]
+                trace = (path.parent.parent / record["source_file"]).read_text().splitlines()
+                for line, source in zip(record["profile_open_lines"], record["profile_inputs"]):
+                    self.assertIn("</lab/" + source + ">", trace[line - 1])
 
 
 if __name__ == "__main__":

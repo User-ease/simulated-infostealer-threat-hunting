@@ -40,5 +40,19 @@
     "url": "https://attack.mitre.org/resources/versions/",
     "date_context": "v20.1 current when checked 2026-11-08",
     "accessed": "2026-11-08"
+  },
+  {
+    "id": "MS-EVENT-4663",
+    "title": "Microsoft Learn · File system access (Security Event 4663)",
+    "url": "https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4663",
+    "date_context": "Reference for proposed Windows lab collection",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "MS-EVENT-4688",
+    "title": "Microsoft Learn · Process creation (Security Event 4688)",
+    "url": "https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4688",
+    "date_context": "Reference for proposed Windows lab collection",
+    "accessed": "2026-11-12"
   }
 ]

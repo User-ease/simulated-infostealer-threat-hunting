@@ -1,0 +1,4 @@
+1794423673.007559 openat(AT_FDCWD</lab>, "out/lab-browser-backup.tar.gz", O_RDONLY) = 3</lab/out/lab-browser-backup.tar.gz>
+1794423673.008007 execve("/usr/bin/gzip", ["gzip", "-d"], 0x7ffe66afa028 /* 5 vars */) = 0
+1794423673.008790 openat(AT_FDCWD</lab>, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3</etc/ld.so.cache>
+1794423673.009047 openat(AT_FDCWD</lab>, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3</usr/lib/x86_64-linux-gnu/libc.so.6>

@@ -69,7 +69,7 @@
       "tactics": [
         "credential-access"
       ],
-      "reported_behavior": "Investigators recovered evidence of saved Chrome password export.",
+      "reported_behavior": "RDP Bitmap Cache reconstruction showed a Chrome export of saved passwords to plaintext CSV (CrowdStrike figure 4).",
       "source_id": "CROWDSTRIKE-2022",
       "source_url": "https://www.crowdstrike.com/en-us/blog/observations-from-the-stellarparticle-campaign/",
       "mitre_url": "https://attack.mitre.org/techniques/T1555/003/",
@@ -83,7 +83,7 @@
       "tactics": [
         "credential-access"
       ],
-      "reported_behavior": "Chrome profile and DPAPI material were copied to obtain session cookies.",
+      "reported_behavior": "Shellbags showed Chrome and DPAPI directory navigation. Falcon identified the Cookie Editor extension used in the reported session reuse (figures 2–3).",
       "source_id": "CROWDSTRIKE-2022",
       "source_url": "https://www.crowdstrike.com/en-us/blog/observations-from-the-stellarparticle-campaign/",
       "mitre_url": "https://attack.mitre.org/techniques/T1539/",

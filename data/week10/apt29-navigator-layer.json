@@ -81,7 +81,7 @@
       "techniqueID": "T1555.003",
       "tactic": "credential-access",
       "color": "#CBD5E1",
-      "comment": "Investigators recovered evidence of saved Chrome password export. Mock JSON is not a browser credential store or DPAPI validation. Source: https://www.crowdstrike.com/en-us/blog/observations-from-the-stellarparticle-campaign/",
+      "comment": "RDP Bitmap Cache reconstruction showed a Chrome export of saved passwords to plaintext CSV (CrowdStrike figure 4). Mock JSON is not a browser credential store or DPAPI validation. Source: https://www.crowdstrike.com/en-us/blog/observations-from-the-stellarparticle-campaign/",
       "enabled": true,
       "showSubtechniques": false
     },
@@ -89,7 +89,7 @@
       "techniqueID": "T1539",
       "tactic": "credential-access",
       "color": "#CBD5E1",
-      "comment": "Chrome profile and DPAPI material were copied to obtain session cookies. Fake cookies were archived; no valid session or cookie theft was tested. Source: https://www.crowdstrike.com/en-us/blog/observations-from-the-stellarparticle-campaign/",
+      "comment": "Shellbags showed Chrome and DPAPI directory navigation. Falcon identified the Cookie Editor extension used in the reported session reuse (figures 2–3). Fake cookies were archived; no valid session or cookie theft was tested. Source: https://www.crowdstrike.com/en-us/blog/observations-from-the-stellarparticle-campaign/",
       "enabled": true,
       "showSubtechniques": false
     },

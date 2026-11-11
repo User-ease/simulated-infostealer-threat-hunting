@@ -6,10 +6,10 @@ Use the Week 9 report, its saved Elasticsearch responses, and the Week 10 mappin
 | --- | --- | --- | --- |
 | 0:00-0:45 | Introduction | README and syllabus requirements summary | Week 9 executes atomic tests and analyzes SIEM results; Week 10 maps APT29 TTPs. |
 | 0:45-1:30 | Lab operator | Selected atomic GUIDs and workflow diagram | Three pinned tests; Linux scope; synthetic files; no real credentials. |
-| 1:30-2:45 | Lab operator | collection.json, one raw trace, matching normalized event | Five cases ran; three official atomics and two controls. Explain exit codes, native execve evidence, archive round-trip checks and cleanup. |
-| 2:45-3:45 | Detection analyst | Kibana Discover or saved SIEM summary and queries | Show inventory, broad archive query, refined source-path query. Counts are events, not infected devices. |
-| 3:45-4:30 | Detection analyst | benign_backup and regression.json | Ordinary backup matches the broad query. Refinement depends on a lab path and is not a production malware verdict. |
-| 4:30-6:00 | CTI analyst | APT29 mapping and coverage figure | Explain three source-backed examples: browser credentials, cookies, archiving. Keep SolarWinds and later StellarParticle reporting separate. |
+| 1:30-2:45 | Lab operator | collection.json, one raw trace, matching normalized event | Nine cases ran in the revision: three atomics and six controls. Explain exit codes, native execve evidence, archive round-trip checks and cleanup. |
+| 2:45-3:45 | Detection analyst | Kibana Discover or saved SIEM summary and queries | Show 29 executions, 11 archiver launches, 5 historical-filter hits and 3 revised candidates. |
+| 3:45-4:30 | Detection analyst | Revised case table and renamed-profile trace | Contrast destination-only 1→0, list 1→0 and renamed input 0→1. Explain the returned file descriptor. |
+| 4:30-6:00 | CTI analyst | APT29 mapping and coverage figure | Explain RDP Bitmap Cache for password export, Shellbags and extension telemetry for cookies, and the local Event 400 / CIM pair. Keep SolarWinds and later StellarParticle reporting separate. |
 | 6:00-7:15 | CTI analyst | Evidence-status column and future hunts | Only the Linux archive analogue is freshly tested; Windows telemetry, remote staging and session misuse need separate validation. |
 | 7:15-7:30 | Any speaker | GitHub commits and conclusion | Demonstrate traceability, honest dates and the next Windows collection experiment. |
 
@@ -29,15 +29,15 @@ Use the Week 9 report, its saved Elasticsearch responses, and the Week 10 mappin
 
 ### Explain the SIEM results
 
-“The custom collector only observes the launched process trees. We imported those observations into a new Elasticsearch index, saved the exact Query DSL and full API responses, and checked that the ingested count matched the collection. First we inspect all observed executions. Next we select tar and gzip processes. Finally we require the command arguments to reference our lab-browser directory. The report shows the actual counts and matching cases. The queries do not use the case label or the expected result to decide whether an event matches.”
+“Across nine scenarios in one run we recorded 29 executions. Eleven launched tar or gzip. The old path search found five events, including a list command. The new query requires a supported create command and a same-process read-only open of a registered training file. It returned three: the atomic gzip, the atomic tar and the backup under a renamed directory.”
 
 ### Explain the controls
 
-“We deliberately ran an ordinary document backup. It also uses tar and a gzip child process, so it matches the broad archive query. That is useful evidence of ambiguity: a legitimate backup and a collection simulation can look similar at this level. The refined query distinguishes the synthetic browser directory in this experiment, but a path condition is not a reliable production detection rule. We tested additional boundary cases in a separate regression index, including missing fields, uppercase executable names and renamed binaries. These fixtures are synthetic and are not included in the real observation count.”
+“Here is the renamed-profile trace. Lines 12–13 identify the two input files on the returned descriptors. Now compare the archive named lab-browser-backup: it contains ordinary documents. The old query selected both its creation and its listing. The revised query excludes both. A perfectly legitimate backup of the actual synthetic profile still matches.”
 
 ### Explain the APT29 analysis
 
-“Our mapping uses primary reporting and MITRE's current technique pages. FireEye's initial SolarWinds report describes the compromised update mechanism; its later attribution update connects UNC2452 to APT29. Microsoft's investigation reports archive creation with 7-Zip. CrowdStrike's later StellarParticle report describes Chrome cookie and saved-password theft. We retain the different reporting periods instead of presenting every procedure as one universal attack sequence. The table maps ten selected techniques and links each reported behavior to a source.”
+“Our mapping uses primary reporting and MITRE's current technique pages. FireEye's initial SolarWinds report describes the compromised update mechanism; its later attribution update connects UNC2452 to APT29. Microsoft's investigation reports archive creation with 7-Zip. CrowdStrike reconstructed a password export from the RDP Bitmap Cache. For cookies they combined Shellbags navigation with telemetry identifying the Cookie Editor extension. In our own Windows lab, Event 400 record 28101 and a CIM observation corroborate a PowerShell launch and parent; matching hashes support local staging. We retain the different reporting periods instead of presenting every procedure as one universal attack sequence. The table maps ten selected techniques and links each reported behavior to a source.”
 
 ### State what the mapping does and does not prove
 
@@ -49,8 +49,8 @@ Use the Week 9 report, its saved Elasticsearch responses, and the Week 10 mappin
 
 ## Quick demonstration
 
-1. Open the Week 9 collection and SIEM summary. Show one source trace line next to its normalized event.
-2. Open Kibana at `http://127.0.0.1:15609`, choose the Week 9 data view and use the absolute UTC interval printed in the report. A relative last-15-minutes filter will eventually hide the saved observations.
+1. Open the [revised collection](../evidence/week9/20261111T190107852073Z/collection.json) and [SIEM summary](../evidence/week9/20261111T190107852073Z/siem/summary.json). Show one source trace line next to its normalized event.
+2. Open Kibana at `http://127.0.0.1:15609`, after reproducing the run, create or select the data view for its exact index. Use its absolute UTC interval. For the published revision, the case table and full responses are available offline. A relative last-15-minutes filter will eventually hide the saved observations.
 3. If Kibana is unavailable, open `siem/queries.json` and `siem/results.json`. These contain actual executed Elasticsearch requests and responses; do not pretend a static chart is a live SIEM screenshot.
 4. Show the Week 10 mapping and the separate GitHub commits.
 

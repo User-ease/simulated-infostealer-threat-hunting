@@ -1,0 +1,142 @@
+[
+  {
+    "query": "archive_utility",
+    "case": "browser_tar",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "query": "archive_utility",
+    "case": "browser_gzip",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "query": "archive_utility",
+    "case": "ordinary_backup",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "query": "archive_utility",
+    "case": "shell_wrapper",
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "query": "archive_utility",
+    "case": "missing_name",
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "query": "archive_utility",
+    "case": "uppercase_name",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "query": "archive_utility",
+    "case": "missing_args",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "query": "archive_utility",
+    "case": "different_name",
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "query": "archive_utility",
+    "case": "empty_args",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "query": "archive_utility",
+    "case": "renamed_binary_gap",
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "query": "legacy_path",
+    "case": "browser_tar",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "query": "legacy_path",
+    "case": "browser_gzip",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "query": "legacy_path",
+    "case": "ordinary_backup",
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "query": "legacy_path",
+    "case": "shell_wrapper",
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "query": "legacy_path",
+    "case": "missing_name",
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "query": "legacy_path",
+    "case": "uppercase_name",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "query": "legacy_path",
+    "case": "missing_args",
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "query": "legacy_path",
+    "case": "different_name",
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "query": "legacy_path",
+    "case": "empty_args",
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "query": "legacy_path",
+    "case": "renamed_binary_gap",
+    "expected": false,
+    "actual": false,
+    "passed": true
+  }
+]

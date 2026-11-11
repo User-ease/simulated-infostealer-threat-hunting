@@ -2,7 +2,30 @@
 
 Project: **Forensic Analysis and Detection of Simulated Infostealer-Like Activity in Windows Environments**. Prepared 8 November 2026. This increment addresses syllabus 2026-2027 section 3.3, Week 9: execute selected atomic tests and record/analyze their results in a SIEM. The examples T1059 and T1003 are illustrative; credential dumping is not required for this chosen experiment.
 
-## Actual result
+## Revised archive hunt · 12 November 2026
+
+On the expanded run, Elasticsearch indexed **29** process executions across three atomics and six controls. Eleven events launched tar or gzip. The original argument filter selected five events. The revised query selected three: the atomic gzip, the atomic tar and a normal backup of the same training profile under a different directory name. All nine expected counts for each query matched the live responses. [Queries](../evidence/week9/20261111T190107852073Z/siem/queries.json) · [Case results](../evidence/week9/20261111T190107852073Z/siem/summary.json) · [Full responses](../evidence/week9/20261111T190107852073Z/siem/results.json)
+
+![Three queries on the same expanded run](../images/week9/query-results-v2.svg)
+
+| Executed case | Original | Revised | What the control establishes |
+| --- | ---: | ---: | --- |
+| Atomic gzip of the mock browser record | 1 | 1 | gzip opened the expected source for reading. |
+| Atomic tar of the training profile | 1 | 1 | tar opened both profile files. |
+| Ordinary backup, including an unrelated file named cookies.json | 0 | 0 | A matching basename does not establish source identity. |
+| Ordinary backup into out/lab-browser-backup.tar.gz | 1 | 0 | The marker occurs only in the output filename. |
+| List that archive with tar -tf | 1 | 0 | Listing archive members creates no archive. |
+| Archive the training profile copied to profile-alt | 0 | 1 | Known input bytes identify the controlled copies. A legitimate profile backup is a candidate. |
+| Decompress the existing gzip to stdout | 1 | 0 | Decompression falls outside the creation modes. |
+| Shell atomic / plain shell control (two executions of the harness) | 0 / 0 | 0 / 0 | Neither case launches an archiver. |
+
+Before the run, the harness hashes the two training profile files and records the relative paths of fixtures with those bytes. strace records the resolved path on the **returned descriptor** with `-y`; the collector replaces the absolute lab root with `/lab` in the published traces. The analyzer enriches each supported tar/gzip creation event with successful read-only opens of registered inputs by that PID, after its exec and before its next successful exec. Elasticsearch requires the creation mode and at least one supporting trace line. The query uses no case label. The normalized exec records remain available alongside the enriched search hits. [Fixture manifest](../evidence/week9/20261111T190107852073Z/collection.json) · [Analyzer](../scripts/analyze_week9_elastic.py)
+
+For the renamed profile, trace lines 12–13 record opens for the synthetic browser and cookie files. Compare them with the destination-only command in the table. An open for reading establishes file access; the independent gzip/tar byte checks confirm the contents for the original two atomic cases. The 20 synthetic assertions in the regression index cover the broad selector and historical wildcard. The nine paired live control outcomes above test the revision. [Renamed-profile trace](../evidence/week9/20261111T190107852073Z/traces/renamed_profile.15333) · [Regression results](../evidence/week9/20261111T190107852073Z/siem/regression.json)
+
+**Scope.** The parser recognizes the tar short-option creation forms ending in `f` and gzip compression options used here. Unsupported invocations, renamed executables and missing file-open telemetry can be missed. A changed browser database needs an updated asset inventory. The controlled file hashes make this test repeatable; they are unsuitable as general indicators of credential theft. The Windows evidence and sensor requirements are in the [Week 10 artifact analysis](week10-apt29-analysis.md#windows-artifacts-and-their-evidentiary-limits).
+
+## Original run of 8 November 2026
 
 Three official Linux Atomic Red Team tests and two benign controls completed successfully. Native child-process tracing recorded **18 successful execve events**. Elasticsearch 9.5.5 indexed all 18; the broad archive query returned **5 events**, and the source-path refinement returned **2 events** belonging to `atomic_gzip` and `atomic_tar`. All **20 query boundary assertions** passed in a separate synthetic index. Archive integrity and cleanup checks passed.
 
@@ -46,7 +69,7 @@ The shell test printed exactly five expected lines. The gzip round trip reproduc
 
 SHA-256 values were captured before cleanup. The upstream cleanup commands removed the gzip and tar outputs; the ordinary backup was also removed. Synthetic input files, native traces, output streams and manifests remain as reproducibility evidence. The [collection manifest](../evidence/week9/20261108T145956001720Z/collection.json) records each command, its timing, its exit status, input substitutions, checks and cleanup results.
 
-## SIEM implementation and findings
+## SIEM implementation and findings on 8 November
 
 The dedicated Elasticsearch node uses [week9-elasticsearch.yml](../config/week9-elasticsearch.yml), with its HTTP listener on `127.0.0.1:19209`. Kibana uses [week9-kibana.yml](../config/week9-kibana.yml) at `127.0.0.1:15609`. These are new loopback-only teaching services with authentication disabled in this isolated configuration; the configuration must not be reused on a shared server. No existing service or security agent was reconfigured.
 
@@ -96,8 +119,8 @@ python3 scripts/analyze_week9_elastic.py evidence/week9/<NEW_RUN_ID>
 python3 -m unittest discover -s tests -v
 ```
 
-3. Create a Kibana data view for the exact new index, with `@timestamp` as time field. For the archived run use the index above and **2026-11-08T14:59:50Z through 2026-11-08T15:00:10Z**. Use absolute time; relative time filters eventually hide old observations.
-4. Display `process.name`, `process.command_line` and `lab.case`. Equivalent broad KQL: `event.dataset:"lab.strace" and process.name:("tar" or "gzip")`. To reproduce the refinement exactly, run the saved Query DSL in Dev Tools; it uses a case-insensitive wildcard on argument values.
+3. For the revised run use `lab-week9-20261111t190107852073z` and an absolute time range covering 2026-11-11 19:01:07–19:01:15 UTC. Execute the saved v2 DSL against that index; its enrichment fields are present only in v2. For the original run, create a Kibana data view for the exact index, with `@timestamp` as time field. For the archived run use the index above and **2026-11-08T14:59:50Z through 2026-11-08T15:00:10Z**. Use absolute time; relative time filters eventually hide old observations.
+4. Display `process.name`, `process.command_line` and `lab.case`. Equivalent broad KQL: `event.dataset:"lab.strace" and process.name:("tar" or "gzip")`. To reproduce the refinement exactly, run the saved Query DSL in Dev Tools; the historical query uses a case-insensitive wildcard. The revised query uses the archive mode and supporting open-line field.
 5. Keep the original evidence unchanged. A rerun gets a new run ID, directory and index. Stop only the dedicated lab services when finished; the indices persist in their own data directories.
 
 ## Continuity and limitations

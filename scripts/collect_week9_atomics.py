@@ -56,7 +56,7 @@ def traced(command, case, lab, evidence, run_id):
     trace = evidence / "traces" / case
     started = now()
     result = subprocess.run(
-        ["strace", "-ff", "-qq", "-ttt", "-s", "16384", "-e",
+        ["strace", "-ff", "-qq", "-y", "-ttt", "-s", "16384", "-e",
          "trace=execve,openat,unlink,unlinkat,rename", "-o", str(trace), "--", "/bin/sh", "-c", command],
         cwd=lab, env={"PATH": "/usr/bin:/bin", "LANG": "C", "LC_ALL": "C", "TZ": "UTC"},
         capture_output=True, text=True, timeout=30)
@@ -64,7 +64,10 @@ def traced(command, case, lab, evidence, run_id):
     (evidence / (case + ".stderr.txt")).write_text(result.stderr)
     records = []
     for path in sorted(trace.parent.glob(case + ".*")):
-        records.extend(parse_trace(path.read_text(), int(path.suffix[1:]), case, run_id,
+        # -y resolves directory and returned file descriptors. Publish a stable lab root.
+        public_trace = path.read_text().replace(str(lab) + "/", "/lab/").replace(str(lab) + ">", "/lab>")
+        path.write_text(public_trace)
+        records.extend(parse_trace(public_trace, int(path.suffix[1:]), case, run_id,
                                    path.relative_to(evidence).as_posix()))
     return {"case": case, "command": command, "started_at": started, "finished_at": now(),
             "exit_code": result.returncode, "successful_execve_records": len(records)}, records
@@ -90,6 +93,12 @@ def main():
          {"site": "https://training.invalid", "username": "FAKE-STUDENT", "password": "NOT-A-REAL-PASSWORD"})
     save(lab / "lab-browser" / "cookies.json", {"session": "FAKE-SESSION-NOT-VALID"})
     (lab / "ordinary-docs" / "notes.txt").write_text("Ordinary synthetic backup control.\n")
+    shutil.copytree(lab / "lab-browser", lab / "profile-alt")
+    (lab / "ordinary-docs/cookies.json").write_text("Synthetic meeting notes.\n")
+    # Identify training inputs by known bytes before execution, independent of case labels.
+    known_hashes = {sha(f) for f in (lab / "lab-browser").iterdir()}
+    profile_inputs = {f.relative_to(lab).as_posix(): sha(f) for f in lab.rglob("*")
+                      if f.is_file() and sha(f) in known_hashes}
     pinned_path = ROOT / "data/week9/selected-atomics.json"
     pinned = json.loads(pinned_path.read_text())
     tests = pinned["tests"]
@@ -115,6 +124,16 @@ def main():
         case, observed = traced(command, name, lab, evidence, run_id)
         cases.append(case)
         events.extend(observed)
+    for name, command in [
+        ("destination_only", "tar -czf out/lab-browser-backup.tar.gz ordinary-docs"),
+        ("list_only", "tar -tf out/lab-browser-backup.tar.gz"),
+        ("renamed_profile", "tar -cf out/profile.tar profile-alt"),
+        ("decompress_only", "gzip -dc lab-browser/mock-browser.json.gz > /dev/null"),
+    ]:
+        case, observed = traced(command, name, lab, evidence, run_id)
+        cases.append(case)
+        events.extend(observed)
+    cleanup.append(("control_outputs", "rm -f out/lab-browser-backup.tar.gz out/profile.tar"))
     cleanup.append(("benign_backup", "rm -f out/ordinary-backup.tar.gz\n"))
     source = lab / "lab-browser/mock-browser.json"
     archive = lab / "out/browser.tar.gz"
@@ -133,7 +152,8 @@ def main():
         result = subprocess.run(["/bin/sh", "-c", command], cwd=lab, capture_output=True, text=True, timeout=10)
         clean_results.append({"case": name, "command": command, "exit_code": result.returncode,
                               "stdout": result.stdout, "stderr": result.stderr})
-    verification["cleanup_passed"] = not any(p.exists() for p in [archive, gz, lab / "out/ordinary-backup.tar.gz"])
+    verification["cleanup_passed"] = not any(p.exists() for p in [archive, gz, lab / "out/ordinary-backup.tar.gz",
+                                                    lab / "out/lab-browser-backup.tar.gz", lab / "out/profile.tar"])
     verification["all_commands_succeeded"] = all(c["exit_code"] == 0 for c in cases + clean_results)
     verification["passed"] = all(verification[k] for k in ["gzip_roundtrip", "tar_roundtrip", "shell_marker_lines",
                                                            "cleanup_passed", "all_commands_succeeded"])
@@ -141,6 +161,7 @@ def main():
     (evidence / "events.jsonl").write_text("".join(json.dumps(e) + "\n" for e in events))
     save(evidence / "collection.json", {"run_id": run_id, "finished_at": now(), "platform": "Linux x86_64",
          "python_version": platform.python_version(), "collector_sha256": sha(__file__),
+         "profile_inputs": profile_inputs, "trace_root": "/lab",
          "selection_sha256": sha(pinned_path), "upstream_commit": pinned["upstream_commit"],
          "sensor": "strace child-process syscall tracing; not a system-wide agent or Windows sensor",
          "host_name_policy": "host.name is the fixed pseudonym LAB-LINUX; no actual hostname collected",

@@ -1,0 +1,160 @@
+{
+  "index": "lab-week9-20261111t190107852073z",
+  "event_count": 29,
+  "counts": {
+    "inventory": 29,
+    "archive_utility": 11,
+    "lab_browser_archive": 3,
+    "legacy_path": 5
+  },
+  "matching_cases": {
+    "inventory": [
+      "atomic_gzip",
+      "atomic_shell",
+      "atomic_tar",
+      "benign_backup",
+      "decompress_only",
+      "destination_only",
+      "list_only",
+      "plain_control",
+      "renamed_profile"
+    ],
+    "archive_utility": [
+      "atomic_gzip",
+      "atomic_tar",
+      "benign_backup",
+      "decompress_only",
+      "destination_only",
+      "list_only",
+      "renamed_profile"
+    ],
+    "lab_browser_archive": [
+      "atomic_gzip",
+      "atomic_tar",
+      "renamed_profile"
+    ],
+    "legacy_path": [
+      "atomic_gzip",
+      "atomic_tar",
+      "decompress_only",
+      "destination_only",
+      "list_only"
+    ]
+  },
+  "regression_assertions": 20,
+  "regression_passed": true,
+  "ingestion_count_passed": true,
+  "controls": [
+    {
+      "case": "atomic_shell",
+      "command": "for i in $(seq 1 5); do echo \"$i, Atomic Red Team was here!\"; sleep 1; done",
+      "legacy_path": {
+        "observed": 0,
+        "expected": 0
+      },
+      "lab_browser_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "atomic_gzip",
+      "command": "test -e lab-browser/mock-browser.json && gzip -k lab-browser/mock-browser.json || (echo 'FAKE-TRAINING-DATA' >> lab-browser/mock-browser.json; gzip -k lab-browser/mock-browser.json)",
+      "legacy_path": {
+        "observed": 1,
+        "expected": 1
+      },
+      "lab_browser_archive": {
+        "observed": 1,
+        "expected": 1
+      }
+    },
+    {
+      "case": "atomic_tar",
+      "command": "tar -cvzf out/browser.tar.gz lab-browser",
+      "legacy_path": {
+        "observed": 1,
+        "expected": 1
+      },
+      "lab_browser_archive": {
+        "observed": 1,
+        "expected": 1
+      }
+    },
+    {
+      "case": "benign_backup",
+      "command": "tar -cvzf out/ordinary-backup.tar.gz ordinary-docs",
+      "legacy_path": {
+        "observed": 0,
+        "expected": 0
+      },
+      "lab_browser_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "plain_control",
+      "command": "printf 'Ordinary control without archiving\\n'",
+      "legacy_path": {
+        "observed": 0,
+        "expected": 0
+      },
+      "lab_browser_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "destination_only",
+      "command": "tar -czf out/lab-browser-backup.tar.gz ordinary-docs",
+      "legacy_path": {
+        "observed": 1,
+        "expected": 1
+      },
+      "lab_browser_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "list_only",
+      "command": "tar -tf out/lab-browser-backup.tar.gz",
+      "legacy_path": {
+        "observed": 1,
+        "expected": 1
+      },
+      "lab_browser_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    },
+    {
+      "case": "renamed_profile",
+      "command": "tar -cf out/profile.tar profile-alt",
+      "legacy_path": {
+        "observed": 0,
+        "expected": 0
+      },
+      "lab_browser_archive": {
+        "observed": 1,
+        "expected": 1
+      }
+    },
+    {
+      "case": "decompress_only",
+      "command": "gzip -dc lab-browser/mock-browser.json.gz > /dev/null",
+      "legacy_path": {
+        "observed": 1,
+        "expected": 1
+      },
+      "lab_browser_archive": {
+        "observed": 0,
+        "expected": 0
+      }
+    }
+  ],
+  "control_counts_passed": true,
+  "query_version": 2,
+  "refined_cases_passed": true
+}
