@@ -139,12 +139,12 @@
       "tactics": [
         "exfiltration"
       ],
-      "reported_behavior": "An HTTPS request retrieved an archive staged on the victim OWA server.",
+      "reported_behavior": "MITRE C0024 maps retrieval of a staged OWA archive over HTTPS to T1048.002. Volexity shows the 7-Zip command that created Redir.png and gives an illustrative HTTPS URL.",
       "source_id": "MITRE-C0024",
       "source_url": "https://attack.mitre.org/campaigns/C0024/",
       "mitre_url": "https://attack.mitre.org/techniques/T1048/002/",
-      "project_application": "No exfiltration was executed; an archive alone proves no data transfer.",
-      "proposed_hunt": "Correlate proxy/server requests, transfer sizes and staged-file access.",
+      "project_application": "The lab collected local archive telemetry. Volexity publishes no request log for the illustrated URL.",
+      "proposed_hunt": "Check IIS or reverse-proxy logs for the staged URI, request time, response status and bytes served. Correlate them with creation time and archive size.",
       "evidence_status": "cti_only"
     }
   ]

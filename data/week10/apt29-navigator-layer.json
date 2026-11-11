@@ -121,7 +121,7 @@
       "techniqueID": "T1048.002",
       "tactic": "exfiltration",
       "color": "#CBD5E1",
-      "comment": "An HTTPS request retrieved an archive staged on the victim OWA server. No exfiltration was executed; an archive alone proves no data transfer. Source: https://attack.mitre.org/campaigns/C0024/",
+      "comment": "MITRE C0024 maps retrieval of a staged OWA archive over HTTPS to T1048.002. Volexity shows the 7-Zip command that created Redir.png and gives an illustrative HTTPS URL. The lab collected local archive telemetry. Volexity publishes no request log for the illustrated URL. MITRE: https://attack.mitre.org/campaigns/C0024/ Volexity: https://www.volexity.com/blog/2020/12/14/dark-halo-leverages-solarwinds-compromise-to-breach-organizations/",
       "enabled": true,
       "showSubtechniques": false
     }

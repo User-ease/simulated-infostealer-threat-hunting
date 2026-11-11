@@ -11,7 +11,7 @@
     "title": "MITRE ATT&CK SolarWinds Compromise C0024",
     "url": "https://attack.mitre.org/campaigns/C0024/",
     "date_context": "Live profile checked 2026-11-08",
-    "accessed": "2026-11-08"
+    "accessed": "2026-11-12"
   },
   {
     "id": "MANDIANT-2020",
@@ -59,7 +59,7 @@
     "id": "VOLEXITY-2020",
     "title": "Dark Halo Leverages SolarWinds Compromise to Breach Organizations",
     "url": "https://www.volexity.com/blog/2020/12/14/dark-halo-leverages-solarwinds-compromise-to-breach-organizations/",
-    "date_context": "2020-12-14; July 2020 incident, SolarWinds / Exfiltration, including the Exchange export and 7-Zip commands. Reference 5 in MITRE C0024.",
+    "date_context": "14 December 2020. The July 2020 incident includes the Exchange export, 7-Zip output and illustrative retrieval URL. MITRE C0024 cites this report as reference 5.",
     "accessed": "2026-11-12"
   }
 ]

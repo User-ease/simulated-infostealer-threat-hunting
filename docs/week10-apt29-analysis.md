@@ -27,7 +27,7 @@ The behavior column summarizes external reporting. The application column states
 | [T1005 Data from Local System](https://attack.mitre.org/techniques/T1005/) | Collection | Volexity recorded a 7-Zip command naming the exported local file `C:\Temp\b.pst` as its input on the OWA server. [VOLEXITY-2020](https://www.volexity.com/blog/2020/12/14/dark-halo-leverages-solarwinds-compromise-to-breach-organizations/) | Only generated lab files were read; no general collection detector. |
 | [T1560.001 Archive via Utility](https://attack.mitre.org/techniques/T1560/001/) | Collection | 7-Zip created password-protected archives, sometimes split into parts. [MICROSOFT-2021](https://www.microsoft.com/en-us/security/blog/2021/01/20/deep-dive-into-the-solorigate-second-stage-activation-from-sunburst-to-teardrop-and-raindrop/) | Week 9 exercised Linux tar/gzip and Windows tar.exe on synthetic files. |
 | [T1074.002 Remote Data Staging](https://attack.mitre.org/techniques/T1074/002/) | Collection | Archives were staged on a victim OWA server. [MITRE-C0024](https://attack.mitre.org/campaigns/C0024/) | Local out/ artifacts do not demonstrate remote staging. |
-| [T1048.002 Exfiltration Over Asymmetric Encrypted Non-C2 Protocol](https://attack.mitre.org/techniques/T1048/002/) | Exfiltration | An HTTPS request retrieved an archive staged on the victim OWA server. [MITRE-C0024](https://attack.mitre.org/campaigns/C0024/) | No exfiltration was executed; an archive alone proves no data transfer. |
+| [T1048.002 Exfiltration Over Asymmetric Encrypted Non-C2 Protocol](https://attack.mitre.org/techniques/T1048/002/) | Exfiltration | MITRE classifies the HTTPS retrieval as T1048.002. Volexity documents archive creation and illustrates a retrieval URL. [MITRE C0024](https://attack.mitre.org/campaigns/C0024/) · [Volexity, Exfiltration](https://www.volexity.com/blog/2020/12/14/dark-halo-leverages-solarwinds-compromise-to-breach-organizations/) | Week 9 measured local file access and archiving. Network transfer was outside the experiment. |
 
 ![Selected ATT&CK mappings and project evidence](../images/week10/apt29-coverage.svg)
 
@@ -49,9 +49,17 @@ Volexity investigated the July 2020 intrusion at a US think tank and published t
 | --- | --- |
 | Where did the data come from? | Mailbox export is remote email collection (T1114.002). Once exported, the PST on disk is the local input relevant to T1005. |
 | What happened to the file? | The 7-Zip command identifies compression (T1560.001). Placement on the victim’s OWA server provides the staging context (T1074.002). |
-| Did data leave the environment? | Volexity reports transfer through OWA and gives an illustrative HTTPS URL. For independent verification, seek a matching successful web request and bytes served. A local archive alone cannot establish a download. |
+| Did data leave the environment? | MITRE reports retrieval via HTTPS. Volexity describes the exfiltration and illustrates a URL. Independent verification would require a matching request and response that served the archive. |
 
 For a Windows hunt, match a read of the PST (Security 4663 with ReadData and appropriate auditing) to the 7-Zip PID on the same host and within its lifetime. Check the output path and web access separately. Our group’s Linux and Windows fixtures demonstrate access to synthetic inputs only; the Exchange incident remains an external observation.
+
+## T1048.002 and the OWA retrieval
+
+MITRE maps APT29’s retrieval of a password-protected archive from a victim OWA server over HTTPS to T1048.002 in campaign C0024. Its reference 5 is Volexity’s investigation. The two publications therefore share the same underlying incident evidence. [MITRE C0024](https://attack.mitre.org/campaigns/C0024/)
+
+Volexity reports email exfiltration. It publishes the 7-Zip command placing the archive at `owa\auth\Redir.png`, describes collection by a web request and gives an example HTTPS URL ending in `/owa/auth/Redir.png`. The example identifies a path an investigator could search. The article supplies no IIS access-log entry, response status or byte count for that URL. [Volexity, Exfiltration](https://www.volexity.com/blog/2020/12/14/dark-halo-leverages-solarwinds-compromise-to-breach-organizations/)
+
+To corroborate a download, correlate archive creation with an IIS or reverse-proxy entry for that URI. Check client address, UTC time, response status and bytes served against the archive size. The Week 9 Security records show a local archive command and a file read. The lab collected no HTTP transfer evidence.
 
 ## Windows artifacts and their evidentiary limits
 
