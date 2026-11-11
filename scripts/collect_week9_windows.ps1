@@ -95,6 +95,7 @@ try {
     $b = Join-Path $out 'documents.tar'
     $c = Join-Path $out 'browser-profile-backup.tar'
     $d = Join-Path $out 'authorized-backup.tar'
+    $classicArchive = Join-Path $out 'traditional.tar'
     $since = Get-Date
     Invoke-Case 'profile_create' @('-cf',$a,'-C',$profileDir,'.') $true $true $profileDir $a
     Invoke-Case 'ordinary_backup' @('-cf',$b,'-C',$ordinary,'.') $false $true $ordinary $b
@@ -102,6 +103,9 @@ try {
     Invoke-Case 'list_archive' @('-tf',$a) $false $true $null $null
     Invoke-Case 'authorized_profile_backup' @('--create',"--file=$d",'-C',$profileDir,'.') $true $true $profileDir $d
     Invoke-Case 'list_raw_profile' @('-tf',$profileFile) $false $false $null $null
+    Invoke-Case 'classic_create' @('cf',$classicArchive,'-C',$profileDir,'cookies.json') $true $true $profileDir $classicArchive
+    Invoke-Case 'classic_list_archive' @('tf',$classicArchive) $false $true $null $null
+    Invoke-Case 'classic_list_raw_profile' @('tf',$profileFile) $false $false $null $null
     if (@($cases.pid | Sort-Object -Unique).Count -ne $cases.Count) { throw 'Case PID reused; rerun' }
     Start-Sleep -Seconds 3
     $selected = [Collections.Generic.List[string]]::new()
@@ -129,7 +133,7 @@ try {
         throw "Expected one detailed 4688 per case, got $($launches.Count)"
     }
     foreach ($case in $cases) {
-        if (($case.expected_hit -or $case.name -eq 'list_raw_profile') -and $profileReaders -notcontains $case.pid) {
+        if (($case.expected_hit -or $case.name -in @('list_raw_profile','classic_list_raw_profile')) -and $profileReaders -notcontains $case.pid) {
             throw "No profile ReadData 4663 for $($case.name)"
         }
     }

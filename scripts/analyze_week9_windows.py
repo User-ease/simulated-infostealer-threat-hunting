@@ -25,8 +25,10 @@ def archive_mode(command):
     modes = {"c": "create", "t": "list", "x": "extract"}
     modes_found = []
     it = iter(tokens)
-    for arg in it:
-        if arg == "--" or not arg.startswith("-"):
+    for position, arg in enumerate(it):
+        # bsdtar accepts an undashed option word only as its first argument.
+        traditional = position == 0 and re.fullmatch(r"[ctxzvf]+", arg) is not None
+        if arg == "--" or (not traditional and not arg.startswith("-")):
             break
         if arg in ("--create", "--list", "--extract"):
             modes_found.append(arg[2:])
@@ -35,11 +37,14 @@ def archive_mode(command):
                 return "unknown"
         elif arg.startswith(("--file=", "--directory=")) or arg in ("--gzip", "--verbose"):
             continue
-        elif re.fullmatch(r"-[ctxzvf]+", arg):
-            flags = arg[1:]
+        elif traditional or re.fullmatch(r"-[ctxzvf]+", arg):
+            flags = arg if traditional else arg[1:]
             modes_found.extend(modes[f] for f in flags if f in modes)
-            if "f" in flags and (not flags.endswith("f") or next(it, None) is None):
-                return "unknown"
+            if "f" in flags:
+                if not traditional and not flags.endswith("f"):
+                    return "unknown"
+                if next(it, None) is None:
+                    return "unknown"
         else:
             return "unknown"
     if len(modes_found) == 1:
