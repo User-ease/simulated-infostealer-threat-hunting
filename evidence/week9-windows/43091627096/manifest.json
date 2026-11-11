@@ -1,0 +1,123 @@
+{
+  "computer": "runnervmquqza",
+  "os": "Microsoft Windows Server 2022 Datacenter",
+  "build": "20348",
+  "collected_utc": "2026-11-11T19:55:26.2455098Z",
+  "tar_exe": "C:\\Windows\\System32\\tar.exe",
+  "tar_version": "bsdtar 3.8.9 - libarchive 3.8.9 zlib/1.2.5.f-ipp cng/2.0 libb2/bundled ",
+  "root": "C:\\week9-lab-0d93f72abc614c53b53765b814a34812",
+  "profile_input": "C:\\week9-lab-0d93f72abc614c53b53765b814a34812\\profile\\cookies.json",
+  "profile_sha256": "f686c9ef781b0952ce997b3c4f65805cdea1158b39c6e31d9aae534e31f7f8b1",
+  "actions_run_id": "43091627096",
+  "source_commit": "024f84d96d1011f7e09b1b2ec3286018223943b0",
+  "cases": [
+    {
+      "name": "profile_create",
+      "pid": 5116,
+      "argv": [
+        "-cf",
+        "C:\\week9-lab-0d93f72abc614c53b53765b814a34812\\out\\profile.tar",
+        "-C",
+        "C:\\week9-lab-0d93f72abc614c53b53765b814a34812\\profile",
+        "."
+      ],
+      "start_utc": "2026-11-11T19:55:22.6751347Z",
+      "end_utc": "2026-11-11T19:55:22.7554208Z",
+      "exit_code": 0,
+      "expected_hit": true,
+      "expected_success": true,
+      "stdout": "",
+      "stderr": "",
+      "member_sha256": "f686c9ef781b0952ce997b3c4f65805cdea1158b39c6e31d9aae534e31f7f8b1"
+    },
+    {
+      "name": "ordinary_backup",
+      "pid": 1108,
+      "argv": [
+        "-cf",
+        "C:\\week9-lab-0d93f72abc614c53b53765b814a34812\\out\\documents.tar",
+        "-C",
+        "C:\\week9-lab-0d93f72abc614c53b53765b814a34812\\documents",
+        "."
+      ],
+      "start_utc": "2026-11-11T19:55:22.7981238Z",
+      "end_utc": "2026-11-11T19:55:22.8039794Z",
+      "exit_code": 0,
+      "expected_hit": false,
+      "expected_success": true,
+      "stdout": "",
+      "stderr": "",
+      "member_sha256": "bd3222fa0951adab9cd581dab3b4767c3c96cca824d2aaed90b2992f7fbef559"
+    },
+    {
+      "name": "destination_only",
+      "pid": 5812,
+      "argv": [
+        "-cf",
+        "C:\\week9-lab-0d93f72abc614c53b53765b814a34812\\out\\browser-profile-backup.tar",
+        "-C",
+        "C:\\week9-lab-0d93f72abc614c53b53765b814a34812\\documents",
+        "."
+      ],
+      "start_utc": "2026-11-11T19:55:22.8113879Z",
+      "end_utc": "2026-11-11T19:55:22.8164768Z",
+      "exit_code": 0,
+      "expected_hit": false,
+      "expected_success": true,
+      "stdout": "",
+      "stderr": "",
+      "member_sha256": "bd3222fa0951adab9cd581dab3b4767c3c96cca824d2aaed90b2992f7fbef559"
+    },
+    {
+      "name": "list_archive",
+      "pid": 724,
+      "argv": [
+        "-tf",
+        "C:\\week9-lab-0d93f72abc614c53b53765b814a34812\\out\\profile.tar"
+      ],
+      "start_utc": "2026-11-11T19:55:22.8236288Z",
+      "end_utc": "2026-11-11T19:55:22.8281573Z",
+      "exit_code": 0,
+      "expected_hit": false,
+      "expected_success": true,
+      "stdout": "./\r\n./cookies.json",
+      "stderr": "",
+      "member_sha256": null
+    },
+    {
+      "name": "authorized_profile_backup",
+      "pid": 6392,
+      "argv": [
+        "--create",
+        "--file=C:\\week9-lab-0d93f72abc614c53b53765b814a34812\\out\\authorized-backup.tar",
+        "-C",
+        "C:\\week9-lab-0d93f72abc614c53b53765b814a34812\\profile",
+        "."
+      ],
+      "start_utc": "2026-11-11T19:55:22.8300866Z",
+      "end_utc": "2026-11-11T19:55:22.8373772Z",
+      "exit_code": 0,
+      "expected_hit": true,
+      "expected_success": true,
+      "stdout": "",
+      "stderr": "",
+      "member_sha256": "f686c9ef781b0952ce997b3c4f65805cdea1158b39c6e31d9aae534e31f7f8b1"
+    },
+    {
+      "name": "list_raw_profile",
+      "pid": 3980,
+      "argv": [
+        "-tf",
+        "C:\\week9-lab-0d93f72abc614c53b53765b814a34812\\profile\\cookies.json"
+      ],
+      "start_utc": "2026-11-11T19:55:22.8445529Z",
+      "end_utc": "2026-11-11T19:55:22.8490678Z",
+      "exit_code": 1,
+      "expected_hit": false,
+      "expected_success": false,
+      "stdout": "",
+      "stderr": "tar.exe: Error opening archive: Unrecognized archive format",
+      "member_sha256": null
+    }
+  ]
+}

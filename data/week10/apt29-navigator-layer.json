@@ -41,7 +41,7 @@
       "techniqueID": "T1059.001",
       "tactic": "execution",
       "color": "#60A5FA",
-      "comment": "PowerShell supported post-compromise commands and task operations. Weeks 5-7 contain historical Windows observations; no fresh Windows run. Source: https://attack.mitre.org/campaigns/C0024/",
+      "comment": "PowerShell supported post-compromise commands and task operations. Weeks 5-7 contain the historical Windows PowerShell observations. Source: https://attack.mitre.org/campaigns/C0024/",
       "enabled": true,
       "showSubtechniques": false
     },
@@ -105,7 +105,7 @@
       "techniqueID": "T1560.001",
       "tactic": "collection",
       "color": "#FBBF24",
-      "comment": "7-Zip created password-protected archives, sometimes split into parts. Week 9 executed Linux tar/gzip on mock files; this is a portable behavior analogue. Source: https://www.microsoft.com/en-us/security/blog/2021/01/20/deep-dive-into-the-solorigate-second-stage-activation-from-sunburst-to-teardrop-and-raindrop/",
+      "comment": "7-Zip created password-protected archives, sometimes split into parts. Week 9 exercised Linux tar/gzip and Windows tar.exe on synthetic files. Source: https://www.microsoft.com/en-us/security/blog/2021/01/20/deep-dive-into-the-solorigate-second-stage-activation-from-sunburst-to-teardrop-and-raindrop/",
       "enabled": true,
       "showSubtechniques": false
     },
@@ -136,7 +136,7 @@
       "color": "#60A5FA"
     },
     {
-      "label": "Linux archive analogue executed in Week 9",
+      "label": "Linux and Windows archive tests in Week 9",
       "color": "#FBBF24"
     }
   ]

@@ -29,7 +29,7 @@
       "source_id": "MITRE-C0024",
       "source_url": "https://attack.mitre.org/campaigns/C0024/",
       "mitre_url": "https://attack.mitre.org/techniques/T1059/001/",
-      "project_application": "Weeks 5-7 contain historical Windows observations; no fresh Windows run.",
+      "project_application": "Weeks 5-7 contain the historical Windows PowerShell observations.",
       "proposed_hunt": "Retain command lines, script-block logs when enabled and process ancestry.",
       "evidence_status": "historical_lab"
     },
@@ -115,7 +115,7 @@
       "source_id": "MICROSOFT-2021",
       "source_url": "https://www.microsoft.com/en-us/security/blog/2021/01/20/deep-dive-into-the-solorigate-second-stage-activation-from-sunburst-to-teardrop-and-raindrop/",
       "mitre_url": "https://attack.mitre.org/techniques/T1560/001/",
-      "project_application": "Week 9 executed Linux tar/gzip on mock files; this is a portable behavior analogue.",
+      "project_application": "Week 9 exercised Linux tar/gzip and Windows tar.exe on synthetic files.",
       "proposed_hunt": "Review archiver command lines and source paths; correlate outputs and later egress.",
       "evidence_status": "portable_lab"
     },

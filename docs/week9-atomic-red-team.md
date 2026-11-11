@@ -2,6 +2,44 @@
 
 Project: **Forensic Analysis and Detection of Simulated Infostealer-Like Activity in Windows Environments**. Prepared 8 November 2026. This increment addresses syllabus 2026-2027 section 3.3, Week 9: execute selected atomic tests and record/analyze their results in a SIEM. The examples T1059 and T1003 are illustrative; credential dumping is not required for this chosen experiment.
 
+## Windows archive and Security audit · 12 November 2026 (Almaty)
+
+On a fresh GitHub-hosted **Windows Server 2022 Datacenter** VM (build 20348), Windows bsdtar 3.8.9 archived a mock browser profile. Six processes ran at 19:55:22 UTC on 11 November, or 00:55:22 on 12 November in Almaty. This is the group's Windows adaptation of the archive scenario. The three upstream Atomic Red Team procedures and their Linux results are documented below. [Windows run](https://github.com/User-ease/simulated-infostealer-threat-hunting/actions/runs/43091627096) · [Collector at the executed commit](https://github.com/User-ease/simulated-infostealer-threat-hunting/blob/024f84d96d1011f7e09b1b2ec3286018223943b0/scripts/collect_week9_windows.ps1)
+
+### Evidence and query
+
+The collector enabled successful Process Creation and File System auditing, included command lines, and applied an inheritable audit rule (SACL) to a fresh fixture directory. It exported Security XML for the six measured tar processes, restricting file events to that directory. Independent extractions verified the SHA-256 of the member of every newly created archive. Extraction processes were excluded from the measured PIDs. The collector removed the fixture and restored the audit settings. [Native XML](../evidence/week9-windows/43091627096/events.xml) · [Manifest, process exits and member hashes](../evidence/week9-windows/43091627096/manifest.json)
+
+Elasticsearch 9.5.5 indexed **6 process starts (4688)** and **14 object accesses (4663)**. The first EQL search found four create-mode processes. The second found three processes reading the registered profile file. The sequence returned two pairs. It joins the host, normalized PID and effective logon ID, in event order within ten seconds. For 4688 it uses the new PID and the target logon when populated, otherwise the subject logon. For 4663 it uses the accessing PID, subject logon, exact registered file path and ReadData mask bit 0x1. A directory listing can use that bit too, which is why file identity matters. Case names and expected outcomes are used only for scoring. [Create query](../evidence/week9-windows/43091627096/siem/create.json) · [Read query](../evidence/week9-windows/43091627096/siem/read.json) · [Sequence and full response](../evidence/week9-windows/43091627096/siem/correlated.json)
+
+| Windows control | PID | Create-mode 4688 | Profile ReadData 4663 | Pair expected / observed | Exit |
+| --- | ---: | ---: | ---: | --- | ---: |
+| Archive the synthetic profile with short options | 5116 | 1559826 | 1559829 | Yes / Yes | 0 |
+| Back up ordinary documents with a different file also named cookies.json | 1108 | 1559842 | — | No / No | 0 |
+| Back up ordinary documents into browser-profile-backup.tar | 5812 | 1559858 | — | No / No | 0 |
+| List the completed profile archive | 724 | — | — | No / No | 0 |
+| Authorized profile backup using --create and --file= | 6392 | 1559876 | 1559879 | Yes / Yes | 0 |
+| Try to list the raw profile JSON as an archive | 3980 | — | 1559893 | No / No | 1 |
+
+An em dash means that record did not meet the column predicate. Each process has a native 4688. All six outcomes agreed with the manifest. Process 3980 read the correct file but invoked list mode and returned an invalid-archive error. Process 6392 legitimately backed up the same profile and triggered the rule. The rule therefore identifies a behavior suitable for triage. [Case matrix](../evidence/week9-windows/43091627096/siem/summary.json)
+
+**Record walkthrough.** At 19:55:22.6852380 UTC, 4688 record 1559826 gives NewProcessId 0x13fc (5116) and a tar -cf command. About 65 ms later, 4663 record 1559829 gives ProcessId 0x13fc, logon 0x94dcb, the exact profile input and AccessMask 0x1. The archive member extracted by the verifier matched the original SHA-256 `f686c9ef781b0952ce997b3c4f65805cdea1158b39c6e31d9aae534e31f7f8b1`. The exit code and member hash come from the harness. The Security pair establishes a create invocation followed by an audited read. Neither process intent nor transfer is observable from this pair. [Microsoft event 4688](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4688) · [Microsoft event 4663](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4663)
+
+### Reproduce the Windows result
+
+1. On a disposable Windows VM with built-in tar.exe, open elevated PowerShell in the repository root and run the collector below. The output directory must be new. Alternatively, run the **Week 9 Windows Security audit** workflow from GitHub Actions and extract its artifact.
+2. To replay the published native XML, use Python 3.9+ and a loopback teaching Elasticsearch instance. Run the second command in the repository root, pointing --url at that instance. It creates a fresh index and writes new requests, responses, hashes and the checked matrix to the output directory. To score a fresh collection, substitute its directory for the published one.
+
+```powershell
+./scripts/collect_week9_windows.ps1 -OutputDirectory C:/Temp/week9-evidence
+```
+
+```sh
+python3 scripts/analyze_week9_windows.py evidence/week9-windows/43091627096 windows-replay --url http://127.0.0.1:19219
+```
+
+The profile path is registered by the lab and the parser covers the bsdtar syntax used in the controls. The collector checks that each measured PID is unique in the run. Broader deployment would need a maintained file inventory and process-lifetime tracking for PID reuse. One filtered Windows host and six benign controls cannot estimate a production false-positive rate. [Replay script](../scripts/analyze_week9_windows.py)
+
 ## Archive attempts and exit status · 12 November 2026
 
 Version 3 ran three atomics and twelve controls. Elasticsearch indexed 43 process executions, including 18 tar/gzip launches. Seven archiver invocations opened a registered profile input in create mode. Five exited with code 0 and two with code 2. Independently reading the five successful outputs before cleanup reproduced the expected training data. [Executed queries](../evidence/week9/20261111T192612720530Z/siem/queries.json) · [15 case results](../evidence/week9/20261111T192612720530Z/siem/summary.json) · [Archive checks](../evidence/week9/20261111T192612720530Z/collection.json)
@@ -46,7 +84,7 @@ For the renamed profile, trace lines 12–13 record opens for the synthetic brow
 
 Three official Linux Atomic Red Team tests and two benign controls completed successfully. Native child-process tracing recorded **18 successful execve events**. Elasticsearch 9.5.5 indexed all 18; the broad archive query returned **5 events**, and the source-path refinement returned **2 events** belonging to `atomic_gzip` and `atomic_tar`. All **20 query boundary assertions** passed in a separate synthetic index. Archive integrity and cleanup checks passed.
 
-**Platform scope:** the available host is Linux. This is a portable extension of the Windows-focused project, validating shell execution and archive behavior. It does not validate Windows PowerShell, browser credential decryption, cookie theft, persistence or exfiltration. The Week 8 Windows plan remains a plan for those stages; this run is not represented as its full execution.
+**Original run platform:** the 8 November host ran Linux. This is a portable extension of the Windows-focused project, validating shell execution and archive behavior. It does not validate Windows PowerShell, browser credential decryption, cookie theft, persistence or exfiltration. The Week 8 Windows plan remains a plan for those stages; this run is not represented as its full execution.
 
 ![Evidence pipeline](../images/week9/evidence-pipeline.svg)
 

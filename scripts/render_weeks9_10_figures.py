@@ -14,7 +14,7 @@ def main():
  m=json.loads((ROOT/'data/week10/apt29-mapping.json').read_text())
  s=start(1160,670)+text(30,42,'APT29 selected techniques and project evidence',28,weight='bold')+text(30,75,'Source-backed CTI is separate from laboratory validation',19,color='#475569')
  s+=box(25,100,1110,44,'#172033')+text(40,129,'ATT&CK',18,'white')+text(200,129,'Technique',18,'white')+text(750,129,'Project evidence',18,'white')
- labels={'cti_only':'CTI only / not validated','historical_lab':'Historical Windows lab','portable_lab':'Linux archive analogue'}
+ labels={'cti_only':'CTI only / not validated','historical_lab':'Historical Windows lab','portable_lab':'Linux and Windows archive tests'}
  colors={'cti_only':'#CBD5E1','historical_lab':'#93C5FD','portable_lab':'#FCD34D'}
  for i,row in enumerate(m['techniques']):
   y=149+i*44

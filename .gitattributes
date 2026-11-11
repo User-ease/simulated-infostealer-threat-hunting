@@ -27,3 +27,6 @@
 /scripts/collect_week9_atomics.py -text
 /scripts/analyze_week9_elastic.py -text
 /data/week9/selected-atomics.json -text
+
+# Preserve native Windows Security XML, the manifest and recorded SIEM responses.
+/evidence/week9-windows/** -text

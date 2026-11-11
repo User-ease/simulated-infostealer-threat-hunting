@@ -24,15 +24,15 @@ The project does not use real malware or real credentials. Instead, synthetic br
 
 * [Week 8](docs/week8-adversary-emulation-plan.md): adversary emulation plan (initial access → persistence → exfiltration) derived from the Week 4 Campaign 1 CTI, mapped to ATT&CK v20.0 with an [ATT&CK Navigator layer](data/week8-attack-navigator-layer.json) — planning deliverable; no attack code executed.
 
-* [Week 9](docs/week9-atomic-red-team.md): three atomics and twelve controls. Of seven profile archive attempts, five exited successfully and two failed with ENOSPC. The original and expanded runs are preserved. [Latest control results](evidence/week9/20261111T192612720530Z/siem/summary.json).
+* [Week 9](docs/week9-atomic-red-team.md): three atomics and twelve controls. Of seven profile archive attempts, five exited successfully and two failed with ENOSPC. The original and expanded runs are preserved. [Linux control results](evidence/week9/20261111T192612720530Z/siem/summary.json).
 
 * [Week 10](docs/week10-apt29-analysis.md): ten APT29 techniques, a Navigator layer, Windows artifact analysis and a primary-source reconstruction of the local PST input for T1005.
 
 ## Weeks 9 and 10
 
-The [Week 9 practical report](docs/week9-atomic-red-team.md) provides commands, source GUIDs, raw traces, archive checks, cleanup, and actual SIEM responses. This increment is a Linux extension of the Windows-focused project. It validates supported shell and archive behaviors on synthetic data.
+The [Week 9 practical report](docs/week9-atomic-red-team.md) provides commands, source GUIDs, raw traces, archive checks, cleanup, and actual SIEM responses. On Windows Server 2022, six archive controls generated six 4688 and fourteen 4663 events. Elasticsearch correlated two process/read pairs, including the authorized backup. [Windows control matrix](evidence/week9-windows/43091627096/siem/summary.json).
 
-The [Week 10 analysis](docs/week10-apt29-analysis.md) connects source-reported APT29 behavior to the group topic. The [Navigator layer](data/week10/apt29-navigator-layer.json) distinguishes external intelligence, historical Windows observations and the new Linux archive analogue. Use the [7 minute 30 second defense guide](docs/weeks9-10-defense.md) to present both increments.
+The [Week 10 analysis](docs/week10-apt29-analysis.md) connects source-reported APT29 behavior to the group topic. The [Navigator layer](data/week10/apt29-navigator-layer.json) distinguishes external intelligence, historical Windows observations and the Linux and Windows archive experiments. Use the [7 minute 30 second defense guide](docs/weeks9-10-defense.md) to present both increments.
 
 Download the combined [PDF report](reports/Weeks_9_10_Threat_Hunting_Report.pdf) or [editable Word report](reports/Weeks_9_10_Threat_Hunting_Report.docx).
 

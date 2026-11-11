@@ -5,13 +5,13 @@ Use the Week 9 report, its saved Elasticsearch responses, and the Week 10 mappin
 | Time | Speaker role | Show | Explain |
 | --- | --- | --- | --- |
 | 0:00-0:45 | Introduction | README and syllabus requirements summary | Week 9 executes atomic tests and analyzes SIEM results; Week 10 maps APT29 TTPs. |
-| 0:45-1:30 | Lab operator | Selected atomic GUIDs and workflow diagram | Three pinned tests; Linux scope; synthetic files; no real credentials. |
+| 0:45-1:30 | Lab operator | Selected atomic GUIDs and workflow diagram | Three pinned Linux tests and a separate Windows tar.exe adaptation share a synthetic profile scenario. |
 | 1:30-2:45 | Lab operator | collection.json, one raw trace, matching normalized event | The final run covers three atomics and twelve controls. Explain exit codes, native execve evidence, archive round-trip checks and cleanup. |
 | 2:45-3:45 | Detection analyst | Kibana Discover or saved SIEM summary and queries | Show 43 executions, 18 archiver launches, seven profile archive attempts, five successful exits and two failed writes. |
-| 3:45-4:30 | Detection analyst | Long-form success and write-error traces | Follow the input opens, ENOSPC and exit 2; compare the successful archive member checks. |
+| 3:45-4:30 | Detection analyst | Windows EQL pair and read-only control | Compare records 1559826 and 1559829 with list-mode read 1559893. Explain why an authorized backup also matches. |
 | 4:30-6:00 | CTI analyst | APT29 mapping and coverage figure | Explain RDP Bitmap Cache for password export, Shellbags and extension telemetry for cookies, and the local Event 400 / CIM pair. Keep SolarWinds and later StellarParticle reporting separate. |
-| 6:00-7:15 | CTI analyst | Evidence-status column and future hunts | Only the Linux archive analogue is freshly tested; Windows telemetry, remote staging and session misuse need separate validation. |
-| 7:15-7:30 | Any speaker | GitHub commits and conclusion | Demonstrate traceability, honest dates and the next Windows collection experiment. |
+| 6:00-7:15 | CTI analyst | Evidence-status column and future hunts | Linux and Windows archive behavior was tested. Remote staging and session misuse remain separate investigation questions. |
+| 7:15-7:30 | Any speaker | GitHub commits and conclusion | Demonstrate traceability, honest dates and the Windows workflow and six results. |
 
 ## Suggested spoken explanation
 
@@ -21,7 +21,7 @@ Use the Week 9 report, its saved Elasticsearch responses, and the Week 10 mappin
 
 ### Explain the laboratory scope
 
-“The current host is Linux. We therefore executed supported Linux tests and clearly separated them from the earlier Windows experiments. This is a portable validation of command execution and archiving, not a claim that Windows credential theft has been tested. We pinned the Atomic Red Team source commit and retained each test's GUID, original executor command and substituted inputs. The selected tests are a shell loop, gzip compression of a single mock file, and tar compression of a mock browser directory.”
+“We ran three pinned Linux Atomic Red Team procedures, then recreated the archive scenario on Windows Server 2022 using built-in tar.exe. On Windows we audited process creation and file access. We used synthetic profile data on both platforms.”
 
 ### Walk through one evidence chain
 
@@ -33,7 +33,7 @@ Use the Week 9 report, its saved Elasticsearch responses, and the Week 10 mappin
 
 ### Explain the controls
 
-“Both long forms of the file option succeeded. Listing and extraction stayed outside the attempt set. Here is the tar trace for a deliberately failed write to /dev/full. The same PID opened the profile files, received ENOSPC on a write, and exited 2. An alert about an attempt can still be useful, but a successful archive needs stronger evidence.”
+“On Linux the same PID opened a source file, hit ENOSPC and exited 2. On Windows, PID 5116 has a different story. Record 1559826 starts tar in create mode. Record 1559829 shows its read of the exact profile file 65 milliseconds later. The extracted member matched. PID 3980 also read that profile, but it ran in list mode, so the query excluded it. The authorized backup matched because it performed the same operation.”
 
 ### Explain the APT29 analysis
 
@@ -41,24 +41,25 @@ Use the Week 9 report, its saved Elasticsearch responses, and the Week 10 mappin
 
 ### State what the mapping does and does not prove
 
-“The clearest connection to the new experiment is T1560.001, Archive via Utility. Our tar and gzip runs are Linux examples of that broad behavior. They are not Windows 7-Zip tests and they do not show password-protected archives or exfiltration. Our fake cookies are not authenticated session cookies, so archiving them cannot establish T1539. Similarly, a mock password string does not validate access to browser encryption or DPAPI. The Unix shell test is T1059.004 and is not relabelled as PowerShell or presented as evidence of an APT29 procedure.”
+“The clearest connection to the new experiment is T1560.001, Archive via Utility. Our Linux tar/gzip and Windows tar.exe runs exercised that behavior on synthetic data. They are not Windows 7-Zip tests and they do not show password-protected archives or exfiltration. Our fake cookies are not authenticated session cookies, so archiving them cannot establish T1539. Similarly, a mock password string does not validate access to browser encryption or DPAPI. The Unix shell test is T1059.004 and is not relabelled as PowerShell or presented as evidence of an APT29 procedure.”
 
 ### Close
 
-“The next useful increment is a dedicated Windows VM with suitable process and file-access telemetry, synthetic browser-profile data and a legitimate-backup control. We would correlate collection, archiving and any controlled transfer separately. The current repository contains the actual execution evidence, queries, tests, reports and source mapping. The commits use their real preparation dates; they do not reconstruct a weekly history that did not occur. The main result is a reproducible experiment and an evidence-qualified APT analysis, with the remaining coverage gaps explicitly stated.”
+“Six Windows controls reproduced the expected SIEM results, including an authorized backup. A production analyst would need backup authorization or other context to investigate intent. Our archive evidence supports T1560.001. Remote staging and transfer remain open questions.”
 
 ## Quick demonstration
 
 1. Open the [revised collection](../evidence/week9/20261111T192612720530Z/collection.json) and [SIEM summary](../evidence/week9/20261111T192612720530Z/siem/summary.json). Show one source trace line next to its normalized event.
 2. Open Kibana at `http://127.0.0.1:15609`, after reproducing the run, create or select the data view for its exact index. Use its absolute UTC interval. For the published revision, the case table and full responses are available offline. A relative last-15-minutes filter will eventually hide the saved observations.
 3. If Kibana is unavailable, open `siem/queries.json` and `siem/results.json`. These contain actual executed Elasticsearch requests and responses; do not pretend a static chart is a live SIEM screenshot.
-4. Show the Week 10 mapping and the separate GitHub commits.
+4. Open the [Windows EQL response](../evidence/week9-windows/43091627096/siem/correlated.json) and [native Security XML](../evidence/week9-windows/43091627096/events.xml). Find record 1559829 and compare it with 1559893.
+5. Show the Week 10 mapping and the separate GitHub commits.
 
 ## Questions to rehearse
 
 - **Why no T1003?** The syllabus gives examples, not a mandatory credential-dumping test. Our selected supported tests cover execution and archiving using synthetic data.
 - **Is this malware detection?** No. These are search predicates and controlled behavior observations. Both atomics and controls are benign.
-- **Why Linux in a Windows project?** It validates a portable archive behavior and the ingestion workflow on the available host. Windows-specific behavior remains explicitly untested in this increment.
+- **Why Linux in a Windows project?** The three upstream Linux procedures supplied the starting point. A separate Windows run now confirms the tar.exe process/file event correlation.
 - **Does a cookie file prove T1539?** No. A valid browser session and actual access to its cookie material are different from a fake JSON file.
 - **Does the archive prove exfiltration?** No. Transfer telemetry is needed; this run made no outbound data transfer.
 - **Why not call every archive event an attack?** Backup and administrative activity use the same utilities; source, ancestry, file access and later network activity are needed for context.
@@ -67,4 +68,4 @@ Use the Week 9 report, its saved Elasticsearch responses, and the Week 10 mappin
 
 ## Краткая памятка для подготовки
 
-Главное: различайте **выполнено**, **сообщается в источнике** и **предлагается проверить**. Реально выполнены Linux Atomic-тесты, сбор strace и запросы Elasticsearch. Сведения об APT29 взяты из указанных публикаций. Windows-кража credentials/cookies, удалённый staging и exfiltration в этом запуске не выполнялись. Перед защитой каждый участник должен уметь объяснить одну цепочку «команда → исходная трасса → событие → запрос → результат» и причину совпадения обычного backup.
+Главное: различайте **выполнено**, **сообщается в источнике** и **предлагается проверить**. Выполнены Linux Atomic-тесты и шесть сценариев Windows. В Elasticsearch покажите пару 4688/4663 для PID 5116 и объясните, почему разрешённый бэкап тоже совпал. Сведения об APT29 взяты из указанных публикаций. Windows-кража credentials/cookies, удалённый staging и exfiltration в этом запуске не выполнялись. Перед защитой каждый участник должен уметь объяснить одну цепочку «команда → исходная трасса → событие → запрос → результат» и причину совпадения обычного backup.
