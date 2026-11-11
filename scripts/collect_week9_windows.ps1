@@ -49,15 +49,33 @@ function Invoke-Case($Name, [string[]]$Arguments, $ExpectedHit, $ExpectedSuccess
 if (Test-Path -LiteralPath $OutputDirectory) { throw "Use a new output directory" }
 [void][IO.Directory]::CreateDirectory($OutputDirectory)
 [void][IO.Directory]::CreateDirectory($root)
+# The native flag is independent of the computer's auditpol display language.
+Add-Type -TypeDefinition @'
+using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+public static class Week9AuditPolicy {
+    [DllImport("advapi32.dll", SetLastError=true)]
+    static extern bool AuditQuerySystemPolicy(ref Guid subcategory, uint count, out IntPtr policy);
+    [DllImport("advapi32.dll")]
+    static extern void AuditFree(IntPtr pointer);
+    public static bool SuccessEnabled(Guid subcategory) {
+        IntPtr result;
+        if (!AuditQuerySystemPolicy(ref subcategory, 1, out result))
+            throw new Win32Exception(Marshal.GetLastWin32Error());
+        // AUDIT_POLICY_INFORMATION starts with the 16-byte subcategory GUID, then a DWORD.
+        try { return (Marshal.ReadInt32(result, 16) & 1) != 0; }
+        finally { AuditFree(result); }
+    }
+}
+'@
 $oldBits = @{}
 $hadReg = Test-Path $reg
 $oldValue = $null
 $changedReg = $false
 try {
     foreach ($subcategory in @($processAudit,$fileAudit)) {
-        $row = @(Invoke-AuditPol @('/get',"/subcategory:$subcategory",'/r') | ConvertFrom-Csv)[-1]
-        $prior = [int]::Parse([string]@($row.PSObject.Properties)[-1].Value)
-        $oldBits[$subcategory] = $prior
+        $oldBits[$subcategory] = [Week9AuditPolicy]::SuccessEnabled([guid]$subcategory)
         [void](Invoke-AuditPol @('/set',"/subcategory:$subcategory",'/success:enable'))
     }
     if (!$hadReg) { [void](New-Item $reg -Force) }
@@ -130,7 +148,7 @@ try {
         if (!$hadReg -and !(Get-Item $reg).Property) { Remove-Item $reg }
     }
     foreach ($subcategory in $oldBits.Keys) {
-        $success = if ($oldBits[$subcategory] -band 1) { 'enable' } else { 'disable' }
+        $success = if ($oldBits[$subcategory]) { 'enable' } else { 'disable' }
         [void](Invoke-AuditPol @('/set',"/subcategory:$subcategory","/success:$success"))
     }
     Remove-Item -LiteralPath $root -Recurse -Force
