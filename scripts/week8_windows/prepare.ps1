@@ -101,7 +101,9 @@ try {
     $mruCommand = @($mru.PSObject.Properties | Where-Object { [string]$_.Value -like "$command*" } | ForEach-Object { $_.Value })
     Write-Host "Verified receiver ZIP and four extracted members"
     Copy-Item "$root\completed.json","$root\task.xml","$root\http.jsonl","$root\received.zip","$root\update.html" -Destination $export
-    Write-JsonFile "$export\verification.json" ([ordered]@{run=$run;start_utc=$since.ToUniversalTime().ToString('o');host=$env:COMPUTERNAME;loader_pid=$case.pid;control_pid=$ordinary.Id;control_names=@(Get-Content "$root\control-files.txt");shown_command=$shown;run_mru=$mruCommand;sender_sha256=$clientHash;receiver_sha256=$receiverHash;members=$members;task_absent=!(Test-LabTask $case.task)})
+    $absent = !(Test-LabTask $case.task)
+    Write-Host "Task absence verified: $absent"
+    Write-JsonFile "$export\verification.json" ([ordered]@{run=$run;start_utc=$since.ToUniversalTime().ToString('o');host=$env:COMPUTERNAME;loader_pid=$case.pid;control_pid=$ordinary.Id;control_names=[IO.File]::ReadAllLines("$root\control-files.txt");shown_command=$shown;run_mru=$mruCommand;sender_sha256=$clientHash;receiver_sha256=$receiverHash;members=$members;task_absent=$absent})
     Write-Host 'Exporting native Windows events'
     Start-Sleep -Seconds 3
     & "$PSScriptRoot\export-events.ps1" -Since $since -OutputDirectory $export -Case $case -ControlPid $ordinary.Id
