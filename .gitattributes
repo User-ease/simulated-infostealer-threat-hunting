@@ -30,3 +30,7 @@
 
 # Preserve native Windows Security XML, the manifest and recorded SIEM responses.
 /evidence/week9-windows/** -text
+
+# Preserve the full-chain collector inputs and byte-level checks across platforms.
+/scripts/week8_windows/*.ps1 -text
+/evidence/week9-windows-chain/** -text
