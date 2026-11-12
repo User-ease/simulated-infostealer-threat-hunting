@@ -59,9 +59,9 @@
       "source_id": "MANDIANT-2020",
       "source_url": "https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor",
       "mitre_url": "https://attack.mitre.org/techniques/T1053/005/",
-      "project_application": "Week 8 planned persistence; not executed in Week 9.",
+      "project_application": "In the Week 8 Windows run c5dff010b214, the loader registered a new task with a logon trigger (Security 4698, record 507). It requested a manual start with schtasks.exe /run (4688, record 508). The marker action (4688, record 509) wrote the run ID. The loader then deleted the task (4699, record 524). Execution at a subsequent logon, modification and restoration of an existing task, and privilege escalation remain untested.",
       "proposed_hunt": "Compare task definitions over time and correlate registration with payload execution.",
-      "evidence_status": "cti_only"
+      "evidence_status": "windows_task_lab"
     },
     {
       "technique_id": "T1555.003",

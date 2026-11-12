@@ -16,6 +16,8 @@ def main():
  s+=box(25,100,1110,44,'#172033')+text(40,129,'ATT&CK',18,'white')+text(200,129,'Technique',18,'white')+text(750,129,'Project evidence',18,'white')
  labels={'cti_only':'CTI only / not validated','historical_lab':'Historical Windows lab','portable_lab':'Linux and Windows archive tests'}
  colors={'cti_only':'#CBD5E1','historical_lab':'#93C5FD','portable_lab':'#FCD34D'}
+ labels['windows_task_lab']='Windows task run on demand'
+ colors['windows_task_lab']='#99F6E4'
  for i,row in enumerate(m['techniques']):
   y=149+i*44
   s+=box(25,y,1110,40,'#F1F5F9' if i%2==0 else '#FFFFFF')+text(40,y+27,row['technique_id'],18)

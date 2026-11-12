@@ -56,16 +56,16 @@
     {
       "techniqueID": "T1053.005",
       "tactic": "execution",
-      "color": "#CBD5E1",
-      "comment": "Existing scheduled tasks were temporarily modified, then restored. Week 8 planned persistence; not executed in Week 9. Source: https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor",
+      "color": "#99F6E4",
+      "comment": "Existing scheduled tasks were temporarily modified, then restored. In the Week 8 Windows run c5dff010b214, the loader registered a new task with a logon trigger (Security 4698, record 507). It requested a manual start with schtasks.exe /run (4688, record 508). The marker action (4688, record 509) wrote the run ID. The loader then deleted the task (4699, record 524). Execution at a subsequent logon, modification and restoration of an existing task, and privilege escalation remain untested. Source: https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor",
       "enabled": true,
       "showSubtechniques": false
     },
     {
       "techniqueID": "T1053.005",
       "tactic": "persistence",
-      "color": "#CBD5E1",
-      "comment": "Existing scheduled tasks were temporarily modified, then restored. Week 8 planned persistence; not executed in Week 9. Source: https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor",
+      "color": "#99F6E4",
+      "comment": "Existing scheduled tasks were temporarily modified, then restored. In the Week 8 Windows run c5dff010b214, the loader registered a new task with a logon trigger (Security 4698, record 507). It requested a manual start with schtasks.exe /run (4688, record 508). The marker action (4688, record 509) wrote the run ID. The loader then deleted the task (4699, record 524). Execution at a subsequent logon, modification and restoration of an existing task, and privilege escalation remain untested. Source: https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor",
       "enabled": true,
       "showSubtechniques": false
     },
@@ -73,7 +73,7 @@
       "techniqueID": "T1053.005",
       "tactic": "privilege-escalation",
       "color": "#CBD5E1",
-      "comment": "Existing scheduled tasks were temporarily modified, then restored. Week 8 planned persistence; not executed in Week 9. Source: https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor",
+      "comment": "Existing scheduled tasks were temporarily modified, then restored. In the Week 8 Windows run c5dff010b214, the loader registered a new task with a logon trigger (Security 4698, record 507). It requested a manual start with schtasks.exe /run (4688, record 508). The marker action (4688, record 509) wrote the run ID. The loader then deleted the task (4699, record 524). Execution at a subsequent logon, modification and restoration of an existing task, and privilege escalation remain untested. Source: https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor",
       "enabled": true,
       "showSubtechniques": false
     },
@@ -138,6 +138,10 @@
     {
       "label": "Linux and Windows archive tests in Week 9",
       "color": "#FBBF24"
+    },
+    {
+      "label": "Week 8 Windows logon task registered and run on demand",
+      "color": "#99F6E4"
     }
   ]
 }
