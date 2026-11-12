@@ -4,8 +4,7 @@ Project: **Forensic Analysis and Detection of Simulated Infostealer-Like Activit
 
 **Separate full-chain follow-up.** After the nine archive controls, the group ran the complete Week 8 synthetic scenario on Windows, including the scheduled marker, Compress-Archive and loopback receipt. [Native evidence and SIEM results](week8-windows-run.md)
 
-## Windows archive and Security audit · 12 November 2026 (Almaty)
-
+## Windows archive and Security audit 
 On a disposable local **Microsoft Windows Server 2022 Datacenter Evaluation** VM (build 20348), the built-in tar.exe (bsdtar 3.3.2) ran nine controls on 12 November at 02:08 Almaty time. Six repeated the previous experiment. Three used traditional bsdtar syntax, in which the first option word has no dash. [Windows run provenance](https://github.com/User-ease/simulated-infostealer-threat-hunting/blob/main/evidence/week9-windows/vm-20261111T210834Z/provenance.json) · [Collector and parser at the executed revision](https://github.com/User-ease/simulated-infostealer-threat-hunting/tree/35fdc01ac632b5b8c705946afad02a678011db9f/scripts)
 
 ### Traditional tar options in native Security events
@@ -51,7 +50,7 @@ python3 scripts/analyze_week9_windows.py evidence/week9-windows/vm-20261111T2108
 
 The profile path is registered by the lab and the parser covers the bsdtar syntax used in the controls. The collector checks that each measured PID is unique in the run. Broader deployment would need a maintained file inventory and process-lifetime tracking for PID reuse. One filtered Windows host and nine benign controls cannot estimate a production false-positive rate. [Replay script](../scripts/analyze_week9_windows.py)
 
-## Archive attempts and exit status · 12 November 2026
+## Archive attempts and exit status
 
 Version 3 ran three atomics and twelve controls. Elasticsearch indexed 43 process executions, including 18 tar/gzip launches. Seven archiver invocations opened a registered profile input in create mode. Five exited with code 0 and two with code 2. Independently reading the five successful outputs before cleanup reproduced the expected training data. [Executed queries](../evidence/week9/20261111T192612720530Z/siem/queries.json) · [15 case results](../evidence/week9/20261111T192612720530Z/siem/summary.json) · [Archive checks](../evidence/week9/20261111T192612720530Z/collection.json)
 
@@ -68,7 +67,7 @@ The analyzer parses option arguments, including both forms of `--file`. The atte
 
 **Trace walkthrough.** In the long write-error case, lines 12–13 show the input files, line 14 records ENOSPC and line 22 records exit 2. The positive long-form control exits 0 and its archive passes member verification. In applications beyond this lab, a zero exit status is the exit status of the utility. Verification of what went into an archive still requires artifact evidence. A legitimate backup can meet all of these conditions. [Failure trace](../evidence/week9/20261111T192612720530Z/traces/long_write_error.39445) · [Successful trace](../evidence/week9/20261111T192612720530Z/traces/long_equals.39418) · [Full search responses](../evidence/week9/20261111T192612720530Z/siem/results.json)
 
-## Earlier nine-scenario run · 12 November 2026
+## Earlier nine-scenario run 
 
 On the expanded run, Elasticsearch indexed **29** process executions across three atomics and six controls. Eleven events launched tar or gzip. The original argument filter selected five events. The revised query selected three: the atomic gzip, the atomic tar and a normal backup of the same training profile under a different directory name. All nine expected counts for each query matched the live responses. [Queries](../evidence/week9/20261111T190107852073Z/siem/queries.json) · [Case results](../evidence/week9/20261111T190107852073Z/siem/summary.json) · [Full responses](../evidence/week9/20261111T190107852073Z/siem/results.json)
 
@@ -91,7 +90,7 @@ For the renamed profile, trace lines 12–13 record opens for the synthetic brow
 
 **Scope.** The parser recognizes the tar short-option creation forms ending in `f` and gzip compression options used here. Unsupported invocations, renamed executables and missing file-open telemetry can be missed. A changed browser database needs an updated asset inventory. The controlled file hashes make this test repeatable; they are unsuitable as general indicators of credential theft. The Windows evidence and sensor requirements are in the [Week 10 artifact analysis](week10-apt29-analysis.md#windows-artifacts-and-their-evidentiary-limits).
 
-## Original run of 8 November 2026
+## Original run 
 
 Three official Linux Atomic Red Team tests and two benign controls completed successfully. Native child-process tracing recorded **18 successful execve events**. Elasticsearch 9.5.5 indexed all 18; the broad archive query returned **5 events**, and the source-path refinement returned **2 events** belonging to `atomic_gzip` and `atomic_tar`. All **20 query boundary assertions** passed in a separate synthetic index. Archive integrity and cleanup checks passed.
 
@@ -193,6 +192,6 @@ python3 -m unittest discover -s tests -v
 
 Week 8 planned a longer Windows sequence. The original Atomic increment covered a subset using supported Linux procedures. The separate [Windows follow-up](week8-windows-run.md) later exercised stages A–F. T1059.004 is Unix Shell, not T1059.001 PowerShell. T1560.001 applies to the archive utility behavior; its mapping does not prove credential theft, a malicious objective or exfiltration. The [Week 10 APT29 analysis](week10-apt29-analysis.md) connects source-reported behavior to this evidence with explicit qualifiers.
 
-Both increments were prepared on 8 November 2026, with separate commits using actual timestamps. That provides transparent change separation but cannot establish historical weekly commit cadence. The group still needs to give the [7-8 minute defense](weeks9-10-defense.md).
+Both increments with separate commits using actual timestamps. That provides transparent change separation but cannot establish historical weekly commit cadence. The group still needs to give the [7-8 minute defense](weeks9-10-defense.md).
 
 **AI assistance:** OpenAI Codex assisted with source review, test selection, code, execution, validation, figures and writing. The group should review and understand the material and follow the course's AI-permission and disclosure requirements. Instructor permission is not asserted here.
