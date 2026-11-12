@@ -38,6 +38,8 @@ Download the combined [PDF report](reports/Weeks_9_10_Threat_Hunting_Report.pdf)
 
 Both increments were prepared on 8 November 2026 and committed separately using their actual dates. The oral defense remains pending.
 
+The [full Windows execution of the Week 8 plan](docs/week8-windows-run.md) records the manual ClickFix simulation, loader, scheduled marker, file discovery, Compress-Archive and verified loopback HTTP upload. The [Russian group speaking notes](reports/Защита_недель_9_и_10.docx) retain the 7:30 schedule.
+
 ## Week 8: Adversary Emulation Plan
 
 The [Week 8 report](docs/week8-adversary-emulation-plan.md) develops a safe, synthetic adversary emulation plan from the Week 4 ACR Stealer Campaign 1 reconstruction, as required by the syllabus (section 3.3, Week 8). It covers the syllabus chain (initial access → persistence → data exfiltration) across six stages, deliberately weighted toward the Collection and Credential-Access behaviour that defines an infostealer, with PowerShell used only as the loader rather than as the headline technique. It defines rules of engagement, maps each stage to ATT&CK v20.0, states the telemetry and existing project detections expected for each (the Week 5 PowerShell hunt and the Weeks 6–7 CAR analytic), and hands off to the Week 9 Atomic Red Team execution. No technique is executed in this increment.

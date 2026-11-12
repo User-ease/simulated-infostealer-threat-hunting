@@ -1,0 +1,28 @@
+{
+    "run":  "c5dff010b214",
+    "start_utc":  "2026-11-12T08:57:54.7389869Z",
+    "end_utc":  "2026-11-12T08:58:09.2041068Z",
+    "pid":  3936,
+    "marker":  "WEEK8-LOADER",
+    "task":  "Week8-Training-c5dff010b214",
+    "task_marker":  "c5dff010b214",
+    "computer":  "WIN-0CD77CN6UBT",
+    "user":  "win-0cd77cn6ubt\\administrator",
+    "os":  "Microsoft Windows Server 2022 Datacenter Evaluation",
+    "build":  "20348",
+    "discovered":  [
+                       "config.ini",
+                       "cookies.json",
+                       "mock-browser.json",
+                       "wallet.txt"
+                   ],
+    "source_hashes":  {
+                          "config.ini":  "97388DD385397365D797C44FAB8AACAA582AEFE29631836565E6B241FF8CAC9C",
+                          "cookies.json":  "85A7191C3D97EF00F6B0DDEB85E0779E6A81871BB951CC9959648C753288F75A",
+                          "mock-browser.json":  "AF7BFD2C6334AB09F5E95537B6838D01227FA77F098AEFB59102A3CD83FA81A5",
+                          "wallet.txt":  "E8421EC6F5AA770B3FDF4CDBCED3CF53215537B473110EA95D0753B529F50ECB"
+                      },
+    "zip_hash":  "EEED7A4BAA02FFF7FBC50BA55B265FEA3257121BD8B168B1D23BF55C5A8BDEBF",
+    "zip_bytes":  578,
+    "http_status":  201
+}

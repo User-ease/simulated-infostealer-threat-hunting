@@ -1,0 +1,260 @@
+{
+  "training_page": [
+    {
+      "ts": "2026-11-12T08:57:30.5289875Z",
+      "channel": "receiver",
+      "record": 2,
+      "host": "WIN-0CD77CN6UBT",
+      "method": "GET",
+      "path": "/update",
+      "remote": "127.0.0.1",
+      "local": "127.0.0.1",
+      "port": 18768,
+      "status": 200,
+      "bytes_saved": 0,
+      "sha256": null
+    }
+  ],
+  "loader": [
+    {
+      "ts": "2026-11-12T08:57:49.9245748Z",
+      "channel": "Security",
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4688",
+      "record": 490,
+      "pid": 3936,
+      "parent": 4860,
+      "image": "powershell.exe",
+      "command": "powershell.exe  -NoProfile -ExecutionPolicy Bypass -File C:\\Week8Lab\\loader.ps1"
+    }
+  ],
+  "launcher": [
+    {
+      "ts": "2026-11-12T08:57:49.2306150Z",
+      "channel": "Security",
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4688",
+      "record": 488,
+      "pid": 4860,
+      "parent": 2660,
+      "image": "cmd.exe",
+      "command": "\"C:\\Windows\\system32\\cmd.exe\" /d /c powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\\Week8Lab\\loader.ps1"
+    }
+  ],
+  "engine_start": [],
+  "archive_script": [
+    {
+      "ts": "2026-11-12T08:57:54.4937682Z",
+      "channel": "Microsoft-Windows-PowerShell/Operational",
+      "provider": "Microsoft-Windows-PowerShell",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4104",
+      "record": 17,
+      "pid": 3936,
+      "path": "C:\\Week8Lab\\loader.ps1"
+    }
+  ],
+  "logon_task": [
+    {
+      "ts": "2026-11-12T08:57:56.4361514Z",
+      "channel": "Security",
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4698",
+      "record": 507,
+      "task": "\\Week8-Training-c5dff010b214",
+      "logon_trigger": true,
+      "action": "cmd.exe /d /c C:\\Week8Lab\\update-marker.cmd"
+    }
+  ],
+  "task_deleted": [
+    {
+      "ts": "2026-11-12T08:58:09.1969747Z",
+      "channel": "Security",
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4699",
+      "record": 524,
+      "task": "\\Week8-Training-c5dff010b214"
+    }
+  ],
+  "task_action": [
+    {
+      "ts": "2026-11-12T08:58:03.3003228Z",
+      "channel": "Security",
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4688",
+      "record": 509,
+      "pid": 4308,
+      "parent": 396,
+      "image": "cmd.exe",
+      "command": "cmd.exe /d /c C:\\Week8Lab\\update-marker.cmd"
+    }
+  ],
+  "host_and_user": [
+    {
+      "ts": "2026-11-12T08:58:04.1063872Z",
+      "channel": "Security",
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4688",
+      "record": 511,
+      "pid": 1860,
+      "parent": 3936,
+      "image": "whoami.exe",
+      "command": "\"C:\\Windows\\system32\\whoami.exe\""
+    },
+    {
+      "ts": "2026-11-12T08:58:04.2225042Z",
+      "channel": "Security",
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4688",
+      "record": 512,
+      "pid": 4112,
+      "parent": 3936,
+      "image": "hostname.exe",
+      "command": "\"C:\\Windows\\system32\\HOSTNAME.EXE\""
+    }
+  ],
+  "fixture_reads": [
+    {
+      "ts": "2026-11-12T08:58:05.0043025Z",
+      "channel": "Security",
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4663",
+      "record": 515,
+      "pid": 3936,
+      "path": "C:\\Week8Lab\\synthetic-profile\\config.ini",
+      "read_data": true
+    },
+    {
+      "ts": "2026-11-12T08:58:05.2170860Z",
+      "channel": "Security",
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4663",
+      "record": 516,
+      "pid": 3936,
+      "path": "C:\\Week8Lab\\synthetic-profile\\config.ini",
+      "read_data": true
+    },
+    {
+      "ts": "2026-11-12T08:58:05.3761304Z",
+      "channel": "Security",
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4663",
+      "record": 517,
+      "pid": 3936,
+      "path": "C:\\Week8Lab\\synthetic-profile\\cookies.json",
+      "read_data": true
+    },
+    {
+      "ts": "2026-11-12T08:58:05.3805589Z",
+      "channel": "Security",
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4663",
+      "record": 518,
+      "pid": 3936,
+      "path": "C:\\Week8Lab\\synthetic-profile\\cookies.json",
+      "read_data": true
+    },
+    {
+      "ts": "2026-11-12T08:58:05.3817905Z",
+      "channel": "Security",
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4663",
+      "record": 519,
+      "pid": 3936,
+      "path": "C:\\Week8Lab\\synthetic-profile\\mock-browser.json",
+      "read_data": true
+    },
+    {
+      "ts": "2026-11-12T08:58:05.3863141Z",
+      "channel": "Security",
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4663",
+      "record": 520,
+      "pid": 3936,
+      "path": "C:\\Week8Lab\\synthetic-profile\\mock-browser.json",
+      "read_data": true
+    },
+    {
+      "ts": "2026-11-12T08:58:05.3873083Z",
+      "channel": "Security",
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4663",
+      "record": 521,
+      "pid": 3936,
+      "path": "C:\\Week8Lab\\synthetic-profile\\wallet.txt",
+      "read_data": true
+    },
+    {
+      "ts": "2026-11-12T08:58:05.3910960Z",
+      "channel": "Security",
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4663",
+      "record": 522,
+      "pid": 3936,
+      "path": "C:\\Week8Lab\\synthetic-profile\\wallet.txt",
+      "read_data": true
+    }
+  ],
+  "accepted_upload": [
+    {
+      "ts": "2026-11-12T08:58:08.9869635Z",
+      "channel": "receiver",
+      "record": 3,
+      "host": "WIN-0CD77CN6UBT",
+      "method": "POST",
+      "path": "/receive",
+      "remote": "127.0.0.1",
+      "local": "127.0.0.1",
+      "port": 18768,
+      "status": 201,
+      "bytes_saved": 578,
+      "sha256": "EEED7A4BAA02FFF7FBC50BA55B265FEA3257121BD8B168B1D23BF55C5A8BDEBF"
+    }
+  ],
+  "rejected_upload": [
+    {
+      "ts": "2026-11-12T08:57:28.1950552Z",
+      "channel": "receiver",
+      "record": 1,
+      "host": "WIN-0CD77CN6UBT",
+      "method": "POST",
+      "path": "/rejected",
+      "remote": "127.0.0.1",
+      "local": "127.0.0.1",
+      "port": 18768,
+      "status": 404,
+      "bytes_saved": 0,
+      "sha256": null
+    }
+  ],
+  "listing_control": [
+    {
+      "ts": "2026-11-12T08:57:29.3929610Z",
+      "channel": "Security",
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "host": "WIN-0CD77CN6UBT",
+      "code": "4688",
+      "record": 476,
+      "pid": 4412,
+      "parent": 4572,
+      "image": "cmd.exe",
+      "command": "\"C:\\Windows\\system32\\cmd.exe\" /d /c dir /b C:\\Week8Lab\\synthetic-profile "
+    }
+  ],
+  "listing_file_reads": []
+}

@@ -1,0 +1,589 @@
+{
+  "training_page": {
+    "size": 1000,
+    "track_total_hits": true,
+    "sort": [
+      {
+        "ts": "asc"
+      },
+      {
+        "record": "asc"
+      }
+    ],
+    "_source": {
+      "excludes": [
+        "script"
+      ]
+    },
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "method": "GET"
+            }
+          },
+          {
+            "term": {
+              "path": "/update"
+            }
+          },
+          {
+            "term": {
+              "status": 200
+            }
+          },
+          {
+            "term": {
+              "local": "127.0.0.1"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "loader": {
+    "size": 1000,
+    "track_total_hits": true,
+    "sort": [
+      {
+        "ts": "asc"
+      },
+      {
+        "record": "asc"
+      }
+    ],
+    "_source": {
+      "excludes": [
+        "script"
+      ]
+    },
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "code": "4688"
+            }
+          },
+          {
+            "term": {
+              "image": "powershell.exe"
+            }
+          },
+          {
+            "wildcard": {
+              "command": {
+                "value": "*loader.ps1*",
+                "case_insensitive": true
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "launcher": {
+    "size": 1000,
+    "track_total_hits": true,
+    "sort": [
+      {
+        "ts": "asc"
+      },
+      {
+        "record": "asc"
+      }
+    ],
+    "_source": {
+      "excludes": [
+        "script"
+      ]
+    },
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "code": "4688"
+            }
+          },
+          {
+            "term": {
+              "pid": 4860
+            }
+          },
+          {
+            "term": {
+              "image": "cmd.exe"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "engine_start": {
+    "size": 1000,
+    "track_total_hits": true,
+    "sort": [
+      {
+        "ts": "asc"
+      },
+      {
+        "record": "asc"
+      }
+    ],
+    "_source": {
+      "excludes": [
+        "script"
+      ]
+    },
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "code": "400"
+            }
+          },
+          {
+            "term": {
+              "pid": 3936
+            }
+          }
+        ]
+      }
+    }
+  },
+  "archive_script": {
+    "size": 1000,
+    "track_total_hits": true,
+    "sort": [
+      {
+        "ts": "asc"
+      },
+      {
+        "record": "asc"
+      }
+    ],
+    "_source": {
+      "excludes": [
+        "script"
+      ]
+    },
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "code": "4104"
+            }
+          },
+          {
+            "term": {
+              "pid": 3936
+            }
+          },
+          {
+            "term": {
+              "path": "C:\\Week8Lab\\loader.ps1"
+            }
+          },
+          {
+            "wildcard": {
+              "script": {
+                "value": "*Compress-Archive *",
+                "case_insensitive": true
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "logon_task": {
+    "size": 1000,
+    "track_total_hits": true,
+    "sort": [
+      {
+        "ts": "asc"
+      },
+      {
+        "record": "asc"
+      }
+    ],
+    "_source": {
+      "excludes": [
+        "script"
+      ]
+    },
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "code": "4698"
+            }
+          },
+          {
+            "term": {
+              "task": "\\Week8-Training-c5dff010b214"
+            }
+          },
+          {
+            "term": {
+              "logon_trigger": true
+            }
+          },
+          {
+            "wildcard": {
+              "action": {
+                "value": "*update-marker.cmd*",
+                "case_insensitive": true
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "task_deleted": {
+    "size": 1000,
+    "track_total_hits": true,
+    "sort": [
+      {
+        "ts": "asc"
+      },
+      {
+        "record": "asc"
+      }
+    ],
+    "_source": {
+      "excludes": [
+        "script"
+      ]
+    },
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "code": "4699"
+            }
+          },
+          {
+            "term": {
+              "task": "\\Week8-Training-c5dff010b214"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "task_action": {
+    "size": 1000,
+    "track_total_hits": true,
+    "sort": [
+      {
+        "ts": "asc"
+      },
+      {
+        "record": "asc"
+      }
+    ],
+    "_source": {
+      "excludes": [
+        "script"
+      ]
+    },
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "code": "4688"
+            }
+          },
+          {
+            "term": {
+              "image": "cmd.exe"
+            }
+          },
+          {
+            "wildcard": {
+              "command": {
+                "value": "*update-marker.cmd*",
+                "case_insensitive": true
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "host_and_user": {
+    "size": 1000,
+    "track_total_hits": true,
+    "sort": [
+      {
+        "ts": "asc"
+      },
+      {
+        "record": "asc"
+      }
+    ],
+    "_source": {
+      "excludes": [
+        "script"
+      ]
+    },
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "code": "4688"
+            }
+          },
+          {
+            "term": {
+              "parent": 3936
+            }
+          },
+          {
+            "terms": {
+              "image": [
+                "hostname.exe",
+                "whoami.exe"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "fixture_reads": {
+    "size": 1000,
+    "track_total_hits": true,
+    "sort": [
+      {
+        "ts": "asc"
+      },
+      {
+        "record": "asc"
+      }
+    ],
+    "_source": {
+      "excludes": [
+        "script"
+      ]
+    },
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "code": "4663"
+            }
+          },
+          {
+            "term": {
+              "pid": 3936
+            }
+          },
+          {
+            "term": {
+              "read_data": true
+            }
+          },
+          {
+            "terms": {
+              "path": [
+                "C:\\Week8Lab\\synthetic-profile\\config.ini",
+                "C:\\Week8Lab\\synthetic-profile\\cookies.json",
+                "C:\\Week8Lab\\synthetic-profile\\mock-browser.json",
+                "C:\\Week8Lab\\synthetic-profile\\wallet.txt"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "accepted_upload": {
+    "size": 1000,
+    "track_total_hits": true,
+    "sort": [
+      {
+        "ts": "asc"
+      },
+      {
+        "record": "asc"
+      }
+    ],
+    "_source": {
+      "excludes": [
+        "script"
+      ]
+    },
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "method": "POST"
+            }
+          },
+          {
+            "term": {
+              "path": "/receive"
+            }
+          },
+          {
+            "term": {
+              "status": 201
+            }
+          },
+          {
+            "term": {
+              "remote": "127.0.0.1"
+            }
+          },
+          {
+            "term": {
+              "local": "127.0.0.1"
+            }
+          },
+          {
+            "term": {
+              "port": 18768
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rejected_upload": {
+    "size": 1000,
+    "track_total_hits": true,
+    "sort": [
+      {
+        "ts": "asc"
+      },
+      {
+        "record": "asc"
+      }
+    ],
+    "_source": {
+      "excludes": [
+        "script"
+      ]
+    },
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "method": "POST"
+            }
+          },
+          {
+            "term": {
+              "status": 404
+            }
+          },
+          {
+            "term": {
+              "path": "/rejected"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "listing_control": {
+    "size": 1000,
+    "track_total_hits": true,
+    "sort": [
+      {
+        "ts": "asc"
+      },
+      {
+        "record": "asc"
+      }
+    ],
+    "_source": {
+      "excludes": [
+        "script"
+      ]
+    },
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "code": "4688"
+            }
+          },
+          {
+            "term": {
+              "image": "cmd.exe"
+            }
+          },
+          {
+            "term": {
+              "pid": 4412
+            }
+          }
+        ]
+      }
+    }
+  },
+  "listing_file_reads": {
+    "size": 1000,
+    "track_total_hits": true,
+    "sort": [
+      {
+        "ts": "asc"
+      },
+      {
+        "record": "asc"
+      }
+    ],
+    "_source": {
+      "excludes": [
+        "script"
+      ]
+    },
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "code": "4663"
+            }
+          },
+          {
+            "term": {
+              "pid": 4412
+            }
+          },
+          {
+            "term": {
+              "read_data": true
+            }
+          },
+          {
+            "terms": {
+              "path": [
+                "C:\\Week8Lab\\synthetic-profile\\config.ini",
+                "C:\\Week8Lab\\synthetic-profile\\cookies.json",
+                "C:\\Week8Lab\\synthetic-profile\\mock-browser.json",
+                "C:\\Week8Lab\\synthetic-profile\\wallet.txt"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

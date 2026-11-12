@@ -2,6 +2,8 @@
 
 Project: **Forensic Analysis and Detection of Simulated Infostealer-Like Activity in Windows Environments**. Prepared 8 November 2026. This increment addresses syllabus 2026-2027 section 3.3, Week 9: execute selected atomic tests and record/analyze their results in a SIEM. The examples T1059 and T1003 are illustrative; credential dumping is not required for this chosen experiment.
 
+**Separate full-chain follow-up.** After the nine archive controls, the group ran the complete Week 8 synthetic scenario on Windows, including the scheduled marker, Compress-Archive and loopback receipt. [Native evidence and SIEM results](week8-windows-run.md)
+
 ## Windows archive and Security audit · 12 November 2026 (Almaty)
 
 On a disposable local **Microsoft Windows Server 2022 Datacenter Evaluation** VM (build 20348), the built-in tar.exe (bsdtar 3.3.2) ran nine controls on 12 November at 02:08 Almaty time. Six repeated the previous experiment. Three used traditional bsdtar syntax, in which the first option word has no dash. [Windows run provenance](https://github.com/User-ease/simulated-infostealer-threat-hunting/blob/main/evidence/week9-windows/vm-20261111T210834Z/provenance.json) · [Collector and parser at the executed revision](https://github.com/User-ease/simulated-infostealer-threat-hunting/tree/35fdc01ac632b5b8c705946afad02a678011db9f/scripts)
@@ -189,7 +191,7 @@ python3 -m unittest discover -s tests -v
 
 ## Continuity and limitations
 
-Week 8 planned a longer Windows sequence. This increment executes a deliberately small subset using supported Linux procedures. T1059.004 is Unix Shell, not T1059.001 PowerShell. T1560.001 applies to the archive utility behavior; its mapping does not prove credential theft, a malicious objective or exfiltration. The [Week 10 APT29 analysis](week10-apt29-analysis.md) connects source-reported behavior to this evidence with explicit qualifiers.
+Week 8 planned a longer Windows sequence. The original Atomic increment covered a subset using supported Linux procedures. The separate [Windows follow-up](week8-windows-run.md) later exercised stages A–F. T1059.004 is Unix Shell, not T1059.001 PowerShell. T1560.001 applies to the archive utility behavior; its mapping does not prove credential theft, a malicious objective or exfiltration. The [Week 10 APT29 analysis](week10-apt29-analysis.md) connects source-reported behavior to this evidence with explicit qualifiers.
 
 Both increments were prepared on 8 November 2026, with separate commits using actual timestamps. That provides transparent change separation but cannot establish historical weekly commit cadence. The group still needs to give the [7-8 minute defense](weeks9-10-defense.md).
 

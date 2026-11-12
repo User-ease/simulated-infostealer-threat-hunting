@@ -1,0 +1,28 @@
+{
+  "run": "c5dff010b214",
+  "host_utc_before_setup": "2026-11-12T08:56:59,101278842+00:00",
+  "host_utc_before_operator_submit": "2026-11-12T08:57:49,020739004+00:00",
+  "host_utc_after_capture": "2026-11-12T08:58:42,528153425+00:00",
+  "guest_platform": "Microsoft Windows Server 2022 Datacenter Evaluation in QEMU/KVM, built-in Administrator. No guest network adapter. OS image ran on a separate disposable overlay from the pre-run checkpoint.",
+  "publisher_image": "https://www.microsoft.com/en-us/evalcenter/download-windows-server-2022",
+  "evidence_export": "After the run, evidence was exported from the guest to an attached disk. The operator screenshots were taken from the guest display. Only synthetic fixture data was included.",
+  "collector_git_commit": "724155e8f0f9214331c20212f44a56c7d3c372d3",
+  "collector_sha256": {
+    "scripts/week8_windows/export-events.ps1": "244b3d8ef1a2b9beb297bf80c6c4a8f9e135502322c223bdcf01849ca2cba02c",
+    "scripts/week8_windows/loader.ps1": "cd286c3224168654011a0d65ef3c11b88f3e470b9c5709b78b45679524c9da51",
+    "scripts/week8_windows/prepare.ps1": "6a4084285c4491751f9cd0631194dc0db11dd0ccb9f149da78ab3bc24e2077d0",
+    "scripts/week8_windows/receiver.ps1": "c02c910987f71ff44187fb65ce97a7d150c3a7e77d1aff933837afa75d6e1af0"
+  },
+  "file_sha256": {
+    "cleanup.json": "6c3bdc1d8dea8d543320879382ddc87fdd85b1030ecc725e60d7cddb63959e5f",
+    "completed.json": "70edbc418be35ad59f471128d14e01c32dd2426bde7eaac6f7e0298af07a602e",
+    "events.xml": "3e867605d2b717b5204d5eeab139f44e91f37013b87523c3927a5c72e97a78f8",
+    "http.jsonl": "831ff92a9e986864a373863ae4448ee2b0364bb51e3fc5ca8020ac0829fc7bc8",
+    "operator-page.png": "63a3a84299e120c0dcc71bae53ed78d0784f0cd1d340fd9bdd1d903a71cdaee9",
+    "operator-paste.png": "bcf5115384bbc0b87365ba6b203b10eb853fedaadbcb44a9ca39a2794b4443a1",
+    "received.zip": "eeed7a4baa02fff7fbc50ba55b265fea3257121bd8b168b1d23bf55c5a8bdebf",
+    "task.xml": "69d96b863752223ce929cffa233f571397eda6aa81009696b69944010be4de3b",
+    "update.html": "a878705b070d9862c5acf5ccad8b748a50bca6d293683d58425b670ddbd98862",
+    "verification.json": "d47d9c74b80ae3ee986ebcdbfb2ed7321f0b2c837ee714978f522323ef8a72ea"
+  }
+}

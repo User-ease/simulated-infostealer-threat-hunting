@@ -1,5 +1,7 @@
 # Week 8 - Adversary Emulation Plan (Assignment 5)
 
+**Execution follow-up, 12 November 2026.** A later Windows run exercised stages A–F with generated files and a loopback receiver. This page preserves the original planning increment. [Run report and SIEM evidence](week8-windows-run.md)
+
 ## Project topic and task
 
 **Forensic Analysis and Detection of Simulated Infostealer-Like Activity in Windows Environments**

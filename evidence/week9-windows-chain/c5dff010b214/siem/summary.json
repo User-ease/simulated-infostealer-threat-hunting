@@ -1,0 +1,114 @@
+{
+  "elasticsearch": "9.5.5",
+  "index": "week8-chain-20261112085930733665",
+  "run": "c5dff010b214",
+  "native_records": 26,
+  "receiver_requests": 3,
+  "native_counts": {
+    "4688": 9,
+    "4663": 11,
+    "4698": 1,
+    "4699": 1,
+    "4104": 4
+  },
+  "loader_pid": 3936,
+  "matched_records": {
+    "training_page": [
+      "receiver:2"
+    ],
+    "loader": [
+      "Security:490"
+    ],
+    "launcher": [
+      "Security:488"
+    ],
+    "engine_start": [],
+    "archive_script": [
+      "Microsoft-Windows-PowerShell/Operational:17"
+    ],
+    "logon_task": [
+      "Security:507"
+    ],
+    "task_deleted": [
+      "Security:524"
+    ],
+    "task_action": [
+      "Security:509"
+    ],
+    "host_and_user": [
+      "Security:511",
+      "Security:512"
+    ],
+    "fixture_reads": [
+      "Security:515",
+      "Security:516",
+      "Security:517",
+      "Security:518",
+      "Security:519",
+      "Security:520",
+      "Security:521",
+      "Security:522"
+    ],
+    "accepted_upload": [
+      "receiver:3"
+    ],
+    "rejected_upload": [
+      "receiver:1"
+    ],
+    "listing_control": [
+      "Security:476"
+    ],
+    "listing_file_reads": []
+  },
+  "sequence": [
+    {
+      "ts": "2026-11-12T08:57:30.5289875Z",
+      "channel": "receiver",
+      "record": 2
+    },
+    {
+      "ts": "2026-11-12T08:57:49.2306150Z",
+      "channel": "Security",
+      "record": 488
+    },
+    {
+      "ts": "2026-11-12T08:57:49.9245748Z",
+      "channel": "Security",
+      "record": 490
+    },
+    {
+      "ts": "2026-11-12T08:57:56.4361514Z",
+      "channel": "Security",
+      "record": 507
+    },
+    {
+      "ts": "2026-11-12T08:58:04.1063872Z",
+      "channel": "Security",
+      "record": 511
+    },
+    {
+      "ts": "2026-11-12T08:58:05.0043025Z",
+      "channel": "Security",
+      "record": 515
+    },
+    {
+      "ts": "2026-11-12T08:58:08.9869635Z",
+      "channel": "receiver",
+      "record": 3
+    },
+    {
+      "ts": "2026-11-12T08:58:09.1969747Z",
+      "channel": "Security",
+      "record": 524
+    }
+  ],
+  "archive_bytes": 578,
+  "archive_sha256": "EEED7A4BAA02FFF7FBC50BA55B265FEA3257121BD8B168B1D23BF55C5A8BDEBF",
+  "members": [
+    "config.ini",
+    "cookies.json",
+    "mock-browser.json",
+    "wallet.txt"
+  ],
+  "checks_passed": true
+}

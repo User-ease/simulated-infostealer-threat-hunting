@@ -1,0 +1,38 @@
+{
+    "run":  "c5dff010b214",
+    "start_utc":  "2026-11-12T08:57:19.9109791Z",
+    "host":  "WIN-0CD77CN6UBT",
+    "loader_pid":  3936,
+    "control_pid":  4412,
+    "control_names":  [
+                          "config.ini",
+                          "cookies.json",
+                          "mock-browser.json",
+                          "wallet.txt"
+                      ],
+    "shown_command":  "cmd.exe /d /c powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\\Week8Lab\\loader.ps1",
+    "run_mru":  [
+                    "cmd.exe /d /c powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\\Week8Lab\\loader.ps1\\1"
+                ],
+    "sender_sha256":  "EEED7A4BAA02FFF7FBC50BA55B265FEA3257121BD8B168B1D23BF55C5A8BDEBF",
+    "receiver_sha256":  "EEED7A4BAA02FFF7FBC50BA55B265FEA3257121BD8B168B1D23BF55C5A8BDEBF",
+    "members":  [
+                    {
+                        "sha256":  "97388DD385397365D797C44FAB8AACAA582AEFE29631836565E6B241FF8CAC9C",
+                        "name":  "config.ini"
+                    },
+                    {
+                        "sha256":  "85A7191C3D97EF00F6B0DDEB85E0779E6A81871BB951CC9959648C753288F75A",
+                        "name":  "cookies.json"
+                    },
+                    {
+                        "sha256":  "AF7BFD2C6334AB09F5E95537B6838D01227FA77F098AEFB59102A3CD83FA81A5",
+                        "name":  "mock-browser.json"
+                    },
+                    {
+                        "sha256":  "E8421EC6F5AA770B3FDF4CDBCED3CF53215537B473110EA95D0753B529F50ECB",
+                        "name":  "wallet.txt"
+                    }
+                ],
+    "task_absent":  true
+}
